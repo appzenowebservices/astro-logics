@@ -81,9 +81,6 @@ export default function TradingChart({
   const [selectedDrawingId, setSelectedDrawingId] = useState<string | null>(
     null,
   );
-  const [selectedDrawingType, setSelectedDrawingType] = useState<string | null>(
-    null,
-  );
   const [selectedDrawingStyle, setSelectedDrawingStyle] = useState<any>(null);
   const [isChartInitialized, setIsChartInitialized] = useState(false);
   const [activeTool, setActiveTool] = useState<string | null>(null);
@@ -208,18 +205,18 @@ export default function TradingChart({
     }
   };
 
-  const handleUpdateDrawingStyle = async (style: any) => {
-    if (!drawingManagerRef.current || !selectedDrawingId) return;
+  const handleUpdateAllStyles = async (style: any) => {
+    if (!drawingManagerRef.current) return;
 
-    const drawing = drawingManagerRef.current.getDrawing(selectedDrawingId);
-    if (drawing) {
+    const allDrawings = drawingManagerRef.current.getAllDrawings();
+    for (const drawing of allDrawings) {
       drawing.updateStyle(style);
       try {
         await saveChartDrawingMutation.mutateAsync({
           symbol,
           timeframe,
           drawingType: drawing.type,
-          drawingId: selectedDrawingId,
+          drawingId: drawing.id,
           anchors: drawing.anchors,
           style: drawing.style,
           options: drawing.options,
@@ -471,14 +468,9 @@ export default function TradingChart({
         const drawing = drawingManagerRef.current?.getDrawing(event.drawingId);
         if (drawing) {
           setSelectedDrawingId(event.drawingId);
-          setSelectedDrawingType(drawing.type);
           setSelectedDrawingStyle({
             lineWidth: drawing.style?.lineWidth,
-            lineDash: drawing.style?.lineDash,
-            lineColor: drawing.style?.lineColor,
-            fillColor: drawing.style?.fillColor,
-            fillOpacity: drawing.style?.fillOpacity,
-            showLabels: drawing.style?.showLabels,
+            lineStyle: drawing.style?.lineDash,
           });
         }
       }
@@ -486,7 +478,6 @@ export default function TradingChart({
 
     const handleDrawingDeselected = () => {
       setSelectedDrawingId(null);
-      setSelectedDrawingType(null);
       setSelectedDrawingStyle(null);
     };
 
@@ -588,13 +579,11 @@ export default function TradingChart({
       {selectedDrawingId && (
         <DrawingStyleEditor
           selectedDrawingId={selectedDrawingId}
-          drawingType={selectedDrawingType}
           currentStyle={selectedDrawingStyle}
-          onUpdateStyle={handleUpdateDrawingStyle}
+          onUpdateAllStyles={handleUpdateAllStyles}
           onDelete={handleDeleteDrawing}
           onClose={() => {
             setSelectedDrawingId(null);
-            setSelectedDrawingType(null);
             setSelectedDrawingStyle(null);
           }}
         />
