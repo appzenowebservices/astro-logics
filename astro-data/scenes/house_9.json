@@ -1,0 +1,260 @@
+{
+  "id": "BELIEF_SYSTEM_COLLISION",
+  "sceneCategory": "REALISTIC_SOCIAL_TENSION",
+  "sceneType": "PRESSURE_BUILDUP",
+  "coreSituation": [
+    "philosophical conflict escalates gradually",
+    "guidance uncertainty becomes visible socially",
+    "internal stress conflicts with external expectations",
+    "small unresolved tensions accumulate over time"
+  ],
+  "environment": {
+    "locationType": "ASTROLOGICAL_HOUSE_CONTEXT",
+    "specificLocations": [
+      "house 9 symbolic environment",
+      "emotionally charged social setting",
+      "private reflection space",
+      "public interaction environment"
+    ],
+    "environmentMood": [
+      "tense",
+      "emotionally layered",
+      "uncertain",
+      "psychologically active"
+    ],
+    "sensoryDetails": [
+      "background distractions",
+      "notification sounds",
+      "lingering silence after conversations",
+      "dim lighting during introspection",
+      "visible physical fatigue"
+    ]
+  },
+  "narrativeFunction": [
+    "reveals emotional pressure patterns",
+    "demonstrates coping mechanisms",
+    "forces confrontation with unresolved fears",
+    "creates internal transformation"
+  ],
+  "participatingArchetypes": [
+    "emotionally burdened individual",
+    "critical authority figure",
+    "emotionally unavailable connection",
+    "supportive but overwhelmed ally"
+  ],
+  "emotionalCurrents": [
+    "anxiety",
+    "pressure",
+    "uncertainty",
+    "emotional fatigue",
+    "fear of failure"
+  ],
+  "behavioralDynamics": [
+    "avoiding difficult conversations",
+    "overthinking decisions",
+    "suppressing emotions publicly",
+    "reactive communication patterns",
+    "attempting to maintain control"
+  ],
+  "sceneTriggers": [
+    "unexpected confrontation",
+    "delayed response",
+    "authority pressure",
+    "fear of exposure",
+    "emotional misunderstanding"
+  ],
+  "pressureSources": [
+    "social expectations",
+    "fear of instability",
+    "identity uncertainty",
+    "emotional exhaustion",
+    "long-term unresolved tension"
+  ],
+  "microBehaviors": [
+    "checking messages repeatedly",
+    "restless pacing",
+    "shallow breathing",
+    "blank staring during silence",
+    "rapid task switching"
+  ],
+  "speechPatterns": [
+    "I just need more time",
+    "I thought this was under control",
+    "can we discuss this later",
+    "I am trying my best",
+    "this is becoming overwhelming"
+  ],
+  "bodyLanguagePatterns": [
+    "crossed arms",
+    "slouched posture",
+    "tight jaw",
+    "avoiding eye contact",
+    "restless movement"
+  ],
+  "relationshipDynamics": [
+    "trust weakens gradually",
+    "communication becomes transactional",
+    "emotional distance increases",
+    "support becomes inconsistent"
+  ],
+  "conflictDynamics": [
+    "minor issues escalate emotionally",
+    "feedback feels personal",
+    "silence creates suspicion",
+    "stress responses trigger defensiveness"
+  ],
+  "escalationStages": {
+    "early": [
+      "subtle tension",
+      "hidden stress",
+      "minor misunderstandings"
+    ],
+    "middle": [
+      "communication strain",
+      "visible emotional fatigue",
+      "reactive decision-making"
+    ],
+    "peak": [
+      "emotional outburst",
+      "withdrawal behavior",
+      "relationship rupture",
+      "critical mistake"
+    ],
+    "resolution": [
+      "emotional honesty",
+      "boundary creation",
+      "slower pacing",
+      "clear prioritization"
+    ]
+  },
+  "planetaryInfluences": {
+    "SUN": [
+      "identity pressure",
+      "need for recognition"
+    ],
+    "MOON": [
+      "emotional exhaustion",
+      "need for reassurance"
+    ],
+    "MERCURY": [
+      "communication stress",
+      "mental overload"
+    ],
+    "SATURN": [
+      "fear of failure",
+      "responsibility pressure"
+    ],
+    "MARS": [
+      "irritability",
+      "impatient reactions"
+    ]
+  },
+  "signModifiers": {
+    "ARIES": [
+      "impulsive reactions",
+      "pushes through exhaustion"
+    ],
+    "CANCER": [
+      "emotional defensiveness",
+      "withdrawal under stress"
+    ],
+    "VIRGO": [
+      "obsession with fixing details",
+      "overanalysis"
+    ],
+    "CAPRICORN": [
+      "suppresses emotions for performance",
+      "fear of appearing weak"
+    ]
+  },
+  "houseModifiers": {
+    "9": [
+      "primary tension related to house 9",
+      "house 9 psychological pressure themes"
+    ]
+  },
+  "aspectSensitivity": {
+    "SATURN_SQUARE_MOON": [
+      "emotional suppression",
+      "difficulty asking for support"
+    ],
+    "MARS_SQUARE_MERCURY": [
+      "argumentative communication",
+      "reactive speech"
+    ],
+    "SUN_OPPOSITION_SATURN": [
+      "fear of judgment",
+      "performance anxiety"
+    ]
+  },
+  "decisionDistortions": [
+    "everything feels urgent",
+    "avoids realistic prioritization",
+    "underestimates emotional impact",
+    "reacts before reflecting"
+  ],
+  "shadowExpressions": [
+    "pretending to cope internally",
+    "redirecting frustration onto others",
+    "emotional shutdown",
+    "passive aggressive communication"
+  ],
+  "growthResolutionPatterns": [
+    "honest communication",
+    "asking for support",
+    "healthy boundaries",
+    "slowing down intentionally",
+    "accepting imperfection"
+  ],
+  "cinematicExpressions": [
+    "dimly lit room during emotional conflict",
+    "phone screen filled with unread messages",
+    "silence after a tense conversation",
+    "late-night emotional reflection"
+  ],
+  "sceneHooks": [
+    "an unresolved issue resurfaces suddenly",
+    "someone demands immediate answers",
+    "a delayed response creates panic",
+    "an emotional truth becomes unavoidable"
+  ],
+  "stateTransitions": {
+    "functional": [
+      "stable communication",
+      "controlled emotional state"
+    ],
+    "pressured": [
+      "reactive thinking",
+      "suppressed emotions"
+    ],
+    "overloaded": [
+      "communication breakdown",
+      "emotional collapse",
+      "withdrawal behavior"
+    ],
+    "recovering": [
+      "clarity returns",
+      "priorities stabilize",
+      "emotional honesty increases"
+    ]
+  },
+  "temporalPatterns": [
+    "pressure builds gradually",
+    "ignored issues intensify over time",
+    "emotional release occurs after overextension"
+  ],
+  "storyProgressionPatterns": [
+    "hidden tension",
+    "visible emotional cracks",
+    "social conflict",
+    "forced confrontation",
+    "restructuring priorities"
+  ],
+  "symbolicObjects": [
+    "unread notifications",
+    "unfinished documents",
+    "dim lighting",
+    "cracked mirror symbolism",
+    "overflowing workspace"
+  ]
+}

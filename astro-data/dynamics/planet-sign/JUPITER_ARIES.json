@@ -1,0 +1,77 @@
+{
+  "id": "JUPITER_ARIES",
+
+  "planet": "JUPITER",
+  "sign": "ARIES",
+
+  "coreModulation": {
+    "corePrinciple": "expansion through initiative and assertive exploration",
+
+    "expressionStyle": [
+      "direct",
+      "initiatory",
+      "enthusiastic",
+      "action-oriented"
+    ],
+
+    "motivationalShift": [
+      "desire for immediate growth",
+      "urge toward independent exploration",
+      "expansion through challenge"
+    ],
+
+    "functionalModification": [
+      "beliefs become action-driven",
+      "optimism becomes assertive",
+      "growth seeks momentum"
+    ]
+  },
+
+  "behavioralTendencies": {
+    "adaptiveStrengths": [
+      "courageous expansion",
+      "confidence under uncertainty",
+      "pioneering mentality",
+      "rapid mobilization"
+    ],
+
+    "distortionRisks": [
+      "overconfidence",
+      "impatience",
+      "ideological impulsiveness",
+      "reckless expansion"
+    ],
+
+    "developmentPath": [
+      "strategic patience",
+      "measured confidence",
+      "disciplined vision",
+      "sustainable growth"
+    ]
+  },
+
+  "vectorModifiers": {
+    "self_vs_other": 0.8,
+    "resource_vs_loss": 0.3,
+    "local_vs_expansive": 0.95,
+    "private_vs_public": 0.6,
+    "creation_vs_collective": 0.7,
+    "order_vs_dissolution": 0.35
+  },
+
+  "symbolicLayer": {
+    "symbols": [
+      "burning torch",
+      "expedition",
+      "battle banner",
+      "open frontier"
+    ],
+
+    "associatedPhenomena": [
+      "visionary action",
+      "belief-driven movement",
+      "expansive initiative",
+      "adventurous growth"
+    ]
+  }
+}

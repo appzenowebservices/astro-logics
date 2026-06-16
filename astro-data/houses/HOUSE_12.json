@@ -1,0 +1,125 @@
+{
+  "id": "HOUSE_12",
+  "classification": {
+    "axis": "DISSOLUTION",
+    "angularity": "CADENT",
+    "elementalAffinity": "WATER"
+  },
+  "coreEssence": {
+    "corePrinciple": "transcendence through surrender and dissolution",
+    "lifeDomains": [
+      "subconscious",
+      "isolation",
+      "dreams",
+      "spirituality",
+      "hidden suffering",
+      "collective unconscious"
+    ],
+    "archetypes": [
+      "the mystic",
+      "the exile",
+      "the dreamer",
+      "the dissolver"
+    ]
+  },
+  "environmentalContext": {
+    "environmentType": [
+      "liminal psychological field",
+      "dissolution and transcendence arena"
+    ],
+    "motivationalThemes": [
+      "escape",
+      "unity",
+      "transcendence",
+      "release"
+    ],
+    "developmentalThemes": [
+      "ego dissolution",
+      "subconscious integration",
+      "spiritual surrender",
+      "collective empathy"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "oceans",
+      "fog",
+      "dreams",
+      "prisons",
+      "temples",
+      "mirrors in darkness"
+    ],
+    "associatedEnvironments": [
+      "hospitals",
+      "monasteries",
+      "isolated retreats",
+      "dream states",
+      "spiritual spaces",
+      "hidden environments"
+    ],
+    "bodyCorrelation": [
+      "feet",
+      "sleep systems",
+      "subconscious processing",
+      "immune sensitivity",
+      "dream regulation",
+      "boundary dissolution"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.34,
+    "arousal": 0.46,
+    "agency": 0.19,
+    "dominance": 0.22,
+    "coherence": 0.37,
+    "stability": 0.41,
+    "novelty": 0.84,
+    "volatility": 0.79,
+    "abstraction": 0.97,
+    "symbolic_density": 0.98,
+    "pattern_recognition": 0.89,
+    "analyticity": 0.46,
+    "intuition": 0.96,
+    "mental_speed": 0.51,
+    "focus": 0.22,
+    "diffusion": 0.99,
+    "past_orientation": 0.88,
+    "present_orientation": 0.52,
+    "future_orientation": 0.61,
+    "cyclicality": 0.97,
+    "urgency": 0.29,
+    "patience": 0.77,
+    "desire_intensity": 0.64,
+    "attachment": 0.88,
+    "avoidance": 0.69,
+    "expansion": 0.72,
+    "contraction": 0.81,
+    "ambition": 0.41,
+    "survival_drive": 0.46,
+    "sociality": 0.73,
+    "individuality": 0.41,
+    "collectivism": 0.91,
+    "relational_depth": 0.97,
+    "boundary_strength": 0.18,
+    "empathy": 0.98,
+    "dominance_social": 0.28,
+    "materiality": 0.29,
+    "spirituality": 0.97,
+    "sensory_density": 0.62,
+    "idealism": 0.95,
+    "pragmatism": 0.31,
+    "integration": 0.54,
+    "fragmentation": 0.86,
+    "entropy": 0.92,
+    "adaptability": 0.94,
+    "rigidity": 0.21,
+    "expressiveness": 0.62,
+    "repression": 0.71,
+    "reactivity": 0.58,
+    "responsiveness": 0.66,
+    "meaning_orientation": 0.99,
+    "identity_coherence": 0.33,
+    "transcendence": 0.98,
+    "ego_density": 0.24
+  }
+}

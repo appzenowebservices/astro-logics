@@ -1,0 +1,154 @@
+{
+  "id": "JUPITER",
+  "classification": {
+    "planetType": "SOCIAL",
+    "elementalNature": [
+      "ETHER",
+      "FIRE"
+    ],
+    "modalityAffinity": [
+      "MUTABLE"
+    ],
+    "genderPolarity": "MASCULINE",
+    "gunaAffinity": [
+      "SATTVA"
+    ],
+    "temperament": [
+      "WARM",
+      "MOIST"
+    ]
+  },
+  "coreEssence": {
+    "corePrinciple": "meaning expansion",
+    "archetypes": [
+      "wisdom",
+      "growth",
+      "belief",
+      "guidance",
+      "abundance",
+      "expansion"
+    ],
+    "expressionDomains": [
+      "philosophy",
+      "teaching",
+      "ethics",
+      "exploration",
+      "faith",
+      "future vision"
+    ],
+    "governingFunctions": [
+      "expanding perspective",
+      "forming belief systems",
+      "seeking meaning",
+      "guiding development",
+      "connecting experiences into wisdom",
+      "creating optimism and possibility"
+    ]
+  },
+  "motivationalStructure": {
+    "coreNeeds": [
+      "meaning",
+      "growth",
+      "freedom",
+      "understanding",
+      "hope"
+    ],
+    "coreFears": [
+      "meaninglessness",
+      "limitation",
+      "stagnation",
+      "loss of faith",
+      "narrowness"
+    ],
+    "desirePatterns": [
+      "to expand possibilities",
+      "to understand higher truths",
+      "to guide others",
+      "to grow continuously",
+      "to connect life into coherent meaning"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "temples",
+      "books",
+      "mountains",
+      "torches",
+      "maps",
+      "crowns",
+      "open skies"
+    ],
+    "associatedEnvironments": [
+      "universities",
+      "religious institutions",
+      "courts",
+      "teaching spaces",
+      "travel environments",
+      "philosophical communities"
+    ],
+    "bodyCorrelation": [
+      "liver",
+      "growth systems",
+      "fat metabolism",
+      "wisdom perception",
+      "expansion processes",
+      "overall vitality"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.92,
+    "arousal": 0.71,
+    "agency": 0.74,
+    "dominance": 0.62,
+    "coherence": 0.94,
+    "stability": 0.82,
+    "novelty": 0.72,
+    "volatility": -0.22,
+    "abstraction": 0.96,
+    "symbolic_density": 0.94,
+    "pattern_recognition": 0.88,
+    "analyticity": 0.71,
+    "intuition": 0.91,
+    "mental_speed": 0.58,
+    "focus": 0.62,
+    "diffusion": 0.71,
+    "past_orientation": 0.48,
+    "present_orientation": 0.42,
+    "future_orientation": 0.96,
+    "cyclicality": 0.84,
+    "urgency": -0.18,
+    "patience": 0.92,
+    "desire_intensity": 0.78,
+    "attachment": 0.41,
+    "avoidance": -0.82,
+    "expansion": 0.98,
+    "contraction": -0.71,
+    "ambition": 0.74,
+    "survival_drive": 0.28,
+    "sociality": 0.88,
+    "individuality": 0.18,
+    "collectivism": 0.84,
+    "relational_depth": 0.81,
+    "boundary_strength": 0.14,
+    "empathy": 0.88,
+    "dominance_social": 0.58,
+    "materiality": 0.41,
+    "spirituality": 0.96,
+    "sensory_density": 0.44,
+    "idealism": 0.98,
+    "pragmatism": 0.42,
+    "integration": 0.97,
+    "fragmentation": -0.72,
+    "entropy": -0.38,
+    "adaptability": 0.82,
+    "rigidity": -0.18,
+    "expressiveness": 0.88,
+    "repression": -0.71,
+    "reactivity": 0.24,
+    "responsiveness": 0.92,
+    "meaning_orientation": 0.99,
+    "identity_coherence": 0.84,
+    "transcendence": 0.96,
+    "ego_density": 0.48
+  }
+}

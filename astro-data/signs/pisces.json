@@ -1,0 +1,176 @@
+{
+  "id": "PISCES",
+  "classification": {
+    "element": "WATER",
+    "modality": "MUTABLE",
+    "polarity": "FEMININE"
+  },
+  "coreEssence": {
+    "corePrinciple": "dissolution through transcendence",
+    "archetypes": [
+      "dreamer",
+      "mystic",
+      "healer",
+      "artist",
+      "empath",
+      "escapist"
+    ],
+    "expressionStyle": [
+      "intuitive",
+      "fluid",
+      "imaginative",
+      "emotionally absorptive",
+      "symbolic",
+      "boundary-dissolving"
+    ],
+    "motivationalBias": [
+      "toward unity over separation",
+      "toward transcendence over material fixation",
+      "toward imagination over rigid realism",
+      "toward compassion over judgment",
+      "toward surrender over control"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "acts through intuition",
+      "responds emotionally to atmospheres",
+      "moves fluidly between roles",
+      "absorbs surrounding emotional states"
+    ],
+    "decisionStyle": [
+      "feeling-oriented",
+      "symbolically informed",
+      "impressionistic",
+      "nonlinear"
+    ],
+    "adaptationStyle": [
+      "merges into environments",
+      "escapes harsh conditions psychologically",
+      "reimagines reality under pressure",
+      "stabilizes through emotional or spiritual connection"
+    ],
+    "stressResponse": [
+      "withdraws into fantasy",
+      "avoids confrontation",
+      "becomes emotionally overwhelmed",
+      "dissolves boundaries under pressure"
+    ],
+    "relationalOrientation": [
+      "seeks emotional and spiritual fusion",
+      "connects through empathy",
+      "sacrifices personal boundaries for connection",
+      "requires emotional gentleness and trust"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "oceans",
+      "fog",
+      "dreams",
+      "music",
+      "fish",
+      "temples",
+      "mirages"
+    ],
+    "associatedEnvironments": [
+      "spiritual spaces",
+      "oceans",
+      "artistic environments",
+      "healing spaces",
+      "isolated retreats",
+      "dreamlike or liminal settings"
+    ],
+    "bodyCorrelation": [
+      "feet",
+      "lymphatic system",
+      "sleep states",
+      "subconscious processing",
+      "fluid regulation",
+      "sensitivity systems"
+    ]
+  },
+  "latentVector": {
+    // =========================================
+    // CORE AFFECTIVE GEOMETRY
+    // =========================================
+    "valence": 0.63,
+    "arousal": 0.58,
+    "agency": 0.22,
+    "dominance": 0.18,
+    "coherence": 0.31,
+    "stability": 0.27,
+    "novelty": 0.74,
+    "volatility": 0.62,
+    // =========================================
+    // COGNITIVE STYLE
+    // =========================================
+    "abstraction": 0.88,
+    "symbolic_density": 0.92,
+    "pattern_recognition": 0.89,
+    "analyticity": 0.34,
+    "intuition": 0.98,
+    "mental_speed": 0.61,
+    "focus": 0.29,
+    "diffusion": 0.96,
+    // =========================================
+    // TEMPORAL ORIENTATION
+    // =========================================
+    "past_orientation": 0.74,
+    "present_orientation": 0.66,
+    "future_orientation": 0.71,
+    "cyclicality": 0.91,
+    "urgency": 0.33,
+    "patience": 0.52,
+    // =========================================
+    // MOTIVATIONAL FORCES
+    // =========================================
+    "desire_intensity": 0.81,
+    "attachment": 0.94,
+    "avoidance": 0.24,
+    "expansion": 0.83,
+    "contraction": 0.31,
+    "ambition": 0.46,
+    "survival_drive": 0.39,
+    // =========================================
+    // SOCIAL GEOMETRY
+    // =========================================
+    "sociality": 0.77,
+    "individuality": 0.28,
+    "collectivism": 0.86,
+    "relational_depth": 0.96,
+    "boundary_strength": 0.14,
+    "empathy": 0.97,
+    "dominance_social": 0.21,
+    // =========================================
+    // MATERIAL ↔ SYMBOLIC
+    // =========================================
+    "materiality": 0.22,
+    "spirituality": 0.96,
+    "sensory_density": 0.71,
+    "idealism": 0.93,
+    "pragmatism": 0.28,
+    // =========================================
+    // ORDER / CHAOS DYNAMICS
+    // =========================================
+    "integration": 0.38,
+    "fragmentation": 0.69,
+    "entropy": 0.77,
+    "adaptability": 0.83,
+    "rigidity": 0.19,
+    // =========================================
+    // EXPRESSION DYNAMICS
+    // =========================================
+    "expressiveness": 0.86,
+    "repression": 0.18,
+    "reactivity": 0.78,
+    "responsiveness": 0.88,
+    // =========================================
+    // EXISTENTIAL AXES
+    // =========================================
+    "meaning_orientation": 0.94,
+    "identity_coherence": 0.33,
+    "transcendence": 0.95,
+    "ego_density": 0.26
+  }
+}

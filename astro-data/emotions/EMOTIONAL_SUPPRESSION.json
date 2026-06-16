@@ -1,0 +1,165 @@
+{
+  "id": "EMOTIONAL_SUPPRESSION",
+  "emotionCategory": "RESTRICTED_STATE",
+  "coreEmotion": [
+    "contained emotional processing",
+    "contained psychological state",
+    "emotional adaptation cycle"
+  ],
+  "emotionalSpectrum": [
+    "anxiety",
+    "fatigue",
+    "hope",
+    "irritability",
+    "detachment"
+  ],
+  "psychologicalDrivers": [
+    "accumulated emotional pressure",
+    "identity stress",
+    "unprocessed emotional conflict"
+  ],
+  "internalNarratives": [
+    "I need to keep functioning",
+    "things feel emotionally unstable",
+    "I need emotional certainty"
+  ],
+  "behavioralManifestations": [
+    "withdrawal patterns",
+    "emotional reactivity",
+    "focus instability"
+  ],
+  "microBehaviors": [
+    "restless pacing",
+    "staring at screens",
+    "compulsive checking behaviors"
+  ],
+  "speechPatterns": [
+    "short responses",
+    "emotionally loaded phrasing"
+  ],
+  "bodyLanguagePatterns": [
+    "shoulder tension",
+    "fatigue posture"
+  ],
+  "decisionMakingDistortions": [
+    "emotion-based prioritization",
+    "tunnel vision"
+  ],
+  "relationshipEffects": [
+    "reduced emotional bandwidth",
+    "miscommunication cycles"
+  ],
+  "workplaceEffects": [
+    "focus reduction",
+    "pressure accumulation"
+  ],
+  "familyEffects": [
+    "withdrawal from engagement"
+  ],
+  "socialEffects": [
+    "reduced responsiveness"
+  ],
+  "conflictPatterns": [
+    "defensive reactions",
+    "stress escalation"
+  ],
+  "copingMechanisms": [
+    "avoidance",
+    "overworking",
+    "isolation"
+  ],
+  "unhealthyExpressions": [
+    "burnout",
+    "emotional collapse"
+  ],
+  "healthyExpressions": [
+    "boundary setting",
+    "clear communication"
+  ],
+  "shadowExpressions": [
+    "silent resentment",
+    "emotional denial"
+  ],
+  "growthDirection": [
+    "emotional pacing",
+    "structured recovery"
+  ],
+  "triggerPatterns": [
+    "uncertainty",
+    "overstimulation",
+    "pressure"
+  ],
+  "pressureAmplifiers": [
+    "financial instability",
+    "relationship conflict"
+  ],
+  "environmentalTriggers": [
+    "chaotic environments",
+    "constant notifications"
+  ],
+  "planetaryAssociations": [
+    "MOON",
+    "SATURN",
+    "MERCURY"
+  ],
+  "signAssociations": [
+    "CANCER",
+    "VIRGO",
+    "SCORPIO"
+  ],
+  "houseAssociations": [
+    "4",
+    "6",
+    "8",
+    "12"
+  ],
+  "aspectSensitivity": [
+    "MOON_SATURN",
+    "MOON_PLUTO"
+  ],
+  "cinematicExpressions": [
+    "sitting silently in crowded spaces",
+    "ignoring notifications",
+    "working while emotionally drained"
+  ],
+  "sceneGenerationHooks": [
+    "unexpected pressure appears",
+    "emotionally difficult confrontation"
+  ],
+  "stateTransitions": {
+    "stable": [
+      "functional",
+      "present"
+    ],
+    "pressured": [
+      "reactive",
+      "contained"
+    ],
+    "overloaded": [
+      "emotionally numb",
+      "shutdown"
+    ],
+    "recovery": [
+      "resting",
+      "reorganizing"
+    ]
+  },
+  "temporalPatterns": [
+    "builds gradually over time",
+    "cycles through pressure and release"
+  ],
+  "distortionPatterns": [
+    "minor problems feel catastrophic",
+    "neutral interactions feel threatening"
+  ],
+  "integrationPatterns": [
+    "structured routines",
+    "consistent emotional communication"
+  ],
+  "symbolicObjects": [
+    "unfinished lists",
+    "cold coffee",
+    "dim screens",
+    "alarm notifications"
+  ]
+}

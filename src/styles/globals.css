@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme {
+  /* Primary Theme Colors (Extracted from the logo) */
+  --color-primary-light: #eaddbd;
+  /* The warm cream/beige of the moon */
+  --color-primary-dark: #2a4170;
+  /* The deep cosmic blue of the planet */
+
+  /* Accent Colors */
+  --color-accent-orange: #d17a38;
+  /* The gaseous orange stripes */
+  --color-accent-glow: #a4c4d9;
+  /* The soft blue atmospheric aura */
+  --color-ring-bronze: #c59b7d;
+  /* The metallic tone of the orbital rings */
+
+  /* Neutral Backgrounds & Text */
+  --bg-main: #ffffff;
+  --text-main: #1a1a1b;
+  --text-muted: #5a5a5a;
+
+  /* Functional Mappings */
+  --brand-gradient: linear-gradient(135deg,
+      var(--color-primary-light) 0%,
+      var(--color-primary-dark) 100%);
+}
+
+
+body {
+  font-family: var(--font-body);
+}
+
+
+/* Example Usage for Dark Mode preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-main: var(--color-primary-dark);
+    --text-main: var(--color-primary-light);
+  }
+
+
+}

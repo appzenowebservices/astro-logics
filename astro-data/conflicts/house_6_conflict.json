@@ -1,0 +1,245 @@
+{
+  "id": "RESPONSIBILITY_VS_BURNOUT",
+  "conflictCategory": "ASTROLOGICAL_HOUSE_DYNAMIC",
+  "coreConflict": [
+    "routine obligations overwhelm wellbeing",
+    "internal needs conflict with external pressures",
+    "emotional reactions intensify unresolved tension",
+    "attempts to regain control create resistance"
+  ],
+  "primaryTension": [
+    "security versus uncertainty",
+    "emotional needs versus responsibilities",
+    "control versus adaptation"
+  ],
+  "psychologicalDrivers": [
+    "fear of failure",
+    "fear of rejection",
+    "fear of instability",
+    "need for validation",
+    "need for emotional safety",
+    "desire for autonomy"
+  ],
+  "triggerPatterns": [
+    "criticism",
+    "emotional invalidation",
+    "unexpected change",
+    "loss of control",
+    "miscommunication",
+    "social pressure"
+  ],
+  "behavioralManifestations": [
+    "defensive reactions",
+    "withdrawal",
+    "passive resistance",
+    "argument escalation",
+    "emotional shutdown",
+    "impulsive decisions"
+  ],
+  "microBehaviors": [
+    "crossing arms defensively",
+    "checking messages compulsively",
+    "avoiding eye contact",
+    "interrupting conversations",
+    "restless pacing",
+    "sarcastic remarks"
+  ],
+  "speechPatterns": [
+    "you do not understand",
+    "I just need space",
+    "this is becoming too much",
+    "why is this always happening",
+    "I am trying to manage it"
+  ],
+  "bodyLanguagePatterns": [
+    "tight shoulders",
+    "defensive posture",
+    "shallow breathing",
+    "restless movements",
+    "forced eye contact"
+  ],
+  "escalationSequence": [
+    "subtle tension emerges",
+    "misunderstandings increase",
+    "emotional defensiveness appears",
+    "communication deteriorates",
+    "open conflict erupts",
+    "emotional distance grows"
+  ],
+  "relationshipDynamics": [
+    "trust weakens under repeated stress",
+    "communication becomes reactive",
+    "resentment builds quietly",
+    "emotional availability decreases",
+    "conflict becomes repetitive"
+  ],
+  "familyDynamics": [
+    "boundary struggles",
+    "unspoken emotional tension",
+    "expectation conflicts",
+    "difficulty expressing vulnerability"
+  ],
+  "workplaceDynamics": [
+    "pressure around responsibilities",
+    "communication breakdowns",
+    "authority tension",
+    "performance anxiety"
+  ],
+  "socialDynamics": [
+    "fear of exclusion",
+    "social comparison pressure",
+    "withdrawal from overwhelming groups"
+  ],
+  "decisionDistortions": [
+    "reactive choices",
+    "all-or-nothing thinking",
+    "avoiding compromise",
+    "assuming worst-case outcomes"
+  ],
+  "unhealthyExpressions": [
+    "emotional manipulation",
+    "passive aggression",
+    "controlling behavior",
+    "avoidance",
+    "self-sabotage"
+  ],
+  "healthyExpressions": [
+    "clear communication",
+    "mutual respect",
+    "emotional honesty",
+    "shared accountability",
+    "healthy boundaries"
+  ],
+  "shadowExpressions": [
+    "suppressed resentment",
+    "emotional withdrawal",
+    "projecting fears onto others",
+    "overcompensation through control"
+  ],
+  "copingMechanisms": [
+    "withdrawal",
+    "overworking",
+    "detachment",
+    "sarcasm",
+    "people pleasing",
+    "avoidance"
+  ],
+  "growthDirection": [
+    "self-awareness",
+    "healthy boundaries",
+    "balanced communication",
+    "emotional responsibility",
+    "flexibility under pressure"
+  ],
+  "pressureAmplifiers": [
+    "financial instability",
+    "unclear expectations",
+    "social judgment",
+    "high-pressure environments",
+    "lack of emotional support"
+  ],
+  "environmentalTriggers": [
+    "stressful workplaces",
+    "emotionally charged homes",
+    "unstable social settings",
+    "restrictive environments"
+  ],
+  "planetaryAssociations": [
+    "SATURN",
+    "MARS",
+    "PLUTO",
+    "MOON",
+    "URANUS"
+  ],
+  "signAssociations": [
+    "ARIES",
+    "CANCER",
+    "SCORPIO",
+    "CAPRICORN",
+    "AQUARIUS"
+  ],
+  "houseAssociations": [
+    "6"
+  ],
+  "aspectSensitivity": [
+    "SATURN_SQUARE_MOON",
+    "MARS_OPPOSITION_SATURN",
+    "PLUTO_SQUARE_SUN",
+    "URANUS_SQUARE_MERCURY"
+  ],
+  "cinematicExpressions": [
+    "silence after an argument",
+    "slamming a laptop shut",
+    "walking away during conflict",
+    "late-night emotional reflection",
+    "staring at unread messages"
+  ],
+  "sceneGenerationHooks": [
+    "a misunderstanding resurfaces publicly",
+    "someone demands accountability suddenly",
+    "a delayed response creates tension",
+    "a hidden frustration becomes visible"
+  ],
+  "conflictEscalators": [
+    "public criticism",
+    "emotional invalidation",
+    "interruptions",
+    "lack of empathy",
+    "dismissive communication"
+  ],
+  "conflictDeEscalators": [
+    "active listening",
+    "private discussion",
+    "clear boundaries",
+    "mutual accountability",
+    "honest communication"
+  ],
+  "behavioralStateTransitions": {
+    "stable": [
+      "balanced communication",
+      "healthy emotional regulation",
+      "cooperative behavior"
+    ],
+    "pressured": [
+      "defensiveness",
+      "reactive speech",
+      "increased emotional tension"
+    ],
+    "overloaded": [
+      "emotional shutdown",
+      "explosive conflict",
+      "relationship rupture"
+    ],
+    "integrated": [
+      "calm assertiveness",
+      "healthy compromise",
+      "stable emotional expression"
+    ]
+  },
+  "temporalManifestations": [
+    "begins subtly",
+    "intensifies through repetition",
+    "becomes cyclical when ignored",
+    "peaks during emotional overload"
+  ],
+  "distortionPatterns": [
+    "assuming criticism equals rejection",
+    "equating vulnerability with weakness",
+    "interpreting silence negatively",
+    "mistaking control for stability"
+  ],
+  "integrationPatterns": [
+    "shared responsibility",
+    "trust-based communication",
+    "emotional honesty",
+    "flexible expectations"
+  ],
+  "symbolicObjects": [
+    "closed doors",
+    "unread notifications",
+    "mirrors",
+    "unfinished paperwork",
+    "dimly lit rooms",
+    "locked devices"
+  ]
+}

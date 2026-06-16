@@ -1,0 +1,125 @@
+{
+  "id": "HOUSE_9",
+  "classification": {
+    "axis": "EXPANSION",
+    "angularity": "CADENT",
+    "elementalAffinity": "FIRE"
+  },
+  "coreEssence": {
+    "corePrinciple": "meaning through exploration and higher understanding",
+    "lifeDomains": [
+      "philosophy",
+      "religion",
+      "higher education",
+      "travel",
+      "belief systems",
+      "wisdom"
+    ],
+    "archetypes": [
+      "the explorer",
+      "the philosopher",
+      "the teacher",
+      "the seeker"
+    ]
+  },
+  "environmentalContext": {
+    "environmentType": [
+      "meaning expansion field",
+      "higher learning arena"
+    ],
+    "motivationalThemes": [
+      "truth",
+      "freedom",
+      "understanding",
+      "expansion"
+    ],
+    "developmentalThemes": [
+      "belief formation",
+      "worldview expansion",
+      "philosophical integration",
+      "search for meaning"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "mountains",
+      "books",
+      "roads",
+      "temples",
+      "maps",
+      "open skies"
+    ],
+    "associatedEnvironments": [
+      "universities",
+      "religious institutions",
+      "foreign lands",
+      "philosophical communities",
+      "exploration spaces",
+      "higher learning environments"
+    ],
+    "bodyCorrelation": [
+      "hips",
+      "thighs",
+      "mobility systems",
+      "growth processes",
+      "belief orientation",
+      "directional movement"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.84,
+    "arousal": 0.81,
+    "agency": 0.77,
+    "dominance": 0.65,
+    "coherence": 0.61,
+    "stability": 0.48,
+    "novelty": 0.96,
+    "volatility": 0.72,
+    "abstraction": 0.91,
+    "symbolic_density": 0.87,
+    "pattern_recognition": 0.82,
+    "analyticity": 0.63,
+    "intuition": 0.89,
+    "mental_speed": 0.86,
+    "focus": 0.57,
+    "diffusion": 0.88,
+    "past_orientation": 0.39,
+    "present_orientation": 0.64,
+    "future_orientation": 0.93,
+    "cyclicality": 0.66,
+    "urgency": 0.71,
+    "patience": 0.53,
+    "desire_intensity": 0.82,
+    "attachment": 0.48,
+    "avoidance": 0.31,
+    "expansion": 0.96,
+    "contraction": 0.29,
+    "ambition": 0.85,
+    "survival_drive": 0.58,
+    "sociality": 0.79,
+    "individuality": 0.83,
+    "collectivism": 0.61,
+    "relational_depth": 0.64,
+    "boundary_strength": 0.59,
+    "empathy": 0.76,
+    "dominance_social": 0.55,
+    "materiality": 0.46,
+    "spirituality": 0.92,
+    "sensory_density": 0.67,
+    "idealism": 0.94,
+    "pragmatism": 0.41,
+    "integration": 0.69,
+    "fragmentation": 0.52,
+    "entropy": 0.58,
+    "adaptability": 0.83,
+    "rigidity": 0.39,
+    "expressiveness": 0.86,
+    "repression": 0.34,
+    "reactivity": 0.78,
+    "responsiveness": 0.82,
+    "meaning_orientation": 0.97,
+    "identity_coherence": 0.66,
+    "transcendence": 0.95,
+    "ego_density": 0.61
+  }
+}

@@ -1,0 +1,49 @@
+## Goal
+Implement window scanner with drag-to-select on chart and store selections in database
+
+## Constraints & Preferences
+- (none)
+
+## Progress
+### Done
+- Added chalk logging to scanWindow mutation
+- Fixed MarketStateEngine to generate events for batch processing
+- Implemented drag-to-select with rectangular box on chart
+- Added saveChartSelection mutation to trade.ts
+- Added getChartSelections query to trade.ts
+- Created DebugPanel with Save Zone button
+- Added ChartSelection model to Prisma schema
+- Ran database migration (MongoDB Atlas)
+- Updated DebugPanel to pass symbol and calculate price range
+- Fixed Prisma client import paths in db.ts, marketPersistence.ts, marketAstroService.ts
+- Selection box now persists after drag completes and updates on zoom/scroll
+- Saved selections displayed as blue highlight boxes on chart
+
+### In Progress
+- (none)
+
+### Blocked
+- (none)
+
+## Key Decisions
+- Using sequential candle processing for event extraction
+- Using DOM overlay for drag selection with state-based persistence
+- Storing time range with symbol/timeframe metadata
+- Price range calculated from filtered candles in selection
+- Saved selections rendered as overlay divs positioned via timeScale
+
+## Next Steps
+- (none - feature complete)
+
+## Critical Context
+- visibleRange returns timestamps in seconds (UTCTimestamp format)
+- MarketStateEngine needs sequential processing to generate events
+- Selection box persists after drag and updates on visible range changes
+- Saved selections update on scroll/resize via ResizeObserver
+
+## Relevant Files
+- `src/server/api/routers/trade.ts:518-557` - scanWindow mutation, saveChartSelection, getChartSelections
+- `trade_engine/lib/MarketStateEngine.ts` - Event extraction logic
+- `src/app/components/trading/TradingChart.tsx` - Drag selection UI, saved selections display
+- `src/app/components/trading/DebugPanel.tsx` - Selection confirmation UI
+- `prisma/schema.prisma:845-861` - ChartSelection model

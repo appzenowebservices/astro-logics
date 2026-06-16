@@ -1,0 +1,139 @@
+{
+  "id": "QUINCUNX",
+  "classification": {
+    "aspectType": "ADJUSTMENT",
+    "aspectAngle": 150,
+    "orbInfluence": "MODERATE"
+  },
+  "coreEssence": {
+    "corePrinciple": "adaptation through misalignment and recalibration",
+    "interactionDynamics": [
+      "incompatibility",
+      "adjustment",
+      "misalignment",
+      "indirect interaction"
+    ],
+    "energeticEffects": [
+      "friction without resolution",
+      "constant recalibration",
+      "uneven integration",
+      "subtle instability"
+    ]
+  },
+  "behavioralModulation": {
+    "expressionStyle": [
+      "compensatory",
+      "adaptive",
+      "internally strained"
+    ],
+    "distortionRisk": [
+      "chronic dissatisfaction",
+      "misattunement",
+      "inefficient adaptation",
+      "confused prioritization"
+    ],
+    "integrationPath": [
+      "incremental adjustment",
+      "adaptive refinement",
+      "awareness of incompatibilities",
+      "functional compromise"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "crooked gears",
+      "misaligned pathways",
+      "uneven bridges",
+      "tilted structures"
+    ],
+    "associatedPhenomena": [
+      "adjustment pressure",
+      "persistent unease",
+      "adaptive tension",
+      "structural incompatibility"
+    ]
+  },
+  "latentVector": {
+    // =========================================
+    // CORE AFFECTIVE GEOMETRY
+    // =========================================
+    "valence": -0.22,
+    "arousal": 0.61,
+    "agency": 0.48,
+    "dominance": 0.44,
+    "coherence": 0.31,
+    "stability": 0.42,
+    "novelty": 0.83,
+    "volatility": 0.66,
+    // =========================================
+    // COGNITIVE STYLE
+    // =========================================
+    "abstraction": 0.79,
+    "symbolic_density": 0.82,
+    "pattern_recognition": 0.74,
+    "analyticity": 0.63,
+    "intuition": 0.77,
+    "mental_speed": 0.68,
+    "focus": 0.41,
+    "diffusion": 0.86,
+    // =========================================
+    // TEMPORAL ORIENTATION
+    // =========================================
+    "past_orientation": 0.62,
+    "present_orientation": 0.54,
+    "future_orientation": 0.71,
+    "cyclicality": 0.69,
+    "urgency": 0.58,
+    "patience": 0.63,
+    // =========================================
+    // MOTIVATIONAL FORCES
+    // =========================================
+    "desire_intensity": 0.64,
+    "attachment": 0.52,
+    "avoidance": 0.73,
+    "expansion": 0.46,
+    "contraction": 0.61,
+    "ambition": 0.57,
+    "survival_drive": 0.66,
+    // =========================================
+    // SOCIAL GEOMETRY
+    // =========================================
+    "sociality": 0.61,
+    "individuality": 0.64,
+    "collectivism": 0.58,
+    "relational_depth": 0.67,
+    "boundary_strength": 0.59,
+    "empathy": 0.62,
+    "dominance_social": 0.55,
+    // =========================================
+    // MATERIAL ↔ SYMBOLIC
+    // =========================================
+    "materiality": 0.58,
+    "spirituality": 0.66,
+    "sensory_density": 0.63,
+    "idealism": 0.61,
+    "pragmatism": 0.59,
+    // =========================================
+    // ORDER / CHAOS DYNAMICS
+    // =========================================
+    "integration": 0.44,
+    "fragmentation": 0.68,
+    "entropy": 0.74,
+    "adaptability": 0.72,
+    "rigidity": 0.46,
+    // =========================================
+    // EXPRESSION DYNAMICS
+    // =========================================
+    "expressiveness": 0.57,
+    "repression": 0.66,
+    "reactivity": 0.59,
+    "responsiveness": 0.61,
+    // =========================================
+    // EXISTENTIAL AXES
+    // =========================================
+    "meaning_orientation": 0.68,
+    "identity_coherence": 0.42,
+    "transcendence": 0.64,
+    "ego_density": 0.58
+  }
+}

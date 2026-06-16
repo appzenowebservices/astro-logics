@@ -1,0 +1,146 @@
+{
+  "id": "HOUSE_6",
+
+  "classification": {
+    "axis": "SERVICE",
+    "angularity": "CADENT",
+    "elementalAffinity": "EARTH"
+  },
+
+  "coreEssence": {
+    "corePrinciple": "stabilization through refinement and functional order",
+
+    "lifeDomains": [
+      "work",
+      "health",
+      "routine",
+      "service",
+      "maintenance",
+      "daily systems"
+    ],
+
+    "archetypes": [
+      "the worker",
+      "the healer",
+      "the analyst",
+      "the servant"
+    ]
+  },
+
+  "environmentalContext": {
+    "environmentType": [
+      "functional systems field",
+      "maintenance and refinement arena"
+    ],
+
+    "motivationalThemes": [
+      "improvement",
+      "competence",
+      "order",
+      "usefulness"
+    ],
+
+    "developmentalThemes": [
+      "discipline formation",
+      "skill refinement",
+      "system optimization",
+      "mind-body regulation"
+    ]
+  },
+
+
+  "symbolicLayer": {
+    "symbols": [
+      "tools",
+      "clocks",
+      "checklists",
+      "medicine",
+      "workstations",
+      "grids"
+    ],
+
+    "associatedEnvironments": [
+      "offices",
+      "clinics",
+      "labor systems",
+      "structured workplaces",
+      "health environments",
+      "routine-driven settings"
+    ],
+
+    "bodyCorrelation": [
+      "digestive system",
+      "intestines",
+      "nervous regulation",
+      "habit systems",
+      "health maintenance",
+      "physical processing"
+    ]
+  },
+
+  "latentVector": {
+    "valence": 0.31,
+    "arousal": 0.62,
+    "agency": 0.73,
+    "dominance": 0.58,
+    "coherence": 0.84,
+    "stability": 0.89,
+    "novelty": 0.44,
+    "volatility": 0.39,
+
+    "abstraction": 0.52,
+    "symbolic_density": 0.48,
+    "pattern_recognition": 0.77,
+    "analyticity": 0.86,
+    "intuition": 0.54,
+    "mental_speed": 0.69,
+    "focus": 0.91,
+    "diffusion": 0.37,
+
+    "past_orientation": 0.63,
+    "present_orientation": 0.88,
+    "future_orientation": 0.42,
+    "cyclicality": 0.71,
+    "urgency": 0.84,
+    "patience": 0.76,
+
+    "desire_intensity": 0.59,
+    "attachment": 0.67,
+    "avoidance": 0.73,
+    "expansion": 0.41,
+    "contraction": 0.69,
+    "ambition": 0.66,
+    "survival_drive": 0.88,
+
+    "sociality": 0.55,
+    "individuality": 0.62,
+    "collectivism": 0.48,
+    "relational_depth": 0.72,
+    "boundary_strength": 0.88,
+    "empathy": 0.61,
+    "dominance_social": 0.49,
+
+    "materiality": 0.83,
+    "spirituality": 0.44,
+    "sensory_density": 0.71,
+    "idealism": 0.39,
+    "pragmatism": 0.92,
+
+    "integration": 0.81,
+    "fragmentation": 0.33,
+    "entropy": 0.41,
+    "adaptability": 0.76,
+    "rigidity": 0.68,
+
+    "expressiveness": 0.47,
+    "repression": 0.82,
+    "reactivity": 0.69,
+    "responsiveness": 0.74,
+
+    "meaning_orientation": 0.73,
+    "identity_coherence": 0.85,
+    "transcendence": 0.38,
+    "ego_density": 0.77
+  }
+
+}

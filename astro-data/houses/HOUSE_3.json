@@ -1,0 +1,147 @@
+{
+  "id": "HOUSE_3",
+
+  "classification": {
+    "axis": "LOCAL_MIND",
+    "angularity": "CADENT",
+    "elementalAffinity": "AIR"
+  },
+
+  "coreEssence": {
+    "corePrinciple": "adaptation through information exchange",
+
+    "lifeDomains": [
+      "communication",
+      "learning",
+      "siblings",
+      "local movement",
+      "mental processing",
+      "information networks"
+    ],
+
+    "archetypes": [
+      "the messenger",
+      "the student",
+      "the observer",
+      "the communicator"
+    ]
+  },
+
+  "environmentalContext": {
+    "environmentType": [
+      "information arena",
+      "local interaction field"
+    ],
+
+    "motivationalThemes": [
+      "understanding",
+      "expression",
+      "connection",
+      "curiosity"
+    ],
+
+    "developmentalThemes": [
+      "cognitive adaptation",
+      "communication skill",
+      "information synthesis",
+      "social learning"
+    ]
+  },
+
+
+  "symbolicLayer": {
+    "symbols": [
+      "books",
+      "roads",
+      "letters",
+      "signals",
+      "bridges",
+      "networks"
+    ],
+
+    "associatedEnvironments": [
+      "schools",
+      "neighborhoods",
+      "social media systems",
+      "transport routes",
+      "classrooms",
+      "communication environments"
+    ],
+
+    "bodyCorrelation": [
+      "hands",
+      "arms",
+      "lungs",
+      "speech systems",
+      "nervous signaling",
+      "cognitive processing"
+    ]
+  },
+
+
+  "latentVector": {
+    "valence": 0.74,
+    "arousal": 0.83,
+    "agency": 0.68,
+    "dominance": 0.51,
+    "coherence": 0.62,
+    "stability": 0.47,
+    "novelty": 0.86,
+    "volatility": 0.73,
+
+    "abstraction": 0.69,
+    "symbolic_density": 0.74,
+    "pattern_recognition": 0.88,
+    "analyticity": 0.61,
+    "intuition": 0.77,
+    "mental_speed": 0.91,
+    "focus": 0.52,
+    "diffusion": 0.84,
+
+    "past_orientation": 0.44,
+    "present_orientation": 0.82,
+    "future_orientation": 0.58,
+    "cyclicality": 0.51,
+    "urgency": 0.71,
+    "patience": 0.42,
+
+    "desire_intensity": 0.66,
+    "attachment": 0.54,
+    "avoidance": 0.38,
+    "expansion": 0.79,
+    "contraction": 0.41,
+    "ambition": 0.63,
+    "survival_drive": 0.57,
+
+    "sociality": 0.89,
+    "individuality": 0.71,
+    "collectivism": 0.58,
+    "relational_depth": 0.66,
+    "boundary_strength": 0.52,
+    "empathy": 0.74,
+    "dominance_social": 0.48,
+
+    "materiality": 0.58,
+    "spirituality": 0.46,
+    "sensory_density": 0.69,
+    "idealism": 0.61,
+    "pragmatism": 0.63,
+
+    "integration": 0.66,
+    "fragmentation": 0.59,
+    "entropy": 0.61,
+    "adaptability": 0.82,
+    "rigidity": 0.44,
+
+    "expressiveness": 0.83,
+    "repression": 0.41,
+    "reactivity": 0.77,
+    "responsiveness": 0.86,
+
+    "meaning_orientation": 0.72,
+    "identity_coherence": 0.63,
+    "transcendence": 0.41,
+    "ego_density": 0.69
+  }
+
+}

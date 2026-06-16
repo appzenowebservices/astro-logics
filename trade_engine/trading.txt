@@ -1,0 +1,33 @@
+62254415
+
+  St+1​=O(St​)
+
+
+MarketState {
+  trendStrength: 0.86,
+  directionality: -0.91,
+  efficiency: 0.56,
+  volatility: ?,
+  liquidity: ?,
+  participation: ?,
+  compression: ?,
+  expansion: ?,
+  entropy: ?,
+  imbalance: ?,
+  aggression: ?,
+  absorption: ?,
+  conviction: ?,
+  uncertainty: ?
+}
+
+
+TrendExtractor   
+VolatilityExtractor    
+CompressionExtractor     
+LiquidityExtractor     
+
+StructureBreakOperator
+LiquiditySweepOperator
+VolatilityExpansionOperator
+CompressionReleaseOperator
+RegimeShiftOperator

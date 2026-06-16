@@ -1,0 +1,153 @@
+{
+  "id": "MOON",
+  "classification": {
+    "planetType": "LUMINARY",
+    "elementalNature": [
+      "WATER"
+    ],
+    "modalityAffinity": [
+      "CARDINAL"
+    ],
+    "genderPolarity": "FEMININE",
+    "gunaAffinity": [
+      "SATTVA"
+    ],
+    "temperament": [
+      "COLD",
+      "MOIST"
+    ]
+  },
+  "coreEssence": {
+    "corePrinciple": "emotional continuity",
+    "archetypes": [
+      "emotion",
+      "memory",
+      "nurturing",
+      "attachment",
+      "reflection",
+      "adaptation"
+    ],
+    "expressionDomains": [
+      "emotional processing",
+      "memory formation",
+      "attachment",
+      "habitual behavior",
+      "inner stability",
+      "belonging"
+    ],
+    "governingFunctions": [
+      "processing emotional experience",
+      "maintaining psychological continuity",
+      "forming attachments",
+      "regulating inner safety",
+      "absorbing environmental impressions",
+      "stabilizing emotional rhythms"
+    ]
+  },
+  "motivationalStructure": {
+    "coreNeeds": [
+      "safety",
+      "belonging",
+      "emotional security",
+      "connection",
+      "continuity"
+    ],
+    "coreFears": [
+      "abandonment",
+      "emotional instability",
+      "disconnection",
+      "loss of support",
+      "inner fragmentation"
+    ],
+    "desirePatterns": [
+      "to feel safe",
+      "to remain connected",
+      "to preserve emotional stability",
+      "to nurture and be nurtured",
+      "to maintain familiarity"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "moonlight",
+      "water",
+      "mirrors",
+      "oceans",
+      "milk",
+      "shells",
+      "night"
+    ],
+    "associatedEnvironments": [
+      "homes",
+      "private spaces",
+      "family systems",
+      "caregiving environments",
+      "emotional sanctuaries",
+      "memory-linked places"
+    ],
+    "bodyCorrelation": [
+      "mind",
+      "stomach",
+      "fluids",
+      "breasts",
+      "sleep cycles",
+      "emotional nervous system"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.38,
+    "arousal": 0.74,
+    "agency": 0.34,
+    "dominance": -0.12,
+    "coherence": 0.21,
+    "stability": -0.42,
+    "novelty": 0.31,
+    "volatility": 0.94,
+    "abstraction": 0.22,
+    "symbolic_density": 0.91,
+    "pattern_recognition": 0.78,
+    "analyticity": -0.21,
+    "intuition": 0.96,
+    "mental_speed": 0.52,
+    "focus": -0.18,
+    "diffusion": 0.84,
+    "past_orientation": 0.92,
+    "present_orientation": 0.76,
+    "future_orientation": -0.18,
+    "cyclicality": 0.99,
+    "urgency": 0.41,
+    "patience": 0.62,
+    "desire_intensity": 0.54,
+    "attachment": 0.97,
+    "avoidance": 0.24,
+    "expansion": 0.18,
+    "contraction": 0.62,
+    "ambition": -0.22,
+    "survival_drive": 0.81,
+    "sociality": 0.88,
+    "individuality": -0.12,
+    "collectivism": 0.82,
+    "relational_depth": 0.97,
+    "boundary_strength": -0.34,
+    "empathy": 0.96,
+    "dominance_social": -0.18,
+    "materiality": 0.58,
+    "spirituality": 0.74,
+    "sensory_density": 0.91,
+    "idealism": 0.52,
+    "pragmatism": 0.24,
+    "integration": 0.34,
+    "fragmentation": 0.58,
+    "entropy": 0.61,
+    "adaptability": 0.88,
+    "rigidity": -0.52,
+    "expressiveness": 0.82,
+    "repression": -0.24,
+    "reactivity": 0.94,
+    "responsiveness": 0.98,
+    "meaning_orientation": 0.71,
+    "identity_coherence": -0.18,
+    "transcendence": 0.64,
+    "ego_density": 0.12
+  }
+}

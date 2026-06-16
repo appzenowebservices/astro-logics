@@ -1,0 +1,125 @@
+{
+  "id": "HOUSE_8",
+  "classification": {
+    "axis": "TRANSFORMATION",
+    "angularity": "SUCCEDENT",
+    "elementalAffinity": "WATER"
+  },
+  "coreEssence": {
+    "corePrinciple": "evolution through surrender and transformation",
+    "lifeDomains": [
+      "death",
+      "rebirth",
+      "shared resources",
+      "psychological depth",
+      "intimacy",
+      "crisis and transformation"
+    ],
+    "archetypes": [
+      "the alchemist",
+      "the survivor",
+      "the shadow",
+      "the transformer"
+    ]
+  },
+  "environmentalContext": {
+    "environmentType": [
+      "transformational pressure field",
+      "psychological depth arena"
+    ],
+    "motivationalThemes": [
+      "merging",
+      "control",
+      "truth",
+      "emotional depth"
+    ],
+    "developmentalThemes": [
+      "shadow integration",
+      "psychological transformation",
+      "attachment evolution",
+      "power awareness"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "ashes",
+      "locked doors",
+      "underground chambers",
+      "inheritance",
+      "blood",
+      "phoenix fire"
+    ],
+    "associatedEnvironments": [
+      "crisis zones",
+      "financial entanglements",
+      "therapy spaces",
+      "secretive systems",
+      "transformational environments",
+      "emotionally intense settings"
+    ],
+    "bodyCorrelation": [
+      "reproductive organs",
+      "elimination systems",
+      "hormonal intensity",
+      "trauma storage",
+      "survival instincts",
+      "deep emotional processing"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.22,
+    "arousal": 0.89,
+    "agency": 0.76,
+    "dominance": 0.88,
+    "coherence": 0.71,
+    "stability": 0.42,
+    "novelty": 0.79,
+    "volatility": 0.91,
+    "abstraction": 0.83,
+    "symbolic_density": 0.95,
+    "pattern_recognition": 0.92,
+    "analyticity": 0.84,
+    "intuition": 0.87,
+    "mental_speed": 0.78,
+    "focus": 0.88,
+    "diffusion": 0.46,
+    "past_orientation": 0.81,
+    "present_orientation": 0.67,
+    "future_orientation": 0.74,
+    "cyclicality": 0.96,
+    "urgency": 0.83,
+    "patience": 0.41,
+    "desire_intensity": 0.94,
+    "attachment": 0.91,
+    "avoidance": 0.78,
+    "expansion": 0.65,
+    "contraction": 0.88,
+    "ambition": 0.89,
+    "survival_drive": 0.95,
+    "sociality": 0.62,
+    "individuality": 0.84,
+    "collectivism": 0.51,
+    "relational_depth": 0.96,
+    "boundary_strength": 0.92,
+    "empathy": 0.77,
+    "dominance_social": 0.86,
+    "materiality": 0.57,
+    "spirituality": 0.89,
+    "sensory_density": 0.74,
+    "idealism": 0.81,
+    "pragmatism": 0.66,
+    "integration": 0.73,
+    "fragmentation": 0.82,
+    "entropy": 0.87,
+    "adaptability": 0.74,
+    "rigidity": 0.69,
+    "expressiveness": 0.58,
+    "repression": 0.79,
+    "reactivity": 0.86,
+    "responsiveness": 0.68,
+    "meaning_orientation": 0.88,
+    "identity_coherence": 0.74,
+    "transcendence": 0.83,
+    "ego_density": 0.93
+  }
+}

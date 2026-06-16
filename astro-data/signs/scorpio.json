@@ -1,0 +1,177 @@
+{
+  "id": "SCORPIO",
+  "classification": {
+    "element": "WATER",
+    "modality": "FIXED",
+    "polarity": "FEMININE"
+  },
+  "coreEssence": {
+    "corePrinciple": "transformation through intensity",
+    "archetypes": [
+      "alchemist",
+      "survivor",
+      "detective",
+      "strategist",
+      "magnetist",
+      "shadow walker"
+    ],
+    "expressionStyle": [
+      "intense",
+      "private",
+      "probing",
+      "emotionally concentrated",
+      "strategic",
+      "all-or-nothing"
+    ],
+    "motivationalBias": [
+      "toward depth over surface",
+      "toward control over vulnerability",
+      "toward transformation over comfort",
+      "toward emotional truth over social nicety",
+      "toward psychological fusion over detachment"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "acts with calculated intensity",
+      "moves strategically under pressure",
+      "commits completely once engaged",
+      "tests environments before trusting"
+    ],
+    "decisionStyle": [
+      "instinctive",
+      "psychologically informed",
+      "risk-aware",
+      "power-sensitive"
+    ],
+    "adaptationStyle": [
+      "survives through emotional resilience",
+      "transforms after crisis",
+      "conceals weakness during instability",
+      "regains control through strategic withdrawal"
+    ],
+    "stressResponse": [
+      "becomes obsessive",
+      "withdraws emotionally",
+      "controls situations covertly",
+      "reacts through suspicion or emotional extremity"
+    ],
+    "relationalOrientation": [
+      "forms deep emotional bonds",
+      "requires trust before vulnerability",
+      "tests loyalty intensely",
+      "seeks emotional and psychological merging"
+    ]
+  },
+
+  "symbolicLayer": {
+    "symbols": [
+      "scorpions",
+      "ashes",
+      "underground chambers",
+      "poison",
+      "black water",
+      "locked doors",
+      "phoenix fire"
+    ],
+    "associatedEnvironments": [
+      "crisis zones",
+      "hidden systems",
+      "psychological spaces",
+      "secretive environments",
+      "transformational situations",
+      "emotionally charged settings"
+    ],
+    "bodyCorrelation": [
+      "reproductive organs",
+      "elimination systems",
+      "hormonal intensity",
+      "trauma storage",
+      "survival instincts",
+      "deep emotional processing"
+    ]
+  },
+  "latentVector": {
+    // =========================================
+    // CORE AFFECTIVE GEOMETRY
+    // =========================================
+    "valence": -0.32,
+    "arousal": 0.78,
+    "agency": 0.71,
+    "dominance": 0.84,
+    "coherence": 0.12,
+    "stability": 0.41,
+    "novelty": 0.48,
+    "volatility": 0.73,
+    // =========================================
+    // COGNITIVE STYLE
+    // =========================================
+    "abstraction": 0.69,
+    "symbolic_density": 0.94,
+    "pattern_recognition": 0.91,
+    "analyticity": 0.58,
+    "intuition": 0.95,
+    "mental_speed": 0.52,
+    "focus": 0.93,
+    "diffusion": -0.71,
+    // =========================================
+    // TEMPORAL ORIENTATION
+    // =========================================
+    "past_orientation": 0.82,
+    "present_orientation": 0.34,
+    "future_orientation": 0.61,
+    "cyclicality": 0.93,
+    "urgency": 0.48,
+    "patience": 0.84,
+    // =========================================
+    // MOTIVATIONAL FORCES
+    // =========================================
+    "desire_intensity": 0.96,
+    "attachment": 0.88,
+    "avoidance": 0.41,
+    "expansion": 0.28,
+    "contraction": 0.86,
+    "ambition": 0.72,
+    "survival_drive": 0.97,
+    // =========================================
+    // SOCIAL GEOMETRY
+    // =========================================
+    "sociality": 0.31,
+    "individuality": 0.72,
+    "collectivism": -0.12,
+    "relational_depth": 0.97,
+    "boundary_strength": 0.95,
+    "empathy": 0.63,
+    "dominance_social": 0.79,
+    // =========================================
+    // MATERIAL ↔ SYMBOLIC
+    // =========================================
+    "materiality": 0.44,
+    "spirituality": 0.74,
+    "sensory_density": 0.68,
+    "idealism": 0.36,
+    "pragmatism": 0.62,
+    // =========================================
+    // ORDER / CHAOS DYNAMICS
+    // =========================================
+    "integration": 0.66,
+    "fragmentation": 0.57,
+    "entropy": 0.48,
+    "adaptability": 0.52,
+    "rigidity": 0.81,
+    // =========================================
+    // EXPRESSION DYNAMICS
+    // =========================================
+    "expressiveness": 0.18,
+    "repression": 0.93,
+    "reactivity": 0.81,
+    "responsiveness": 0.42,
+    // =========================================
+    // EXISTENTIAL AXES
+    // =========================================
+    "meaning_orientation": 0.95,
+    "identity_coherence": 0.72,
+    "transcendence": 0.69,
+    "ego_density": 0.88
+  }
+}

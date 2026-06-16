@@ -1,0 +1,154 @@
+{
+  "id": "MERCURY",
+  "classification": {
+    "planetType": "PERSONAL",
+    "elementalNature": [
+      "EARTH",
+      "AIR"
+    ],
+    "modalityAffinity": [
+      "MUTABLE"
+    ],
+    "genderPolarity": "NEUTRAL",
+    "gunaAffinity": [
+      "RAJAS"
+    ],
+    "temperament": [
+      "VARIABLE",
+      "DRY"
+    ]
+  },
+  "coreEssence": {
+    "corePrinciple": "cognitive mediation",
+    "archetypes": [
+      "intellect",
+      "communication",
+      "adaptation",
+      "analysis",
+      "language",
+      "translation"
+    ],
+    "expressionDomains": [
+      "thinking",
+      "communication",
+      "pattern recognition",
+      "learning",
+      "information exchange",
+      "decision processing"
+    ],
+    "governingFunctions": [
+      "processing information",
+      "forming interpretations",
+      "connecting ideas",
+      "facilitating communication",
+      "adapting to changing conditions",
+      "organizing mental frameworks"
+    ]
+  },
+  "motivationalStructure": {
+    "coreNeeds": [
+      "understanding",
+      "clarity",
+      "mental stimulation",
+      "adaptability",
+      "expression"
+    ],
+    "coreFears": [
+      "confusion",
+      "miscommunication",
+      "mental stagnation",
+      "loss of adaptability",
+      "being misunderstood"
+    ],
+    "desirePatterns": [
+      "to understand systems",
+      "to communicate effectively",
+      "to remain adaptable",
+      "to gather information",
+      "to connect ideas"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "books",
+      "roads",
+      "letters",
+      "keys",
+      "maps",
+      "messengers",
+      "mirrors"
+    ],
+    "associatedEnvironments": [
+      "schools",
+      "markets",
+      "offices",
+      "transport systems",
+      "media environments",
+      "communication networks"
+    ],
+    "bodyCorrelation": [
+      "nervous system",
+      "hands",
+      "speech",
+      "lungs",
+      "memory",
+      "cognitive processing"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.22,
+    "arousal": 0.71,
+    "agency": 0.58,
+    "dominance": 0.24,
+    "coherence": 0.81,
+    "stability": 0.18,
+    "novelty": 0.92,
+    "volatility": 0.42,
+    "abstraction": 0.94,
+    "symbolic_density": 0.88,
+    "pattern_recognition": 0.96,
+    "analyticity": 0.93,
+    "intuition": 0.66,
+    "mental_speed": 0.99,
+    "focus": 0.52,
+    "diffusion": 0.78,
+    "past_orientation": 0.21,
+    "present_orientation": 0.74,
+    "future_orientation": 0.84,
+    "cyclicality": 0.62,
+    "urgency": 0.74,
+    "patience": 0.18,
+    "desire_intensity": 0.48,
+    "attachment": -0.42,
+    "avoidance": -0.12,
+    "expansion": 0.82,
+    "contraction": -0.11,
+    "ambition": 0.52,
+    "survival_drive": 0.34,
+    "sociality": 0.71,
+    "individuality": 0.44,
+    "collectivism": 0.38,
+    "relational_depth": 0.22,
+    "boundary_strength": 0.18,
+    "empathy": 0.34,
+    "dominance_social": 0.14,
+    "materiality": 0.18,
+    "spirituality": 0.48,
+    "sensory_density": 0.34,
+    "idealism": 0.72,
+    "pragmatism": 0.61,
+    "integration": 0.71,
+    "fragmentation": 0.38,
+    "entropy": 0.52,
+    "adaptability": 0.96,
+    "rigidity": -0.72,
+    "expressiveness": 0.88,
+    "repression": -0.58,
+    "reactivity": 0.62,
+    "responsiveness": 0.91,
+    "meaning_orientation": 0.51,
+    "identity_coherence": 0.34,
+    "transcendence": 0.41,
+    "ego_density": 0.38
+  }
+}

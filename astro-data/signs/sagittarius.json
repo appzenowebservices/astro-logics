@@ -1,0 +1,176 @@
+{
+  "id": "SAGITTARIUS",
+  "classification": {
+    "element": "FIRE",
+    "modality": "MUTABLE",
+    "polarity": "MASCULINE"
+  },
+  "coreEssence": {
+    "corePrinciple": "expansion through exploration",
+    "archetypes": [
+      "explorer",
+      "philosopher",
+      "teacher",
+      "traveler",
+      "visionary",
+      "truth seeker"
+    ],
+    "expressionStyle": [
+      "optimistic",
+      "adventurous",
+      "future-oriented",
+      "frank",
+      "expansive",
+      "meaning-driven"
+    ],
+    "motivationalBias": [
+      "toward freedom over restriction",
+      "toward exploration over stagnation",
+      "toward meaning over routine",
+      "toward possibility over limitation",
+      "toward discovery over certainty"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "acts through exploration",
+      "moves toward new experiences",
+      "takes risks for growth",
+      "learns through direct exposure"
+    ],
+    "decisionStyle": [
+      "vision-driven",
+      "future-oriented",
+      "belief-informed",
+      "possibility-focused"
+    ],
+    "adaptationStyle": [
+      "reframes setbacks philosophically",
+      "escapes confinement through movement",
+      "adjusts through optimism",
+      "searches for larger meaning during instability"
+    ],
+    "stressResponse": [
+      "avoids limitations impulsively",
+      "overpromises possibilities",
+      "escapes responsibility through distraction",
+      "becomes reckless under restriction"
+    ],
+    "relationalOrientation": [
+      "values freedom within relationships",
+      "connects through shared exploration",
+      "prefers honesty over emotional filtering",
+      "requires intellectual and experiential growth"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "arrows",
+      "horses",
+      "maps",
+      "fires",
+      "mountains",
+      "roads",
+      "open skies"
+    ],
+    "associatedEnvironments": [
+      "universities",
+      "travel routes",
+      "religious systems",
+      "philosophical communities",
+      "wilderness spaces",
+      "exploratory environments"
+    ],
+    "bodyCorrelation": [
+      "hips",
+      "thighs",
+      "liver",
+      "mobility systems",
+      "growth processes",
+      "physical expansion"
+    ]
+  },
+  "latentVector": {
+    // =========================================
+    // CORE AFFECTIVE GEOMETRY
+    // =========================================
+    "valence": 0.82,
+    "arousal": 0.91,
+    "agency": 0.88,
+    "dominance": 0.62,
+    "coherence": 0.39,
+    "stability": 0.28,
+    "novelty": 0.97,
+    "volatility": 0.76,
+    // =========================================
+    // COGNITIVE STYLE
+    // =========================================
+    "abstraction": 0.86,
+    "symbolic_density": 0.74,
+    "pattern_recognition": 0.67,
+    "analyticity": 0.52,
+    "intuition": 0.83,
+    "mental_speed": 0.89,
+    "focus": 0.41,
+    "diffusion": 0.92,
+    // =========================================
+    // TEMPORAL ORIENTATION
+    // =========================================
+    "past_orientation": 0.18,
+    "present_orientation": 0.66,
+    "future_orientation": 0.91,
+    "cyclicality": 0.44,
+    "urgency": 0.55,
+    "patience": 0.22,
+    // =========================================
+    // MOTIVATIONAL FORCES
+    // =========================================
+    "desire_intensity": 0.87,
+    "attachment": 0.19,
+    "avoidance": 0.31,
+    "expansion": 0.98,
+    "contraction": 0.12,
+    "ambition": 0.79,
+    "survival_drive": 0.54,
+    // =========================================
+    // SOCIAL GEOMETRY
+    // =========================================
+    "sociality": 0.84,
+    "individuality": 0.81,
+    "collectivism": 0.46,
+    "relational_depth": 0.51,
+    "boundary_strength": 0.38,
+    "empathy": 0.73,
+    "dominance_social": 0.58,
+    // =========================================
+    // MATERIAL ↔ SYMBOLIC
+    // =========================================
+    "materiality": 0.33,
+    "spirituality": 0.91,
+    "sensory_density": 0.62,
+    "idealism": 0.88,
+    "pragmatism": 0.41,
+    // =========================================
+    // ORDER / CHAOS DYNAMICS
+    // =========================================
+    "integration": 0.45,
+    "fragmentation": 0.71,
+    "entropy": 0.78,
+    "adaptability": 0.86,
+    "rigidity": 0.19,
+    // =========================================
+    // EXPRESSION DYNAMICS
+    // =========================================
+    "expressiveness": 0.92,
+    "repression": 0.14,
+    "reactivity": 0.81,
+    "responsiveness": 0.88,
+    // =========================================
+    // EXISTENTIAL AXES
+    // =========================================
+    "meaning_orientation": 0.96,
+    "identity_coherence": 0.42,
+    "transcendence": 0.94,
+    "ego_density": 0.33
+  }
+}

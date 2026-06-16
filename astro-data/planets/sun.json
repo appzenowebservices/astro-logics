@@ -1,0 +1,152 @@
+{
+  "id": "SUN",
+  "classification": {
+    "planetType": "LUMINARY",
+    "elementalNature": [
+      "FIRE"
+    ],
+    "modalityAffinity": [
+      "FIXED"
+    ],
+    "genderPolarity": "MASCULINE",
+    "gunaAffinity": [
+      "SATTVA"
+    ],
+    "temperament": [
+      "HOT",
+      "DRY"
+    ]
+  },
+  "coreEssence": {
+    "corePrinciple": "identity stabilization",
+    "archetypes": [
+      "selfhood",
+      "authority",
+      "vitality",
+      "centralization",
+      "illumination",
+      "leadership"
+    ],
+    "expressionDomains": [
+      "identity",
+      "purpose",
+      "ego cohesion",
+      "recognition",
+      "willpower",
+      "self-expression"
+    ],
+    "governingFunctions": [
+      "forming identity",
+      "stabilizing selfhood",
+      "directing conscious will",
+      "organizing internal hierarchy",
+      "radiating presence",
+      "seeking meaning"
+    ]
+  },
+  "motivationalStructure": {
+    "coreNeeds": [
+      "recognition",
+      "purpose",
+      "autonomy",
+      "self-respect",
+      "creative expression"
+    ],
+    "coreFears": [
+      "humiliation",
+      "loss of significance",
+      "identity collapse",
+      "being ignored",
+      "failure of self-expression"
+    ],
+    "desirePatterns": [
+      "to matter",
+      "to create impact",
+      "to become visible",
+      "to lead",
+      "to maintain integrity"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "sunlight",
+      "gold",
+      "crowns",
+      "fire",
+      "mirrors",
+      "hearts",
+      "thrones"
+    ],
+    "associatedEnvironments": [
+      "leadership spaces",
+      "public arenas",
+      "political systems",
+      "creative centers",
+      "stages",
+      "hierarchical environments"
+    ],
+    "bodyCorrelation": [
+      "heart",
+      "spine",
+      "eyes",
+      "circulation",
+      "vital force"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.72,
+    "arousal": 0.68,
+    "agency": 0.95,
+    "dominance": 0.91,
+    "coherence": 0.88,
+    "stability": 0.82,
+    "novelty": 0.42,
+    "volatility": -0.28,
+    "abstraction": 0.35,
+    "symbolic_density": 0.74,
+    "pattern_recognition": 0.62,
+    "analyticity": 0.51,
+    "intuition": 0.58,
+    "mental_speed": 0.64,
+    "focus": 0.94,
+    "diffusion": -0.71,
+    "past_orientation": -0.22,
+    "present_orientation": 0.91,
+    "future_orientation": 0.66,
+    "cyclicality": 0.82,
+    "urgency": 0.58,
+    "patience": 0.61,
+    "desire_intensity": 0.76,
+    "attachment": 0.62,
+    "avoidance": -0.52,
+    "expansion": 0.88,
+    "contraction": -0.31,
+    "ambition": 0.92,
+    "survival_drive": 0.71,
+    "sociality": 0.68,
+    "individuality": 0.94,
+    "collectivism": 0.12,
+    "relational_depth": 0.44,
+    "boundary_strength": 0.84,
+    "empathy": 0.48,
+    "dominance_social": 0.93,
+    "materiality": 0.58,
+    "spirituality": 0.62,
+    "sensory_density": 0.52,
+    "idealism": 0.71,
+    "pragmatism": 0.58,
+    "integration": 0.93,
+    "fragmentation": -0.64,
+    "entropy": -0.31,
+    "adaptability": 0.52,
+    "rigidity": 0.71,
+    "expressiveness": 0.91,
+    "repression": -0.48,
+    "reactivity": 0.42,
+    "responsiveness": 0.74,
+    "meaning_orientation": 0.95,
+    "identity_coherence": 0.97,
+    "transcendence": 0.44,
+    "ego_density": 0.98
+  }
+}

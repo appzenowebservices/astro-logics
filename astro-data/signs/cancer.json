@@ -1,0 +1,149 @@
+{
+  "id": "CANCER",
+  "classification": {
+    "element": "WATER",
+    "modality": "CARDINAL",
+    "polarity": "FEMININE"
+  },
+  "coreEssence": {
+    "corePrinciple": "protection through emotional bonding",
+    "archetypes": [
+      "caretaker",
+      "protector",
+      "mother",
+      "guardian",
+      "memory keeper",
+      "nurturer"
+    ],
+    "expressionStyle": [
+      "emotionally responsive",
+      "protective",
+      "intuitive",
+      "sensitive",
+      "indirect",
+      "attachment-oriented"
+    ],
+    "motivationalBias": [
+      "toward emotional safety over exposure",
+      "toward preservation over detachment",
+      "toward intimacy over distance",
+      "toward familiarity over uncertainty",
+      "toward protection over risk"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "acts protectively",
+      "responds emotionally to environmental shifts",
+      "moves cautiously when vulnerable",
+      "creates emotional security structures"
+    ],
+    "decisionStyle": [
+      "emotion-informed",
+      "memory-based",
+      "protective",
+      "attachment-sensitive"
+    ],
+    "adaptationStyle": [
+      "withdraws to regain safety",
+      "adapts through emotional intelligence",
+      "forms protective shells under pressure",
+      "stabilizes through familiarity"
+    ],
+    "stressResponse": [
+      "becomes defensive",
+      "retreats emotionally",
+      "clings to the past",
+      "reacts through mood fluctuations"
+    ],
+    "relationalOrientation": [
+      "forms deep attachments",
+      "nurtures through care and presence",
+      "protects loved ones intensely",
+      "requires emotional trust before opening fully"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "oceans",
+      "shells",
+      "homes",
+      "milk",
+      "moons",
+      "cradles",
+      "ancestral photographs"
+    ],
+    "associatedEnvironments": [
+      "homes",
+      "family systems",
+      "kitchens",
+      "safe emotional spaces",
+      "ancestral environments",
+      "caregiving settings"
+    ],
+    "bodyCorrelation": [
+      "chest",
+      "stomach",
+      "breasts",
+      "digestive system",
+      "emotional memory",
+      "fluid regulation"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.52,
+    "arousal": 0.38,
+    "agency": 0.18,
+    "dominance": -0.42,
+    "coherence": 0.84,
+    "stability": 0.62,
+    "novelty": -0.44,
+    "volatility": 0.82,
+    "abstraction": 0.42,
+    "symbolic_density": 0.82,
+    "pattern_recognition": 0.72,
+    "analyticity": -0.18,
+    "intuition": 0.96,
+    "mental_speed": 0.18,
+    "focus": 0.62,
+    "diffusion": 0.42,
+    "past_orientation": 0.99,
+    "present_orientation": 0.42,
+    "future_orientation": -0.22,
+    "cyclicality": 0.96,
+    "urgency": -0.52,
+    "patience": 0.82,
+    "desire_intensity": 0.48,
+    "attachment": 0.99,
+    "avoidance": 0.62,
+    "expansion": -0.18,
+    "contraction": 0.88,
+    "ambition": -0.12,
+    "survival_drive": 0.82,
+    "sociality": 0.72,
+    "individuality": -0.12,
+    "collectivism": 0.88,
+    "relational_depth": 0.98,
+    "boundary_strength": 0.42,
+    "empathy": 0.99,
+    "dominance_social": -0.42,
+    "materiality": 0.62,
+    "spirituality": 0.62,
+    "sensory_density": 0.88,
+    "idealism": 0.72,
+    "pragmatism": 0.28,
+    "integration": 0.82,
+    "fragmentation": -0.18,
+    "entropy": 0.42,
+    "adaptability": 0.52,
+    "rigidity": 0.42,
+    "expressiveness": 0.72,
+    "repression": 0.22,
+    "reactivity": 0.96,
+    "responsiveness": 0.99,
+    "meaning_orientation": 0.88,
+    "identity_coherence": 0.72,
+    "transcendence": 0.62,
+    "ego_density": 0.18
+  }
+}

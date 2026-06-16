@@ -1,0 +1,176 @@
+{
+  "id": "AQUARIUS",
+  "classification": {
+    "element": "AIR",
+    "modality": "FIXED",
+    "polarity": "MASCULINE"
+  },
+  "coreEssence": {
+    "corePrinciple": "innovation through detachment",
+    "archetypes": [
+      "reformer",
+      "visionary",
+      "outsider",
+      "inventor",
+      "revolutionary",
+      "system architect"
+    ],
+    "expressionStyle": [
+      "independent",
+      "experimental",
+      "future-oriented",
+      "detached",
+      "intellectual",
+      "unconventional"
+    ],
+    "motivationalBias": [
+      "toward progress over tradition",
+      "toward systems over individuals",
+      "toward innovation over preservation",
+      "toward objectivity over emotional immersion",
+      "toward collective evolution over personal comfort"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "acts through unconventional methods",
+      "questions existing systems",
+      "moves independently from social pressure",
+      "prioritizes conceptual breakthroughs"
+    ],
+    "decisionStyle": [
+      "logic-driven",
+      "future-calibrated",
+      "system-oriented",
+      "detached from immediate emotional reactions"
+    ],
+    "adaptationStyle": [
+      "reinvents structures during instability",
+      "distances emotionally under pressure",
+      "experiments with alternative solutions",
+      "stabilizes through intellectual abstraction"
+    ],
+    "stressResponse": [
+      "becomes emotionally detached",
+      "rejects authority reflexively",
+      "isolates socially",
+      "overidentifies with ideology or abstraction"
+    ],
+    "relationalOrientation": [
+      "values intellectual equality",
+      "requires personal freedom",
+      "connects through shared ideals",
+      "maintains emotional distance while remaining socially engaged"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "lightning",
+      "circuits",
+      "stars",
+      "water vessels",
+      "networks",
+      "machines",
+      "signals"
+    ],
+    "associatedEnvironments": [
+      "research labs",
+      "social movements",
+      "technology systems",
+      "future-oriented communities",
+      "scientific institutions",
+      "experimental environments"
+    ],
+    "bodyCorrelation": [
+      "nervous system",
+      "ankles",
+      "circulatory systems",
+      "electrical signaling",
+      "neurological processing",
+      "collective synchronization"
+    ]
+  },
+  "latentVector": {
+    // =========================================
+    // CORE AFFECTIVE GEOMETRY
+    // =========================================
+    "valence": 0.41,
+    "arousal": 0.72,
+    "agency": 0.77,
+    "dominance": 0.64,
+    "coherence": 0.52,
+    "stability": 0.34,
+    "novelty": 0.98,
+    "volatility": 0.69,
+    // =========================================
+    // COGNITIVE STYLE
+    // =========================================
+    "abstraction": 0.95,
+    "symbolic_density": 0.88,
+    "pattern_recognition": 0.93,
+    "analyticity": 0.81,
+    "intuition": 0.76,
+    "mental_speed": 0.87,
+    "focus": 0.46,
+    "diffusion": 0.94,
+    // =========================================
+    // TEMPORAL ORIENTATION
+    // =========================================
+    "past_orientation": 0.22,
+    "present_orientation": 0.58,
+    "future_orientation": 0.95,
+    "cyclicality": 0.39,
+    "urgency": 0.46,
+    "patience": 0.44,
+    // =========================================
+    // MOTIVATIONAL FORCES
+    // =========================================
+    "desire_intensity": 0.68,
+    "attachment": 0.21,
+    "avoidance": 0.33,
+    "expansion": 0.91,
+    "contraction": 0.27,
+    "ambition": 0.74,
+    "survival_drive": 0.49,
+    // =========================================
+    // SOCIAL GEOMETRY
+    // =========================================
+    "sociality": 0.69,
+    "individuality": 0.97,
+    "collectivism": 0.61,
+    "relational_depth": 0.47,
+    "boundary_strength": 0.66,
+    "empathy": 0.71,
+    "dominance_social": 0.42,
+    // =========================================
+    // MATERIAL ↔ SYMBOLIC
+    // =========================================
+    "materiality": 0.29,
+    "spirituality": 0.83,
+    "sensory_density": 0.57,
+    "idealism": 0.86,
+    "pragmatism": 0.39,
+    // =========================================
+    // ORDER / CHAOS DYNAMICS
+    // =========================================
+    "integration": 0.55,
+    "fragmentation": 0.74,
+    "entropy": 0.81,
+    "adaptability": 0.92,
+    "rigidity": 0.28,
+    // =========================================
+    // EXPRESSION DYNAMICS
+    // =========================================
+    "expressiveness": 0.84,
+    "repression": 0.22,
+    "reactivity": 0.59,
+    "responsiveness": 0.91,
+    // =========================================
+    // EXISTENTIAL AXES
+    // =========================================
+    "meaning_orientation": 0.89,
+    "identity_coherence": 0.57,
+    "transcendence": 0.87,
+    "ego_density": 0.41
+  }
+}

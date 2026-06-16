@@ -1,0 +1,84 @@
+
+   UNIVERSAL_AXES : [
+        // =========================================
+        // CORE AFFECTIVE GEOMETRY
+        // =========================================
+        "valence",
+        "arousal",
+        "agency",
+        "dominance",
+        "coherence",
+        "stability",
+        "novelty",
+        "volatility",
+        // =========================================
+        // COGNITIVE STYLE
+        // =========================================
+        "abstraction",
+        "symbolic_density",
+        "pattern_recognition",
+        "analyticity",
+        "intuition",
+        "mental_speed",
+        "focus",
+        "diffusion",
+        // =========================================
+        // TEMPORAL ORIENTATION
+        // =========================================
+        "past_orientation",
+        "present_orientation",
+        "future_orientation",
+        "cyclicality",
+        "urgency",
+        "patience",
+        // =========================================
+        // MOTIVATIONAL FORCES
+        // =========================================
+        "desire_intensity",
+        "attachment",
+        "avoidance",
+        "expansion",
+        "contraction",
+        "ambition",
+        "survival_drive",
+        // =========================================
+        // SOCIAL GEOMETRY
+        // =========================================
+        "sociality",
+        "individuality",
+        "collectivism",
+        "relational_depth",
+        "boundary_strength",
+        "empathy",
+        "dominance_social",
+        // =========================================
+        // MATERIAL ↔ SYMBOLIC
+        // =========================================
+        "materiality",
+        "spirituality",
+        "sensory_density",
+        "idealism",
+        "pragmatism",
+        // =========================================
+        // ORDER / CHAOS DYNAMICS
+        // =========================================
+        "integration",
+        "fragmentation",
+        "entropy",
+        "adaptability",
+        "rigidity",
+        // =========================================
+        // EXPRESSION DYNAMICS
+        // =========================================
+        "expressiveness",
+        "repression",
+        "reactivity",
+        "responsiveness",
+        // =========================================
+        // EXISTENTIAL AXES
+        // =========================================
+        "meaning_orientation",
+        "identity_coherence",
+        "transcendence",
+        "ego_density",
+    ];

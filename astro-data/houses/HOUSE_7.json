@@ -1,0 +1,125 @@
+{
+  "id": "HOUSE_7",
+  "classification": {
+    "axis": "RELATIONSHIP",
+    "angularity": "ANGULAR",
+    "elementalAffinity": "AIR"
+  },
+  "coreEssence": {
+    "corePrinciple": "self-discovery through relational mirroring",
+    "lifeDomains": [
+      "partnerships",
+      "marriage",
+      "contracts",
+      "alliances",
+      "open enemies",
+      "relational dynamics"
+    ],
+    "archetypes": [
+      "the partner",
+      "the mirror",
+      "the diplomat",
+      "the negotiator"
+    ]
+  },
+  "environmentalContext": {
+    "environmentType": [
+      "relational exchange field",
+      "interpersonal negotiation arena"
+    ],
+    "motivationalThemes": [
+      "connection",
+      "balance",
+      "mutual recognition",
+      "cooperation"
+    ],
+    "developmentalThemes": [
+      "relational maturity",
+      "projection awareness",
+      "mutual integration",
+      "interpersonal balance"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "mirrors",
+      "rings",
+      "contracts",
+      "bridges",
+      "scales",
+      "joined hands"
+    ],
+    "associatedEnvironments": [
+      "courtrooms",
+      "marriages",
+      "business partnerships",
+      "negotiation spaces",
+      "social agreements",
+      "collaborative environments"
+    ],
+    "bodyCorrelation": [
+      "kidneys",
+      "lower back",
+      "hormonal balance",
+      "pair bonding systems",
+      "social attunement",
+      "interpersonal regulation"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.66,
+    "arousal": 0.57,
+    "agency": 0.61,
+    "dominance": 0.63,
+    "coherence": 0.78,
+    "stability": 0.74,
+    "novelty": 0.52,
+    "volatility": 0.45,
+    "abstraction": 0.64,
+    "symbolic_density": 0.68,
+    "pattern_recognition": 0.75,
+    "analyticity": 0.61,
+    "intuition": 0.73,
+    "mental_speed": 0.59,
+    "focus": 0.66,
+    "diffusion": 0.58,
+    "past_orientation": 0.58,
+    "present_orientation": 0.77,
+    "future_orientation": 0.64,
+    "cyclicality": 0.69,
+    "urgency": 0.52,
+    "patience": 0.71,
+    "desire_intensity": 0.72,
+    "attachment": 0.83,
+    "avoidance": 0.49,
+    "expansion": 0.61,
+    "contraction": 0.57,
+    "ambition": 0.66,
+    "survival_drive": 0.64,
+    "sociality": 0.92,
+    "individuality": 0.54,
+    "collectivism": 0.88,
+    "relational_depth": 0.91,
+    "boundary_strength": 0.62,
+    "empathy": 0.86,
+    "dominance_social": 0.67,
+    "materiality": 0.59,
+    "spirituality": 0.67,
+    "sensory_density": 0.61,
+    "idealism": 0.72,
+    "pragmatism": 0.64,
+    "integration": 0.86,
+    "fragmentation": 0.41,
+    "entropy": 0.44,
+    "adaptability": 0.71,
+    "rigidity": 0.59,
+    "expressiveness": 0.69,
+    "repression": 0.58,
+    "reactivity": 0.62,
+    "responsiveness": 0.81,
+    "meaning_orientation": 0.79,
+    "identity_coherence": 0.82,
+    "transcendence": 0.55,
+    "ego_density": 0.69
+  }
+}

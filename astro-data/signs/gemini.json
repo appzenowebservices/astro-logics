@@ -1,0 +1,149 @@
+{
+  "id": "GEMINI",
+  "classification": {
+    "element": "AIR",
+    "modality": "MUTABLE",
+    "polarity": "MASCULINE"
+  },
+  "coreEssence": {
+    "corePrinciple": "adaptation through information exchange",
+    "archetypes": [
+      "messenger",
+      "observer",
+      "translator",
+      "networker",
+      "student",
+      "trickster"
+    ],
+    "expressionStyle": [
+      "curious",
+      "fast-thinking",
+      "communicative",
+      "playful",
+      "adaptive",
+      "mentally restless"
+    ],
+    "motivationalBias": [
+      "toward novelty over repetition",
+      "toward exploration over certainty",
+      "toward communication over silence",
+      "toward flexibility over rigidity",
+      "toward information over emotional fixation"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "multitasks rapidly",
+      "responds through dialogue",
+      "tests ideas through interaction",
+      "moves between contexts fluidly"
+    ],
+    "decisionStyle": [
+      "logic-driven",
+      "information-dependent",
+      "contextual",
+      "changeable under new input"
+    ],
+    "adaptationStyle": [
+      "learns through experimentation",
+      "adjusts socially and mentally",
+      "reframes situations quickly",
+      "survives through flexibility"
+    ],
+    "stressResponse": [
+      "overthinks possibilities",
+      "scatters attention",
+      "avoids emotional depth through distraction",
+      "becomes inconsistent"
+    ],
+    "relationalOrientation": [
+      "seeks intellectual stimulation",
+      "connects through conversation",
+      "values freedom within relationships",
+      "maintains multiple social channels"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "books",
+      "roads",
+      "birds",
+      "mirrors",
+      "letters",
+      "wires",
+      "marketplaces"
+    ],
+    "associatedEnvironments": [
+      "schools",
+      "media systems",
+      "social networks",
+      "transport hubs",
+      "newsrooms",
+      "discussion spaces"
+    ],
+    "bodyCorrelation": [
+      "lungs",
+      "hands",
+      "arms",
+      "speech",
+      "nervous system",
+      "breathing patterns"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.58,
+    "arousal": 0.82,
+    "agency": 0.62,
+    "dominance": 0.18,
+    "coherence": 0.18,
+    "stability": -0.42,
+    "novelty": 0.96,
+    "volatility": 0.72,
+    "abstraction": 0.72,
+    "symbolic_density": 0.58,
+    "pattern_recognition": 0.88,
+    "analyticity": 0.74,
+    "intuition": 0.62,
+    "mental_speed": 0.99,
+    "focus": 0.28,
+    "diffusion": 0.94,
+    "past_orientation": -0.22,
+    "present_orientation": 0.96,
+    "future_orientation": 0.42,
+    "cyclicality": 0.38,
+    "urgency": 0.62,
+    "patience": -0.38,
+    "desire_intensity": 0.58,
+    "attachment": 0.22,
+    "avoidance": -0.18,
+    "expansion": 0.82,
+    "contraction": -0.42,
+    "ambition": 0.42,
+    "survival_drive": 0.34,
+    "sociality": 0.96,
+    "individuality": 0.52,
+    "collectivism": 0.22,
+    "relational_depth": 0.18,
+    "boundary_strength": 0.18,
+    "empathy": 0.58,
+    "dominance_social": 0.12,
+    "materiality": 0.18,
+    "spirituality": 0.42,
+    "sensory_density": 0.42,
+    "idealism": 0.58,
+    "pragmatism": 0.42,
+    "integration": 0.22,
+    "fragmentation": 0.82,
+    "entropy": 0.88,
+    "adaptability": 0.99,
+    "rigidity": -0.88,
+    "expressiveness": 0.98,
+    "repression": -0.84,
+    "reactivity": 0.82,
+    "responsiveness": 0.94,
+    "meaning_orientation": 0.42,
+    "identity_coherence": 0.18,
+    "transcendence": 0.28,
+    "ego_density": 0.42
+  }
+}

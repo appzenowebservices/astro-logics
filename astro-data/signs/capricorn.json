@@ -1,0 +1,176 @@
+{
+  "id": "CAPRICORN",
+  "classification": {
+    "element": "EARTH",
+    "modality": "CARDINAL",
+    "polarity": "FEMININE"
+  },
+  "coreEssence": {
+    "corePrinciple": "mastery through structured endurance",
+    "archetypes": [
+      "builder",
+      "authority",
+      "strategist",
+      "survivor",
+      "executor",
+      "mountain climber"
+    ],
+    "expressionStyle": [
+      "disciplined",
+      "controlled",
+      "strategic",
+      "reserved",
+      "responsibility-oriented",
+      "long-term focused"
+    ],
+    "motivationalBias": [
+      "toward structure over chaos",
+      "toward achievement over comfort",
+      "toward endurance over impulsiveness",
+      "toward realism over fantasy",
+      "toward mastery over dependency"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "acts methodically",
+      "builds through sustained effort",
+      "prioritizes long-term outcomes",
+      "maintains control under pressure"
+    ],
+    "decisionStyle": [
+      "strategic",
+      "risk-calculated",
+      "pragmatic",
+      "outcome-oriented"
+    ],
+    "adaptationStyle": [
+      "stabilizes through discipline",
+      "absorbs pressure silently",
+      "reduces emotional noise through structure",
+      "survives through persistence"
+    ],
+    "stressResponse": [
+      "becomes emotionally distant",
+      "overcontrols situations",
+      "suppresses vulnerability",
+      "identifies self-worth with productivity"
+    ],
+    "relationalOrientation": [
+      "values loyalty and competence",
+      "shows care through responsibility",
+      "tests reliability over time",
+      "protects emotional vulnerability carefully"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "mountains",
+      "stone",
+      "clocks",
+      "government buildings",
+      "bones",
+      "ladders",
+      "winter landscapes"
+    ],
+    "associatedEnvironments": [
+      "institutions",
+      "corporate hierarchies",
+      "governments",
+      "isolated workspaces",
+      "long-term systems",
+      "high-responsibility environments"
+    ],
+    "bodyCorrelation": [
+      "bones",
+      "knees",
+      "joints",
+      "skeletal structure",
+      "physical endurance",
+      "aging processes"
+    ]
+  },
+  "latentVector": {
+    // =========================================
+    // CORE AFFECTIVE GEOMETRY
+    // =========================================
+    "valence": 0.12,
+    "arousal": 0.38,
+    "agency": 0.92,
+    "dominance": 0.88,
+    "coherence": 0.91,
+    "stability": 0.97,
+    "novelty": 0.21,
+    "volatility": 0.18,
+    // =========================================
+    // COGNITIVE STYLE
+    // =========================================
+    "abstraction": 0.62,
+    "symbolic_density": 0.71,
+    "pattern_recognition": 0.85,
+    "analyticity": 0.93,
+    "intuition": 0.54,
+    "mental_speed": 0.47,
+    "focus": 0.96,
+    "diffusion": 0.12,
+    // =========================================
+    // TEMPORAL ORIENTATION
+    // =========================================
+    "past_orientation": 0.58,
+    "present_orientation": 0.31,
+    "future_orientation": 0.92,
+    "cyclicality": 0.66,
+    "urgency": 0.74,
+    "patience": 0.95,
+    // =========================================
+    // MOTIVATIONAL FORCES
+    // =========================================
+    "desire_intensity": 0.44,
+    "attachment": 0.63,
+    "avoidance": 0.71,
+    "expansion": 0.22,
+    "contraction": 0.88,
+    "ambition": 0.97,
+    "survival_drive": 0.91,
+    // =========================================
+    // SOCIAL GEOMETRY
+    // =========================================
+    "sociality": 0.42,
+    "individuality": 0.88,
+    "collectivism": 0.55,
+    "relational_depth": 0.61,
+    "boundary_strength": 0.97,
+    "empathy": 0.58,
+    "dominance_social": 0.86,
+    // =========================================
+    // MATERIAL ↔ SYMBOLIC
+    // =========================================
+    "materiality": 0.96,
+    "spirituality": 0.38,
+    "sensory_density": 0.52,
+    "idealism": 0.41,
+    "pragmatism": 0.98,
+    // =========================================
+    // ORDER / CHAOS DYNAMICS
+    // =========================================
+    "integration": 0.94,
+    "fragmentation": 0.18,
+    "entropy": 0.22,
+    "adaptability": 0.49,
+    "rigidity": 0.96,
+    // =========================================
+    // EXPRESSION DYNAMICS
+    // =========================================
+    "expressiveness": 0.31,
+    "repression": 0.72,
+    "reactivity": 0.33,
+    "responsiveness": 0.56,
+    // =========================================
+    // EXISTENTIAL AXES
+    // =========================================
+    "meaning_orientation": 0.84,
+    "identity_coherence": 0.93,
+    "transcendence": 0.36,
+    "ego_density": 0.78
+  }
+}

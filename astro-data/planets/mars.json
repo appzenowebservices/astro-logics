@@ -1,0 +1,182 @@
+{
+  "id": "MARS",
+  "classification": {
+    "planetType": "PERSONAL",
+    "elementalNature": [
+      "FIRE"
+    ],
+    "modalityAffinity": [
+      "CARDINAL",
+      "FIXED"
+    ],
+    "genderPolarity": "MASCULINE",
+    "gunaAffinity": [
+      "TAMAS"
+    ],
+    "temperament": [
+      "HOT",
+      "DRY"
+    ]
+  },
+  "coreEssence": {
+    "corePrinciple": "directed force",
+    "archetypes": [
+      "action",
+      "conflict",
+      "desire",
+      "assertion",
+      "survival",
+      "willpower"
+    ],
+    "expressionDomains": [
+      "initiative",
+      "competition",
+      "physical energy",
+      "risk-taking",
+      "sexual drive",
+      "boundary enforcement"
+    ],
+    "governingFunctions": [
+      "initiating action",
+      "asserting boundaries",
+      "responding to threats",
+      "mobilizing energy",
+      "pursuing objectives",
+      "confronting obstacles"
+    ]
+  },
+  "motivationalStructure": {
+    "coreNeeds": [
+      "autonomy",
+      "victory",
+      "movement",
+      "control",
+      "direct expression"
+    ],
+    "coreFears": [
+      "powerlessness",
+      "submission",
+      "restriction",
+      "defeat",
+      "suppressed desire"
+    ],
+    "desirePatterns": [
+      "to conquer obstacles",
+      "to assert independence",
+      "to take decisive action",
+      "to win",
+      "to express raw energy"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "weapons",
+      "fire",
+      "iron",
+      "blood",
+      "engines",
+      "storms",
+      "armor"
+    ],
+    "associatedEnvironments": [
+      "battlefields",
+      "competitive systems",
+      "athletic spaces",
+      "high-pressure environments",
+      "military structures",
+      "conflict zones"
+    ],
+    "bodyCorrelation": [
+      "muscles",
+      "blood",
+      "adrenal system",
+      "physical stamina",
+      "inflammatory response",
+      "motor activity"
+    ]
+  },
+  //  ----------- Eigenstates ----------------- 
+  "latentVector": {
+    // =========================================
+    // CORE AFFECTIVE GEOMETRY
+    // =========================================
+    "valence": -0.15,
+    "arousal": 0.95,
+    "agency": 0.92,
+    "dominance": 0.88,
+    "coherence": -0.25,
+    "stability": -0.35,
+    "novelty": 0.72,
+    "volatility": 0.84,
+    // =========================================
+    // COGNITIVE STYLE
+    // =========================================
+    "abstraction": -0.45,
+    "symbolic_density": 0.20,
+    "pattern_recognition": 0.42,
+    "analyticity": 0.48,
+    "intuition": 0.38,
+    "mental_speed": 0.86,
+    "focus": 0.93,
+    "diffusion": -0.52,
+    // =========================================
+    // TEMPORAL ORIENTATION
+    // =========================================
+    "past_orientation": -0.72,
+    "present_orientation": 0.96,
+    "future_orientation": 0.42,
+    "cyclicality": 0.18,
+    "urgency": 0.97,
+    "patience": -0.82,
+    // =========================================
+    // MOTIVATIONAL FORCES
+    // =========================================
+    "desire_intensity": 0.98,
+    "attachment": 0.18,
+    "avoidance": -0.66,
+    "expansion": 0.62,
+    "contraction": 0.28,
+    "ambition": 0.86,
+    "survival_drive": 0.94,
+    // =========================================
+    // SOCIAL GEOMETRY
+    // =========================================
+    "sociality": 0.24,
+    "individuality": 0.91,
+    "collectivism": -0.48,
+    "relational_depth": 0.14,
+    "boundary_strength": 0.97,
+    "empathy": 0.16,
+    "dominance_social": 0.83,
+    // =========================================
+    // MATERIAL ↔ SYMBOLIC
+    // =========================================
+    "materiality": 0.82,
+    "spirituality": -0.58,
+    "sensory_density": 0.76,
+    "idealism": -0.34,
+    "pragmatism": 0.81,
+    // =========================================
+    // ORDER / CHAOS DYNAMICS
+    // =========================================
+    "integration": 0.22,
+    "fragmentation": 0.74,
+    "entropy": 0.79,
+    "adaptability": 0.57,
+    "rigidity": 0.41,
+    // =========================================
+    // EXPRESSION DYNAMICS
+    // =========================================
+    "expressiveness": 0.94,
+    "repression": -0.61,
+    "reactivity": 0.97,
+    "responsiveness": 0.46,
+    // =========================================
+    // EXISTENTIAL AXES
+    // =========================================
+    "meaning_orientation": 0.24,
+    "identity_coherence": 0.71,
+    "transcendence": -0.66,
+    "ego_density": 0.91
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "id": "TAURUS",
+
+  "classification": {
+    "element": "EARTH",
+    "modality": "FIXED",
+    "polarity": "FEMININE"
+  },
+
+  "coreEssence": {
+    "corePrinciple": "stabilization through preservation",
+
+    "archetypes": [
+      "builder",
+      "guardian",
+      "provider",
+      "preserver",
+      "cultivator",
+      "sensualist"
+    ],
+
+    "expressionStyle": [
+      "steady",
+      "grounded",
+      "patient",
+      "deliberate",
+      "sensory-oriented",
+      "resistant to disruption"
+    ],
+
+    "motivationalBias": [
+      "toward stability over volatility",
+      "toward preservation over risk",
+      "toward comfort over uncertainty",
+      "toward consistency over change",
+      "toward tangible value over abstraction"
+    ]
+  },
+
+  "behavioralModulation": {
+    "actionStyle": [
+      "moves slowly but persistently",
+      "builds through repetition",
+      "acts after securing certainty",
+      "maintains momentum once committed"
+    ],
+
+    "decisionStyle": [
+      "security-oriented",
+      "practical",
+      "experience-based",
+      "resistant to impulsive shifts"
+    ],
+
+    "adaptationStyle": [
+      "adjusts gradually",
+      "stabilizes unstable environments",
+      "absorbs pressure silently",
+      "prefers continuity during disruption"
+    ],
+
+    "stressResponse": [
+      "becomes stubborn",
+      "clings to familiarity",
+      "resists external pressure",
+      "withdraws into comfort-seeking"
+    ],
+
+    "relationalOrientation": [
+      "values loyalty",
+      "seeks dependable bonds",
+      "expresses care through consistency",
+      "protects emotional and material security"
+    ]
+  },
+
+  
+
+  "symbolicLayer": {
+    "symbols": [
+      "soil",
+      "gardens",
+      "coins",
+      "stone",
+      "music",
+      "food",
+      "oak trees"
+    ],
+
+    "associatedEnvironments": [
+      "farmlands",
+      "financial systems",
+      "homes",
+      "natural landscapes",
+      "luxury spaces",
+      "stable institutions"
+    ],
+
+    "bodyCorrelation": [
+      "throat",
+      "neck",
+      "voice",
+      "taste",
+      "physical endurance",
+      "sensory processing"
+    ]
+  },
+    "latentVector": {
+      "valence": 0.72,
+      "arousal": 0.22,
+      "agency": 0.42,
+      "dominance": 0.44,
+      "coherence": 0.96,
+      "stability": 0.99,
+      "novelty": -0.72,
+      "volatility": -0.88,
+
+      "abstraction": -0.42,
+      "symbolic_density": 0.34,
+      "pattern_recognition": 0.58,
+      "analyticity": 0.42,
+      "intuition": 0.38,
+      "mental_speed": -0.22,
+      "focus": 0.94,
+      "diffusion": -0.82,
+
+      "past_orientation": 0.82,
+      "present_orientation": 0.88,
+      "future_orientation": -0.12,
+      "cyclicality": 0.62,
+      "urgency": -0.84,
+      "patience": 0.99,
+
+      "desire_intensity": 0.82,
+      "attachment": 0.98,
+      "avoidance": 0.42,
+      "expansion": 0.18,
+      "contraction": 0.92,
+      "ambition": 0.62,
+      "survival_drive": 0.88,
+
+      "sociality": 0.42,
+      "individuality": 0.42,
+      "collectivism": 0.18,
+      "relational_depth": 0.72,
+      "boundary_strength": 0.96,
+      "empathy": 0.52,
+      "dominance_social": 0.38,
+
+      "materiality": 0.99,
+      "spirituality": -0.42,
+      "sensory_density": 0.98,
+      "idealism": -0.18,
+      "pragmatism": 0.98,
+
+      "integration": 0.96,
+      "fragmentation": -0.88,
+      "entropy": -0.82,
+      "adaptability": -0.22,
+      "rigidity": 0.94,
+
+      "expressiveness": 0.38,
+      "repression": 0.42,
+      "reactivity": 0.18,
+      "responsiveness": 0.58,
+
+      "meaning_orientation": 0.52,
+      "identity_coherence": 0.94,
+      "transcendence": -0.38,
+      "ego_density": 0.72
+    }
+}

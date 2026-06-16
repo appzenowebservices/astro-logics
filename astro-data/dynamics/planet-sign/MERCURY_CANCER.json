@@ -1,0 +1,143 @@
+{
+  "astroState": {
+    "planet": "MERCURY",
+    "sign": "GEMINI",
+    "house": 6,
+    "natalLongitude": 73.04813350468716,
+    "currentLongitude": 20.82855285738293,
+    "movementDegrees": -52.21958064730423,
+    "intensity": 0,
+    "activeAspects": [],
+    "coreArchetype": [
+      "messenger",
+      "observer",
+      "mental explorer",
+      "adaptive",
+      "expressive",
+      "behavior-driven"
+    ]
+  },
+  "pressureState": {
+    "dominantPressure": "tries to regain control",
+    "pressureDirection": "greater emotional flexibility",
+    "collapseRisk": 0,
+    "stressAcceleration": "decreasing",
+    "unresolvedPattern": "overcontrol"
+  },
+  "behavioralState": {
+    "behavioralPatterns": [
+      "rechecks details",
+      "changes tone under stress",
+      "avoiding difficult conversations",
+      "overthinking decisions",
+      "suppressing emotions publicly",
+      "reactive communication patterns"
+    ],
+    "stressBehavior": [
+      "overcompensates",
+      "becomes emotionally narrow",
+      "tries to regain control",
+      "narrows focus under stress",
+      "social expectations",
+      "fear of instability"
+    ],
+    "emotionalDrivers": [
+      "stability",
+      "understanding",
+      "rejection",
+      "loss of control"
+    ],
+    "behavioralMomentum": "slow internal pressure",
+    "bodyLanguage": [
+      "crossed arms",
+      "slouched posture",
+      "tight jaw",
+      "avoiding eye contact",
+      "restless movement",
+      "controlled posture"
+    ],
+    "speechPatterns": [
+      "I just need more time",
+      "I thought this was under control",
+      "can we discuss this later",
+      "I am trying my best",
+      "this is becoming overwhelming",
+      "careful wording"
+    ],
+    "microBehaviors": [
+      "checking messages repeatedly",
+      "restless pacing",
+      "shallow breathing",
+      "blank staring during silence",
+      "rapid task switching",
+      "rechecks details"
+    ]
+  },
+  "relationalState": {
+    "relationshipDynamics": [
+      "trust weakens gradually",
+      "communication becomes transactional",
+      "emotional distance increases",
+      "support becomes inconsistent",
+      "tests trust slowly",
+      "values consistency"
+    ],
+    "decisionDistortions": [
+      "contextual",
+      "pressure-sensitive",
+      "minor issues escalate emotionally",
+      "feedback feels personal",
+      "silence creates suspicion",
+      "stress responses trigger defensiveness"
+    ],
+    "dominantConflictAxis": [
+      "minor issues escalate emotionally",
+      "feedback feels personal",
+      "silence creates suspicion",
+      "stress responses trigger defensiveness"
+    ]
+  },
+  "situationalState": {
+    "environmentalArena": [
+      "house 6 symbolic environment",
+      "emotionally charged social setting",
+      "private reflection space",
+      "public interaction environment",
+      "predictable spaces",
+      "controlled environments"
+    ],
+    "sceneHooks": [
+      "unexpected confrontation",
+      "delayed response",
+      "authority pressure",
+      "fear of exposure",
+      "emotional misunderstanding"
+    ],
+    "symbolicObjects": [
+      "air symbol",
+      [
+        "communication motif"
+      ],
+      "house 6 symbolic environment",
+      "emotionally charged social setting",
+      "private reflection space",
+      "public interaction environment"
+    ]
+  },
+  "narrativeState": {
+    "cinematicExpressions": [
+      "dimly lit room during emotional conflict",
+      "phone screen filled with unread messages",
+      "silence after a tense conversation",
+      "late-night emotional reflection",
+      "late-night overthinking",
+      "silent observation during tension"
+    ],
+    "storyFunction": "reveals emotional pressure patterns",
+    "resolutionVector": "balanced self-awareness"
+  },
+  "metaState": {
+    "pressureManifestation": "social expectations",
+    "adaptationPressure": "greater emotional flexibility"
+  }
+}

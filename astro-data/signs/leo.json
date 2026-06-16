@@ -1,0 +1,149 @@
+{
+  "id": "LEO",
+  "classification": {
+    "element": "FIRE",
+    "modality": "FIXED",
+    "polarity": "MASCULINE"
+  },
+  "coreEssence": {
+    "corePrinciple": "radiance through self-expression",
+    "archetypes": [
+      "king",
+      "performer",
+      "creator",
+      "leader",
+      "hero",
+      "sun-child"
+    ],
+    "expressionStyle": [
+      "dramatic",
+      "confident",
+      "warm",
+      "expressive",
+      "center-oriented",
+      "recognition-seeking"
+    ],
+    "motivationalBias": [
+      "toward visibility over obscurity",
+      "toward creation over imitation",
+      "toward pride over submission",
+      "toward self-expression over suppression",
+      "toward significance over anonymity"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "acts with theatrical presence",
+      "takes initiative publicly",
+      "creates through personal identity",
+      "motivates through inspiration"
+    ],
+    "decisionStyle": [
+      "confidence-driven",
+      "identity-centered",
+      "recognition-sensitive",
+      "purpose-oriented"
+    ],
+    "adaptationStyle": [
+      "reasserts identity under pressure",
+      "protects pride aggressively",
+      "recovers through creative expression",
+      "stabilizes through self-belief"
+    ],
+    "stressResponse": [
+      "becomes prideful",
+      "reacts dramatically to disrespect",
+      "demands validation",
+      "hides vulnerability behind confidence"
+    ],
+    "relationalOrientation": [
+      "seeks admiration and loyalty",
+      "gives generously when appreciated",
+      "protects loved ones proudly",
+      "requires emotional recognition"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "crowns",
+      "sunlight",
+      "stages",
+      "gold",
+      "lions",
+      "flames",
+      "banners"
+    ],
+    "associatedEnvironments": [
+      "theaters",
+      "leadership spaces",
+      "creative arenas",
+      "celebrations",
+      "public stages",
+      "royal environments"
+    ],
+    "bodyCorrelation": [
+      "heart",
+      "spine",
+      "circulation",
+      "vital force",
+      "creative vitality",
+      "upper back"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.82,
+    "arousal": 0.88,
+    "agency": 0.94,
+    "dominance": 0.96,
+    "coherence": 0.72,
+    "stability": 0.58,
+    "novelty": 0.72,
+    "volatility": 0.38,
+    "abstraction": 0.34,
+    "symbolic_density": 0.72,
+    "pattern_recognition": 0.58,
+    "analyticity": 0.32,
+    "intuition": 0.68,
+    "mental_speed": 0.72,
+    "focus": 0.88,
+    "diffusion": -0.28,
+    "past_orientation": -0.42,
+    "present_orientation": 0.98,
+    "future_orientation": 0.72,
+    "cyclicality": 0.42,
+    "urgency": 0.62,
+    "patience": 0.28,
+    "desire_intensity": 0.94,
+    "attachment": 0.72,
+    "avoidance": -0.42,
+    "expansion": 0.96,
+    "contraction": -0.34,
+    "ambition": 0.92,
+    "survival_drive": 0.62,
+    "sociality": 0.94,
+    "individuality": 0.92,
+    "collectivism": 0.18,
+    "relational_depth": 0.72,
+    "boundary_strength": 0.82,
+    "empathy": 0.62,
+    "dominance_social": 0.98,
+    "materiality": 0.62,
+    "spirituality": 0.42,
+    "sensory_density": 0.88,
+    "idealism": 0.72,
+    "pragmatism": 0.38,
+    "integration": 0.88,
+    "fragmentation": -0.32,
+    "entropy": 0.18,
+    "adaptability": 0.52,
+    "rigidity": 0.62,
+    "expressiveness": 0.99,
+    "repression": -0.92,
+    "reactivity": 0.72,
+    "responsiveness": 0.72,
+    "meaning_orientation": 0.82,
+    "identity_coherence": 0.96,
+    "transcendence": 0.42,
+    "ego_density": 0.98
+  }
+}

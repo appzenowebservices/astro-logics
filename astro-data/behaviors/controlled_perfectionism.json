@@ -1,0 +1,206 @@
+{
+  "id": "CONTROLLED_PERFECTIONISM",
+  "behaviorCategory": "SELF_REGULATION_PATTERN",
+  "coreBehavior": [
+    "repeats emotionally conditioned responses",
+    "adapts behavior to avoid discomfort",
+    "creates short-term emotional relief",
+    "reinforces long-term stress patterns"
+  ],
+  "psychologicalDrivers": [
+    "fear of rejection",
+    "fear of instability",
+    "need for emotional safety",
+    "desire for validation",
+    "uncertainty about consequences"
+  ],
+  "behavioralTriggers": [
+    "criticism",
+    "emotional confrontation",
+    "social pressure",
+    "unclear expectations",
+    "fear of judgment"
+  ],
+  "surfacePresentation": [
+    "appears composed externally",
+    "minimizes emotional intensity",
+    "maintains functional interactions",
+    "redirects vulnerable conversations"
+  ],
+  "hiddenInternalState": [
+    "mental overprocessing",
+    "internal tension buildup",
+    "silent emotional fatigue",
+    "anticipating negative outcomes"
+  ],
+  "microBehaviors": [
+    "checking notifications repeatedly",
+    "delayed responses",
+    "restless posture shifts",
+    "avoiding prolonged eye contact",
+    "over-monitoring reactions"
+  ],
+  "speechPatterns": [
+    "I am fine",
+    "maybe later",
+    "I just need time",
+    "it is not a big deal",
+    "let us avoid drama"
+  ],
+  "bodyLanguagePatterns": [
+    "crossed arms",
+    "tight jaw",
+    "restless movements",
+    "shallow breathing",
+    "forced smile"
+  ],
+  "stressEscalationPattern": [
+    "minor discomfort",
+    "avoidance",
+    "internal pressure buildup",
+    "communication breakdown",
+    "emotional overflow"
+  ],
+  "relationshipImpact": [
+    "misunderstandings increase",
+    "trust weakens gradually",
+    "emotional distance grows",
+    "communication cycles become defensive"
+  ],
+  "workplaceImpact": [
+    "feedback loops weaken",
+    "stress accumulates silently",
+    "performance inconsistency appears",
+    "communication delays emerge"
+  ],
+  "familyImpact": [
+    "unspoken tension builds",
+    "emotional distance increases",
+    "surface harmony masks deeper issues"
+  ],
+  "conflictStyle": [
+    "avoidance",
+    "defensive communication",
+    "delayed confrontation",
+    "emotionally reactive withdrawal"
+  ],
+  "copingMechanisms": [
+    "overworking",
+    "humor",
+    "withdrawal",
+    "people pleasing",
+    "emotional suppression"
+  ],
+  "shadowExpressions": [
+    "passive aggression",
+    "silent resentment",
+    "dishonest reassurance",
+    "emotional shutdown"
+  ],
+  "growthDirection": [
+    "emotional honesty",
+    "direct communication",
+    "healthy boundary setting",
+    "tolerating discomfort constructively"
+  ],
+  "healthyExpression": [
+    "clear emotional communication",
+    "balanced self-awareness",
+    "calm conflict resolution",
+    "stable emotional boundaries"
+  ],
+  "unhealthyExpression": [
+    "chronic suppression",
+    "explosive reactions",
+    "emotional detachment",
+    "communication paralysis"
+  ],
+  "associatedPlanets": [
+    "MERCURY",
+    "MOON",
+    "SATURN",
+    "NEPTUNE"
+  ],
+  "associatedSigns": [
+    "VIRGO",
+    "CANCER",
+    "LIBRA",
+    "PISCES"
+  ],
+  "associatedHouses": [
+    "11",
+    "2"
+  ],
+  "associatedAspects": [
+    "SQUARE",
+    "OPPOSITION",
+    "SATURN_MOON",
+    "NEPTUNE_MERCURY"
+  ],
+  "environmentTriggers": [
+    "emotionally tense environments",
+    "high-pressure workplaces",
+    "critical households",
+    "socially unstable settings"
+  ],
+  "cinematicExpressions": [
+    "staring at unread notifications",
+    "typing then deleting messages",
+    "silent tension during conversations",
+    "walking away from confrontation"
+  ],
+  "sceneGenerationHooks": [
+    "an unresolved issue resurfaces",
+    "someone asks for emotional honesty",
+    "pressure builds from delayed communication",
+    "a conflict can no longer be avoided"
+  ],
+  "escalationEvents": [
+    "miscommunication spreads",
+    "someone loses patience",
+    "pressure becomes visible",
+    "an emotional outburst occurs"
+  ],
+  "resolutionPatterns": [
+    "structured communication",
+    "honest confrontation",
+    "boundary clarification",
+    "emotional accountability"
+  ],
+  "planetaryAmplifiers": {
+    "MARS": [
+      "reactive defensiveness",
+      "argument escalation"
+    ],
+    "SATURN": [
+      "fear-based hesitation",
+      "communication shutdown"
+    ],
+    "NEPTUNE": [
+      "avoidance loops",
+      "confusion"
+    ],
+    "PLUTO": [
+      "suppressed intensity",
+      "control patterns"
+    ]
+  },
+  "stateTransitions": {
+    "calm": [
+      "stable interactions",
+      "controlled emotional expression"
+    ],
+    "pressured": [
+      "withdrawal",
+      "reactive thinking"
+    ],
+    "overloaded": [
+      "communication collapse",
+      "emotional shutdown"
+    ],
+    "growth": [
+      "healthy communication",
+      "clear self-expression"
+    ]
+  }
+}

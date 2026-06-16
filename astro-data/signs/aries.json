@@ -1,0 +1,149 @@
+{
+  "id": "ARIES",
+  "classification": {
+    "element": "FIRE",
+    "modality": "CARDINAL",
+    "polarity": "MASCULINE"
+  },
+  "coreEssence": {
+    "corePrinciple": "initiation through force",
+    "archetypes": [
+      "warrior",
+      "pioneer",
+      "initiator",
+      "competitor",
+      "survivor",
+      "risk-taker"
+    ],
+    "expressionStyle": [
+      "direct",
+      "fast-moving",
+      "impulsive",
+      "assertive",
+      "confrontational",
+      "action-oriented"
+    ],
+    "motivationalBias": [
+      "toward action over reflection",
+      "toward independence over cooperation",
+      "toward challenge over comfort",
+      "toward movement over stagnation",
+      "toward conquest over preservation"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "acts immediately",
+      "pushes through resistance",
+      "prefers decisive movement",
+      "initiates without waiting"
+    ],
+    "decisionStyle": [
+      "instinct-driven",
+      "speed-prioritized",
+      "gut-reactive",
+      "moment-centered"
+    ],
+    "adaptationStyle": [
+      "responds aggressively to obstacles",
+      "improvises under pressure",
+      "learns through direct experience",
+      "changes course rapidly"
+    ],
+    "stressResponse": [
+      "becomes impatient",
+      "forces outcomes",
+      "acts before thinking",
+      "escalates conflict"
+    ],
+    "relationalOrientation": [
+      "values autonomy",
+      "tests strength through interaction",
+      "prefers honesty over diplomacy",
+      "resists emotional dependency"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "fire",
+      "swords",
+      "sparks",
+      "blood",
+      "helmets",
+      "engines",
+      "battle drums"
+    ],
+    "associatedEnvironments": [
+      "battlefields",
+      "competitive arenas",
+      "startup environments",
+      "high-pressure situations",
+      "frontline positions",
+      "leadership crises"
+    ],
+    "bodyCorrelation": [
+      "head",
+      "brain",
+      "adrenal response",
+      "muscular activation",
+      "blood circulation",
+      "fight-or-flight systems"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.18,
+    "arousal": 0.96,
+    "agency": 0.98,
+    "dominance": 0.88,
+    "coherence": -0.22,
+    "stability": -0.44,
+    "novelty": 0.82,
+    "volatility": 0.91,
+    "abstraction": -0.42,
+    "symbolic_density": 0.18,
+    "pattern_recognition": 0.34,
+    "analyticity": 0.44,
+    "intuition": 0.52,
+    "mental_speed": 0.98,
+    "focus": 0.86,
+    "diffusion": -0.48,
+    "past_orientation": -0.92,
+    "present_orientation": 0.99,
+    "future_orientation": 0.42,
+    "cyclicality": 0.12,
+    "urgency": 0.99,
+    "patience": -0.94,
+    "desire_intensity": 0.98,
+    "attachment": 0.18,
+    "avoidance": -0.84,
+    "expansion": 0.92,
+    "contraction": -0.22,
+    "ambition": 0.88,
+    "survival_drive": 0.96,
+    "sociality": 0.48,
+    "individuality": 0.99,
+    "collectivism": -0.72,
+    "relational_depth": 0.18,
+    "boundary_strength": 0.94,
+    "empathy": 0.22,
+    "dominance_social": 0.86,
+    "materiality": 0.72,
+    "spirituality": -0.22,
+    "sensory_density": 0.88,
+    "idealism": 0.18,
+    "pragmatism": 0.84,
+    "integration": 0.28,
+    "fragmentation": 0.82,
+    "entropy": 0.88,
+    "adaptability": 0.72,
+    "rigidity": 0.24,
+    "expressiveness": 0.99,
+    "repression": -0.92,
+    "reactivity": 0.98,
+    "responsiveness": 0.42,
+    "meaning_orientation": 0.22,
+    "identity_coherence": 0.88,
+    "transcendence": -0.48,
+    "ego_density": 0.97
+  }
+}

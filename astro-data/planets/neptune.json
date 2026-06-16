@@ -1,0 +1,154 @@
+{
+  "id": "NEPTUNE",
+  "classification": {
+    "planetType": "TRANSPERSONAL",
+    "elementalNature": [
+      "WATER",
+      "ETHER"
+    ],
+    "modalityAffinity": [
+      "MUTABLE"
+    ],
+    "genderPolarity": "FEMININE",
+    "gunaAffinity": [
+      "SATTVA"
+    ],
+    "temperament": [
+      "COLD",
+      "MOIST"
+    ]
+  },
+  "coreEssence": {
+    "corePrinciple": "boundary dissolution",
+    "archetypes": [
+      "dreams",
+      "illusion",
+      "transcendence",
+      "spirituality",
+      "imagination",
+      "surrender"
+    ],
+    "expressionDomains": [
+      "mysticism",
+      "fantasy",
+      "collective emotion",
+      "artistic inspiration",
+      "escapism",
+      "compassion"
+    ],
+    "governingFunctions": [
+      "dissolving rigid boundaries",
+      "expanding imagination",
+      "facilitating transcendence",
+      "blurring distinctions",
+      "opening access to collective unconscious patterns",
+      "creating symbolic perception"
+    ]
+  },
+  "motivationalStructure": {
+    "coreNeeds": [
+      "transcendence",
+      "unity",
+      "emotional merging",
+      "meaning beyond material reality",
+      "spiritual connection"
+    ],
+    "coreFears": [
+      "separation",
+      "meaninglessness",
+      "spiritual emptiness",
+      "emotional isolation",
+      "harsh material confinement"
+    ],
+    "desirePatterns": [
+      "to dissolve limitations",
+      "to merge emotionally",
+      "to experience transcendence",
+      "to escape suffering",
+      "to connect with something greater"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "oceans",
+      "fog",
+      "dreams",
+      "mirages",
+      "music",
+      "mist",
+      "sleep"
+    ],
+    "associatedEnvironments": [
+      "spiritual retreats",
+      "oceans",
+      "cinematic spaces",
+      "music environments",
+      "isolated dreamlike settings",
+      "collective emotional atmospheres"
+    ],
+    "bodyCorrelation": [
+      "sleep cycles",
+      "immune sensitivity",
+      "fluids",
+      "subconscious processing",
+      "chemical sensitivity",
+      "altered states"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.24,
+    "arousal": 0.18,
+    "agency": -0.42,
+    "dominance": -0.66,
+    "coherence": -0.84,
+    "stability": -0.58,
+    "novelty": 0.52,
+    "volatility": 0.64,
+    "abstraction": 0.99,
+    "symbolic_density": 0.98,
+    "pattern_recognition": 0.82,
+    "analyticity": -0.74,
+    "intuition": 0.99,
+    "mental_speed": 0.22,
+    "focus": -0.62,
+    "diffusion": 0.97,
+    "past_orientation": 0.44,
+    "present_orientation": -0.58,
+    "future_orientation": 0.66,
+    "cyclicality": 0.96,
+    "urgency": -0.91,
+    "patience": 0.88,
+    "desire_intensity": 0.38,
+    "attachment": 0.72,
+    "avoidance": 0.58,
+    "expansion": 0.84,
+    "contraction": -0.12,
+    "ambition": -0.72,
+    "survival_drive": -0.82,
+    "sociality": 0.66,
+    "individuality": -0.61,
+    "collectivism": 0.91,
+    "relational_depth": 0.95,
+    "boundary_strength": -0.97,
+    "empathy": 0.99,
+    "dominance_social": -0.84,
+    "materiality": -0.94,
+    "spirituality": 0.99,
+    "sensory_density": 0.42,
+    "idealism": 0.98,
+    "pragmatism": -0.96,
+    "integration": 0.12,
+    "fragmentation": 0.88,
+    "entropy": 0.92,
+    "adaptability": 0.82,
+    "rigidity": -0.94,
+    "expressiveness": 0.52,
+    "repression": -0.36,
+    "reactivity": 0.18,
+    "responsiveness": 0.96,
+    "meaning_orientation": 0.99,
+    "identity_coherence": -0.86,
+    "transcendence": 0.99,
+    "ego_density": -0.94
+  }
+}

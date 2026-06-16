@@ -1,0 +1,156 @@
+{
+  "id": "VENUS",
+  "classification": {
+    "planetType": "PERSONAL",
+    "elementalNature": [
+      "EARTH",
+      "WATER"
+    ],
+    "modalityAffinity": [
+      "FIXED",
+      "CARDINAL"
+    ],
+    "genderPolarity": "FEMININE",
+    "gunaAffinity": [
+      "RAJAS"
+    ],
+    "temperament": [
+      "MOIST",
+      "BALANCED"
+    ]
+  },
+  "coreEssence": {
+    "corePrinciple": "relational harmonization",
+    "archetypes": [
+      "love",
+      "beauty",
+      "attraction",
+      "pleasure",
+      "harmony",
+      "value"
+    ],
+    "expressionDomains": [
+      "relationships",
+      "aesthetics",
+      "social bonding",
+      "sensuality",
+      "taste",
+      "value formation"
+    ],
+    "governingFunctions": [
+      "forming attachments",
+      "creating harmony",
+      "evaluating value",
+      "facilitating cooperation",
+      "seeking pleasure",
+      "balancing relational dynamics"
+    ]
+  },
+  "motivationalStructure": {
+    "coreNeeds": [
+      "connection",
+      "affection",
+      "beauty",
+      "comfort",
+      "mutual appreciation"
+    ],
+    "coreFears": [
+      "rejection",
+      "disharmony",
+      "emotional deprivation",
+      "loss of attraction",
+      "social disconnection"
+    ],
+    "desirePatterns": [
+      "to be loved",
+      "to experience harmony",
+      "to create beauty",
+      "to feel valued",
+      "to maintain emotional connection"
+    ]
+  },
+
+  "symbolicLayer": {
+    "symbols": [
+      "flowers",
+      "jewelry",
+      "perfume",
+      "gardens",
+      "music",
+      "silk",
+      "mirrors"
+    ],
+    "associatedEnvironments": [
+      "art spaces",
+      "romantic settings",
+      "luxury environments",
+      "social gatherings",
+      "creative studios",
+      "beauty-centered spaces"
+    ],
+    "bodyCorrelation": [
+      "skin",
+      "face",
+      "kidneys",
+      "reproductive system",
+      "sensory pleasure",
+      "hormonal balance"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.94,
+    "arousal": 0.52,
+    "agency": 0.41,
+    "dominance": -0.18,
+    "coherence": 0.84,
+    "stability": 0.74,
+    "novelty": 0.42,
+    "volatility": -0.14,
+    "abstraction": 0.48,
+    "symbolic_density": 0.88,
+    "pattern_recognition": 0.62,
+    "analyticity": 0.22,
+    "intuition": 0.84,
+    "mental_speed": 0.38,
+    "focus": 0.44,
+    "diffusion": 0.58,
+    "past_orientation": 0.41,
+    "present_orientation": 0.82,
+    "future_orientation": 0.44,
+    "cyclicality": 0.72,
+    "urgency": -0.22,
+    "patience": 0.88,
+    "desire_intensity": 0.86,
+    "attachment": 0.94,
+    "avoidance": -0.48,
+    "expansion": 0.58,
+    "contraction": -0.12,
+    "ambition": 0.24,
+    "survival_drive": 0.21,
+    "sociality": 0.97,
+    "individuality": -0.12,
+    "collectivism": 0.88,
+    "relational_depth": 0.96,
+    "boundary_strength": -0.28,
+    "empathy": 0.92,
+    "dominance_social": 0.14,
+    "materiality": 0.88,
+    "spirituality": 0.71,
+    "sensory_density": 0.96,
+    "idealism": 0.84,
+    "pragmatism": 0.34,
+    "integration": 0.91,
+    "fragmentation": -0.42,
+    "entropy": -0.24,
+    "adaptability": 0.71,
+    "rigidity": -0.18,
+    "expressiveness": 0.78,
+    "repression": -0.34,
+    "reactivity": 0.38,
+    "responsiveness": 0.94,
+    "meaning_orientation": 0.72,
+    "identity_coherence": 0.62,
+    "transcendence": 0.58,
+    "ego_density": 0.24
+  }
+}

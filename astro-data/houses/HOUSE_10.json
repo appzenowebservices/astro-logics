@@ -1,0 +1,147 @@
+{
+  "id": "HOUSE_10",
+
+  "classification": {
+    "axis": "PUBLIC_STRUCTURE",
+    "angularity": "ANGULAR",
+    "elementalAffinity": "EARTH"
+  },
+
+  "coreEssence": {
+    "corePrinciple": "achievement through responsibility and public contribution",
+
+    "lifeDomains": [
+      "career",
+      "status",
+      "authority",
+      "public reputation",
+      "legacy",
+      "social responsibility"
+    ],
+
+    "archetypes": [
+      "the ruler",
+      "the executive",
+      "the authority",
+      "the architect"
+    ]
+  },
+
+  "environmentalContext": {
+    "environmentType": [
+      "institutional hierarchy field",
+      "public achievement arena"
+    ],
+
+    "motivationalThemes": [
+      "mastery",
+      "recognition",
+      "legacy",
+      "competence"
+    ],
+
+    "developmentalThemes": [
+      "responsibility integration",
+      "authority development",
+      "long-term achievement",
+      "public identity formation"
+    ]
+  },
+
+
+  "symbolicLayer": {
+    "symbols": [
+      "mountains",
+      "crowns",
+      "government buildings",
+      "clocks",
+      "thrones",
+      "skyscrapers"
+    ],
+
+    "associatedEnvironments": [
+      "corporations",
+      "governments",
+      "institutions",
+      "leadership systems",
+      "public platforms",
+      "high-responsibility environments"
+    ],
+
+    "bodyCorrelation": [
+      "bones",
+      "knees",
+      "skeletal structure",
+      "physical endurance",
+      "status posture",
+      "executive functioning"
+    ]
+  },
+
+  "latentVector": {
+    "valence": 0.49,
+    "arousal": 0.73,
+    "agency": 0.96,
+    "dominance": 0.94,
+    "coherence": 0.89,
+    "stability": 0.91,
+    "novelty": 0.62,
+    "volatility": 0.53,
+
+    "abstraction": 0.71,
+    "symbolic_density": 0.77,
+    "pattern_recognition": 0.85,
+    "analyticity": 0.93,
+    "intuition": 0.66,
+    "mental_speed": 0.72,
+    "focus": 0.95,
+    "diffusion": 0.43,
+
+    "past_orientation": 0.68,
+    "present_orientation": 0.61,
+    "future_orientation": 0.94,
+    "cyclicality": 0.72,
+    "urgency": 0.88,
+    "patience": 0.86,
+
+    "desire_intensity": 0.74,
+    "attachment": 0.66,
+    "avoidance": 0.52,
+    "expansion": 0.81,
+    "contraction": 0.63,
+    "ambition": 0.97,
+    "survival_drive": 0.83,
+
+    "sociality": 0.64,
+    "individuality": 0.89,
+    "collectivism": 0.58,
+    "relational_depth": 0.62,
+    "boundary_strength": 0.91,
+    "empathy": 0.67,
+    "dominance_social": 0.95,
+
+    "materiality": 0.88,
+    "spirituality": 0.52,
+    "sensory_density": 0.74,
+    "idealism": 0.55,
+    "pragmatism": 0.96,
+
+    "integration": 0.92,
+    "fragmentation": 0.31,
+    "entropy": 0.38,
+    "adaptability": 0.67,
+    "rigidity": 0.84,
+
+    "expressiveness": 0.59,
+    "repression": 0.71,
+    "reactivity": 0.64,
+    "responsiveness": 0.78,
+
+    "meaning_orientation": 0.83,
+    "identity_coherence": 0.94,
+    "transcendence": 0.61,
+    "ego_density": 0.88
+  }
+
+
+}

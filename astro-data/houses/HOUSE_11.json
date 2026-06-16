@@ -1,0 +1,127 @@
+{
+  "id": "HOUSE_11",
+  "classification": {
+    "axis": "COLLECTIVE",
+    "angularity": "SUCCEDENT",
+    "elementalAffinity": "AIR"
+  },
+  "coreEssence": {
+    "corePrinciple": "evolution through collective participation and future vision",
+    "lifeDomains": [
+      "friendships",
+      "communities",
+      "networks",
+      "collective movements",
+      "future aspirations",
+      "social systems"
+    ],
+    "archetypes": [
+      "the reformer",
+      "the networker",
+      "the visionary",
+      "the collective participant"
+    ]
+  },
+  "environmentalContext": {
+    "environmentType": [
+      "collective systems field",
+      "social participation arena"
+    ],
+    "motivationalThemes": [
+      "belonging",
+      "progress",
+      "shared ideals",
+      "future construction"
+    ],
+    "developmentalThemes": [
+      "collective integration",
+      "social contribution",
+      "network intelligence",
+      "visionary expansion"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "networks",
+      "stars",
+      "bridges",
+      "signals",
+      "crowds",
+      "future cities"
+    ],
+    "associatedEnvironments": [
+      "communities",
+      "social platforms",
+      "movements",
+      "research collectives",
+      "technology systems",
+      "future-oriented environments"
+    ],
+    "bodyCorrelation": [
+      "circulatory system",
+      "ankles",
+      "social synchronization",
+      "collective cognition",
+      "network signaling",
+      "future-oriented processing"
+    ]
+  },
+  "HOUSE_11": {
+    "latentVector": {
+      "valence": 0.78,
+      "arousal": 0.69,
+      "agency": 0.71,
+      "dominance": 0.58,
+      "coherence": 0.64,
+      "stability": 0.53,
+      "novelty": 0.93,
+      "volatility": 0.66,
+      "abstraction": 0.94,
+      "symbolic_density": 0.88,
+      "pattern_recognition": 0.96,
+      "analyticity": 0.79,
+      "intuition": 0.85,
+      "mental_speed": 0.82,
+      "focus": 0.54,
+      "diffusion": 0.91,
+      "past_orientation": 0.41,
+      "present_orientation": 0.63,
+      "future_orientation": 0.97,
+      "cyclicality": 0.62,
+      "urgency": 0.56,
+      "patience": 0.67,
+      "desire_intensity": 0.69,
+      "attachment": 0.42,
+      "avoidance": 0.33,
+      "expansion": 0.95,
+      "contraction": 0.29,
+      "ambition": 0.83,
+      "survival_drive": 0.57,
+      "sociality": 0.91,
+      "individuality": 0.86,
+      "collectivism": 0.94,
+      "relational_depth": 0.88,
+      "boundary_strength": 0.49,
+      "empathy": 0.93,
+      "dominance_social": 0.52,
+      "materiality": 0.38,
+      "spirituality": 0.89,
+      "sensory_density": 0.66,
+      "idealism": 0.92,
+      "pragmatism": 0.44,
+      "integration": 0.71,
+      "fragmentation": 0.59,
+      "entropy": 0.63,
+      "adaptability": 0.88,
+      "rigidity": 0.31,
+      "expressiveness": 0.87,
+      "repression": 0.36,
+      "reactivity": 0.72,
+      "responsiveness": 0.89,
+      "meaning_orientation": 0.96,
+      "identity_coherence": 0.58,
+      "transcendence": 0.91,
+      "ego_density": 0.55
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "id": "URANUS",
+  "classification": {
+    "planetType": "TRANSPERSONAL",
+    "elementalNature": [
+      "AIR",
+      "ETHER"
+    ],
+    "modalityAffinity": [
+      "FIXED"
+    ],
+    "genderPolarity": "NEUTRAL",
+    "gunaAffinity": [
+      "RAJAS"
+    ],
+    "temperament": [
+      "COLD",
+      "ELECTRIC"
+    ]
+  },
+  "coreEssence": {
+    "corePrinciple": "disruptive liberation",
+    "archetypes": [
+      "rebellion",
+      "innovation",
+      "awakening",
+      "disruption",
+      "freedom",
+      "unpredictability"
+    ],
+    "expressionDomains": [
+      "technological evolution",
+      "social revolution",
+      "individual liberation",
+      "experimentation",
+      "future systems",
+      "nonconformity"
+    ],
+    "governingFunctions": [
+      "breaking stagnant structures",
+      "introducing radical change",
+      "accelerating evolution",
+      "disrupting conventions",
+      "expanding systemic possibilities",
+      "triggering awakening through instability"
+    ]
+  },
+  "motivationalStructure": {
+    "coreNeeds": [
+      "freedom",
+      "innovation",
+      "independence",
+      "novelty",
+      "authenticity"
+    ],
+    "coreFears": [
+      "restriction",
+      "conformity",
+      "stagnation",
+      "control",
+      "systemic imprisonment"
+    ],
+    "desirePatterns": [
+      "to disrupt outdated systems",
+      "to innovate",
+      "to remain unconstrained",
+      "to accelerate progress",
+      "to awaken new possibilities"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "lightning",
+      "electricity",
+      "machines",
+      "fractures",
+      "networks",
+      "storms",
+      "signals"
+    ],
+    "associatedEnvironments": [
+      "laboratories",
+      "technological systems",
+      "revolutionary movements",
+      "experimental communities",
+      "digital networks",
+      "disruptive environments"
+    ],
+    "bodyCorrelation": [
+      "nervous system",
+      "electrical impulses",
+      "brain activity",
+      "sudden reactions",
+      "neurological signaling",
+      "energetic surges"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.12,
+    "arousal": 0.88,
+    "agency": 0.82,
+    "dominance": 0.41,
+    "coherence": -0.72,
+    "stability": -0.91,
+    "novelty": 0.99,
+    "volatility": 0.93,
+    "abstraction": 0.94,
+    "symbolic_density": 0.62,
+    "pattern_recognition": 0.97,
+    "analyticity": 0.84,
+    "intuition": 0.76,
+    "mental_speed": 0.95,
+    "focus": 0.52,
+    "diffusion": 0.88,
+    "past_orientation": -0.94,
+    "present_orientation": 0.43,
+    "future_orientation": 0.99,
+    "cyclicality": 0.38,
+    "urgency": 0.82,
+    "patience": -0.44,
+    "desire_intensity": 0.71,
+    "attachment": -0.88,
+    "avoidance": 0.36,
+    "expansion": 0.91,
+    "contraction": -0.62,
+    "ambition": 0.66,
+    "survival_drive": 0.22,
+    "sociality": 0.48,
+    "individuality": 0.98,
+    "collectivism": 0.24,
+    "relational_depth": -0.48,
+    "boundary_strength": 0.22,
+    "empathy": 0.34,
+    "dominance_social": 0.18,
+    "materiality": -0.52,
+    "spirituality": 0.46,
+    "sensory_density": -0.24,
+    "idealism": 0.94,
+    "pragmatism": -0.38,
+    "integration": -0.36,
+    "fragmentation": 0.94,
+    "entropy": 0.97,
+    "adaptability": 0.98,
+    "rigidity": -0.91,
+    "expressiveness": 0.76,
+    "repression": -0.82,
+    "reactivity": 0.86,
+    "responsiveness": 0.22,
+    "meaning_orientation": 0.58,
+    "identity_coherence": -0.22,
+    "transcendence": 0.52,
+    "ego_density": -0.14
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "id": "HOUSE_2",
+  "classification": {
+    "axis": "RESOURCE",
+    "angularity": "SUCCEDENT",
+    "elementalAffinity": "EARTH"
+  },
+  "coreEssence": {
+    "corePrinciple": "stabilization through resource accumulation",
+    "lifeDomains": [
+      "money",
+      "possessions",
+      "self-worth",
+      "survival",
+      "material stability"
+    ],
+    "archetypes": [
+      "the builder",
+      "the holder",
+      "the accumulator",
+      "the survivor"
+    ]
+  },
+  "environmentalContext": {
+    "environmentType": [
+      "resource arena",
+      "material stabilization field"
+    ],
+    "motivationalThemes": [
+      "security",
+      "ownership",
+      "stability",
+      "preservation"
+    ],
+    "developmentalThemes": [
+      "value formation",
+      "resource management",
+      "self-worth stabilization",
+      "material grounding"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "coins",
+      "vaults",
+      "fields",
+      "food",
+      "stone",
+      "containers"
+    ],
+    "associatedEnvironments": [
+      "banks",
+      "homes",
+      "financial systems",
+      "storage spaces",
+      "markets",
+      "resource-oriented environments"
+    ],
+    "bodyCorrelation": [
+      "throat",
+      "neck",
+      "voice",
+      "consumption systems",
+      "physical sustenance"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.62,
+    "arousal": 0.54,
+    "agency": 0.73,
+    "dominance": 0.66,
+    "coherence": 0.81,
+    "stability": 0.88,
+    "novelty": 0.31,
+    "volatility": 0.28,
+    "abstraction": 0.41,
+    "symbolic_density": 0.55,
+    "pattern_recognition": 0.63,
+    "analyticity": 0.72,
+    "intuition": 0.49,
+    "mental_speed": 0.46,
+    "focus": 0.84,
+    "diffusion": 0.33,
+    "past_orientation": 0.66,
+    "present_orientation": 0.79,
+    "future_orientation": 0.42,
+    "cyclicality": 0.58,
+    "urgency": 0.39,
+    "patience": 0.91,
+    "desire_intensity": 0.71,
+    "attachment": 0.89,
+    "avoidance": 0.44,
+    "expansion": 0.38,
+    "contraction": 0.77,
+    "ambition": 0.52,
+    "survival_drive": 0.68,
+    "sociality": 0.48,
+    "individuality": 0.62,
+    "collectivism": 0.41,
+    "relational_depth": 0.74,
+    "boundary_strength": 0.82,
+    "empathy": 0.55,
+    "dominance_social": 0.46,
+    "materiality": 0.96,
+    "spirituality": 0.31,
+    "sensory_density": 0.88,
+    "idealism": 0.33,
+    "pragmatism": 0.92,
+    "integration": 0.79,
+    "fragmentation": 0.41,
+    "entropy": 0.36,
+    "adaptability": 0.52,
+    "rigidity": 0.74,
+    "expressiveness": 0.44,
+    "repression": 0.72,
+    "reactivity": 0.38,
+    "responsiveness": 0.61,
+    "meaning_orientation": 0.67,
+    "identity_coherence": 0.86,
+    "transcendence": 0.29,
+    "ego_density": 0.78
+  }
+}

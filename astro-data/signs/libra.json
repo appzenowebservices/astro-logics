@@ -1,0 +1,149 @@
+{
+  "id": "LIBRA",
+  "classification": {
+    "element": "AIR",
+    "modality": "CARDINAL",
+    "polarity": "MASCULINE"
+  },
+  "coreEssence": {
+    "corePrinciple": "harmonization through relational balance",
+    "archetypes": [
+      "mediator",
+      "diplomat",
+      "artist",
+      "partner",
+      "judge",
+      "harmonizer"
+    ],
+    "expressionStyle": [
+      "graceful",
+      "socially aware",
+      "balanced",
+      "diplomatic",
+      "aesthetic",
+      "relational"
+    ],
+    "motivationalBias": [
+      "toward harmony over conflict",
+      "toward cooperation over isolation",
+      "toward beauty over disorder",
+      "toward fairness over domination",
+      "toward mutuality over unilateral control"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "acts through negotiation",
+      "builds through partnership",
+      "adjusts behavior socially",
+      "seeks consensus before commitment"
+    ],
+    "decisionStyle": [
+      "comparative",
+      "relationally informed",
+      "fairness-oriented",
+      "externally calibrated"
+    ],
+    "adaptationStyle": [
+      "mirrors surrounding dynamics",
+      "reduces tension through diplomacy",
+      "maintains equilibrium socially",
+      "reframes conflict aesthetically"
+    ],
+    "stressResponse": [
+      "avoids confrontation",
+      "becomes indecisive",
+      "suppresses personal needs for harmony",
+      "overdepends on external validation"
+    ],
+    "relationalOrientation": [
+      "seeks balanced partnership",
+      "values reciprocity and mutual respect",
+      "connects through shared experience",
+      "requires relational harmony for stability"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "scales",
+      "mirrors",
+      "bridges",
+      "rings",
+      "music",
+      "flowers",
+      "courtrooms"
+    ],
+    "associatedEnvironments": [
+      "courts",
+      "art galleries",
+      "social gatherings",
+      "negotiation spaces",
+      "partnership systems",
+      "aesthetic environments"
+    ],
+    "bodyCorrelation": [
+      "kidneys",
+      "lower back",
+      "skin balance",
+      "hormonal equilibrium",
+      "aesthetic sensitivity",
+      "symmetry regulation"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.78,
+    "arousal": 0.52,
+    "agency": 0.42,
+    "dominance": 0.22,
+    "coherence": 0.92,
+    "stability": 0.62,
+    "novelty": 0.42,
+    "volatility": 0.18,
+    "abstraction": 0.72,
+    "symbolic_density": 0.74,
+    "pattern_recognition": 0.82,
+    "analyticity": 0.68,
+    "intuition": 0.72,
+    "mental_speed": 0.62,
+    "focus": 0.58,
+    "diffusion": 0.22,
+    "past_orientation": 0.18,
+    "present_orientation": 0.72,
+    "future_orientation": 0.62,
+    "cyclicality": 0.52,
+    "urgency": -0.22,
+    "patience": 0.72,
+    "desire_intensity": 0.62,
+    "attachment": 0.82,
+    "avoidance": 0.22,
+    "expansion": 0.52,
+    "contraction": 0.18,
+    "ambition": 0.42,
+    "survival_drive": 0.18,
+    "sociality": 0.98,
+    "individuality": 0.18,
+    "collectivism": 0.82,
+    "relational_depth": 0.92,
+    "boundary_strength": 0.28,
+    "empathy": 0.94,
+    "dominance_social": 0.18,
+    "materiality": 0.42,
+    "spirituality": 0.48,
+    "sensory_density": 0.62,
+    "idealism": 0.88,
+    "pragmatism": 0.52,
+    "integration": 0.96,
+    "fragmentation": -0.72,
+    "entropy": -0.18,
+    "adaptability": 0.82,
+    "rigidity": -0.18,
+    "expressiveness": 0.82,
+    "repression": -0.22,
+    "reactivity": 0.32,
+    "responsiveness": 0.96,
+    "meaning_orientation": 0.72,
+    "identity_coherence": 0.62,
+    "transcendence": 0.52,
+    "ego_density": 0.22
+  }
+}

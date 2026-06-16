@@ -1,0 +1,149 @@
+{
+  "id": "VIRGO",
+  "classification": {
+    "element": "EARTH",
+    "modality": "MUTABLE",
+    "polarity": "FEMININE"
+  },
+  "coreEssence": {
+    "corePrinciple": "refinement through analysis",
+    "archetypes": [
+      "analyst",
+      "craftsperson",
+      "healer",
+      "editor",
+      "servant",
+      "system optimizer"
+    ],
+    "expressionStyle": [
+      "precise",
+      "observational",
+      "methodical",
+      "practical",
+      "detail-oriented",
+      "corrective"
+    ],
+    "motivationalBias": [
+      "toward improvement over acceptance",
+      "toward order over chaos",
+      "toward utility over excess",
+      "toward precision over approximation",
+      "toward competence over performance"
+    ]
+  },
+  "behavioralModulation": {
+    "actionStyle": [
+      "acts through careful adjustment",
+      "improves systems incrementally",
+      "focuses on functional efficiency",
+      "works through repetition and refinement"
+    ],
+    "decisionStyle": [
+      "analysis-driven",
+      "detail-sensitive",
+      "risk-aware",
+      "evidence-oriented"
+    ],
+    "adaptationStyle": [
+      "reorganizes under pressure",
+      "compartmentalizes emotional noise",
+      "adjusts through optimization",
+      "stabilizes through routines"
+    ],
+    "stressResponse": [
+      "becomes overly critical",
+      "fixates on imperfections",
+      "overthinks small variables",
+      "suppresses emotions through work"
+    ],
+    "relationalOrientation": [
+      "shows care through practical support",
+      "values reliability and competence",
+      "observes before trusting",
+      "maintains emotional control through usefulness"
+    ]
+  },
+  "symbolicLayer": {
+    "symbols": [
+      "books",
+      "grains",
+      "tools",
+      "clocks",
+      "medical instruments",
+      "checklists",
+      "worktables"
+    ],
+    "associatedEnvironments": [
+      "clinics",
+      "libraries",
+      "workshops",
+      "research spaces",
+      "organizational systems",
+      "service-oriented environments"
+    ],
+    "bodyCorrelation": [
+      "digestive system",
+      "intestines",
+      "nervous regulation",
+      "metabolism",
+      "fine motor coordination",
+      "health maintenance systems"
+    ]
+  },
+  "latentVector": {
+    "valence": 0.22,
+    "arousal": 0.42,
+    "agency": 0.72,
+    "dominance": 0.18,
+    "coherence": 0.98,
+    "stability": 0.88,
+    "novelty": -0.18,
+    "volatility": -0.62,
+    "abstraction": 0.72,
+    "symbolic_density": 0.58,
+    "pattern_recognition": 0.99,
+    "analyticity": 0.98,
+    "intuition": 0.42,
+    "mental_speed": 0.72,
+    "focus": 0.99,
+    "diffusion": -0.96,
+    "past_orientation": 0.42,
+    "present_orientation": 0.88,
+    "future_orientation": 0.18,
+    "cyclicality": 0.62,
+    "urgency": 0.58,
+    "patience": 0.72,
+    "desire_intensity": 0.38,
+    "attachment": 0.52,
+    "avoidance": 0.72,
+    "expansion": -0.22,
+    "contraction": 0.82,
+    "ambition": 0.72,
+    "survival_drive": 0.62,
+    "sociality": 0.52,
+    "individuality": 0.42,
+    "collectivism": 0.38,
+    "relational_depth": 0.42,
+    "boundary_strength": 0.88,
+    "empathy": 0.68,
+    "dominance_social": 0.12,
+    "materiality": 0.82,
+    "spirituality": 0.18,
+    "sensory_density": 0.72,
+    "idealism": 0.12,
+    "pragmatism": 0.99,
+    "integration": 0.99,
+    "fragmentation": -0.94,
+    "entropy": -0.82,
+    "adaptability": 0.58,
+    "rigidity": 0.82,
+    "expressiveness": 0.28,
+    "repression": 0.62,
+    "reactivity": 0.42,
+    "responsiveness": 0.82,
+    "meaning_orientation": 0.58,
+    "identity_coherence": 0.88,
+    "transcendence": 0.12,
+    "ego_density": 0.42
+  }
+}
