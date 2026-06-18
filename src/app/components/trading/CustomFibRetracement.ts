@@ -152,6 +152,10 @@ class CustomFibRetracement extends Drawing {
     return this._fibOptions;
   }
 
+  get options(): CustomFibOptions {
+    return this._fibOptions;
+  }
+
   setFibOptions(options: Partial<CustomFibOptions>) {
     (this as any)._fibOptions = { ...this._fibOptions, ...options };
     this.requestUpdate();

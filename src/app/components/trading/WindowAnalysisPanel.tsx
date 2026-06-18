@@ -20,6 +20,7 @@ type WindowAnalysisResult = {
 type WindowAnalysisPanelProps = {
   analysis: WindowAnalysisResult;
   onStitch: () => void;
+  isAnalyzing?: boolean;
 };
 
 const EVENT_TYPE_COLORS: Record<string, string> = {
@@ -37,6 +38,7 @@ const EVENT_TYPE_COLORS: Record<string, string> = {
 export default function WindowAnalysisPanel({
   analysis,
   onStitch,
+  isAnalyzing = false,
 }: WindowAnalysisPanelProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [stitchHistory, setStitchHistory] = useState<WindowAnalysisResult[]>(
@@ -54,6 +56,14 @@ export default function WindowAnalysisPanel({
 
   return (
     <div className="absolute bottom-2 left-2 z-[100] w-80 rounded-xl border border-white/[0.08] bg-[#0c0c0d]">
+      {isAnalyzing && (
+        <div className="absolute inset-0 rounded-xl bg-black/80 flex items-center justify-center backdrop-blur-sm">
+          <div className="flex items-center gap-2 text-xs text-white/60">
+            <div className="h-3 w-3 animate-spin rounded-full border-2 border-purple-500 border-t-transparent" />
+            Analyzing...
+          </div>
+        </div>
+      )}
       <div
         className="flex cursor-pointer items-center justify-between p-3"
         onClick={() => setIsExpanded(!isExpanded)}

@@ -78,6 +78,7 @@ export default function TradingChart({
   const [windowAnalysis, setWindowAnalysis] =
     useState<WindowAnalysisResult>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const isAnalyzingRef = useRef(false);
   const [selectedDrawingId, setSelectedDrawingId] = useState<string | null>(
     null,
   );
@@ -137,6 +138,10 @@ export default function TradingChart({
     if (!drawing || !drawing.type || !drawing.anchors) return;
 
     const drawingId = `${drawing.type}-${Date.now()}`;
+    const options = drawing.type === "custom-fib-retracement"
+      ? drawing.fibOptions || drawing.options
+      : drawing.options;
+
     await saveChartDrawingMutation.mutateAsync({
       symbol,
       timeframe,
@@ -144,7 +149,7 @@ export default function TradingChart({
       drawingId,
       anchors: drawing.anchors,
       style: drawing.style,
-      options: drawing.options,
+      options,
     });
   };
 
@@ -210,7 +215,11 @@ export default function TradingChart({
 
     const allDrawings = drawingManagerRef.current.getAllDrawings();
     for (const drawing of allDrawings) {
-      drawing.updateStyle(style);
+      if (drawing.type === "custom-fib-retracement" && drawing.setFibOptions && style.levels) {
+        drawing.setFibOptions({ levels: style.levels, showPrices: style.showPrices, showPercentages: style.showPercentages });
+      } else {
+        drawing.updateStyle(style);
+      }
       try {
         await saveChartDrawingMutation.mutateAsync({
           symbol,
@@ -283,6 +292,19 @@ export default function TradingChart({
   }, [chartKey, chartRef, normalizedHistory, seriesRef]);
 
   useEffect(() => {
+    if (!boxSelection || isAnalyzingRef.current) return;
+
+    isAnalyzingRef.current = true;
+    setIsAnalyzing(true);
+
+    void (async () => {
+      await handleAnalyzeWindow();
+      setIsAnalyzing(false);
+      isAnalyzingRef.current = false;
+    })();
+  }, [boxSelection]);
+
+  useEffect(() => {
     const chart = chartRef.current;
     const series = seriesRef.current;
     const container = chartContainerRef.current;
@@ -299,12 +321,23 @@ export default function TradingChart({
     // Load saved drawings
     if (savedDrawings?.data) {
       savedDrawings.data.forEach((saved: any) => {
-        const drawing = registry.createDrawing(
-          saved.drawingType,
-          saved.drawingId,
-          saved.anchors,
-          saved.style,
-        );
+        let drawing: any;
+        if (saved.drawingType === "custom-fib-retracement") {
+          drawing = registry.createDrawing(
+            saved.drawingType,
+            saved.drawingId,
+            saved.anchors,
+            saved.style,
+            saved.options,
+          );
+        } else {
+          drawing = registry.createDrawing(
+            saved.drawingType,
+            saved.drawingId,
+            saved.anchors,
+            saved.style,
+          );
+        }
         if (drawing) {
           manager.addDrawing(drawing);
         }
@@ -447,6 +480,7 @@ export default function TradingChart({
     });
 
     const handleCanvasClick = (e: MouseEvent) => {
+      console.log('=========== hua kucj ???')
       if (activeTool) return;
 
       const rect = container.getBoundingClientRect();
@@ -455,9 +489,9 @@ export default function TradingChart({
       const drawing = manager.hitTest(point);
 
       if (drawing) {
-        setSelectedDrawingId(drawing.id);
+        manager.selectDrawing(drawing.id);
       } else {
-        setSelectedDrawingId(null);
+        manager.deselectAll();
       }
     };
 
@@ -468,10 +502,20 @@ export default function TradingChart({
         const drawing = drawingManagerRef.current?.getDrawing(event.drawingId);
         if (drawing) {
           setSelectedDrawingId(event.drawingId);
-          setSelectedDrawingStyle({
+          const baseStyle = {
             lineWidth: drawing.style?.lineWidth,
             lineStyle: drawing.style?.lineDash,
-          });
+          };
+          if (drawing.type === "custom-fib-retracement" && drawing.fibOptions) {
+            setSelectedDrawingStyle({
+              ...baseStyle,
+              levels: drawing.fibOptions.levels,
+              showPrices: drawing.fibOptions.showPrices,
+              showPercentages: drawing.fibOptions.showPercentages,
+            });
+          } else {
+            setSelectedDrawingStyle(baseStyle);
+          }
         }
       }
     };
@@ -554,7 +598,7 @@ export default function TradingChart({
             disabled={isAnalyzing}
             className="rounded border border-purple-500 bg-purple-500/20 px-2 py-1 text-xs text-purple-400 transition-colors hover:bg-purple-500/30 disabled:opacity-50"
           >
-            {isAnalyzing ? "Analyzing..." : "Run Analysis"}
+            {isAnalyzing ? "Analyzing..." : "Re-analyze"}
           </button>
         )}
       </div>
@@ -573,6 +617,7 @@ export default function TradingChart({
           onStitch={() => {
             console.log("Stitch triggered for:", windowAnalysis);
           }}
+          isAnalyzing={isAnalyzing}
         />
       )}
 
