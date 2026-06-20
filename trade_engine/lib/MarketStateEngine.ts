@@ -26,6 +26,10 @@ export class MarketStateEngine {
   private normalizeAstroInput(astroChart?: any) {
     if (!astroChart) return null;
 
+    if (astroChart.planetaryPressure !== undefined && astroChart.confidence !== undefined) {
+      return astroChart;
+    }
+
     if (astroChart.astroState) {
       return astroChart.astroState;
     }
@@ -37,7 +41,7 @@ export class MarketStateEngine {
     return null;
   }
 
-  extract(history: Candle[], astroChart?: any) {
+  extract(history: Candle[], astroChart?: any, natalChart?: any) {
     const trend = new TrendExtractor().extract(history);
 
     const volatility = new VolatilityExtractor().extract(history);
@@ -46,7 +50,20 @@ export class MarketStateEngine {
 
     const liquidity = new LiquidityExtractor().extract(history);
 
-    const normalizedAstro = this.normalizeAstroInput(astroChart);
+    let normalizedAstro = this.normalizeAstroInput(astroChart);
+
+    if (!normalizedAstro && natalChart) {
+      normalizedAstro = {
+        planetaryPressure: astroChart?.planetaryPressure ?? 0.5,
+        aspectTension: astroChart?.aspectTension ?? 0.3,
+        ingressProximity: astroChart?.ingressProximity ?? 0.2,
+        retrogradeInfluence: astroChart?.retrogradeInfluence ?? 0.1,
+        speedDispersion: astroChart?.speedDispersion ?? 0.3,
+        elementalImbalance: astroChart?.elementalImbalance ?? 0.4,
+        lunarPhase: astroChart?.lunarPhase ?? 0.5,
+        confidence: astroChart?.confidence ?? 0.6,
+      };
+    }
 
     const astro =
       normalizedAstro?.planetaryPressure !== undefined

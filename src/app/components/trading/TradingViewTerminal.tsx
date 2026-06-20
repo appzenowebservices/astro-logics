@@ -147,7 +147,7 @@ export default function TradingViewTerminal() {
   const [selectedAsset, setSelectedAsset] = useState<
     (typeof AVAILABLE_ASSETS)[number]
   >(AVAILABLE_ASSETS[0]);
-  const [timeframe, setTimeframe] = useState<Timeframe>(TIMEFRAMES[0]);
+  const [timeframe, setTimeframe] = useState<Timeframe>(TIMEFRAMES[6]);
   const [history, setHistory] = useState<CandlestickData[]>([]);
 
   const lastProcessedTimeRef = useRef<number | null>(null);

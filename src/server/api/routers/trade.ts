@@ -29,14 +29,7 @@ const EventSchema = z.object({
   narrative: z.string().optional(),
 });
 
-const ChartSelectionSchema = z.object({
-  symbol: z.string(),
-  timeframe: z.string(),
-  timeStart: z.number(),
-  timeEnd: z.number(),
-  priceLow: z.number(),
-  priceHigh: z.number(),
-});
+
 
 const MarketInferenceInputSchema: z.ZodType<MarketInferenceInput> = z.object({
   symbol: z.string(),
@@ -433,6 +426,7 @@ export const tradeRouter = createTRPCRouter({
   scanWindow: protectedProcedure
     .input(
       z.object({
+        symbol: z.string(),
         history: z.array(
           z.object({
             time: z.number(),
@@ -468,11 +462,33 @@ export const tradeRouter = createTRPCRouter({
         close: c.close,
       }));
 
+      let profile: any = null;
+      let astroEvolution: any[] = [];
+
+      try {
+        profile = await getOrCreateMarketAssetProfile({ symbol: input.symbol });
+        if (profile) {
+          const timestamps = historyMapped.map((c) => c.time * 1000);
+          const from = Math.min(...timestamps);
+          const to = Math.max(...timestamps);
+          const astroBrief = await getAssetSessionAstroBrief({
+            symbol: input.symbol,
+            from: new Date(from),
+            to: new Date(to),
+            steps: Math.min(historyMapped.length, 10),
+          });
+          astroEvolution = astroBrief.evolution;
+        }
+      } catch (error) {
+        console.error(chalk.red("[ASTRO] Failed to load market profile:"), error);
+      }
+
       console.log(
         chalk.cyan.bold("\n[SCAN WINDOW] Extracting events from history..."),
       );
       console.log(chalk.gray(`  History entries: ${input.history.length}`));
       console.log(chalk.gray(`  Timeframe: ${input.timeframe}`));
+      console.log(chalk.gray(`  Symbol: ${input.symbol}`));
       if (windowStartTs && windowEndTs) {
         console.log(
           chalk.gray(
@@ -482,13 +498,29 @@ export const tradeRouter = createTRPCRouter({
       }
 
       const allEvents: any[] = [];
+      const astroStates: any[] = [];
       console.log(
         chalk.blue(
           `  Processing ${historyMapped.length} candles sequentially...`,
         ),
       );
       historyMapped.forEach((candle, index) => {
-        const result = engine.extract([candle], null);
+        const candleTimestamp = candle.time * 1000;
+        let astroState: any = null;
+
+        const matchingAstro = astroEvolution.find(
+          (a) => Math.abs(a.timestamp - candleTimestamp) < 3600000,
+        );
+        if (matchingAstro) {
+          astroState = {
+            planetaryPressure: matchingAstro.astroState?.planetaryPressure,
+            aspectTension: matchingAstro.astroState?.aspectTension,
+            confidence: matchingAstro.astroState?.confidence,
+            dominantTransitPlanets: matchingAstro.astroState?.dominantTransitPlanets,
+          };
+        }
+
+        const result = engine.extract([candle], astroState);
         result.events.forEach((e) => {
           allEvents.push({
             type: e.type,
@@ -498,6 +530,8 @@ export const tradeRouter = createTRPCRouter({
             time: e.time,
           });
         });
+        astroStates.push({ time: candle.time, astroState: astroState || {} });
+
         if (
           index === 0 ||
           index === historyMapped.length - 1 ||
@@ -544,55 +578,66 @@ export const tradeRouter = createTRPCRouter({
             totalEvents: events.length,
             byType,
           },
+          astroEvolution,
         },
       };
     }),
 
-  saveChartSelection: protectedProcedure
-    .input(ChartSelectionSchema)
-    .mutation(async ({ ctx, input }) => {
-      console.log(
-        chalk.magenta.bold("\n[CHART SELECTION] Saving selection..."),
-      );
-      console.log(chalk.gray(`  Symbol: ${input.symbol}`));
-      console.log(chalk.gray(`  Timeframe: ${input.timeframe}`));
-      console.log(
-        chalk.gray(
-          `  Time: ${new Date(input.timeStart * 1000).toISOString()} - ${new Date(input.timeEnd * 1000).toISOString()}`,
+  // ==========================================
+  // DIGITAL TWIN NARRATIVE
+  // ==========================================
+  generateMarketNarrative: protectedProcedure
+    .input(
+      z.object({
+        symbol: z.string(),
+        timeframe: z.string(),
+        events: z.array(
+          z.object({
+            type: z.string(),
+            strength: z.number(),
+            confidence: z.number(),
+            narrative: z.string(),
+            time: z.number(),
+          }),
         ),
-      );
-      console.log(
-        chalk.gray(`  Price: ${input.priceLow} - ${input.priceHigh}`),
+        astroSummary: z
+          .object({
+            planetaryPressure: z.number().optional(),
+            aspectTension: z.number().optional(),
+            confidence: z.number().optional(),
+            dominantTransitPlanets: z.array(z.string()).optional(),
+          })
+          .optional(),
+        marketContext: z
+          .object({
+            priceRange: z
+              .object({ min: z.number(), max: z.number() })
+              .optional(),
+            direction: z.enum(["up", "down", "sideways"]).optional(),
+            volatility: z.number().optional(),
+          })
+          .optional(),
+      }),
+    )
+    .mutation(async ({ input }) => {
+      const { generateMarketNarrative } = await import(
+        "~/server/services/digitalTwinNarrator"
       );
 
-      const selection = await db.chartSelection.create({
-        data: {
-          symbol: input.symbol,
-          timeframe: input.timeframe,
-          timeStart: input.timeStart,
-          timeEnd: input.timeEnd,
-          priceLow: input.priceLow,
-          priceHigh: input.priceHigh,
-          userId: ctx.session.user.id,
-        },
+      const narrative = await generateMarketNarrative({
+        symbol: input.symbol,
+        timeframe: input.timeframe,
+        events: input.events,
+        astroState: input.astroSummary,
+        marketContext: input.marketContext,
       });
 
-      return { success: true, id: selection.id };
+      return { success: true, data: narrative };
     }),
 
-  getChartSelections: protectedProcedure
-    .input(z.object({ symbol: z.string(), timeframe: z.string().optional() }))
-    .query(async ({ ctx, input }) => {
-      const selections = await db.chartSelection.findMany({
-        where: {
-          symbol: input.symbol,
-          ...(input.timeframe && { timeframe: input.timeframe }),
-        },
-        orderBy: { createdAt: "desc" },
-      });
-      return { success: true, data: selections };
-    }),
-
+  // ==========================================
+  // CHART DRAWINGS
+  // ==========================================
   saveChartDrawing: protectedProcedure
     .input(
       z.object({

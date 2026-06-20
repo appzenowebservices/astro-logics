@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { api } from "~/trpc/react";
 
 type MarketEvent = {
   type: string;
@@ -11,14 +12,48 @@ type MarketEvent = {
   time?: number;
 };
 
+type AstroState = {
+  planetaryPressure?: number;
+  aspectTension?: number;
+  ingressProximity?: number;
+  retrogradeInfluence?: number;
+  speedDispersion?: number;
+  elementalImbalance?: number;
+  lunarPhase?: number;
+  confidence?: number;
+  dominantTransitPlanets?: string[];
+  dominantLatentAxes?: Array<{ axis: string; value: number }>;
+  narrative?: string;
+};
+
+type AstroSummary = {
+  planetaryPressure?: number;
+  aspectTension?: number;
+  confidence?: number;
+  dominantTransitPlanets?: string[];
+};
+
 type WindowAnalysisResult = {
   events: MarketEvent[];
   summary: Record<string, number>;
   snapshot?: any;
+  astroEvolution?: AstroState[];
+};
+
+type MarketNarrative = {
+  digitalTwinVoice: string;
+  marketPersonality: string;
+  transitInfluences: string[];
+  behavioralReading: string;
+  tradingImplication: string;
+  confidence: number;
+  timestamp: number;
 };
 
 type WindowAnalysisPanelProps = {
   analysis: WindowAnalysisResult;
+  symbol: string;
+  timeframe: string;
   onStitch: () => void;
   isAnalyzing?: boolean;
 };
@@ -37,6 +72,8 @@ const EVENT_TYPE_COLORS: Record<string, string> = {
 
 export default function WindowAnalysisPanel({
   analysis,
+  symbol,
+  timeframe,
   onStitch,
   isAnalyzing = false,
 }: WindowAnalysisPanelProps) {
@@ -44,6 +81,33 @@ export default function WindowAnalysisPanel({
   const [stitchHistory, setStitchHistory] = useState<WindowAnalysisResult[]>(
     [],
   );
+  const [narrative, setNarrative] = useState<MarketNarrative | null>(null);
+
+  const generateNarrativeMutation = api.trading.generateMarketNarrative.useMutation();
+
+  useEffect(() => {
+    if (symbol && timeframe && (analysis.events?.length ?? 0) > 0 && !narrative) {
+      const fetchNarrative = async () => {
+        try {
+          const result = await generateNarrativeMutation.mutateAsync({
+            symbol,
+            timeframe,
+            events: analysis.events || [],
+            astroSummary: analysis.astroEvolution?.[0] ? {
+              planetaryPressure: analysis.astroEvolution[0].planetaryPressure,
+              aspectTension: analysis.astroEvolution[0].aspectTension,
+              confidence: analysis.astroEvolution[0].confidence,
+              dominantTransitPlanets: analysis.astroEvolution[0].dominantTransitPlanets,
+            } : undefined,
+          });
+          setNarrative(result.data);
+        } catch (error) {
+          console.error("Failed to generate narrative:", error);
+        }
+      };
+      fetchNarrative();
+    }
+  }, [symbol, timeframe, analysis.events?.length, narrative]);
 
   const handleStitch = () => {
     setStitchHistory((prev) => [...prev, analysis]);
@@ -53,6 +117,18 @@ export default function WindowAnalysisPanel({
   const clearStitchHistory = () => {
     setStitchHistory([]);
   };
+
+  const getAstroSummary = () => {
+    const astro = analysis.astroEvolution?.[0];
+    if (!astro) return null;
+    return {
+      pressure: astro.planetaryPressure?.toFixed(2) || "0.50",
+      tension: astro.aspectTension?.toFixed(2) || "0.30",
+      dominant: astro.dominantTransitPlanets?.slice(0, 3).join(", ") || "None",
+    };
+  };
+
+  const astroSummary = getAstroSummary();
 
   return (
     <div className="absolute bottom-2 left-2 z-[100] w-80 rounded-xl border border-white/[0.08] bg-[#0c0c0d]">
@@ -90,6 +166,22 @@ export default function WindowAnalysisPanel({
 
       {isExpanded && (
         <>
+          {narrative && (
+            <div className="border-b border-white/10 p-3">
+              <div className="mb-1 text-xs font-semibold text-purple-400">
+                Digital Twin Voice
+              </div>
+              <p className="text-xs italic text-white/70">
+                {narrative.digitalTwinVoice}
+              </p>
+              {astroSummary && (
+                <div className="mt-2 text-[10px] text-white/40">
+                  Pressure: {astroSummary.pressure} | Tension: {astroSummary.tension}
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="px-3 pb-2">
             {analysis.events && analysis.events.length > 0 ? (
               <div className="max-h-60 overflow-y-auto">

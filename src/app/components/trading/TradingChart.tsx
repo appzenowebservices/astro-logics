@@ -61,8 +61,6 @@ export default function TradingChart({
   const { chartRef, seriesRef, markersRef } =
     useTradingChart(chartContainerRef);
 
-  const saveChartSelectionMutation =
-    api.trading.saveChartSelection.useMutation();
   const saveChartDrawingMutation = api.trading.saveChartDrawing.useMutation();
   const scanWindowMutation = api.trading.scanWindow.useMutation();
   const deleteChartDrawingMutation =
@@ -78,14 +76,13 @@ export default function TradingChart({
   const [windowAnalysis, setWindowAnalysis] =
     useState<WindowAnalysisResult>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const isAnalyzingRef = useRef(false);
   const [selectedDrawingId, setSelectedDrawingId] = useState<string | null>(
     null,
   );
   const [selectedDrawingStyle, setSelectedDrawingStyle] = useState<any>(null);
   const [isChartInitialized, setIsChartInitialized] = useState(false);
   const [activeTool, setActiveTool] = useState<string | null>(null);
-  const [layers, setLayers] = useState<LayerState>({
+const [layers, setLayers] = useState<LayerState>({
     swingHighs: false,
     swingLows: false,
     labels: false,
@@ -97,42 +94,10 @@ export default function TradingChart({
     events: true,
   });
 
-  const { refetch: refetchSelections } =
-    api.trading.getChartSelections.useQuery(
-      { symbol, timeframe },
-      { enabled: !!symbol },
-    );
-
   const { data: savedDrawings, refetch: refetchDrawings } = api.trading.getChartDrawings.useQuery(
     { symbol, timeframe },
     { enabled: !!symbol && isChartInitialized },
   );
-
-  const handleSaveComplete = async () => {
-    await refetchSelections();
-  };
-
-  const handleSaveSelection = async () => {
-    if (!timeRangeSelection) return;
-    const candles = normalizedHistory.filter(
-      (c) =>
-        c.time >= timeRangeSelection.start && c.time <= timeRangeSelection.end,
-    );
-    if (candles.length === 0) return;
-
-    const priceLow = Math.min(...candles.map((c) => c.low));
-    const priceHigh = Math.max(...candles.map((c) => c.high));
-
-    await saveChartSelectionMutation.mutateAsync({
-      symbol,
-      timeframe,
-      timeStart: timeRangeSelection.start,
-      timeEnd: timeRangeSelection.end,
-      priceLow,
-      priceHigh,
-    });
-    await handleSaveComplete();
-  };
 
   const handleSaveDrawing = async (drawing: any) => {
     if (!drawing || !drawing.type || !drawing.anchors) return;
@@ -153,13 +118,35 @@ export default function TradingChart({
     });
   };
 
+  const handleSaveDateRangeSelection = async () => {
+    if (!timeRangeSelection) return;
+
+    const drawingId = `date-range-${Date.now()}`;
+    const anchors = [
+      { time: timeRangeSelection.start, price: normalizedHistory[0]?.open ?? 0 },
+      { time: timeRangeSelection.end, price: normalizedHistory[normalizedHistory.length - 1]?.open ?? 0 },
+    ];
+
+    await saveChartDrawingMutation.mutateAsync({
+      symbol,
+      timeframe,
+      drawingType: "date-range",
+      drawingId,
+      anchors,
+      style: {},
+      options: { timeRangeSelection: true },
+    });
+
+    setTimeRangeSelection(null);
+  };
+
   const handleAnalyzeWindow = async () => {
-    if (!boxSelection || !normalizedHistory.length) return;
+    if (!timeRangeSelection || !normalizedHistory.length) return;
 
     setIsAnalyzing(true);
 
     const candles = normalizedHistory.filter(
-      (c) => c.time >= boxSelection.start && c.time <= boxSelection.end,
+      (c) => c.time >= timeRangeSelection.start && c.time <= timeRangeSelection.end,
     );
 
     if (candles.length === 0) {
@@ -169,6 +156,7 @@ export default function TradingChart({
 
     try {
       const result = await scanWindowMutation.mutateAsync({
+        symbol,
         history: candles.map((c) => ({
           time: c.time,
           open: c.open,
@@ -177,17 +165,105 @@ export default function TradingChart({
           close: c.close,
         })),
         timeframe,
-        windowStart: new Date(boxSelection.start * 1000).toISOString(),
-        windowEnd: new Date(boxSelection.end * 1000).toISOString(),
+        windowStart: new Date(timeRangeSelection.start * 1000).toISOString(),
+        windowEnd: new Date(timeRangeSelection.end * 1000).toISOString(),
       });
-
+console.log("Scan window result:", result);
       if (result.success && result.data) {
         setWindowAnalysis(result.data);
+        createAutoDrawings(result.data);
       }
     } catch (error) {
       console.error("Window analysis failed:", error);
     } finally {
       setIsAnalyzing(false);
+    }
+  };
+
+  const createAutoDrawings = (analysis: WindowAnalysisResult) => {
+    if (!drawingManagerRef.current || !normalizedHistory.length) return;
+
+    const manager = drawingManagerRef.current;
+    const registry = getToolRegistry();
+
+    const inRange = (time: number | undefined) =>
+      time !== undefined && time >= timeRangeSelection!.start && time <= timeRangeSelection!.end;
+
+    const events = analysis.events || [];
+    const volatilitySweeps = events.filter((e) => e.type === "LIQUIDITY_SWEEP" && inRange(e.time));
+    const structureBreaks = events.filter((e) => (e.type === "STRUCTURE_BREAK" || e.type === "REGIME_SHIFT") && inRange(e.time));
+    const compressionEvents = events.filter((e) => (e.type === "VOLATILITY_COLLAPSE" || e.type === "COMPRESSION_RELEASE") && inRange(e.time));
+
+    for (const sweep of volatilitySweeps) {
+      if (!sweep.time) continue;
+      const priceRange = normalizedHistory.filter((c) => c.time >= sweep.time - 3600 && c.time <= sweep.time + 3600);
+      const highPrice = Math.max(...priceRange.map((c) => c.high));
+      const lowPrice = Math.min(...priceRange.map((c) => c.low));
+
+      const rayDrawing = registry.createDrawing("ray", `ray-${sweep.time}-${Date.now()}`, [
+        { time: sweep.time as UTCTimestamp, price: lowPrice },
+        { time: (sweep.time + 86400) as UTCTimestamp, price: highPrice },
+      ]);
+      if (rayDrawing) {
+        manager.addDrawing(rayDrawing);
+        handleSaveDrawing(rayDrawing);
+      }
+    }
+
+    for (const event of structureBreaks) {
+      if (!event.time) continue;
+      const priceRange = normalizedHistory.filter((c) => c.time >= event.time - 3600 && c.time <= event.time + 3600);
+      const breakPrice = event.metadata?.breakPrice ?? event.metadata?.price;
+
+      if (breakPrice) {
+        const trendDrawing = registry.createDrawing("trend-line", `trend-${event.time}-${Date.now()}`, [
+          { time: (event.time - 86400) as UTCTimestamp, price: breakPrice * 0.999 },
+          { time: event.time as UTCTimestamp, price: breakPrice },
+        ]);
+        if (trendDrawing) {
+          manager.addDrawing(trendDrawing);
+          handleSaveDrawing(trendDrawing);
+        }
+      }
+    }
+
+    for (const event of compressionEvents) {
+      if (!event.time) continue;
+      const priceRange = normalizedHistory.filter((c) => c.time >= event.time! - 1800 && c.time <= event.time! + 1800);
+      if (priceRange.length > 0) {
+        const rectDrawing = registry.createDrawing("rectangle", `rect-${event.time}-${Date.now()}`, [
+          { time: priceRange[0].time as UTCTimestamp, price: priceRange[0].high },
+          { time: priceRange[priceRange.length - 1].time as UTCTimestamp, price: priceRange[priceRange.length - 1].low },
+        ]);
+        if (rectDrawing) {
+          manager.addDrawing(rectDrawing);
+          handleSaveDrawing(rectDrawing);
+        }
+      }
+    }
+
+    if (events.length > 0) {
+      const swingEvents = events.filter((e) => e.type?.includes("SWING") && inRange(e.time));
+      if (swingEvents.length === 0) {
+        const firstCandle = normalizedHistory[0];
+        const lastCandle = normalizedHistory[normalizedHistory.length - 1];
+        if (firstCandle && lastCandle) {
+          const fibDrawing = registry.createDrawing(
+            "custom-fib-retracement",
+            `auto-fib-${Date.now()}`,
+            [
+              { time: firstCandle.time, price: firstCandle.high },
+              { time: lastCandle.time, price: lastCandle.low },
+            ],
+            { lineWidth: 2 },
+            { levels: [0, 0.236, 0.382, 0.5, 0.618, 0.786, 1], showPrices: true, showPercentages: true }
+          );
+          if (fibDrawing) {
+            manager.addDrawing(fibDrawing);
+            handleSaveDrawing(fibDrawing);
+          }
+        }
+      }
     }
   };
 
@@ -221,6 +297,7 @@ export default function TradingChart({
         drawing.updateStyle(style);
       }
       try {
+        const fibOpts = drawing.fibOptions || drawing.options;
         await saveChartDrawingMutation.mutateAsync({
           symbol,
           timeframe,
@@ -228,7 +305,7 @@ export default function TradingChart({
           drawingId: drawing.id,
           anchors: drawing.anchors,
           style: drawing.style,
-          options: drawing.options,
+          options: drawing.type === "custom-fib-retracement" ? fibOpts : drawing.options,
         });
       } catch (error) {
         console.error("Failed to update drawing:", error);
@@ -291,18 +368,12 @@ export default function TradingChart({
     lastRenderedTimeRef.current = lastCandle.time;
   }, [chartKey, chartRef, normalizedHistory, seriesRef]);
 
+  // Sync activeTool changes to the drawing manager
   useEffect(() => {
-    if (!boxSelection || isAnalyzingRef.current) return;
-
-    isAnalyzingRef.current = true;
-    setIsAnalyzing(true);
-
-    void (async () => {
-      await handleAnalyzeWindow();
-      setIsAnalyzing(false);
-      isAnalyzingRef.current = false;
-    })();
-  }, [boxSelection]);
+    if (drawingManagerRef.current && isChartInitialized) {
+      drawingManagerRef.current.setActiveTool(activeTool);
+    }
+  }, [activeTool, isChartInitialized]);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -407,29 +478,31 @@ export default function TradingChart({
           // Save the completed drawing to DB
           handleSaveDrawing(drawing);
 
-          if (activeTool === "date-range") {
-            const anchors = drawing.anchors;
-            if (anchors && anchors.length >= 2) {
-              setTimeRangeSelection({
-                start: anchors[0].time as UTCTimestamp,
-                end: anchors[1].time as UTCTimestamp,
-              });
-            }
-          }
+if (activeTool === "date-range") {
+             const anchors = drawing.anchors;
+             if (anchors && anchors.length >= 2) {
+               setTimeRangeSelection({
+                 start: anchors[0].time as UTCTimestamp,
+                 end: anchors[1].time as UTCTimestamp,
+               });
+               setActiveTool(null);
+             }
+           }
 
-          if (activeTool === "rectangle") {
-            const anchors = drawing.anchors;
-            if (anchors && anchors.length >= 2) {
-              const times = anchors.map((a: any) => a.time as UTCTimestamp);
-              const prices = anchors.map((a: any) => a.price as number);
-              setBoxSelection({
-                start: Math.min(...times),
-                end: Math.max(...times),
-                priceLow: Math.min(...prices),
-                priceHigh: Math.max(...prices),
-              });
-            }
-          }
+           if (activeTool === "rectangle") {
+             const anchors = drawing.anchors;
+             if (anchors && anchors.length >= 2) {
+               const times = anchors.map((a: any) => a.time as UTCTimestamp);
+               const prices = anchors.map((a: any) => a.price as number);
+               setBoxSelection({
+                 start: Math.min(...times),
+                 end: Math.max(...times),
+                 priceLow: Math.min(...prices),
+                 priceHigh: Math.max(...prices),
+               });
+               setActiveTool(null);
+             }
+           }
         } else if (previewId) {
           manager.removeDrawing(previewId);
         }
@@ -451,7 +524,7 @@ export default function TradingChart({
       });
     }
 
-    const unsubscribe = manager.on("drawing:added", (event) => {
+const unsubscribe = manager.on("drawing:added", (event) => {
       const drawing = event.drawing;
       if (drawing && "type" in drawing) {
         if (drawing.type === "date-range") {
@@ -461,65 +534,49 @@ export default function TradingChart({
               start: anchors[0].time as UTCTimestamp,
               end: anchors[anchors.length - 1].time as UTCTimestamp,
             });
+            setActiveTool(null);
+            handleSaveDateRangeSelection();
           }
         }
         if (drawing.type === "rectangle") {
-          const anchors = drawing.anchors;
-          if (anchors && anchors.length >= 2) {
-            const times = anchors.map((a: any) => a.time as UTCTimestamp);
-            const prices = anchors.map((a: any) => a.price as number);
-            setBoxSelection({
-              start: Math.min(...times),
-              end: Math.max(...times),
-              priceLow: Math.min(...prices),
-              priceHigh: Math.max(...prices),
-            });
-          }
-        }
+           const anchors = drawing.anchors;
+           if (anchors && anchors.length >= 2) {
+             const times = anchors.map((a: any) => a.time as UTCTimestamp);
+             const prices = anchors.map((a: any) => a.price as number);
+             setBoxSelection({
+               start: Math.min(...times),
+               end: Math.max(...times),
+               priceLow: Math.min(...prices),
+               priceHigh: Math.max(...prices),
+             });
+             setActiveTool(null);
+           }
+         }
       }
     });
 
-    const handleCanvasClick = (e: MouseEvent) => {
-      console.log('=========== hua kucj ???')
-      if (activeTool) return;
-
-      const rect = container.getBoundingClientRect();
-      const point = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-
-      const drawing = manager.hitTest(point);
-
-      if (drawing) {
-        manager.selectDrawing(drawing.id);
-      } else {
-        manager.deselectAll();
-      }
-    };
-
-    container.addEventListener("click", handleCanvasClick);
-
     const handleDrawingSelected = (event: any) => {
-      if (event.drawingId) {
-        const drawing = drawingManagerRef.current?.getDrawing(event.drawingId);
-        if (drawing) {
-          setSelectedDrawingId(event.drawingId);
-          const baseStyle = {
-            lineWidth: drawing.style?.lineWidth,
-            lineStyle: drawing.style?.lineDash,
-          };
-          if (drawing.type === "custom-fib-retracement" && drawing.fibOptions) {
-            setSelectedDrawingStyle({
-              ...baseStyle,
-              levels: drawing.fibOptions.levels,
-              showPrices: drawing.fibOptions.showPrices,
-              showPercentages: drawing.fibOptions.showPercentages,
-            });
-          } else {
-            setSelectedDrawingStyle(baseStyle);
-          }
+      const drawing = event.drawing || drawingManagerRef.current?.getDrawing(event.drawingId);
+      if (drawing) {
+        setSelectedDrawingId(event.drawingId);
+        const baseStyle = {
+          lineWidth: drawing.style?.lineWidth,
+          lineStyle: drawing.style?.lineDash,
+        };
+        const fibOpts = drawing.fibOptions || drawing.options;
+        if (drawing.type === "custom-fib-retracement" && fibOpts?.levels) {
+          setSelectedDrawingStyle({
+            ...baseStyle,
+            levels: fibOpts.levels,
+            showPrices: fibOpts.showPrices,
+            showPercentages: fibOpts.showPercentages,
+          });
+        } else {
+          setSelectedDrawingStyle(baseStyle);
         }
       }
     };
-
+    
     const handleDrawingDeselected = () => {
       setSelectedDrawingId(null);
       setSelectedDrawingStyle(null);
@@ -535,14 +592,19 @@ export default function TradingChart({
       container.removeEventListener("mousedown", handleMouseDown);
       container.removeEventListener("mousemove", handleMouseMove);
       container.removeEventListener("mouseup", handleMouseUp);
-      container.removeEventListener("click", handleCanvasClick);
       manager.detach();
     };
   }, [chartRef, seriesRef, isChartInitialized, activeTool, savedDrawings]);
 
   return (
     <div className="relative h-full min-h-[500px] w-full rounded-2xl border border-white/[0.05] bg-[var(--color-primary-dark)]">
-      <DrawingToolbar activeTool={activeTool} onToolSelect={setActiveTool} />
+      <DrawingToolbar 
+        activeTool={activeTool} 
+        onToolSelect={setActiveTool}
+        hasTimeRangeSelection={!!timeRangeSelection}
+        onProcessRange={handleAnalyzeWindow}
+        isProcessing={isAnalyzing}
+      />
 
       <div className="absolute top-2 right-2 z-[100] flex items-center gap-2">
         <div className="flex gap-1 rounded border border-white/20 bg-black/70 p-1 backdrop-blur-sm">
@@ -574,33 +636,11 @@ export default function TradingChart({
             <option value="H4" className="bg-black">
               4h
             </option>
-            <option value="D1" className="bg-black">
+            <option value="D1" selected className="bg-black">
               1d
             </option>
           </select>
         </div>
-
-        {timeRangeSelection && (
-          <button
-            onClick={handleSaveSelection}
-            disabled={saveChartSelectionMutation.isPending}
-            className="rounded border border-green-500 bg-green-500/20 px-2 py-1 text-xs text-green-400 transition-colors hover:bg-green-500/30 disabled:opacity-50"
-          >
-            {saveChartSelectionMutation.isPending
-              ? "Saving..."
-              : "Save Selection"}
-          </button>
-        )}
-
-        {boxSelection && (
-          <button
-            onClick={handleAnalyzeWindow}
-            disabled={isAnalyzing}
-            className="rounded border border-purple-500 bg-purple-500/20 px-2 py-1 text-xs text-purple-400 transition-colors hover:bg-purple-500/30 disabled:opacity-50"
-          >
-            {isAnalyzing ? "Analyzing..." : "Re-analyze"}
-          </button>
-        )}
       </div>
 
       <MarketChartRenderer
@@ -614,6 +654,8 @@ export default function TradingChart({
       {windowAnalysis && (
         <WindowAnalysisPanel
           analysis={windowAnalysis}
+          symbol={symbol}
+          timeframe={timeframe}
           onStitch={() => {
             console.log("Stitch triggered for:", windowAnalysis);
           }}

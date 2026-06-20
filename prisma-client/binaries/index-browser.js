@@ -442,18 +442,6 @@ exports.Prisma.TradeSignalScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.ChartSelectionScalarFieldEnum = {
-  id: 'id',
-  symbol: 'symbol',
-  timeframe: 'timeframe',
-  timeStart: 'timeStart',
-  timeEnd: 'timeEnd',
-  priceLow: 'priceLow',
-  priceHigh: 'priceHigh',
-  userId: 'userId',
-  createdAt: 'createdAt'
-};
-
 exports.Prisma.ChartDrawingScalarFieldEnum = {
   id: 'id',
   symbol: 'symbol',
@@ -514,7 +502,6 @@ exports.Prisma.ModelName = {
   MarketStateSnapshot: 'MarketStateSnapshot',
   OperatorEventLog: 'OperatorEventLog',
   TradeSignal: 'TradeSignal',
-  ChartSelection: 'ChartSelection',
   ChartDrawing: 'ChartDrawing'
 };
 

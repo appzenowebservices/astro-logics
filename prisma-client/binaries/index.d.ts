@@ -109,11 +109,6 @@ export type OperatorEventLog = $Result.DefaultSelection<Prisma.$OperatorEventLog
  */
 export type TradeSignal = $Result.DefaultSelection<Prisma.$TradeSignalPayload>
 /**
- * Model ChartSelection
- * 
- */
-export type ChartSelection = $Result.DefaultSelection<Prisma.$ChartSelectionPayload>
-/**
  * Model ChartDrawing
  * 
  */
@@ -748,16 +743,6 @@ export class PrismaClient<
   get tradeSignal(): Prisma.TradeSignalDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.chartSelection`: Exposes CRUD operations for the **ChartSelection** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ChartSelections
-    * const chartSelections = await prisma.chartSelection.findMany()
-    * ```
-    */
-  get chartSelection(): Prisma.ChartSelectionDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.chartDrawing`: Exposes CRUD operations for the **ChartDrawing** model.
     * Example usage:
     * ```ts
@@ -1226,7 +1211,6 @@ export namespace Prisma {
     MarketStateSnapshot: 'MarketStateSnapshot',
     OperatorEventLog: 'OperatorEventLog',
     TradeSignal: 'TradeSignal',
-    ChartSelection: 'ChartSelection',
     ChartDrawing: 'ChartDrawing'
   };
 
@@ -1246,7 +1230,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "nativityChart" | "ephemerisSnapshot" | "geometryIndex" | "angularDistance" | "nativityAspect" | "planetaryProfile" | "stateVector" | "purposeState" | "similarityRecord" | "currentStory" | "planetaryScene" | "consciousnessState" | "marketAssetProfile" | "marketStateSnapshot" | "operatorEventLog" | "tradeSignal" | "chartSelection" | "chartDrawing"
+      modelProps: "user" | "account" | "session" | "nativityChart" | "ephemerisSnapshot" | "geometryIndex" | "angularDistance" | "nativityAspect" | "planetaryProfile" | "stateVector" | "purposeState" | "similarityRecord" | "currentStory" | "planetaryScene" | "consciousnessState" | "marketAssetProfile" | "marketStateSnapshot" | "operatorEventLog" | "tradeSignal" | "chartDrawing"
       txIsolationLevel: never
     }
     model: {
@@ -2656,80 +2640,6 @@ export namespace Prisma {
           }
         }
       }
-      ChartSelection: {
-        payload: Prisma.$ChartSelectionPayload<ExtArgs>
-        fields: Prisma.ChartSelectionFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ChartSelectionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ChartSelectionPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ChartSelectionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ChartSelectionPayload>
-          }
-          findFirst: {
-            args: Prisma.ChartSelectionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ChartSelectionPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ChartSelectionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ChartSelectionPayload>
-          }
-          findMany: {
-            args: Prisma.ChartSelectionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ChartSelectionPayload>[]
-          }
-          create: {
-            args: Prisma.ChartSelectionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ChartSelectionPayload>
-          }
-          createMany: {
-            args: Prisma.ChartSelectionCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.ChartSelectionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ChartSelectionPayload>
-          }
-          update: {
-            args: Prisma.ChartSelectionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ChartSelectionPayload>
-          }
-          deleteMany: {
-            args: Prisma.ChartSelectionDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ChartSelectionUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.ChartSelectionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ChartSelectionPayload>
-          }
-          aggregate: {
-            args: Prisma.ChartSelectionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateChartSelection>
-          }
-          groupBy: {
-            args: Prisma.ChartSelectionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ChartSelectionGroupByOutputType>[]
-          }
-          findRaw: {
-            args: Prisma.ChartSelectionFindRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          aggregateRaw: {
-            args: Prisma.ChartSelectionAggregateRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          count: {
-            args: Prisma.ChartSelectionCountArgs<ExtArgs>
-            result: $Utils.Optional<ChartSelectionCountAggregateOutputType> | number
-          }
-        }
-      }
       ChartDrawing: {
         payload: Prisma.$ChartDrawingPayload<ExtArgs>
         fields: Prisma.ChartDrawingFieldRefs
@@ -2902,7 +2812,6 @@ export namespace Prisma {
     marketStateSnapshot?: MarketStateSnapshotOmit
     operatorEventLog?: OperatorEventLogOmit
     tradeSignal?: TradeSignalOmit
-    chartSelection?: ChartSelectionOmit
     chartDrawing?: ChartDrawingOmit
   }
 
@@ -2989,7 +2898,6 @@ export namespace Prisma {
     nativityCharts: number
     marketStateSnapshots: number
     tradeSignals: number
-    chartSelections: number
     chartDrawings: number
   }
 
@@ -2999,7 +2907,6 @@ export namespace Prisma {
     nativityCharts?: boolean | UserCountOutputTypeCountNativityChartsArgs
     marketStateSnapshots?: boolean | UserCountOutputTypeCountMarketStateSnapshotsArgs
     tradeSignals?: boolean | UserCountOutputTypeCountTradeSignalsArgs
-    chartSelections?: boolean | UserCountOutputTypeCountChartSelectionsArgs
     chartDrawings?: boolean | UserCountOutputTypeCountChartDrawingsArgs
   }
 
@@ -3047,13 +2954,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountTradeSignalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TradeSignalWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountChartSelectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ChartSelectionWhereInput
   }
 
   /**
@@ -3622,7 +3522,6 @@ export namespace Prisma {
     nativityCharts?: boolean | User$nativityChartsArgs<ExtArgs>
     marketStateSnapshots?: boolean | User$marketStateSnapshotsArgs<ExtArgs>
     tradeSignals?: boolean | User$tradeSignalsArgs<ExtArgs>
-    chartSelections?: boolean | User$chartSelectionsArgs<ExtArgs>
     chartDrawings?: boolean | User$chartDrawingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -3654,7 +3553,6 @@ export namespace Prisma {
     nativityCharts?: boolean | User$nativityChartsArgs<ExtArgs>
     marketStateSnapshots?: boolean | User$marketStateSnapshotsArgs<ExtArgs>
     tradeSignals?: boolean | User$tradeSignalsArgs<ExtArgs>
-    chartSelections?: boolean | User$chartSelectionsArgs<ExtArgs>
     chartDrawings?: boolean | User$chartDrawingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -3667,7 +3565,6 @@ export namespace Prisma {
       nativityCharts: Prisma.$NativityChartPayload<ExtArgs>[]
       marketStateSnapshots: Prisma.$MarketStateSnapshotPayload<ExtArgs>[]
       tradeSignals: Prisma.$TradeSignalPayload<ExtArgs>[]
-      chartSelections: Prisma.$ChartSelectionPayload<ExtArgs>[]
       chartDrawings: Prisma.$ChartDrawingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -4054,7 +3951,6 @@ export namespace Prisma {
     nativityCharts<T extends User$nativityChartsArgs<ExtArgs> = {}>(args?: Subset<T, User$nativityChartsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NativityChartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     marketStateSnapshots<T extends User$marketStateSnapshotsArgs<ExtArgs> = {}>(args?: Subset<T, User$marketStateSnapshotsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MarketStateSnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tradeSignals<T extends User$tradeSignalsArgs<ExtArgs> = {}>(args?: Subset<T, User$tradeSignalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TradeSignalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    chartSelections<T extends User$chartSelectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$chartSelectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChartSelectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     chartDrawings<T extends User$chartDrawingsArgs<ExtArgs> = {}>(args?: Subset<T, User$chartDrawingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChartDrawingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4587,30 +4483,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TradeSignalScalarFieldEnum | TradeSignalScalarFieldEnum[]
-  }
-
-  /**
-   * User.chartSelections
-   */
-  export type User$chartSelectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-    where?: ChartSelectionWhereInput
-    orderBy?: ChartSelectionOrderByWithRelationInput | ChartSelectionOrderByWithRelationInput[]
-    cursor?: ChartSelectionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ChartSelectionScalarFieldEnum | ChartSelectionScalarFieldEnum[]
   }
 
   /**
@@ -25298,1094 +25170,6 @@ export namespace Prisma {
 
 
   /**
-   * Model ChartSelection
-   */
-
-  export type AggregateChartSelection = {
-    _count: ChartSelectionCountAggregateOutputType | null
-    _avg: ChartSelectionAvgAggregateOutputType | null
-    _sum: ChartSelectionSumAggregateOutputType | null
-    _min: ChartSelectionMinAggregateOutputType | null
-    _max: ChartSelectionMaxAggregateOutputType | null
-  }
-
-  export type ChartSelectionAvgAggregateOutputType = {
-    timeStart: number | null
-    timeEnd: number | null
-    priceLow: number | null
-    priceHigh: number | null
-  }
-
-  export type ChartSelectionSumAggregateOutputType = {
-    timeStart: number | null
-    timeEnd: number | null
-    priceLow: number | null
-    priceHigh: number | null
-  }
-
-  export type ChartSelectionMinAggregateOutputType = {
-    id: string | null
-    symbol: string | null
-    timeframe: string | null
-    timeStart: number | null
-    timeEnd: number | null
-    priceLow: number | null
-    priceHigh: number | null
-    userId: string | null
-    createdAt: Date | null
-  }
-
-  export type ChartSelectionMaxAggregateOutputType = {
-    id: string | null
-    symbol: string | null
-    timeframe: string | null
-    timeStart: number | null
-    timeEnd: number | null
-    priceLow: number | null
-    priceHigh: number | null
-    userId: string | null
-    createdAt: Date | null
-  }
-
-  export type ChartSelectionCountAggregateOutputType = {
-    id: number
-    symbol: number
-    timeframe: number
-    timeStart: number
-    timeEnd: number
-    priceLow: number
-    priceHigh: number
-    userId: number
-    createdAt: number
-    _all: number
-  }
-
-
-  export type ChartSelectionAvgAggregateInputType = {
-    timeStart?: true
-    timeEnd?: true
-    priceLow?: true
-    priceHigh?: true
-  }
-
-  export type ChartSelectionSumAggregateInputType = {
-    timeStart?: true
-    timeEnd?: true
-    priceLow?: true
-    priceHigh?: true
-  }
-
-  export type ChartSelectionMinAggregateInputType = {
-    id?: true
-    symbol?: true
-    timeframe?: true
-    timeStart?: true
-    timeEnd?: true
-    priceLow?: true
-    priceHigh?: true
-    userId?: true
-    createdAt?: true
-  }
-
-  export type ChartSelectionMaxAggregateInputType = {
-    id?: true
-    symbol?: true
-    timeframe?: true
-    timeStart?: true
-    timeEnd?: true
-    priceLow?: true
-    priceHigh?: true
-    userId?: true
-    createdAt?: true
-  }
-
-  export type ChartSelectionCountAggregateInputType = {
-    id?: true
-    symbol?: true
-    timeframe?: true
-    timeStart?: true
-    timeEnd?: true
-    priceLow?: true
-    priceHigh?: true
-    userId?: true
-    createdAt?: true
-    _all?: true
-  }
-
-  export type ChartSelectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ChartSelection to aggregate.
-     */
-    where?: ChartSelectionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ChartSelections to fetch.
-     */
-    orderBy?: ChartSelectionOrderByWithRelationInput | ChartSelectionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ChartSelectionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ChartSelections from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ChartSelections.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ChartSelections
-    **/
-    _count?: true | ChartSelectionCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ChartSelectionAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ChartSelectionSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ChartSelectionMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ChartSelectionMaxAggregateInputType
-  }
-
-  export type GetChartSelectionAggregateType<T extends ChartSelectionAggregateArgs> = {
-        [P in keyof T & keyof AggregateChartSelection]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateChartSelection[P]>
-      : GetScalarType<T[P], AggregateChartSelection[P]>
-  }
-
-
-
-
-  export type ChartSelectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ChartSelectionWhereInput
-    orderBy?: ChartSelectionOrderByWithAggregationInput | ChartSelectionOrderByWithAggregationInput[]
-    by: ChartSelectionScalarFieldEnum[] | ChartSelectionScalarFieldEnum
-    having?: ChartSelectionScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ChartSelectionCountAggregateInputType | true
-    _avg?: ChartSelectionAvgAggregateInputType
-    _sum?: ChartSelectionSumAggregateInputType
-    _min?: ChartSelectionMinAggregateInputType
-    _max?: ChartSelectionMaxAggregateInputType
-  }
-
-  export type ChartSelectionGroupByOutputType = {
-    id: string
-    symbol: string
-    timeframe: string
-    timeStart: number
-    timeEnd: number
-    priceLow: number
-    priceHigh: number
-    userId: string | null
-    createdAt: Date
-    _count: ChartSelectionCountAggregateOutputType | null
-    _avg: ChartSelectionAvgAggregateOutputType | null
-    _sum: ChartSelectionSumAggregateOutputType | null
-    _min: ChartSelectionMinAggregateOutputType | null
-    _max: ChartSelectionMaxAggregateOutputType | null
-  }
-
-  type GetChartSelectionGroupByPayload<T extends ChartSelectionGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ChartSelectionGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ChartSelectionGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ChartSelectionGroupByOutputType[P]>
-            : GetScalarType<T[P], ChartSelectionGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ChartSelectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    symbol?: boolean
-    timeframe?: boolean
-    timeStart?: boolean
-    timeEnd?: boolean
-    priceLow?: boolean
-    priceHigh?: boolean
-    userId?: boolean
-    createdAt?: boolean
-    user?: boolean | ChartSelection$userArgs<ExtArgs>
-  }, ExtArgs["result"]["chartSelection"]>
-
-
-
-  export type ChartSelectionSelectScalar = {
-    id?: boolean
-    symbol?: boolean
-    timeframe?: boolean
-    timeStart?: boolean
-    timeEnd?: boolean
-    priceLow?: boolean
-    priceHigh?: boolean
-    userId?: boolean
-    createdAt?: boolean
-  }
-
-  export type ChartSelectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "symbol" | "timeframe" | "timeStart" | "timeEnd" | "priceLow" | "priceHigh" | "userId" | "createdAt", ExtArgs["result"]["chartSelection"]>
-  export type ChartSelectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | ChartSelection$userArgs<ExtArgs>
-  }
-
-  export type $ChartSelectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ChartSelection"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      symbol: string
-      timeframe: string
-      timeStart: number
-      timeEnd: number
-      priceLow: number
-      priceHigh: number
-      userId: string | null
-      createdAt: Date
-    }, ExtArgs["result"]["chartSelection"]>
-    composites: {}
-  }
-
-  type ChartSelectionGetPayload<S extends boolean | null | undefined | ChartSelectionDefaultArgs> = $Result.GetResult<Prisma.$ChartSelectionPayload, S>
-
-  type ChartSelectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ChartSelectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ChartSelectionCountAggregateInputType | true
-    }
-
-  export interface ChartSelectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ChartSelection'], meta: { name: 'ChartSelection' } }
-    /**
-     * Find zero or one ChartSelection that matches the filter.
-     * @param {ChartSelectionFindUniqueArgs} args - Arguments to find a ChartSelection
-     * @example
-     * // Get one ChartSelection
-     * const chartSelection = await prisma.chartSelection.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ChartSelectionFindUniqueArgs>(args: SelectSubset<T, ChartSelectionFindUniqueArgs<ExtArgs>>): Prisma__ChartSelectionClient<$Result.GetResult<Prisma.$ChartSelectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one ChartSelection that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ChartSelectionFindUniqueOrThrowArgs} args - Arguments to find a ChartSelection
-     * @example
-     * // Get one ChartSelection
-     * const chartSelection = await prisma.chartSelection.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ChartSelectionFindUniqueOrThrowArgs>(args: SelectSubset<T, ChartSelectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ChartSelectionClient<$Result.GetResult<Prisma.$ChartSelectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ChartSelection that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ChartSelectionFindFirstArgs} args - Arguments to find a ChartSelection
-     * @example
-     * // Get one ChartSelection
-     * const chartSelection = await prisma.chartSelection.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ChartSelectionFindFirstArgs>(args?: SelectSubset<T, ChartSelectionFindFirstArgs<ExtArgs>>): Prisma__ChartSelectionClient<$Result.GetResult<Prisma.$ChartSelectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ChartSelection that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ChartSelectionFindFirstOrThrowArgs} args - Arguments to find a ChartSelection
-     * @example
-     * // Get one ChartSelection
-     * const chartSelection = await prisma.chartSelection.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ChartSelectionFindFirstOrThrowArgs>(args?: SelectSubset<T, ChartSelectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__ChartSelectionClient<$Result.GetResult<Prisma.$ChartSelectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ChartSelections that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ChartSelectionFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ChartSelections
-     * const chartSelections = await prisma.chartSelection.findMany()
-     * 
-     * // Get first 10 ChartSelections
-     * const chartSelections = await prisma.chartSelection.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const chartSelectionWithIdOnly = await prisma.chartSelection.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends ChartSelectionFindManyArgs>(args?: SelectSubset<T, ChartSelectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChartSelectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a ChartSelection.
-     * @param {ChartSelectionCreateArgs} args - Arguments to create a ChartSelection.
-     * @example
-     * // Create one ChartSelection
-     * const ChartSelection = await prisma.chartSelection.create({
-     *   data: {
-     *     // ... data to create a ChartSelection
-     *   }
-     * })
-     * 
-     */
-    create<T extends ChartSelectionCreateArgs>(args: SelectSubset<T, ChartSelectionCreateArgs<ExtArgs>>): Prisma__ChartSelectionClient<$Result.GetResult<Prisma.$ChartSelectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many ChartSelections.
-     * @param {ChartSelectionCreateManyArgs} args - Arguments to create many ChartSelections.
-     * @example
-     * // Create many ChartSelections
-     * const chartSelection = await prisma.chartSelection.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ChartSelectionCreateManyArgs>(args?: SelectSubset<T, ChartSelectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a ChartSelection.
-     * @param {ChartSelectionDeleteArgs} args - Arguments to delete one ChartSelection.
-     * @example
-     * // Delete one ChartSelection
-     * const ChartSelection = await prisma.chartSelection.delete({
-     *   where: {
-     *     // ... filter to delete one ChartSelection
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ChartSelectionDeleteArgs>(args: SelectSubset<T, ChartSelectionDeleteArgs<ExtArgs>>): Prisma__ChartSelectionClient<$Result.GetResult<Prisma.$ChartSelectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one ChartSelection.
-     * @param {ChartSelectionUpdateArgs} args - Arguments to update one ChartSelection.
-     * @example
-     * // Update one ChartSelection
-     * const chartSelection = await prisma.chartSelection.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ChartSelectionUpdateArgs>(args: SelectSubset<T, ChartSelectionUpdateArgs<ExtArgs>>): Prisma__ChartSelectionClient<$Result.GetResult<Prisma.$ChartSelectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more ChartSelections.
-     * @param {ChartSelectionDeleteManyArgs} args - Arguments to filter ChartSelections to delete.
-     * @example
-     * // Delete a few ChartSelections
-     * const { count } = await prisma.chartSelection.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ChartSelectionDeleteManyArgs>(args?: SelectSubset<T, ChartSelectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ChartSelections.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ChartSelectionUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ChartSelections
-     * const chartSelection = await prisma.chartSelection.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ChartSelectionUpdateManyArgs>(args: SelectSubset<T, ChartSelectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one ChartSelection.
-     * @param {ChartSelectionUpsertArgs} args - Arguments to update or create a ChartSelection.
-     * @example
-     * // Update or create a ChartSelection
-     * const chartSelection = await prisma.chartSelection.upsert({
-     *   create: {
-     *     // ... data to create a ChartSelection
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ChartSelection we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ChartSelectionUpsertArgs>(args: SelectSubset<T, ChartSelectionUpsertArgs<ExtArgs>>): Prisma__ChartSelectionClient<$Result.GetResult<Prisma.$ChartSelectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ChartSelections that matches the filter.
-     * @param {ChartSelectionFindRawArgs} args - Select which filters you would like to apply.
-     * @example
-     * const chartSelection = await prisma.chartSelection.findRaw({
-     *   filter: { age: { $gt: 25 } }
-     * })
-     */
-    findRaw(args?: ChartSelectionFindRawArgs): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Perform aggregation operations on a ChartSelection.
-     * @param {ChartSelectionAggregateRawArgs} args - Select which aggregations you would like to apply.
-     * @example
-     * const chartSelection = await prisma.chartSelection.aggregateRaw({
-     *   pipeline: [
-     *     { $match: { status: "registered" } },
-     *     { $group: { _id: "$country", total: { $sum: 1 } } }
-     *   ]
-     * })
-     */
-    aggregateRaw(args?: ChartSelectionAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
-
-
-    /**
-     * Count the number of ChartSelections.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ChartSelectionCountArgs} args - Arguments to filter ChartSelections to count.
-     * @example
-     * // Count the number of ChartSelections
-     * const count = await prisma.chartSelection.count({
-     *   where: {
-     *     // ... the filter for the ChartSelections we want to count
-     *   }
-     * })
-    **/
-    count<T extends ChartSelectionCountArgs>(
-      args?: Subset<T, ChartSelectionCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ChartSelectionCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ChartSelection.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ChartSelectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ChartSelectionAggregateArgs>(args: Subset<T, ChartSelectionAggregateArgs>): Prisma.PrismaPromise<GetChartSelectionAggregateType<T>>
-
-    /**
-     * Group by ChartSelection.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ChartSelectionGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ChartSelectionGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ChartSelectionGroupByArgs['orderBy'] }
-        : { orderBy?: ChartSelectionGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ChartSelectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChartSelectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ChartSelection model
-   */
-  readonly fields: ChartSelectionFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ChartSelection.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ChartSelectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends ChartSelection$userArgs<ExtArgs> = {}>(args?: Subset<T, ChartSelection$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ChartSelection model
-   */
-  interface ChartSelectionFieldRefs {
-    readonly id: FieldRef<"ChartSelection", 'String'>
-    readonly symbol: FieldRef<"ChartSelection", 'String'>
-    readonly timeframe: FieldRef<"ChartSelection", 'String'>
-    readonly timeStart: FieldRef<"ChartSelection", 'Int'>
-    readonly timeEnd: FieldRef<"ChartSelection", 'Int'>
-    readonly priceLow: FieldRef<"ChartSelection", 'Float'>
-    readonly priceHigh: FieldRef<"ChartSelection", 'Float'>
-    readonly userId: FieldRef<"ChartSelection", 'String'>
-    readonly createdAt: FieldRef<"ChartSelection", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ChartSelection findUnique
-   */
-  export type ChartSelectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-    /**
-     * Filter, which ChartSelection to fetch.
-     */
-    where: ChartSelectionWhereUniqueInput
-  }
-
-  /**
-   * ChartSelection findUniqueOrThrow
-   */
-  export type ChartSelectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-    /**
-     * Filter, which ChartSelection to fetch.
-     */
-    where: ChartSelectionWhereUniqueInput
-  }
-
-  /**
-   * ChartSelection findFirst
-   */
-  export type ChartSelectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-    /**
-     * Filter, which ChartSelection to fetch.
-     */
-    where?: ChartSelectionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ChartSelections to fetch.
-     */
-    orderBy?: ChartSelectionOrderByWithRelationInput | ChartSelectionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ChartSelections.
-     */
-    cursor?: ChartSelectionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ChartSelections from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ChartSelections.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ChartSelections.
-     */
-    distinct?: ChartSelectionScalarFieldEnum | ChartSelectionScalarFieldEnum[]
-  }
-
-  /**
-   * ChartSelection findFirstOrThrow
-   */
-  export type ChartSelectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-    /**
-     * Filter, which ChartSelection to fetch.
-     */
-    where?: ChartSelectionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ChartSelections to fetch.
-     */
-    orderBy?: ChartSelectionOrderByWithRelationInput | ChartSelectionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ChartSelections.
-     */
-    cursor?: ChartSelectionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ChartSelections from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ChartSelections.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ChartSelections.
-     */
-    distinct?: ChartSelectionScalarFieldEnum | ChartSelectionScalarFieldEnum[]
-  }
-
-  /**
-   * ChartSelection findMany
-   */
-  export type ChartSelectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-    /**
-     * Filter, which ChartSelections to fetch.
-     */
-    where?: ChartSelectionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ChartSelections to fetch.
-     */
-    orderBy?: ChartSelectionOrderByWithRelationInput | ChartSelectionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ChartSelections.
-     */
-    cursor?: ChartSelectionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ChartSelections from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ChartSelections.
-     */
-    skip?: number
-    distinct?: ChartSelectionScalarFieldEnum | ChartSelectionScalarFieldEnum[]
-  }
-
-  /**
-   * ChartSelection create
-   */
-  export type ChartSelectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ChartSelection.
-     */
-    data: XOR<ChartSelectionCreateInput, ChartSelectionUncheckedCreateInput>
-  }
-
-  /**
-   * ChartSelection createMany
-   */
-  export type ChartSelectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ChartSelections.
-     */
-    data: ChartSelectionCreateManyInput | ChartSelectionCreateManyInput[]
-  }
-
-  /**
-   * ChartSelection update
-   */
-  export type ChartSelectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ChartSelection.
-     */
-    data: XOR<ChartSelectionUpdateInput, ChartSelectionUncheckedUpdateInput>
-    /**
-     * Choose, which ChartSelection to update.
-     */
-    where: ChartSelectionWhereUniqueInput
-  }
-
-  /**
-   * ChartSelection updateMany
-   */
-  export type ChartSelectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ChartSelections.
-     */
-    data: XOR<ChartSelectionUpdateManyMutationInput, ChartSelectionUncheckedUpdateManyInput>
-    /**
-     * Filter which ChartSelections to update
-     */
-    where?: ChartSelectionWhereInput
-    /**
-     * Limit how many ChartSelections to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * ChartSelection upsert
-   */
-  export type ChartSelectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ChartSelection to update in case it exists.
-     */
-    where: ChartSelectionWhereUniqueInput
-    /**
-     * In case the ChartSelection found by the `where` argument doesn't exist, create a new ChartSelection with this data.
-     */
-    create: XOR<ChartSelectionCreateInput, ChartSelectionUncheckedCreateInput>
-    /**
-     * In case the ChartSelection was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ChartSelectionUpdateInput, ChartSelectionUncheckedUpdateInput>
-  }
-
-  /**
-   * ChartSelection delete
-   */
-  export type ChartSelectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-    /**
-     * Filter which ChartSelection to delete.
-     */
-    where: ChartSelectionWhereUniqueInput
-  }
-
-  /**
-   * ChartSelection deleteMany
-   */
-  export type ChartSelectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ChartSelections to delete
-     */
-    where?: ChartSelectionWhereInput
-    /**
-     * Limit how many ChartSelections to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * ChartSelection findRaw
-   */
-  export type ChartSelectionFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
-     */
-    filter?: InputJsonValue
-    /**
-     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * ChartSelection aggregateRaw
-   */
-  export type ChartSelectionAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
-     */
-    pipeline?: InputJsonValue[]
-    /**
-     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * ChartSelection.user
-   */
-  export type ChartSelection$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
-   * ChartSelection without action
-   */
-  export type ChartSelectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ChartSelection
-     */
-    select?: ChartSelectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ChartSelection
-     */
-    omit?: ChartSelectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ChartSelectionInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model ChartDrawing
    */
 
@@ -27826,21 +26610,6 @@ export namespace Prisma {
   export type TradeSignalScalarFieldEnum = (typeof TradeSignalScalarFieldEnum)[keyof typeof TradeSignalScalarFieldEnum]
 
 
-  export const ChartSelectionScalarFieldEnum: {
-    id: 'id',
-    symbol: 'symbol',
-    timeframe: 'timeframe',
-    timeStart: 'timeStart',
-    timeEnd: 'timeEnd',
-    priceLow: 'priceLow',
-    priceHigh: 'priceHigh',
-    userId: 'userId',
-    createdAt: 'createdAt'
-  };
-
-  export type ChartSelectionScalarFieldEnum = (typeof ChartSelectionScalarFieldEnum)[keyof typeof ChartSelectionScalarFieldEnum]
-
-
   export const ChartDrawingScalarFieldEnum: {
     id: 'id',
     symbol: 'symbol',
@@ -28032,7 +26801,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartListRelationFilter
     marketStateSnapshots?: MarketStateSnapshotListRelationFilter
     tradeSignals?: TradeSignalListRelationFilter
-    chartSelections?: ChartSelectionListRelationFilter
     chartDrawings?: ChartDrawingListRelationFilter
   }
 
@@ -28057,7 +26825,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartOrderByRelationAggregateInput
     marketStateSnapshots?: MarketStateSnapshotOrderByRelationAggregateInput
     tradeSignals?: TradeSignalOrderByRelationAggregateInput
-    chartSelections?: ChartSelectionOrderByRelationAggregateInput
     chartDrawings?: ChartDrawingOrderByRelationAggregateInput
   }
 
@@ -28085,7 +26852,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartListRelationFilter
     marketStateSnapshots?: MarketStateSnapshotListRelationFilter
     tradeSignals?: TradeSignalListRelationFilter
-    chartSelections?: ChartSelectionListRelationFilter
     chartDrawings?: ChartDrawingListRelationFilter
   }, "id" | "mobile" | "email">
 
@@ -30050,83 +28816,6 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"TradeSignal"> | Date | string
   }
 
-  export type ChartSelectionWhereInput = {
-    AND?: ChartSelectionWhereInput | ChartSelectionWhereInput[]
-    OR?: ChartSelectionWhereInput[]
-    NOT?: ChartSelectionWhereInput | ChartSelectionWhereInput[]
-    id?: StringFilter<"ChartSelection"> | string
-    symbol?: StringFilter<"ChartSelection"> | string
-    timeframe?: StringFilter<"ChartSelection"> | string
-    timeStart?: IntFilter<"ChartSelection"> | number
-    timeEnd?: IntFilter<"ChartSelection"> | number
-    priceLow?: FloatFilter<"ChartSelection"> | number
-    priceHigh?: FloatFilter<"ChartSelection"> | number
-    userId?: StringNullableFilter<"ChartSelection"> | string | null
-    createdAt?: DateTimeFilter<"ChartSelection"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }
-
-  export type ChartSelectionOrderByWithRelationInput = {
-    id?: SortOrder
-    symbol?: SortOrder
-    timeframe?: SortOrder
-    timeStart?: SortOrder
-    timeEnd?: SortOrder
-    priceLow?: SortOrder
-    priceHigh?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type ChartSelectionWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: ChartSelectionWhereInput | ChartSelectionWhereInput[]
-    OR?: ChartSelectionWhereInput[]
-    NOT?: ChartSelectionWhereInput | ChartSelectionWhereInput[]
-    symbol?: StringFilter<"ChartSelection"> | string
-    timeframe?: StringFilter<"ChartSelection"> | string
-    timeStart?: IntFilter<"ChartSelection"> | number
-    timeEnd?: IntFilter<"ChartSelection"> | number
-    priceLow?: FloatFilter<"ChartSelection"> | number
-    priceHigh?: FloatFilter<"ChartSelection"> | number
-    userId?: StringNullableFilter<"ChartSelection"> | string | null
-    createdAt?: DateTimeFilter<"ChartSelection"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }, "id">
-
-  export type ChartSelectionOrderByWithAggregationInput = {
-    id?: SortOrder
-    symbol?: SortOrder
-    timeframe?: SortOrder
-    timeStart?: SortOrder
-    timeEnd?: SortOrder
-    priceLow?: SortOrder
-    priceHigh?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-    _count?: ChartSelectionCountOrderByAggregateInput
-    _avg?: ChartSelectionAvgOrderByAggregateInput
-    _max?: ChartSelectionMaxOrderByAggregateInput
-    _min?: ChartSelectionMinOrderByAggregateInput
-    _sum?: ChartSelectionSumOrderByAggregateInput
-  }
-
-  export type ChartSelectionScalarWhereWithAggregatesInput = {
-    AND?: ChartSelectionScalarWhereWithAggregatesInput | ChartSelectionScalarWhereWithAggregatesInput[]
-    OR?: ChartSelectionScalarWhereWithAggregatesInput[]
-    NOT?: ChartSelectionScalarWhereWithAggregatesInput | ChartSelectionScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"ChartSelection"> | string
-    symbol?: StringWithAggregatesFilter<"ChartSelection"> | string
-    timeframe?: StringWithAggregatesFilter<"ChartSelection"> | string
-    timeStart?: IntWithAggregatesFilter<"ChartSelection"> | number
-    timeEnd?: IntWithAggregatesFilter<"ChartSelection"> | number
-    priceLow?: FloatWithAggregatesFilter<"ChartSelection"> | number
-    priceHigh?: FloatWithAggregatesFilter<"ChartSelection"> | number
-    userId?: StringNullableWithAggregatesFilter<"ChartSelection"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"ChartSelection"> | Date | string
-  }
-
   export type ChartDrawingWhereInput = {
     AND?: ChartDrawingWhereInput | ChartDrawingWhereInput[]
     OR?: ChartDrawingWhereInput[]
@@ -30233,7 +28922,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingCreateNestedManyWithoutUserInput
   }
 
@@ -30258,7 +28946,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUncheckedCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalUncheckedCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionUncheckedCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -30282,7 +28969,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUpdateManyWithoutUserNestedInput
   }
 
@@ -30306,7 +28992,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUncheckedUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUncheckedUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUncheckedUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -32506,85 +31191,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ChartSelectionCreateInput = {
-    id?: string
-    symbol: string
-    timeframe?: string
-    timeStart: number
-    timeEnd: number
-    priceLow: number
-    priceHigh: number
-    createdAt?: Date | string
-    user?: UserCreateNestedOneWithoutChartSelectionsInput
-  }
-
-  export type ChartSelectionUncheckedCreateInput = {
-    id?: string
-    symbol: string
-    timeframe?: string
-    timeStart: number
-    timeEnd: number
-    priceLow: number
-    priceHigh: number
-    userId?: string | null
-    createdAt?: Date | string
-  }
-
-  export type ChartSelectionUpdateInput = {
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    timeStart?: IntFieldUpdateOperationsInput | number
-    timeEnd?: IntFieldUpdateOperationsInput | number
-    priceLow?: FloatFieldUpdateOperationsInput | number
-    priceHigh?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutChartSelectionsNestedInput
-  }
-
-  export type ChartSelectionUncheckedUpdateInput = {
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    timeStart?: IntFieldUpdateOperationsInput | number
-    timeEnd?: IntFieldUpdateOperationsInput | number
-    priceLow?: FloatFieldUpdateOperationsInput | number
-    priceHigh?: FloatFieldUpdateOperationsInput | number
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ChartSelectionCreateManyInput = {
-    id?: string
-    symbol: string
-    timeframe?: string
-    timeStart: number
-    timeEnd: number
-    priceLow: number
-    priceHigh: number
-    userId?: string | null
-    createdAt?: Date | string
-  }
-
-  export type ChartSelectionUpdateManyMutationInput = {
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    timeStart?: IntFieldUpdateOperationsInput | number
-    timeEnd?: IntFieldUpdateOperationsInput | number
-    priceLow?: FloatFieldUpdateOperationsInput | number
-    priceHigh?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ChartSelectionUncheckedUpdateManyInput = {
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    timeStart?: IntFieldUpdateOperationsInput | number
-    timeEnd?: IntFieldUpdateOperationsInput | number
-    priceLow?: FloatFieldUpdateOperationsInput | number
-    priceHigh?: FloatFieldUpdateOperationsInput | number
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type ChartDrawingCreateInput = {
     id?: string
     symbol: string
@@ -32778,12 +31384,6 @@ export namespace Prisma {
     none?: TradeSignalWhereInput
   }
 
-  export type ChartSelectionListRelationFilter = {
-    every?: ChartSelectionWhereInput
-    some?: ChartSelectionWhereInput
-    none?: ChartSelectionWhereInput
-  }
-
   export type ChartDrawingListRelationFilter = {
     every?: ChartDrawingWhereInput
     some?: ChartDrawingWhereInput
@@ -32807,10 +31407,6 @@ export namespace Prisma {
   }
 
   export type TradeSignalOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ChartSelectionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -34444,56 +33040,6 @@ export namespace Prisma {
     confidence?: SortOrder
   }
 
-  export type ChartSelectionCountOrderByAggregateInput = {
-    id?: SortOrder
-    symbol?: SortOrder
-    timeframe?: SortOrder
-    timeStart?: SortOrder
-    timeEnd?: SortOrder
-    priceLow?: SortOrder
-    priceHigh?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type ChartSelectionAvgOrderByAggregateInput = {
-    timeStart?: SortOrder
-    timeEnd?: SortOrder
-    priceLow?: SortOrder
-    priceHigh?: SortOrder
-  }
-
-  export type ChartSelectionMaxOrderByAggregateInput = {
-    id?: SortOrder
-    symbol?: SortOrder
-    timeframe?: SortOrder
-    timeStart?: SortOrder
-    timeEnd?: SortOrder
-    priceLow?: SortOrder
-    priceHigh?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type ChartSelectionMinOrderByAggregateInput = {
-    id?: SortOrder
-    symbol?: SortOrder
-    timeframe?: SortOrder
-    timeStart?: SortOrder
-    timeEnd?: SortOrder
-    priceLow?: SortOrder
-    priceHigh?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type ChartSelectionSumOrderByAggregateInput = {
-    timeStart?: SortOrder
-    timeEnd?: SortOrder
-    priceLow?: SortOrder
-    priceHigh?: SortOrder
-  }
-
   export type ChartDrawingCountOrderByAggregateInput = {
     id?: SortOrder
     symbol?: SortOrder
@@ -34565,13 +33111,6 @@ export namespace Prisma {
     connect?: TradeSignalWhereUniqueInput | TradeSignalWhereUniqueInput[]
   }
 
-  export type ChartSelectionCreateNestedManyWithoutUserInput = {
-    create?: XOR<ChartSelectionCreateWithoutUserInput, ChartSelectionUncheckedCreateWithoutUserInput> | ChartSelectionCreateWithoutUserInput[] | ChartSelectionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ChartSelectionCreateOrConnectWithoutUserInput | ChartSelectionCreateOrConnectWithoutUserInput[]
-    createMany?: ChartSelectionCreateManyUserInputEnvelope
-    connect?: ChartSelectionWhereUniqueInput | ChartSelectionWhereUniqueInput[]
-  }
-
   export type ChartDrawingCreateNestedManyWithoutUserInput = {
     create?: XOR<ChartDrawingCreateWithoutUserInput, ChartDrawingUncheckedCreateWithoutUserInput> | ChartDrawingCreateWithoutUserInput[] | ChartDrawingUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ChartDrawingCreateOrConnectWithoutUserInput | ChartDrawingCreateOrConnectWithoutUserInput[]
@@ -34612,13 +33151,6 @@ export namespace Prisma {
     connectOrCreate?: TradeSignalCreateOrConnectWithoutUserInput | TradeSignalCreateOrConnectWithoutUserInput[]
     createMany?: TradeSignalCreateManyUserInputEnvelope
     connect?: TradeSignalWhereUniqueInput | TradeSignalWhereUniqueInput[]
-  }
-
-  export type ChartSelectionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<ChartSelectionCreateWithoutUserInput, ChartSelectionUncheckedCreateWithoutUserInput> | ChartSelectionCreateWithoutUserInput[] | ChartSelectionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ChartSelectionCreateOrConnectWithoutUserInput | ChartSelectionCreateOrConnectWithoutUserInput[]
-    createMany?: ChartSelectionCreateManyUserInputEnvelope
-    connect?: ChartSelectionWhereUniqueInput | ChartSelectionWhereUniqueInput[]
   }
 
   export type ChartDrawingUncheckedCreateNestedManyWithoutUserInput = {
@@ -34728,20 +33260,6 @@ export namespace Prisma {
     deleteMany?: TradeSignalScalarWhereInput | TradeSignalScalarWhereInput[]
   }
 
-  export type ChartSelectionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ChartSelectionCreateWithoutUserInput, ChartSelectionUncheckedCreateWithoutUserInput> | ChartSelectionCreateWithoutUserInput[] | ChartSelectionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ChartSelectionCreateOrConnectWithoutUserInput | ChartSelectionCreateOrConnectWithoutUserInput[]
-    upsert?: ChartSelectionUpsertWithWhereUniqueWithoutUserInput | ChartSelectionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ChartSelectionCreateManyUserInputEnvelope
-    set?: ChartSelectionWhereUniqueInput | ChartSelectionWhereUniqueInput[]
-    disconnect?: ChartSelectionWhereUniqueInput | ChartSelectionWhereUniqueInput[]
-    delete?: ChartSelectionWhereUniqueInput | ChartSelectionWhereUniqueInput[]
-    connect?: ChartSelectionWhereUniqueInput | ChartSelectionWhereUniqueInput[]
-    update?: ChartSelectionUpdateWithWhereUniqueWithoutUserInput | ChartSelectionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ChartSelectionUpdateManyWithWhereWithoutUserInput | ChartSelectionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ChartSelectionScalarWhereInput | ChartSelectionScalarWhereInput[]
-  }
-
   export type ChartDrawingUpdateManyWithoutUserNestedInput = {
     create?: XOR<ChartDrawingCreateWithoutUserInput, ChartDrawingUncheckedCreateWithoutUserInput> | ChartDrawingCreateWithoutUserInput[] | ChartDrawingUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ChartDrawingCreateOrConnectWithoutUserInput | ChartDrawingCreateOrConnectWithoutUserInput[]
@@ -34824,20 +33342,6 @@ export namespace Prisma {
     update?: TradeSignalUpdateWithWhereUniqueWithoutUserInput | TradeSignalUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: TradeSignalUpdateManyWithWhereWithoutUserInput | TradeSignalUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: TradeSignalScalarWhereInput | TradeSignalScalarWhereInput[]
-  }
-
-  export type ChartSelectionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ChartSelectionCreateWithoutUserInput, ChartSelectionUncheckedCreateWithoutUserInput> | ChartSelectionCreateWithoutUserInput[] | ChartSelectionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ChartSelectionCreateOrConnectWithoutUserInput | ChartSelectionCreateOrConnectWithoutUserInput[]
-    upsert?: ChartSelectionUpsertWithWhereUniqueWithoutUserInput | ChartSelectionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ChartSelectionCreateManyUserInputEnvelope
-    set?: ChartSelectionWhereUniqueInput | ChartSelectionWhereUniqueInput[]
-    disconnect?: ChartSelectionWhereUniqueInput | ChartSelectionWhereUniqueInput[]
-    delete?: ChartSelectionWhereUniqueInput | ChartSelectionWhereUniqueInput[]
-    connect?: ChartSelectionWhereUniqueInput | ChartSelectionWhereUniqueInput[]
-    update?: ChartSelectionUpdateWithWhereUniqueWithoutUserInput | ChartSelectionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ChartSelectionUpdateManyWithWhereWithoutUserInput | ChartSelectionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ChartSelectionScalarWhereInput | ChartSelectionScalarWhereInput[]
   }
 
   export type ChartDrawingUncheckedUpdateManyWithoutUserNestedInput = {
@@ -35930,22 +34434,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTradeSignalsInput, UserUpdateWithoutTradeSignalsInput>, UserUncheckedUpdateWithoutTradeSignalsInput>
   }
 
-  export type UserCreateNestedOneWithoutChartSelectionsInput = {
-    create?: XOR<UserCreateWithoutChartSelectionsInput, UserUncheckedCreateWithoutChartSelectionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutChartSelectionsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneWithoutChartSelectionsNestedInput = {
-    create?: XOR<UserCreateWithoutChartSelectionsInput, UserUncheckedCreateWithoutChartSelectionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutChartSelectionsInput
-    upsert?: UserUpsertWithoutChartSelectionsInput
-    disconnect?: boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutChartSelectionsInput, UserUpdateWithoutChartSelectionsInput>, UserUncheckedUpdateWithoutChartSelectionsInput>
-  }
-
   export type UserCreateNestedOneWithoutChartDrawingsInput = {
     create?: XOR<UserCreateWithoutChartDrawingsInput, UserUncheckedCreateWithoutChartDrawingsInput>
     connectOrCreate?: UserCreateOrConnectWithoutChartDrawingsInput
@@ -36509,37 +34997,6 @@ export namespace Prisma {
     data: TradeSignalCreateManyUserInput | TradeSignalCreateManyUserInput[]
   }
 
-  export type ChartSelectionCreateWithoutUserInput = {
-    id?: string
-    symbol: string
-    timeframe?: string
-    timeStart: number
-    timeEnd: number
-    priceLow: number
-    priceHigh: number
-    createdAt?: Date | string
-  }
-
-  export type ChartSelectionUncheckedCreateWithoutUserInput = {
-    id?: string
-    symbol: string
-    timeframe?: string
-    timeStart: number
-    timeEnd: number
-    priceLow: number
-    priceHigh: number
-    createdAt?: Date | string
-  }
-
-  export type ChartSelectionCreateOrConnectWithoutUserInput = {
-    where: ChartSelectionWhereUniqueInput
-    create: XOR<ChartSelectionCreateWithoutUserInput, ChartSelectionUncheckedCreateWithoutUserInput>
-  }
-
-  export type ChartSelectionCreateManyUserInputEnvelope = {
-    data: ChartSelectionCreateManyUserInput | ChartSelectionCreateManyUserInput[]
-  }
-
   export type ChartDrawingCreateWithoutUserInput = {
     id?: string
     symbol: string
@@ -36744,37 +35201,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"TradeSignal"> | Date | string
   }
 
-  export type ChartSelectionUpsertWithWhereUniqueWithoutUserInput = {
-    where: ChartSelectionWhereUniqueInput
-    update: XOR<ChartSelectionUpdateWithoutUserInput, ChartSelectionUncheckedUpdateWithoutUserInput>
-    create: XOR<ChartSelectionCreateWithoutUserInput, ChartSelectionUncheckedCreateWithoutUserInput>
-  }
-
-  export type ChartSelectionUpdateWithWhereUniqueWithoutUserInput = {
-    where: ChartSelectionWhereUniqueInput
-    data: XOR<ChartSelectionUpdateWithoutUserInput, ChartSelectionUncheckedUpdateWithoutUserInput>
-  }
-
-  export type ChartSelectionUpdateManyWithWhereWithoutUserInput = {
-    where: ChartSelectionScalarWhereInput
-    data: XOR<ChartSelectionUpdateManyMutationInput, ChartSelectionUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type ChartSelectionScalarWhereInput = {
-    AND?: ChartSelectionScalarWhereInput | ChartSelectionScalarWhereInput[]
-    OR?: ChartSelectionScalarWhereInput[]
-    NOT?: ChartSelectionScalarWhereInput | ChartSelectionScalarWhereInput[]
-    id?: StringFilter<"ChartSelection"> | string
-    symbol?: StringFilter<"ChartSelection"> | string
-    timeframe?: StringFilter<"ChartSelection"> | string
-    timeStart?: IntFilter<"ChartSelection"> | number
-    timeEnd?: IntFilter<"ChartSelection"> | number
-    priceLow?: FloatFilter<"ChartSelection"> | number
-    priceHigh?: FloatFilter<"ChartSelection"> | number
-    userId?: StringNullableFilter<"ChartSelection"> | string | null
-    createdAt?: DateTimeFilter<"ChartSelection"> | Date | string
-  }
-
   export type ChartDrawingUpsertWithWhereUniqueWithoutUserInput = {
     where: ChartDrawingWhereUniqueInput
     update: XOR<ChartDrawingUpdateWithoutUserInput, ChartDrawingUncheckedUpdateWithoutUserInput>
@@ -36828,7 +35254,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingCreateNestedManyWithoutUserInput
   }
 
@@ -36852,7 +35277,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUncheckedCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalUncheckedCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionUncheckedCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -36891,7 +35315,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUpdateManyWithoutUserNestedInput
   }
 
@@ -36914,7 +35337,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUncheckedUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUncheckedUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUncheckedUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -36938,7 +35360,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingCreateNestedManyWithoutUserInput
   }
 
@@ -36962,7 +35383,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUncheckedCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalUncheckedCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionUncheckedCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -37001,7 +35421,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUpdateManyWithoutUserNestedInput
   }
 
@@ -37024,7 +35443,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUncheckedUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUncheckedUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUncheckedUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -37048,7 +35466,6 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingCreateNestedManyWithoutUserInput
   }
 
@@ -37072,7 +35489,6 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalUncheckedCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionUncheckedCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -37518,7 +35934,6 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUpdateManyWithoutUserNestedInput
   }
 
@@ -37541,7 +35956,6 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUncheckedUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUncheckedUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -39986,7 +38400,6 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     nativityCharts?: NativityChartCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingCreateNestedManyWithoutUserInput
   }
 
@@ -40010,7 +38423,6 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     nativityCharts?: NativityChartUncheckedCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalUncheckedCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionUncheckedCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -40160,7 +38572,6 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     nativityCharts?: NativityChartUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUpdateManyWithoutUserNestedInput
   }
 
@@ -40183,7 +38594,6 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     nativityCharts?: NativityChartUncheckedUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUncheckedUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUncheckedUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -40374,7 +38784,6 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     nativityCharts?: NativityChartCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingCreateNestedManyWithoutUserInput
   }
 
@@ -40398,7 +38807,6 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     nativityCharts?: NativityChartUncheckedCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionUncheckedCreateNestedManyWithoutUserInput
     chartDrawings?: ChartDrawingUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -40480,7 +38888,6 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     nativityCharts?: NativityChartUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUpdateManyWithoutUserNestedInput
   }
 
@@ -40503,117 +38910,6 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     nativityCharts?: NativityChartUncheckedUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUncheckedUpdateManyWithoutUserNestedInput
-    chartDrawings?: ChartDrawingUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutChartSelectionsInput = {
-    id?: string
-    name: string
-    mobile?: string | null
-    email: string
-    passwordHash?: string | null
-    avatar?: string | null
-    isActive?: boolean
-    isDeleted?: boolean
-    emailVerified?: boolean
-    mobileVerified?: boolean
-    lastLoginAt?: Date | string | null
-    totalGenerations?: number
-    totalStorageUsed?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    nativityCharts?: NativityChartCreateNestedManyWithoutUserInput
-    marketStateSnapshots?: MarketStateSnapshotCreateNestedManyWithoutUserInput
-    tradeSignals?: TradeSignalCreateNestedManyWithoutUserInput
-    chartDrawings?: ChartDrawingCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutChartSelectionsInput = {
-    id?: string
-    name: string
-    mobile?: string | null
-    email: string
-    passwordHash?: string | null
-    avatar?: string | null
-    isActive?: boolean
-    isDeleted?: boolean
-    emailVerified?: boolean
-    mobileVerified?: boolean
-    lastLoginAt?: Date | string | null
-    totalGenerations?: number
-    totalStorageUsed?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    nativityCharts?: NativityChartUncheckedCreateNestedManyWithoutUserInput
-    marketStateSnapshots?: MarketStateSnapshotUncheckedCreateNestedManyWithoutUserInput
-    tradeSignals?: TradeSignalUncheckedCreateNestedManyWithoutUserInput
-    chartDrawings?: ChartDrawingUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutChartSelectionsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutChartSelectionsInput, UserUncheckedCreateWithoutChartSelectionsInput>
-  }
-
-  export type UserUpsertWithoutChartSelectionsInput = {
-    update: XOR<UserUpdateWithoutChartSelectionsInput, UserUncheckedUpdateWithoutChartSelectionsInput>
-    create: XOR<UserCreateWithoutChartSelectionsInput, UserUncheckedCreateWithoutChartSelectionsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutChartSelectionsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutChartSelectionsInput, UserUncheckedUpdateWithoutChartSelectionsInput>
-  }
-
-  export type UserUpdateWithoutChartSelectionsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    mobile?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    mobileVerified?: BoolFieldUpdateOperationsInput | boolean
-    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    totalGenerations?: IntFieldUpdateOperationsInput | number
-    totalStorageUsed?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    nativityCharts?: NativityChartUpdateManyWithoutUserNestedInput
-    marketStateSnapshots?: MarketStateSnapshotUpdateManyWithoutUserNestedInput
-    tradeSignals?: TradeSignalUpdateManyWithoutUserNestedInput
-    chartDrawings?: ChartDrawingUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutChartSelectionsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    mobile?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    mobileVerified?: BoolFieldUpdateOperationsInput | boolean
-    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    totalGenerations?: IntFieldUpdateOperationsInput | number
-    totalStorageUsed?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    nativityCharts?: NativityChartUncheckedUpdateManyWithoutUserNestedInput
-    marketStateSnapshots?: MarketStateSnapshotUncheckedUpdateManyWithoutUserNestedInput
-    tradeSignals?: TradeSignalUncheckedUpdateManyWithoutUserNestedInput
     chartDrawings?: ChartDrawingUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -40638,7 +38934,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutChartDrawingsInput = {
@@ -40662,7 +38957,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUncheckedCreateNestedManyWithoutUserInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedCreateNestedManyWithoutUserInput
     tradeSignals?: TradeSignalUncheckedCreateNestedManyWithoutUserInput
-    chartSelections?: ChartSelectionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutChartDrawingsInput = {
@@ -40701,7 +38995,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChartDrawingsInput = {
@@ -40724,7 +39017,6 @@ export namespace Prisma {
     nativityCharts?: NativityChartUncheckedUpdateManyWithoutUserNestedInput
     marketStateSnapshots?: MarketStateSnapshotUncheckedUpdateManyWithoutUserNestedInput
     tradeSignals?: TradeSignalUncheckedUpdateManyWithoutUserNestedInput
-    chartSelections?: ChartSelectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -40793,17 +39085,6 @@ export namespace Prisma {
     keyFactors?: InputJsonValue | null
     executed?: boolean
     snapshotId: string
-    createdAt?: Date | string
-  }
-
-  export type ChartSelectionCreateManyUserInput = {
-    id?: string
-    symbol: string
-    timeframe?: string
-    timeStart: number
-    timeEnd: number
-    priceLow: number
-    priceHigh: number
     createdAt?: Date | string
   }
 
@@ -41031,36 +39312,6 @@ export namespace Prisma {
     keyFactors?: InputJsonValue | InputJsonValue | null
     executed?: BoolFieldUpdateOperationsInput | boolean
     snapshotId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ChartSelectionUpdateWithoutUserInput = {
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    timeStart?: IntFieldUpdateOperationsInput | number
-    timeEnd?: IntFieldUpdateOperationsInput | number
-    priceLow?: FloatFieldUpdateOperationsInput | number
-    priceHigh?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ChartSelectionUncheckedUpdateWithoutUserInput = {
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    timeStart?: IntFieldUpdateOperationsInput | number
-    timeEnd?: IntFieldUpdateOperationsInput | number
-    priceLow?: FloatFieldUpdateOperationsInput | number
-    priceHigh?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ChartSelectionUncheckedUpdateManyWithoutUserInput = {
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    timeStart?: IntFieldUpdateOperationsInput | number
-    timeEnd?: IntFieldUpdateOperationsInput | number
-    priceLow?: FloatFieldUpdateOperationsInput | number
-    priceHigh?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

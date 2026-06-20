@@ -243,7 +243,6 @@ model User {
   // Trading Relations
   marketStateSnapshots MarketStateSnapshot[]
   tradeSignals         TradeSignal[]
-  chartSelections      ChartSelection[]
   chartDrawings      ChartDrawing[]
 
   createdAt DateTime @default(now())
@@ -843,23 +842,7 @@ model TradeSignal {
   @@index([marketBias, createdAt])
 }
 
-model ChartSelection {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  symbol    String
-  timeframe String   @default("")
-  timeStart Int
-  timeEnd   Int
-  priceLow  Float
-  priceHigh Float
 
-  userId    String?  @db.ObjectId
-  user      User?    @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-
-  @@index([symbol, timeStart, timeEnd])
-  @@index([userId])
-}
 
 model ChartDrawing {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
