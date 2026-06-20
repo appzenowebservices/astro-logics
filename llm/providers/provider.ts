@@ -59,7 +59,7 @@ const DEFAULT_CONFIGS: Record<string, LLMConfig> = {
   },
   openrouter: {
     provider: "openrouter",
-    model: process.env.OPENROUTER_MODEL || "google/gemini-2.0-flash-lite-001",
+    model: process.env.OPENROUTER_MODEL || "nex-agi/nex-n2-pro:free",
     baseUrl: "https://openrouter.ai/api/v1",
     apiKey: process.env.OPENROUTER_API_KEY,
     temperature: 0.3,

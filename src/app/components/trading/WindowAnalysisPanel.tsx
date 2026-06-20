@@ -89,15 +89,16 @@ export default function WindowAnalysisPanel({
     if (symbol && timeframe && (analysis.events?.length ?? 0) > 0 && !narrative) {
       const fetchNarrative = async () => {
         try {
+          const astroState = analysis.astroEvolution?.[0];
           const result = await generateNarrativeMutation.mutateAsync({
             symbol,
             timeframe,
             events: analysis.events || [],
-            astroSummary: analysis.astroEvolution?.[0] ? {
-              planetaryPressure: analysis.astroEvolution[0].planetaryPressure,
-              aspectTension: analysis.astroEvolution[0].aspectTension,
-              confidence: analysis.astroEvolution[0].confidence,
-              dominantTransitPlanets: analysis.astroEvolution[0].dominantTransitPlanets,
+            astroSummary: astroState ? {
+              planetaryPressure: astroState.planetaryPressure ?? undefined,
+              aspectTension: astroState.aspectTension ?? undefined,
+              confidence: astroState.confidence ?? undefined,
+              dominantTransitPlanets: astroState.dominantTransitPlanets,
             } : undefined,
           });
           setNarrative(result.data);
@@ -122,8 +123,8 @@ export default function WindowAnalysisPanel({
     const astro = analysis.astroEvolution?.[0];
     if (!astro) return null;
     return {
-      pressure: astro.planetaryPressure?.toFixed(2) || "0.50",
-      tension: astro.aspectTension?.toFixed(2) || "0.30",
+      pressure: astro.planetaryPressure != null ? astro.planetaryPressure.toFixed(2) : "0.50",
+      tension: astro.aspectTension != null ? astro.aspectTension.toFixed(2) : "0.30",
       dominant: astro.dominantTransitPlanets?.slice(0, 3).join(", ") || "None",
     };
   };

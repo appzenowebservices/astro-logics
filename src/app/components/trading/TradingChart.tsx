@@ -99,10 +99,10 @@ const [layers, setLayers] = useState<LayerState>({
     { enabled: !!symbol && isChartInitialized },
   );
 
-  const handleSaveDrawing = async (drawing: any) => {
+  const handleSaveDrawing = async (drawing: any, customId?: string) => {
     if (!drawing || !drawing.type || !drawing.anchors) return;
 
-    const drawingId = `${drawing.type}-${Date.now()}`;
+    const drawingId = customId || `${drawing.type}-${Date.now()}`;
     const options = drawing.type === "custom-fib-retracement"
       ? drawing.fibOptions || drawing.options
       : drawing.options;
@@ -168,7 +168,6 @@ const [layers, setLayers] = useState<LayerState>({
         windowStart: new Date(timeRangeSelection.start * 1000).toISOString(),
         windowEnd: new Date(timeRangeSelection.end * 1000).toISOString(),
       });
-console.log("Scan window result:", result);
       if (result.success && result.data) {
         setWindowAnalysis(result.data);
         createAutoDrawings(result.data);
@@ -206,7 +205,7 @@ console.log("Scan window result:", result);
       ]);
       if (rayDrawing) {
         manager.addDrawing(rayDrawing);
-        handleSaveDrawing(rayDrawing);
+        handleSaveDrawing(rayDrawing, `ray-${sweep.time}-${Date.now()}`);
       }
     }
 
@@ -222,7 +221,7 @@ console.log("Scan window result:", result);
         ]);
         if (trendDrawing) {
           manager.addDrawing(trendDrawing);
-          handleSaveDrawing(trendDrawing);
+          handleSaveDrawing(trendDrawing, `trend-${event.time}-${Date.now()}`);
         }
       }
     }
@@ -237,7 +236,7 @@ console.log("Scan window result:", result);
         ]);
         if (rectDrawing) {
           manager.addDrawing(rectDrawing);
-          handleSaveDrawing(rectDrawing);
+          handleSaveDrawing(rectDrawing, `rect-${event.time}-${Date.now()}`);
         }
       }
     }
@@ -245,22 +244,43 @@ console.log("Scan window result:", result);
     if (events.length > 0) {
       const swingEvents = events.filter((e) => e.type?.includes("SWING") && inRange(e.time));
       if (swingEvents.length === 0) {
-        const firstCandle = normalizedHistory[0];
-        const lastCandle = normalizedHistory[normalizedHistory.length - 1];
-        if (firstCandle && lastCandle) {
-          const fibDrawing = registry.createDrawing(
-            "custom-fib-retracement",
-            `auto-fib-${Date.now()}`,
+        const candlesInRange = normalizedHistory.filter(
+          (c) => c.time >= timeRangeSelection!.start && c.time <= timeRangeSelection!.end
+        );
+        if (candlesInRange.length > 0) {
+          const highPrices = candlesInRange.map((c) => c.high);
+          const lowPrices = candlesInRange.map((c) => c.low);
+          const highestHigh = Math.max(...highPrices);
+          const lowestLow = Math.min(...lowPrices);
+          const firstCandle = candlesInRange[0];
+          const lastCandle = candlesInRange[candlesInRange.length - 1];
+
+          const hhDrawing = registry.createDrawing(
+            "trend-line",
+            `hh-${highestHigh}-${Date.now()}`,
             [
-              { time: firstCandle.time, price: firstCandle.high },
-              { time: lastCandle.time, price: lastCandle.low },
+              { time: firstCandle.time as UTCTimestamp, price: highestHigh },
+              { time: lastCandle.time as UTCTimestamp, price: highestHigh },
             ],
-            { lineWidth: 2 },
-            { levels: [0, 0.236, 0.382, 0.5, 0.618, 0.786, 1], showPrices: true, showPercentages: true }
+            { lineWidth: 2, lineColor: "#10b981" },
           );
-          if (fibDrawing) {
-            manager.addDrawing(fibDrawing);
-            handleSaveDrawing(fibDrawing);
+          if (hhDrawing) {
+            manager.addDrawing(hhDrawing);
+            handleSaveDrawing(hhDrawing, `hh-${highestHigh}-${Date.now()}`);
+          }
+
+          const llDrawing = registry.createDrawing(
+            "trend-line",
+            `ll-${lowestLow}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+            [
+              { time: firstCandle.time as UTCTimestamp, price: lowestLow },
+              { time: lastCandle.time as UTCTimestamp, price: lowestLow },
+            ],
+            { lineWidth: 2, lineColor: "#ef4444" },
+          );
+          if (llDrawing) {
+            manager.addDrawing(llDrawing);
+            handleSaveDrawing(llDrawing, `ll-${lowestLow}-${Date.now()}`);
           }
         }
       }

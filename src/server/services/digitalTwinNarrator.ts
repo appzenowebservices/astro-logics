@@ -11,14 +11,14 @@ export interface MarketEvent {
 }
 
 export interface AstroState {
-  planetaryPressure: number;
-  aspectTension: number;
-  ingressProximity: number;
-  retrogradeInfluence: number;
-  speedDispersion: number;
-  elementalImbalance: number;
-  lunarPhase: number;
-  confidence: number;
+  planetaryPressure?: number;
+  aspectTension?: number;
+  ingressProximity?: number;
+  retrogradeInfluence?: number;
+  speedDispersion?: number;
+  elementalImbalance?: number;
+  lunarPhase?: number;
+  confidence?: number;
   dominantTransitPlanets?: string[];
   dominantLatentAxes?: Array<{ axis: string; value: number }>;
   narrative?: string;
@@ -28,7 +28,7 @@ export interface MarketNarrativeInput {
   symbol: string;
   timeframe: string;
   events: MarketEvent[];
-  astroState: AstroState | null;
+  astroState: AstroState | null | undefined;
   marketContext?: {
     priceRange: { min: number; max: number };
     direction: "up" | "down" | "sideways";
@@ -53,14 +53,14 @@ export async function generateMarketNarrative(
 
   const eventsSummary = input.events
     .slice(0, 10)
-    .map((e) => `${e.type}: strength=${e.strength.toFixed(2)}, narrative="${e.narrative}"`)
+    .map((e) => `${e.type}: strength=${e.strength?.toFixed(2) ?? 0.5}, narrative="${e.narrative ?? ""}"`)
     .join("\n");
 
   const astroSummary = input.astroState
     ? `Dominant planets: ${input.astroState.dominantTransitPlanets?.join(", ") || "none"}
-  Latent axes: ${input.astroState.dominantLatentAxes?.map((a) => `${a.axis}: ${a.value.toFixed(2)}`).join(", ") || "balanced"}
+  Latent axes: ${input.astroState.dominantLatentAxes?.map((a) => `${a.axis}: ${a.value?.toFixed(2) ?? 0}`).join(", ") || "balanced"}
   Astro narrative: ${input.astroState.narrative || "neutral"}
-  Pressure: ${input.astroState.planetaryPressure.toFixed(2)}, Aspect tension: ${input.astroState.aspectTension.toFixed(2)}`
+  Pressure: ${(input.astroState.planetaryPressure ?? 0.5).toFixed(2)}, Aspect tension: ${(input.astroState.aspectTension ?? 0.3).toFixed(2)}`
     : "No astro state available";
 
   const prompt = `
