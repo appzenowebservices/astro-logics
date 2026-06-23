@@ -63,10 +63,14 @@ const EVENT_TYPE_COLORS: Record<string, string> = {
   VOLATILITY_COLLAPSE: "text-red-400",
   HIGH_VOLATILITY_REGIME: "text-yellow-400",
   LOW_VOLATILITY_REGIME: "text-blue-400",
-  LIQUIDITY_SWEEP: "text-purple-400",
-  STRUCTURE_BREAK: "text-orange-400",
+  BSL_SWEEP: "text-purple-400",
+  SSL_SWEEP: "text-purple-400",
+  BULLISH_STRUCTURE_BREAK: "text-orange-400",
+  BEARISH_STRUCTURE_BREAK: "text-orange-400",
   COMPRESSION_RELEASE: "text-cyan-400",
   REGIME_SHIFT: "text-pink-400",
+  TREND_ACCELERATION: "text-emerald-400",
+  TREND_EXHAUSTION: "text-amber-400",
   MARKET_STATE_INITIALIZED: "text-gray-400",
 };
 

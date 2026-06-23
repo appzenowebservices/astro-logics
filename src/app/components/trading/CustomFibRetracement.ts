@@ -12,9 +12,11 @@ import {
 } from "lightweight-charts-drawing";
 import type { IPrimitivePaneRenderer } from "lightweight-charts";
 
-const CUSTOM_FIB_LEVELS = [0, 0.705, 0.786, 1];
+const CUSTOM_FIB_LEVELS = [0, 0.214, 0.295, 0.705, 0.786, 1];
 const ZONE_DOWN_COLOR = "rgba(255, 0, 0, 0.15)";
 const ZONE_UP_COLOR = "rgba(0, 255, 0, 0.15)";
+const ZONE_LOWER_COLOR = "rgba(0, 255, 0, 0.15)";
+const ZONE_UPPER_COLOR = "rgba(255, 0, 0, 0.15)";
 
 interface CustomFibOptions extends DrawingOptions {
   levels?: number[];
@@ -56,24 +58,24 @@ class CustomFibPaneRenderer implements IPrimitivePaneRenderer {
     const startPrice = anchors[0].price;
     const endPrice = anchors[1].price;
     const priceDiff = endPrice - startPrice;
-    const isDownLeg = endPrice < startPrice;
-    const zoneColor = isDownLeg ? ZONE_DOWN_COLOR : ZONE_UP_COLOR;
+    const isBullish = priceDiff > 0;
 
     const leftX = Math.min(startPx.x, endPx.x);
-    const rightX = Math.max(startPx.x, endPx.x);
+    const extendX = leftX + 10000;
 
-    const sortedLevels = [...levels].sort((a, b) => a - b);
-    for (let i = 0; i < sortedLevels.length - 1; i++) {
-      const level1 = sortedLevels[i];
-      const level2 = sortedLevels[i + 1];
+    for (let i = 0; i < levels.length - 1; i++) {
+      const level1 = levels[i];
+      const level2 = levels[i + 1];
 
-      const zoneStart = 0.705;
-      const zoneEnd = 0.786;
-      const crossesZone = level1 < zoneEnd && level2 > zoneStart;
-
-      if (crossesZone) {
-        const price1 = startPrice + priceDiff * Math.max(level1, zoneStart);
-        const price2 = startPrice + priceDiff * Math.min(level2, zoneEnd);
+      const isUpperZone = level1 >= 0.214 && level1 <= 0.295;
+      const isLowerZone = level1 >= 0.705 && level1 <= 0.786;
+      
+      if (isUpperZone || isLowerZone) {
+        const zoneColor = isBullish
+          ? (isLowerZone ? ZONE_LOWER_COLOR : ZONE_UPPER_COLOR)
+          : (isUpperZone ? ZONE_UPPER_COLOR : ZONE_LOWER_COLOR);
+        const price1 = startPrice + priceDiff * level1;
+        const price2 = startPrice + priceDiff * level2;
         const y1 = viewport.priceScale.priceToCoordinate(price1);
         const y2 = viewport.priceScale.priceToCoordinate(price2);
 
@@ -83,7 +85,7 @@ class CustomFibPaneRenderer implements IPrimitivePaneRenderer {
           ctx.fillRect(
             leftX * pixelRatio,
             Math.min(y1, y2) * pixelRatio,
-            (rightX - leftX) * pixelRatio,
+            (extendX - leftX) * pixelRatio,
             Math.abs(y2 - y1) * pixelRatio,
           );
           ctx.globalAlpha = 1;
@@ -96,11 +98,17 @@ class CustomFibPaneRenderer implements IPrimitivePaneRenderer {
       const y = viewport.priceScale.priceToCoordinate(price);
       if (y === null) continue;
 
-      ctx.strokeStyle = "#ef4444";
+      const isUpperLevel = level >= 0.214 && level <= 0.295;
+      const isLowerLevel = level >= 0.705 && level <= 0.786;
+      const lineColor = isBullish
+        ? (isLowerLevel ? "#10b981" : isUpperLevel ? "#ef4444" : "#ffffff")
+        : (isUpperLevel ? "#ef4444" : isLowerLevel ? "#10b981" : "#ffffff");
+      
+      ctx.strokeStyle = lineColor;
       ctx.lineWidth = this.drawing.style.lineWidth * pixelRatio;
       ctx.beginPath();
       ctx.moveTo(leftX * pixelRatio, y * pixelRatio);
-      ctx.lineTo(rightX * pixelRatio, y * pixelRatio);
+      ctx.lineTo(extendX * pixelRatio, y * pixelRatio);
       ctx.stroke();
     }
   }
@@ -181,14 +189,17 @@ class CustomFibRetracement extends Drawing {
     const endPrice = this._anchors[1].price;
     const priceDiff = endPrice - startPrice;
 
+    const leftX = Math.min(startPx.x, endPx.x);
+    const extendX = leftX + 1000;
+
     for (const level of levels) {
       const price = startPrice + priceDiff * level;
       const y = viewport.priceScale.priceToCoordinate(price);
       if (y !== null) {
         geometries.push({
           type: "line",
-          start: { x: Math.min(startPx.x, endPx.x), y },
-          end: { x: Math.max(startPx.x, endPx.x), y },
+          start: { x: leftX, y },
+          end: { x: extendX, y },
         });
       }
     }
@@ -259,4 +270,4 @@ export function registerCustomFibTool() {
   });
 }
 
-export { CUSTOM_FIB_LEVELS, ZONE_DOWN_COLOR, ZONE_UP_COLOR };
+export { CUSTOM_FIB_LEVELS, ZONE_DOWN_COLOR, ZONE_UP_COLOR, ZONE_LOWER_COLOR, ZONE_UPPER_COLOR };

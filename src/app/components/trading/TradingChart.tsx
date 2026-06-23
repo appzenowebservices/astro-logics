@@ -103,8 +103,9 @@ const [layers, setLayers] = useState<LayerState>({
     if (!drawing || !drawing.type || !drawing.anchors) return;
 
     const drawingId = customId || `${drawing.type}-${Date.now()}`;
+    const fibOpts = drawing.fibOptions || drawing.options || {};
     const options = drawing.type === "custom-fib-retracement"
-      ? drawing.fibOptions || drawing.options
+      ? fibOpts
       : drawing.options;
 
     await saveChartDrawingMutation.mutateAsync({
@@ -113,7 +114,7 @@ const [layers, setLayers] = useState<LayerState>({
       drawingType: drawing.type,
       drawingId,
       anchors: drawing.anchors,
-      style: drawing.style,
+      style: drawing.style || {},
       options,
     });
   };
@@ -189,100 +190,63 @@ const [layers, setLayers] = useState<LayerState>({
       time !== undefined && time >= timeRangeSelection!.start && time <= timeRangeSelection!.end;
 
     const events = analysis.events || [];
-    const volatilitySweeps = events.filter((e) => e.type === "LIQUIDITY_SWEEP" && inRange(e.time));
-    const structureBreaks = events.filter((e) => (e.type === "STRUCTURE_BREAK" || e.type === "REGIME_SHIFT") && inRange(e.time));
+    const volatilitySweeps = events.filter((e) => (e.type === "BSL_SWEEP" || e.type === "SSL_SWEEP") && inRange(e.time));
+    const structureBreaks = events.filter((e) => (e.type === "BULLISH_STRUCTURE_BREAK" || e.type === "BEARISH_STRUCTURE_BREAK" || e.type === "REGIME_SHIFT") && inRange(e.time));
     const compressionEvents = events.filter((e) => (e.type === "VOLATILITY_COLLAPSE" || e.type === "COMPRESSION_RELEASE") && inRange(e.time));
 
-    for (const sweep of volatilitySweeps) {
-      if (!sweep.time) continue;
-      const priceRange = normalizedHistory.filter((c) => c.time >= sweep.time - 3600 && c.time <= sweep.time + 3600);
-      const highPrice = Math.max(...priceRange.map((c) => c.high));
-      const lowPrice = Math.min(...priceRange.map((c) => c.low));
+    const candlesInRange = normalizedHistory.filter(
+      (c) => c.time >= timeRangeSelection!.start && c.time <= timeRangeSelection!.end
+    );
 
-      const rayDrawing = registry.createDrawing("ray", `ray-${sweep.time}-${Date.now()}`, [
-        { time: sweep.time as UTCTimestamp, price: lowPrice },
-        { time: (sweep.time + 86400) as UTCTimestamp, price: highPrice },
-      ]);
-      if (rayDrawing) {
-        manager.addDrawing(rayDrawing);
-        handleSaveDrawing(rayDrawing, `ray-${sweep.time}-${Date.now()}`);
+    if (candlesInRange.length > 0) {
+      const highPrices = candlesInRange.map((c) => c.high);
+      const lowPrices = candlesInRange.map((c) => c.low);
+      const highestHigh = Math.max(...highPrices);
+      const lowestLow = Math.min(...lowPrices);
+      const firstCandle = candlesInRange[0];
+
+      const hhDrawing = registry.createDrawing(
+        "trend-line",
+        `hh-${highestHigh}-${Date.now()}`,
+        [
+          { time: firstCandle.time as UTCTimestamp, price: highestHigh },
+          { time: Math.floor(Date.now() / 1000) + 86400 * 30, price: highestHigh },
+        ],
+        { lineWidth: 2, lineColor: "#10b981" },
+      );
+      if (hhDrawing) {
+        manager.addDrawing(hhDrawing);
+        handleSaveDrawing(hhDrawing, `hh-${highestHigh}-${Date.now()}`);
       }
-    }
 
-    for (const event of structureBreaks) {
-      if (!event.time) continue;
-      const priceRange = normalizedHistory.filter((c) => c.time >= event.time - 3600 && c.time <= event.time + 3600);
-      const breakPrice = event.metadata?.breakPrice ?? event.metadata?.price;
-
-      if (breakPrice) {
-        const trendDrawing = registry.createDrawing("trend-line", `trend-${event.time}-${Date.now()}`, [
-          { time: (event.time - 86400) as UTCTimestamp, price: breakPrice * 0.999 },
-          { time: event.time as UTCTimestamp, price: breakPrice },
-        ]);
-        if (trendDrawing) {
-          manager.addDrawing(trendDrawing);
-          handleSaveDrawing(trendDrawing, `trend-${event.time}-${Date.now()}`);
-        }
+      const llDrawing = registry.createDrawing(
+        "trend-line",
+        `ll-${lowestLow}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        [
+          { time: firstCandle.time as UTCTimestamp, price: lowestLow },
+          { time: Math.floor(Date.now() / 1000) + 86400 * 30, price: lowestLow },
+        ],
+        { lineWidth: 2, lineColor: "#ef4444" },
+      );
+      if (llDrawing) {
+        manager.addDrawing(llDrawing);
+        handleSaveDrawing(llDrawing, `ll-${lowestLow}-${Date.now()}`);
       }
-    }
 
-    for (const event of compressionEvents) {
-      if (!event.time) continue;
-      const priceRange = normalizedHistory.filter((c) => c.time >= event.time! - 1800 && c.time <= event.time! + 1800);
-      if (priceRange.length > 0) {
-        const rectDrawing = registry.createDrawing("rectangle", `rect-${event.time}-${Date.now()}`, [
-          { time: priceRange[0].time as UTCTimestamp, price: priceRange[0].high },
-          { time: priceRange[priceRange.length - 1].time as UTCTimestamp, price: priceRange[priceRange.length - 1].low },
-        ]);
-        if (rectDrawing) {
-          manager.addDrawing(rectDrawing);
-          handleSaveDrawing(rectDrawing, `rect-${event.time}-${Date.now()}`);
-        }
-      }
-    }
-
-    if (events.length > 0) {
-      const swingEvents = events.filter((e) => e.type?.includes("SWING") && inRange(e.time));
-      if (swingEvents.length === 0) {
-        const candlesInRange = normalizedHistory.filter(
-          (c) => c.time >= timeRangeSelection!.start && c.time <= timeRangeSelection!.end
-        );
-        if (candlesInRange.length > 0) {
-          const highPrices = candlesInRange.map((c) => c.high);
-          const lowPrices = candlesInRange.map((c) => c.low);
-          const highestHigh = Math.max(...highPrices);
-          const lowestLow = Math.min(...lowPrices);
-          const firstCandle = candlesInRange[0];
-          const lastCandle = candlesInRange[candlesInRange.length - 1];
-
-          const hhDrawing = registry.createDrawing(
-            "trend-line",
-            `hh-${highestHigh}-${Date.now()}`,
-            [
-              { time: firstCandle.time as UTCTimestamp, price: highestHigh },
-              { time: lastCandle.time as UTCTimestamp, price: highestHigh },
-            ],
-            { lineWidth: 2, lineColor: "#10b981" },
-          );
-          if (hhDrawing) {
-            manager.addDrawing(hhDrawing);
-            handleSaveDrawing(hhDrawing, `hh-${highestHigh}-${Date.now()}`);
-          }
-
-          const llDrawing = registry.createDrawing(
-            "trend-line",
-            `ll-${lowestLow}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-            [
-              { time: firstCandle.time as UTCTimestamp, price: lowestLow },
-              { time: lastCandle.time as UTCTimestamp, price: lowestLow },
-            ],
-            { lineWidth: 2, lineColor: "#ef4444" },
-          );
-          if (llDrawing) {
-            manager.addDrawing(llDrawing);
-            handleSaveDrawing(llDrawing, `ll-${lowestLow}-${Date.now()}`);
-          }
-        }
+      const fibDrawing = registry.createDrawing(
+        "custom-fib-retracement",
+        `auto-fib-${Date.now()}`,
+        [
+          { time: candlesInRange[0].time as UTCTimestamp, price: highestHigh },
+          { time: candlesInRange[candlesInRange.length - 1].time as UTCTimestamp, price: lowestLow },
+        ],
+        { lineWidth: 1 },
+        { levels: [0, 0.214, 0.295, 0.705, 0.786, 1], showPrices: true }
+      );
+      console.log("Fib drawing created:", fibDrawing);
+      if (fibDrawing) {
+        manager.addDrawing(fibDrawing);
+        handleSaveDrawing(fibDrawing);
       }
     }
   };
@@ -396,6 +360,37 @@ const [layers, setLayers] = useState<LayerState>({
   }, [activeTool, isChartInitialized]);
 
   useEffect(() => {
+    const manager = drawingManagerRef.current;
+    if (!manager || !savedDrawings?.data) return;
+
+    const registry = getToolRegistry();
+    savedDrawings.data.forEach((saved: any) => {
+      let drawing: any;
+      if (saved.drawingType === "custom-fib-retracement") {
+        drawing = registry.createDrawing(
+          saved.drawingType,
+          saved.drawingId,
+          saved.anchors,
+          saved.style || {},
+          saved.options || { levels: [0, 0.214, 0.295, 0.705, 0.786, 1], showPrices: true },
+        );
+      } else {
+        drawing = registry.createDrawing(
+          saved.drawingType,
+          saved.drawingId,
+          saved.anchors,
+          saved.style || {},
+        );
+      }
+      if (drawing) {
+        manager.addDrawing(drawing);
+      } else {
+        console.log("Failed to create drawing:", saved.drawingType, saved.drawingId);
+      }
+    });
+  }, [savedDrawings]);
+
+  useEffect(() => {
     const chart = chartRef.current;
     const series = seriesRef.current;
     const container = chartContainerRef.current;
@@ -408,32 +403,6 @@ const [layers, setLayers] = useState<LayerState>({
     drawingManagerRef.current = manager;
 
     const registry = getToolRegistry();
-
-    // Load saved drawings
-    if (savedDrawings?.data) {
-      savedDrawings.data.forEach((saved: any) => {
-        let drawing: any;
-        if (saved.drawingType === "custom-fib-retracement") {
-          drawing = registry.createDrawing(
-            saved.drawingType,
-            saved.drawingId,
-            saved.anchors,
-            saved.style,
-            saved.options,
-          );
-        } else {
-          drawing = registry.createDrawing(
-            saved.drawingType,
-            saved.drawingId,
-            saved.anchors,
-            saved.style,
-          );
-        }
-        if (drawing) {
-          manager.addDrawing(drawing);
-        }
-      });
-    }
 
     let isMouseDown = false;
     let startPoint: { time: UTCTimestamp; price: number } | null = null;
@@ -492,41 +461,45 @@ const [layers, setLayers] = useState<LayerState>({
     };
 
     const handleMouseUp = () => {
-      if (isMouseDown && previewId && startPoint && activeTool) {
+if (isMouseDown && previewId && startPoint && activeTool) {
         const drawing = manager.getDrawing(previewId);
         if (drawing && drawing.isValid()) {
           // Save the completed drawing to DB
           handleSaveDrawing(drawing);
 
-if (activeTool === "date-range") {
-             const anchors = drawing.anchors;
-             if (anchors && anchors.length >= 2) {
-               setTimeRangeSelection({
-                 start: anchors[0].time as UTCTimestamp,
-                 end: anchors[1].time as UTCTimestamp,
-               });
-               setActiveTool(null);
-             }
-           }
+          if (activeTool === "date-range") {
+            const anchors = drawing.anchors;
+            if (anchors && anchors.length >= 2) {
+              setTimeRangeSelection({
+                start: anchors[0].time as UTCTimestamp,
+                end: anchors[1].time as UTCTimestamp,
+              });
+              setActiveTool(null);
+            }
+          }
 
-           if (activeTool === "rectangle") {
-             const anchors = drawing.anchors;
-             if (anchors && anchors.length >= 2) {
-               const times = anchors.map((a: any) => a.time as UTCTimestamp);
-               const prices = anchors.map((a: any) => a.price as number);
-               setBoxSelection({
-                 start: Math.min(...times),
-                 end: Math.max(...times),
-                 priceLow: Math.min(...prices),
-                 priceHigh: Math.max(...prices),
-               });
-               setActiveTool(null);
-             }
-           }
+          if (activeTool === "rectangle") {
+            const anchors = drawing.anchors;
+            if (anchors && anchors.length >= 2) {
+              const times = anchors.map((a: any) => a.time as UTCTimestamp);
+              const prices = anchors.map((a: any) => a.price as number);
+              setBoxSelection({
+                start: Math.min(...times),
+                end: Math.max(...times),
+                priceLow: Math.min(...prices),
+                priceHigh: Math.max(...prices),
+              });
+              setActiveTool(null);
+            }
+          }
         } else if (previewId) {
           manager.removeDrawing(previewId);
         }
-      }
+
+        isMouseDown = false;
+        startPoint = null;
+        previewId = null;
+      };
 
       isMouseDown = false;
       startPoint = null;
@@ -537,7 +510,7 @@ if (activeTool === "date-range") {
     container.addEventListener("mousemove", handleMouseMove);
     container.addEventListener("mouseup", handleMouseUp);
 
-    if (activeTool) {
+if (activeTool) {
       chart.applyOptions({
         handleScroll: false,
         handleScale: false,
