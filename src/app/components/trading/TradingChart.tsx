@@ -633,6 +633,11 @@ const unsubscribe = manager.on("drawing:added", (event) => {
               1d
             </option>
           </select>
+          {savedDrawings?.data && savedDrawings.data.length > 0 && (
+            <span className="ml-1 rounded-full bg-blue-500/20 px-1.5 py-0.5 text-[10px] text-blue-400">
+              {savedDrawings.data.length}
+            </span>
+          )}
         </div>
       </div>
 

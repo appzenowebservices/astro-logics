@@ -1,13 +1,13 @@
 import {
   Drawing,
-  DrawingStyle,
-  DrawingOptions,
-  IDrawing,
-  Point,
-  Viewport,
-  Geometry,
-  IPrimitivePaneView,
-  Anchor,
+  type DrawingStyle,
+  type DrawingOptions,
+  type IDrawing,
+  type Point,
+  type Viewport,
+  type Geometry,
+  type IPrimitivePaneView,
+  type Anchor,
   getToolRegistry,
 } from "lightweight-charts-drawing";
 import type { IPrimitivePaneRenderer } from "lightweight-charts";
@@ -263,9 +263,9 @@ export function registerCustomFibTool() {
     factory: (id, anchors, style, options) =>
       new CustomFibRetracement(
         id,
-        (anchors ?? []) as Anchor[],
-        (style ?? {}) as Partial<DrawingStyle>,
-        (options ?? {}) as Partial<CustomFibOptions>,
+        (anchors ?? []),
+        (style ?? {}),
+        (options ?? {}),
       ),
   });
 }
