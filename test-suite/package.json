@@ -1,0 +1,21 @@
+{
+  "name": "kaalvanta-test-suite",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Live black-box test suite for the Kaalvanta platform: checks, journeys, webhook replays, and a web cockpit with SQLite run history.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "mongodb": "^6.18.0"
+  },
+  "scripts": {
+    "start": "node server/index.mjs",
+    "dev": "node server/index.mjs",
+    "db:audit": "node scripts/db-audit.mjs",
+    "api:probe": "node scripts/api-probe.mjs",
+    "webhook:replay": "node scripts/webhook-replay.mjs",
+    "journey": "node scripts/journey.mjs"
+  }
+}

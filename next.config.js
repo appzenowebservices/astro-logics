@@ -21,8 +21,6 @@ const nextConfig = {
   // outputFileTracing: false ,
   //  outputFileTracingRoot: process.cwd(),
   images: {
-    domains: ["apnidesidukaan.com"],
-
     remotePatterns: [
       {
         protocol: "https",
@@ -44,7 +42,7 @@ const nextConfig = {
   },
 
   //  experimental: {
-  //     outputFileTracingRoot: "D:/Dev/ADDies",
+  //     outputFileTracingRoot: "D:/Dev/Kaalvanta",
   //   },
 };
 

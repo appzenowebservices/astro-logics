@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fdfbf7" />
+  <title>Kaalvanta – Testing Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+  <div class="toolbar">
+    <div class="brand">
+      <img class="brand-logo" src="/logo.png" alt="Kaalvanta" />
+      <span class="live-dot" id="liveDot" title="live link to the suite server"></span>
+      <h1>Kaalvanta — <span>Testing Suite</span></h1>
+    </div>
+
+    <div class="progress">
+      <div class="bar"><span id="bar"></span></div>
+      <em id="progressText">0 / 0</em>
+    </div>
+
+    <div class="filters" id="modeToggle" title="UI test mode — dev hits your local server, live hits the deployed endpoint"></div>
+    <button class="action" id="liveSetup" title="Live mode credentials">Setup</button>
+
+    <div class="filters">
+      <button class="chip active" data-filter="all">All <span class="n" id="nAll">0</span></button>
+      <button class="chip" data-filter="fail">Failing <span class="n bad" id="nFail">0</span></button>
+      <button class="chip" data-filter="pass">Passing <span class="n good" id="nPass">0</span></button>
+      <button class="chip" data-filter="idle">Idle <span class="n" id="nIdle">0</span></button>
+    </div>
+
+    <input class="search" id="search" placeholder="Search checks..." />
+
+    <button class="action" id="rerunFailed" disabled>Rerun failed</button>
+    <button class="action primary" id="runAll">Run all</button>
+  </div>
+
+  <div class="note" id="note">
+    Offline preview — start the suite with <code>npm start</code> and open http://127.0.0.1:4760
+  </div>
+
+  <div class="main" id="main">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <section class="detail">
+      <div class="detail-head">
+        <button class="action back" id="backBtn" title="Back to checks">&#8592; checks</button>
+        <div class="detail-title-wrap">
+          <h2 id="detailTitle">—</h2>
+          <div class="desc" id="detailDesc"></div>
+        </div>
+        <div class="detail-actions">
+          <span class="state-pill" id="detailState">IDLE</span>
+          <button class="action" id="copyCmd">copy command</button>
+          <button class="action primary" id="runOne">run</button>
+        </div>
+      </div>
+
+      <div class="tab-body" id="tabDetails">
+        <div class="details-grid">
+          <div class="section" style="margin-bottom:0">
+            <h3>What it proved (last run)</h3>
+            <ul class="ev" id="evList"><li class="empty">Not run yet — press run.</li></ul>
+          </div>
+
+          <div class="section" style="margin-bottom:0">
+            <h3>History <em id="historyMeta"></em></h3>
+            <div class="history-chips" id="historyList"></div>
+          </div>
+        </div>
+
+        <details class="raw" id="rawWrap">
+          <summary>Raw output</summary>
+          <pre id="rawOut">—</pre>
+        </details>
+      </div>
+
+    </section>
+  </div>
+
+  <footer class="statusbar">
+    <span id="statusCounts"><b>0</b> checks</span>
+    <span class="sep"></span>
+    <span id="statusDb">db: —</span>
+    <span class="sep"></span>
+    <span id="statusLast">last: —</span>
+    <span class="spacer"></span>
+    <span id="statusServer"><span class="live-dot" style="display:inline-block;vertical-align:-1px;margin-right:6px"></span>127.0.0.1:4760</span>
+  </footer>
+
+  <div class="modal hidden" id="setupModal">
+    <div class="modal-card">
+      <h3>Live mode setup</h3>
+      <label>Dev URL (local)</label>
+      <input id="cfgDevUrl" class="search" />
+      <label>Live URL</label>
+      <input id="cfgLiveUrl" class="search" />
+      <label>Live admin email</label>
+      <input id="cfgEmail" class="search" />
+      <label>Live admin password <button class="chip" id="cfgReveal" type="button">show</button></label>
+      <input id="cfgPassword" type="password" class="search" />
+      <div class="modal-actions">
+        <button class="action" id="cfgClose">Close</button>
+        <button class="action primary" id="cfgSave">Save</button>
+      </div>
+      <div class="cfg-status" id="cfgStatus"></div>
+    </div>
+  </div>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
