@@ -664,7 +664,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Dev\\Astro-Logics\\prisma-client\\binaries",
+      "value": "D:\\Dev\\Kaalvanta\\prisma-client\\binaries",
       "fromEnvVar": null
     },
     "config": {
@@ -678,7 +678,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Dev\\Astro-Logics\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Dev\\Kaalvanta\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

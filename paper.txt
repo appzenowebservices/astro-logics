@@ -1,4 +1,4 @@
-| Paper                                           | Core Essence                                         | AstroLogics Mapping                                          | Key Insight                                                                   |
+| Paper                                           | Core Essence                                         | Kaalvanta Mapping                                          | Key Insight                                                                   |
 | ----------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------- |
 | *LeWorldModel / JEPA World Models* (2603.19312) | Predict latent world states instead of tokens/pixels | Charts = latent states, transits = state evolution           | Intelligence comes from modeling hidden structure, not surface reconstruction |
 | *Causal-JEPA* (2602.11389)                      | Learn through interacting entities and interventions | Planets = agents, aspects = causal edges                     | Meaning emerges from relationships, not isolated symbols                      |
@@ -8,7 +8,7 @@
 
 
 
-# AstroLogics: Practical Architecture for Emerent Symbolic World Modeling (Without OpenAI-Level Compute)
+# Kaalvanta: Practical Architecture for Emerent Symbolic World Modeling (Without OpenAI-Level Compute)
 
 You do NOT need:
 
@@ -331,7 +331,7 @@ symbolic latent state modeling
 
 You only need the LLM to learn:
 
-* AstroLogics ontology
+* Kaalvanta ontology
 * symbolic interpretation style
 * latent-axis reasoning
 * narrative rendering
@@ -376,7 +376,7 @@ The current period pushes internal restructuring through pressure and frustratio
 Teaches:
 
 * your planetary personalities
-* AstroLogics narrative style
+* Kaalvanta narrative style
 * symbolic storytelling
 * comic dialogue
 

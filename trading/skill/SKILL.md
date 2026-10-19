@@ -86,7 +86,7 @@ values you did not observe from a tool response.
    later order calls.
 4. **Analyze** - `market.get_history` (or pass `history` directly) then
    `market.analyze_state`, or `market.scan_window` when the issue wants events
-   over a window. Pass an optional `astroChart` from the astrologics MCP server
+   over a window. Pass an optional `astroChart` from the Kaalvanta MCP server
    (`compute_transits`) when astro context is available.
 5. **Act** - for orders, `trade.place_order` (BUY/SELL or a pending type) with
    the symbol and volume; confirm the returned `retcode`/`order`/`deal`.

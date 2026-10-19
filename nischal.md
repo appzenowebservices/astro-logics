@@ -1,4 +1,4 @@
-# Seven Ages of Man (Shakespeare) vs Astrologics
+# Seven Ages of Man (Shakespeare) vs Kaalvanta
 
 ## Shakespeare's Seven Stages of Life
 1. Infant
@@ -9,7 +9,7 @@
 6. Pantaloon
 7. Second childishness and mere oblivion
 
-## Astrologics Perspective
+## Kaalvanta Perspective
 - Infant: Dominated by Moon, early emotional imprinting
 - Schoolboy: Mercury influence, learning and communication
 - Lover: Venus ruling, romance and aesthetics
@@ -18,4 +18,4 @@
 - Pantaloon: Saturn restriction, reflection and limitation
 - Second childishness: Return to lunar cycle, release and rebirth
 
-*Juxtaposition shows how archetypal life stages align with planetary cycles in astrologics.*
+*Juxtaposition shows how archetypal life stages align with planetary cycles in Kaalvanta.*
