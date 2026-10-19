@@ -510,7 +510,7 @@ export default function AstroLatentSpaceVisualizer() {
       {/* Header */}
       <div className="space-y-2">
         <h1 className="bg-gradient-to-r from-zinc-100 via-zinc-400 to-zinc-600 bg-clip-text text-4xl font-bold tracking-tight text-transparent">
-          AstroLogics Latent Space Observatory
+          Kaalvanta Latent Space Observatory
         </h1>
         <p className="max-w-4xl text-sm text-zinc-400">
           High-dimensional symbolic cognition projection system for planetary

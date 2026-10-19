@@ -1,0 +1,7 @@
+.env
+bridge/env/
+node_modules/
+dist/
+*.tsbuildinfo
+__pycache__/
+*.pyc

@@ -1,4 +1,6 @@
-import type { Prisma } from "@prisma/client";
+// MCP integration fix: @prisma/client has no generated types in this repo
+// (the client is generated into prisma-client/binaries), so import Prisma from there.
+import type { Prisma } from "../../../prisma-client/binaries";
 import { getSwissEph } from "~/server/astro/swissEph";
 // import { createProvider } from "agent-runtime/src/llm/provider";
 import chalk from "chalk";

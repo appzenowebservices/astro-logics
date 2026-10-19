@@ -443,7 +443,7 @@ export const tradeRouter = createTRPCRouter({
     )
     .mutation(async ({ input }) => {
       const { MarketStateEngine } =
-        await import("../../../../trade_engine/lib/MarketStateEngine");
+        await import("../../../../trading/engine/MarketStateEngine");
 
       const windowStartTs = input.windowStart
         ? Math.floor(new Date(input.windowStart).getTime() / 1000)

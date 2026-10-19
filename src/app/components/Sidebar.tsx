@@ -195,7 +195,7 @@ export default function Sidebar({
 
           <img
             src="/logo.png"
-            alt="AstroLogics Logo"
+            alt="Kaalvanta Logo"
             className={`relative z-10 object-contain drop-shadow-[0_0_15px_rgba(255,152,0,0.3)] transition-all duration-300 ${
               isCollapsed ? "h-8 w-8" : "h-24 w-24"
             }`}
@@ -206,7 +206,7 @@ export default function Sidebar({
           className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isCollapsed ? "h-0 opacity-0" : "h-auto opacity-100"}`}
         >
           <h1 className="mt-4 font-mono text-base font-black tracking-[0.25em] text-white uppercase">
-            AstroLogics
+            Kaalvanta
           </h1>
           <p className="mt-1.5 text-[9px] font-black tracking-[0.2em] text-[var(--color-ring-bronze)] uppercase opacity-85">
             Collective State Engine

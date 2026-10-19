@@ -301,7 +301,7 @@ function mean(values: number[]): number {
   return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
-function getVectorNumber(
+export function getVectorNumber(
   state: PlanetaryComputedState["vectorState"],
   axis: string,
 ): number {
@@ -444,7 +444,7 @@ async function computeNatalPlanetaryStates(
   );
 }
 
-function aggregateLatentVector(
+export function aggregateLatentVector(
   planetaryStates: PlanetaryAstroState[],
 ): number[] {
   const axisKeys = Array.from(
@@ -464,7 +464,7 @@ function aggregateLatentVector(
   });
 }
 
-function getDominantLatentAxes(
+export function getDominantLatentAxes(
   planetaryStates: PlanetaryAstroState[],
 ): Array<{ axis: string; value: number }> {
   const axisKeys = Array.from(

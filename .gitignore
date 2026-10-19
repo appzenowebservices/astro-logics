@@ -47,3 +47,12 @@ yarn-error.log*
 .idea
 
 .env.example
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# logs
+*.log

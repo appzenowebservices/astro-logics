@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import {
   Mail,
   Lock,
-  Sparkles,
   Loader2,
   ArrowLeft,
   Moon,
@@ -67,11 +66,11 @@ export default function LoginPage() {
             className="mb-8 inline-block"
           >
             <Image
-              src="/astrologics_logo.png"
-              alt="Logo"
-              width={120}
-              height={120}
-              className="animate-float drop-shadow-2xl"
+              src="/logo.png"
+              alt="Kaalvanta logo"
+              width={200}
+              height={105}
+              className="animate-float h-auto w-[200px] drop-shadow-2xl"
             />
           </motion.div>
           <h1 className="mb-6 font-serif text-5xl leading-tight text-[var(--color-primary-dark)] italic md:text-7xl">
@@ -87,7 +86,7 @@ export default function LoginPage() {
         </div>
 
         <div className="text-xs font-bold tracking-widest text-[var(--color-primary-dark)]/40 uppercase">
-          © 2026 Astrologics Studio
+          © 2026 Kaalvanta Studio
         </div>
 
         {/* Decorative Moon Background element */}

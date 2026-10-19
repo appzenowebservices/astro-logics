@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "~/server/astro/swissEph": ["src/types/shims/swiss-eph.d.ts"],
+      "~/server/services/astroOntology": ["src/types/shims/astro-ontology.d.ts"],
+      "~/server/services/storyGenerator": ["src/types/shims/story-generator.d.ts"],
+      "~/server/services/transitCalculator": ["src/types/shims/transit-calculator.d.ts"]
+    }
+  }
+}

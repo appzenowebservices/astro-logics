@@ -30,7 +30,8 @@ export function errorResult(error: unknown): CallToolResult {
  * SDK) and a uniform error wrapper so a throwing handler never kills the
  * session.
  */
-export function registerTools(server: McpServer, tools: Array<McpToolDef<z.ZodRawShape>>): void {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function registerTools(server: McpServer, tools: Array<McpToolDef<any>>): void {
   for (const tool of tools) {
     server.registerTool(
       tool.name,
@@ -39,7 +40,7 @@ export function registerTools(server: McpServer, tools: Array<McpToolDef<z.ZodRa
         description: tool.description,
         inputSchema: tool.inputSchema,
       },
-      async (args) => {
+      async (args: Record<string, unknown>) => {
         try {
           return textResult(await tool.handler(args));
         } catch (error) {

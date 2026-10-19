@@ -558,7 +558,7 @@ export function generateFallbackNarrative(scenes: any[], chart: any): string {
   const intensity =
     maxIntensity > 75 ? "CRITICAL" : maxIntensity > 50 ? "HIGH" : "MODERATE";
 
-  return `[ASTROLOGICS SYSTEM - FALLBACK MODE]
+  return `[KAALVANTA SYSTEM - FALLBACK MODE]
 
 Chart: ${chart.name || "Unknown"}
 Status: LLM Service Temporarily Unavailable

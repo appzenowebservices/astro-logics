@@ -175,7 +175,7 @@ BEAT| [Cynical action or workaround]
         : { planet: "Unknown", primaryDomain: "General" };
 
     return `[SYSTEM: HIGH-VELOCITY SCRIPT ARCHITECT]
-[SETTING: THE ASTROLOGICS VIRTUAL COMMAND CENTER]
+[SETTING: THE KAALVANTA VIRTUAL COMMAND CENTER]
 [ROLE:  - The cynical, hyper-intelligent Script Supervisor for the User's life.]
 
 [USER_DATA_CORE: NATAL DNA]
@@ -189,7 +189,7 @@ ${JSON.stringify(context.aspects)}
 // Context: This is the external pressure currently hitting the User's Natal DNA.
 
 [TASK]
-Generate a multi-scene "Life-Script" for the Astrologics Paid Portal. 
+Generate a multi-scene "Life-Script" for the Kaalvanta Paid Portal. 
 Translate the mathematical friction between the Natal DNA and Live Transits into a series of short, punchy comic-panel-ready skits.
 
 [DIRECTOR'S RULES]

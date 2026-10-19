@@ -6,43 +6,181 @@
 }
 
 @theme {
-  /* Primary Theme Colors (Extracted from the logo) */
+  /* ── Brand palette (extracted from /public/logo.png) ─────────────────── */
   --color-primary-light: #eaddbd;
-  /* The warm cream/beige of the moon */
+  /* marshmallow cream — the moon */
   --color-primary-dark: #2a4170;
-  /* The deep cosmic blue of the planet */
+  /* deep cosmic blue — the planet */
 
   /* Accent Colors */
   --color-accent-orange: #d17a38;
-  /* The gaseous orange stripes */
+  /* the gaseous orange stripes */
   --color-accent-glow: #a4c4d9;
-  /* The soft blue atmospheric aura */
+  /* the soft blue atmospheric aura */
   --color-ring-bronze: #c59b7d;
-  /* The metallic tone of the orbital rings */
+  /* the metallic tone of the orbital rings */
 
   /* Neutral Backgrounds & Text */
   --bg-main: #ffffff;
   --text-main: #1a1a1b;
   --text-muted: #5a5a5a;
 
-  /* Functional Mappings */
+  /* ── Typography ────────────────────────────────────────────────────────
+     FONT CONFIG — the families are loaded in src/app/layout.tsx; the
+     fallback stacks live here. These three tokens drive every `font-*`
+     utility in the app, so a swap is a one-line change over there.
+     ─────────────────────────────────────────────────────────────────────── */
+  --font-sans:
+    var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-serif:
+    var(--font-display), ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --font-mono:
+    var(--font-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Legacy class names scattered around the app (`font-roboto`,
+     `font-roboto-mono`) previously resolved to nothing — they now map
+     onto the tokens above. */
+  --font-roboto: var(--font-sans);
+  --font-roboto-mono: var(--font-mono);
+
+  /* ── Motion ──────────────────────────────────────────────────────────── */
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-float-saturn: float-saturn 9s ease-in-out infinite;
+  --animate-twinkle: twinkle 3s ease-in-out infinite;
+  --animate-twinkle-slow: twinkle 4.5s ease-in-out infinite;
+  --animate-spin-slow: spin-slow 34s linear infinite;
+  --animate-marquee: marquee 44s linear infinite;
+  --animate-glow: glow 6s ease-in-out infinite;
+
+  /* ── Functional Mappings ─────────────────────────────────────────────── */
   --brand-gradient: linear-gradient(135deg,
       var(--color-primary-light) 0%,
       var(--color-primary-dark) 100%);
 }
 
+/* ── Keyframes (top level, so they are always emitted) ─────────────────── */
+@keyframes float {
 
-body {
-  font-family: var(--font-body);
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-22px) rotate(1.5deg);
+  }
 }
 
+@keyframes float-saturn {
 
-/* Example Usage for Dark Mode preference */
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.5deg);
+  }
+
+  50% {
+    transform: translateY(-14px) rotate(1.5deg);
+  }
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  /* Body copy sits at medium weight by default — headings override upward. */
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--color-primary-dark);
+  color: var(--color-primary-light);
+}
+
+/* Shared slim scrollbar used by the app chrome */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(197 155 125 / 0.3) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(197 155 125 / 0.3);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(197 155 125 / 0.55);
+}
+
+/* Dark Mode preference */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-main: var(--color-primary-dark);
     --text-main: var(--color-primary-light);
   }
-
-
 }

@@ -13,7 +13,7 @@ import {
 import Layout from "../components/Layout";
 import CurrentStoryHero from "../components/dashboard/CurrentStoryHero";
 
-export default function AstroLogicsHomeScreen() {
+export default function KaalvantaHomeScreen() {
   const router = useRouter();
 
   // --- tRPC API Queries ---
@@ -27,8 +27,12 @@ export default function AstroLogicsHomeScreen() {
     });
 
   // Fallbacks using your exact data schema shapes
-  const story = currentStory || {};
+  const story = currentStory ?? null;
   const scenes = planetaryScenes || [];
+
+  // A story document can be missing, or present without a narrative yet.
+  // Never call .replace on undefined. Strip markdown bold markers when text exists.
+  const narrative = (story?.mainNarrative ?? "").replace(/\*\*[^*]+\*\*/g, "");
 
   // --- State for tracking selected Architectural Driver ---
   const [selectedPlanetId, setSelectedPlanetId] = useState<string>("");
@@ -113,16 +117,19 @@ export default function AstroLogicsHomeScreen() {
             <div className="relative z-10 space-y-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-orange)] bg-[var(--color-accent-orange)]/10 px-3 py-1 text-xs font-bold tracking-wider text-[var(--color-accent-orange)] uppercase">
-                  <Sparkles size={12} /> Live Narrative Theme: {story.theme}
+                  <Sparkles size={12} /> Live Narrative Theme:{" "}
+                  {story?.theme ?? "Unresolved"}
                 </div>
               </div>
 
               <div className="space-y-4">
                 <h1 className="text-4xl leading-none font-black tracking-tighter text-white uppercase italic md:text-6xl">
-                  {story.title}
+                  {story?.title ?? "No Active Session"}
                 </h1>
                 <p className="max-w-2xl text-base leading-relaxed font-normal text-[var(--color-primary-light)]/80 md:text-lg">
-                  {story.mainNarrative.replace(/\*\*[^*]+\*\*/g, "")}
+                  {narrative.length > 0
+                    ? narrative
+                    : "No narrative has been compiled for this transit window yet."}
                 </p>
               </div>
             </div>
@@ -222,7 +229,7 @@ export default function AstroLogicsHomeScreen() {
                 Global Intensity
               </span>
               <span className="font-mono text-3xl font-black tracking-tight">
-                {story.intensity}
+                {story?.intensity ?? "—"}
               </span>
             </div>
             <div className="rounded bg-[var(--color-accent-orange)]/10 px-2 py-1 text-right font-mono text-xs font-bold text-[var(--color-accent-orange)]">

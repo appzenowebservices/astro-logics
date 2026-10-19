@@ -38,5 +38,5 @@
     "**/*.js",
     ".next/types/**/*.ts"
 , "src/app/config/page.tsx", "next.config.js", "src/app/components/ui/CartItem/drawer.tsx"  ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "trading"]
 }

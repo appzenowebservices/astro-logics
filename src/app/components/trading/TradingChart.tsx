@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import type { UTCTimestamp } from "lightweight-charts";
 import { DrawingManager, getToolRegistry } from "lightweight-charts-drawing";
 
-import { MarketStateEngine } from "../../../../trade_engine/lib/MarketStateEngine";
+import { MarketStateEngine } from "../../../../trading/engine/MarketStateEngine";
 import {
   normalizeCandlestickData,
   type CandlestickData,
