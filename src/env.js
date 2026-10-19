@@ -17,6 +17,16 @@ export const env = createEnv({
       .enum(["development", "test", "production"])
       .default("development"),
     OPENROUTER_API_KEY: z.string().optional(),
+
+    // SaaS
+    ADMIN_EMAILS: z.string().optional(),
+    INVITE_ONLY: z.string().optional(),
+    RAZORPAY_KEY_ID: z.string().optional(),
+    RAZORPAY_SECRET: z.string().optional(),
+    RAZORPAY_WEBHOOK_SECRET: z.string().optional(),
+    RAZORPAY_PLAN_BASIC: z.string().optional(),
+    RAZORPAY_PLAN_PREMIUM: z.string().optional(),
+    RAZORPAY_PLAN_ENTERPRISE: z.string().optional(),
   },
   /**
    * Specify your client-side environment variables schema here. This way you can ensure the app
@@ -40,6 +50,16 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
     NEXT_PUBLIC_FIREBASE_VAPID_KEY: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
+
+    // SaaS
+    ADMIN_EMAILS: process.env.ADMIN_EMAILS,
+    INVITE_ONLY: process.env.INVITE_ONLY,
+    RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID,
+    RAZORPAY_SECRET: process.env.RAZORPAY_SECRET,
+    RAZORPAY_WEBHOOK_SECRET: process.env.RAZORPAY_WEBHOOK_SECRET,
+    RAZORPAY_PLAN_BASIC: process.env.RAZORPAY_PLAN_BASIC,
+    RAZORPAY_PLAN_PREMIUM: process.env.RAZORPAY_PLAN_PREMIUM,
+    RAZORPAY_PLAN_ENTERPRISE: process.env.RAZORPAY_PLAN_ENTERPRISE,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

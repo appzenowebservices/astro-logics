@@ -6,6 +6,10 @@ import { mundaneRouter } from "./routers/mundane";
 import { nativityRouter } from "./routers/nativity";
 import { adminRouter } from "./routers/admin";
 import { tradeRouter } from "./routers/trade";
+import { inviteRouter } from "./routers/invite";
+import { postRouter } from "./routers/post";
+import { billingRouter } from "./routers/billing";
+import { tradingAccountRouter } from "./routers/tradingAccount";
 
 /**
  * This is the primary router for your server.
@@ -23,6 +27,12 @@ export const appRouter = createTRPCRouter({
 
   admin: adminRouter,
   trading: tradeRouter,
+
+  // SaaS
+  invite: inviteRouter,
+  post: postRouter,
+  billing: billingRouter,
+  tradingAccount: tradingAccountRouter,
 });
 
 // export type definition of API

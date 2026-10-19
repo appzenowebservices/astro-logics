@@ -131,3 +131,91 @@ export const protectedProcedure = t.procedure
       },
     });
   });
+
+/**
+ * 4. RBAC + PLAN GATING
+ *
+ * Role/plan are read from the database on every protected call rather than from
+ * the JWT, so an admin demotion or a plan change takes effect immediately.
+ */
+
+export const ADMIN_ROLES = ["ADMIN"] as const;
+export const ANALYST_ROLES = ["ADMIN", "ANALYST"] as const;
+
+export const PLAN_ORDER = {
+  FREE: 0,
+  BASIC: 1,
+  PREMIUM: 2,
+  ENTERPRISE: 3,
+} as const;
+
+export type PlanName = keyof typeof PLAN_ORDER;
+
+export function planAtLeast(current: string, required: PlanName): boolean {
+  const have = PLAN_ORDER[current as PlanName] ?? 0;
+  const need = PLAN_ORDER[required];
+  return have >= need;
+}
+
+/** Loads the caller's account and blocks suspended users. */
+const accountMiddleware = t.middleware(async ({ ctx, next }) => {
+  if (!ctx.session?.user) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+
+  const account = await db.user.findUnique({
+    where: { id: ctx.session.user.id },
+    select: { id: true, role: true, plan: true, status: true, email: true },
+  });
+
+  if (!account) {
+    throw new TRPCError({ code: "UNAUTHORIZED", message: "Account not found" });
+  }
+
+  if (account.status === "SUSPENDED") {
+    throw new TRPCError({ code: "FORBIDDEN", message: "Account suspended" });
+  }
+
+  return next({
+    ctx: {
+      session: { ...ctx.session, user: ctx.session.user },
+      account,
+    },
+  });
+});
+
+export const accountProcedure = t.procedure
+  .use(timingMiddleware)
+  .use(accountMiddleware);
+
+/** Admin-only procedures. */
+export const adminProcedure = accountProcedure.use(({ ctx, next }) => {
+  if (ctx.account.role !== "ADMIN") {
+    throw new TRPCError({ code: "FORBIDDEN", message: "Admins only" });
+  }
+  return next();
+});
+
+/** Admin or analyst procedures (can publish). */
+export const analystProcedure = accountProcedure.use(({ ctx, next }) => {
+  if (!ANALYST_ROLES.includes(ctx.account.role as "ADMIN" | "ANALYST")) {
+    throw new TRPCError({
+      code: "FORBIDDEN",
+      message: "Analysts only",
+    });
+  }
+  return next();
+});
+
+/** Requires a minimum subscription plan. */
+export function planProcedure(required: PlanName) {
+  return accountProcedure.use(({ ctx, next }) => {
+    if (!planAtLeast(ctx.account.plan, required)) {
+      throw new TRPCError({
+        code: "FORBIDDEN",
+        message: `Requires the ${required} plan`,
+      });
+    }
+    return next();
+  });
+}

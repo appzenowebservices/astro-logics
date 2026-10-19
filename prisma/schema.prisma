@@ -58,6 +58,7 @@ enum PlanType {
 }
 
 enum SubscriptionStatus {
+  PENDING
   ACTIVE
   EXPIRED
   CANCELLED
@@ -237,13 +238,25 @@ model User {
   accounts Account[]
   sessions Session[]
 
+  // Tenancy / SaaS
+  role          Role       @default(MEMBER)
+  plan          PlanType   @default(FREE)
+  status        UserStatus @default(ACTIVE)
+  planExpiresAt DateTime?
+
+  invitesCreated  Invite[]         @relation("InvitesCreated")
+  invitesUsed     Invite[]         @relation("InvitesUsed")
+  subscriptions   Subscription[]
+  posts           Post[]
+  tradingAccounts TradingAccount[]
+
   // Astrology Relations
   nativityCharts NativityChart[]
 
   // Trading Relations
   marketStateSnapshots MarketStateSnapshot[]
   tradeSignals         TradeSignal[]
-  chartDrawings      ChartDrawing[]
+  chartDrawings        ChartDrawing[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -479,45 +492,45 @@ model PlanetaryProfile {
   secondaryDomain String?
 
   // Incentive model inputs
-  dignity  String? // Exalted, Domicile, Detriment, Fall
-  strength Float?
-    // Raw scalar cognition vector (stored for quick queries)
-    agency             Float?
-    stability          Float?
-    abstraction        Float?
-    emotionality       Float?
-    novelty            Float?
-    coherence          Float?
-    sociality          Float?
-    futureOrientation  Float?
+  dignity           String? // Exalted, Domicile, Detriment, Fall
+  strength          Float?
+  // Raw scalar cognition vector (stored for quick queries)
+  agency            Float?
+  stability         Float?
+  abstraction       Float?
+  emotionality      Float?
+  novelty           Float?
+  coherence         Float?
+  sociality         Float?
+  futureOrientation Float?
 
-    // Structured symbolic/state layers
-    astroState        Json?
-    pressureState     Json?
-    behavioralState   Json?
-    relationalState   Json?
-    situationalState  Json?
-    narrativeState    Json?
-    metaState         Json?
+  // Structured symbolic/state layers
+  astroState       Json?
+  pressureState    Json?
+  behavioralState  Json?
+  relationalState  Json?
+  situationalState Json?
+  narrativeState   Json?
+  metaState        Json?
 
-    // Raw ontologies / snapshots
-    planetOntology Json?
-    signOntology   Json?
-    houseOntology  Json?
+  // Raw ontologies / snapshots
+  planetOntology Json?
+  signOntology   Json?
+  houseOntology  Json?
 
-    // Embeddings / latent representations
-    latentVector Json?
+  // Embeddings / latent representations
+  latentVector Json?
 
-    // Derived scalar metrics
-    symbolicPressure       Float?
-    tensionLevel           Float?
-    integrationDifficulty  Float?
-    manifestationStrength  Float?
+  // Derived scalar metrics
+  symbolicPressure      Float?
+  tensionLevel          Float?
+  integrationDifficulty Float?
+  manifestationStrength Float?
 
-    // Final synthesized numeric vector/state (JSON map)
-    finalState Json?
+  // Final synthesized numeric vector/state (JSON map)
+  finalState Json?
   // finalState   Json?
-  
+
   // ============= PLANETARY ENERGY BUDGET =============
   // expressionBandwidth Float? // Finite bandwidth (optional)
   // saturationLevel     Float? @default(0.0) // Over-aspected detection
@@ -752,20 +765,20 @@ model ConsciousnessState {
 // ============================================
 
 model MarketAssetProfile {
-  id              String   @id @default(auto()) @map("_id") @db.ObjectId
-  symbol          String   @unique
-  label           String?
-  category        String?
-  exchange        String?
-  birthDateTime   DateTime
-  birthTimestamp  BigInt
-  timezone        String   @default("UTC")
-  latitude        Float    @default(51.5074)
-  longitude       Float    @default(-0.1278)
-  locationName    String   @default("London")
-  coordinateSystem String  @default("SIDEREAL")
-  isDefault       Boolean  @default(false)
-  natalPlanets    Json?
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  symbol           String   @unique
+  label            String?
+  category         String?
+  exchange         String?
+  birthDateTime    DateTime
+  birthTimestamp   BigInt
+  timezone         String   @default("UTC")
+  latitude         Float    @default(51.5074)
+  longitude        Float    @default(-0.1278)
+  locationName     String   @default("London")
+  coordinateSystem String   @default("SIDEREAL")
+  isDefault        Boolean  @default(false)
+  natalPlanets     Json?
 
   marketStateSnapshots MarketStateSnapshot[]
 
@@ -774,9 +787,9 @@ model MarketAssetProfile {
 }
 
 model MarketStateSnapshot {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
   symbol    String
-  timeframe String   @default("")
+  timeframe String @default("")
   timestamp Int
 
   trendState       Json
@@ -787,14 +800,14 @@ model MarketStateSnapshot {
 
   embedding Json?
 
-  marketAssetProfileId String? @db.ObjectId
+  marketAssetProfileId String?             @db.ObjectId
   marketAssetProfile   MarketAssetProfile? @relation(fields: [marketAssetProfileId], references: [id], onDelete: SetNull)
 
-  userId    String?  @db.ObjectId
-  user      User?    @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
+  user   User?   @relation(fields: [userId], references: [id])
 
-  events    OperatorEventLog[]
-  signals   TradeSignal[]
+  events  OperatorEventLog[]
+  signals TradeSignal[]
 
   createdAt DateTime @default(now())
 
@@ -830,11 +843,11 @@ model TradeSignal {
   keyFactors      Json?
   executed        Boolean @default(false)
 
-  snapshotId String               @db.ObjectId
-  snapshot   MarketStateSnapshot  @relation(fields: [snapshotId], references: [id], onDelete: Cascade)
+  snapshotId String              @db.ObjectId
+  snapshot   MarketStateSnapshot @relation(fields: [snapshotId], references: [id], onDelete: Cascade)
 
-  userId    String?  @db.ObjectId
-  user      User?    @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
+  user   User?   @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
 
@@ -842,24 +855,166 @@ model TradeSignal {
   @@index([marketBias, createdAt])
 }
 
-
-
 model ChartDrawing {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  symbol    String
-  timeframe String   @default("")
-  drawingType String  // e.g., "trend-line", "fib-retracement", etc.
-  drawingId String    // unique id for the drawing on chart
-  anchors Json       // JSON array of {time, price} points
-  style Json?        // JSON for lineColor, lineWidth, fillColor, etc.
-  options Json?        // JSON for tool-specific options
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  symbol      String
+  timeframe   String @default("")
+  drawingType String // e.g., "trend-line", "fib-retracement", etc.
+  drawingId   String // unique id for the drawing on chart
+  anchors     Json // JSON array of {time, price} points
+  style       Json? // JSON for lineColor, lineWidth, fillColor, etc.
+  options     Json? // JSON for tool-specific options
 
-  userId    String?  @db.ObjectId
-  user      User?    @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
+  user   User?   @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([symbol, timeframe])
   @@index([userId, symbol])
+}
+
+// ============================================
+// SAAS: ROLES, INVITES, BILLING, PUBLISHING
+// ============================================
+
+enum Role {
+  ADMIN
+  ANALYST
+  MEMBER
+}
+
+enum UserStatus {
+  INVITED
+  ACTIVE
+  SUSPENDED
+}
+
+enum InviteStatus {
+  PENDING
+  CLAIMED
+  REVOKED
+  EXPIRED
+}
+
+enum PostKind {
+  TRADE_IDEA
+  ASTRO_READING
+}
+
+enum PostVisibility {
+  PUBLIC
+  MEMBERS
+  PREMIUM
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum TradingAccountStatus {
+  PENDING
+  CONNECTED
+  ERROR
+  DISABLED
+}
+
+model Invite {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  code        String       @unique
+  email       String?
+  role        Role         @default(MEMBER)
+  plan        PlanType     @default(FREE)
+  status      InviteStatus @default(PENDING)
+  note        String?
+  maxUses     Int          @default(1)
+  uses        Int          @default(0)
+  expiresAt   DateTime?
+  createdById String?      @db.ObjectId
+  createdBy   User?        @relation("InvitesCreated", fields: [createdById], references: [id])
+  usedById    String?      @db.ObjectId
+  usedBy      User?        @relation("InvitesUsed", fields: [usedById], references: [id])
+  usedAt      DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([status])
+  @@index([email])
+}
+
+model Waitlist {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  source    String?
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Subscription {
+  id             String             @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String             @db.ObjectId
+  user           User               @relation(fields: [userId], references: [id])
+  plan           PlanType
+  status         SubscriptionStatus @default(ACTIVE)
+  period         BillingPeriod      @default(MONTHLY)
+  provider       String             @default("razorpay")
+  providerSubId  String?
+  providerPlanId String?
+  currentStart   DateTime           @default(now())
+  currentEnd     DateTime?
+  cancelAtEnd    Boolean            @default(false)
+  amount         Int?
+  currency       String             @default("INR")
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  @@index([userId, status])
+  @@index([providerSubId])
+}
+
+model Post {
+  id          String         @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String         @unique
+  kind        PostKind
+  status      PostStatus     @default(DRAFT)
+  visibility  PostVisibility @default(MEMBERS)
+  title       String
+  excerpt     String?
+  body        String
+  payload     Json?
+  symbol      String?
+  coverImage  String?
+  authorId    String         @db.ObjectId
+  author      User           @relation(fields: [authorId], references: [id])
+  chartId     String?        @db.ObjectId
+  publishedAt DateTime?
+  views       Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([status, visibility, publishedAt])
+  @@index([kind, status])
+  @@index([authorId])
+}
+
+model TradingAccount {
+  id         String               @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String               @db.ObjectId
+  user       User                 @relation(fields: [userId], references: [id])
+  label      String
+  broker     String               @default("MT5")
+  login      String
+  server     String?
+  bridgeUrl  String?
+  status     TradingAccountStatus @default(PENDING)
+  isDefault  Boolean              @default(false)
+  lastSeenAt DateTime?
+  createdAt  DateTime             @default(now())
+  updatedAt  DateTime             @updatedAt
+
+  @@unique([userId, login, broker])
+  @@index([userId, status])
 }

@@ -1,10 +1,12 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import { LogOut, Loader2, LayoutDashboard } from "lucide-react";
+import { api } from "~/trpc/react";
 
-const NAV_LINKS = [
+const SECTION_LINKS = [
   { href: "#engine", label: "Engine" },
   { href: "#method", label: "Method" },
   { href: "#parliament", label: "Parliament" },
@@ -15,10 +17,31 @@ export default function Navbar() {
   // ==========================================================================================
 
   const { data: session, status } = useSession();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const me = api.user.me.useQuery(undefined, {
+    enabled: status === "authenticated",
+  });
 
   const accountLabel = session?.user?.name?.length
     ? session.user.name
     : session?.user?.email;
+
+  const isAnalyst = me.data?.role === "ADMIN" || me.data?.role === "ANALYST";
+  const isAdmin = me.data?.role === "ADMIN";
+
+  const links = [
+    ...(isHome
+      ? SECTION_LINKS
+      : [{ href: "/", label: "Home" }]),
+    { href: "/ideas", label: "Ideas" },
+    ...(status === "authenticated"
+      ? [{ href: "/dashboard", label: "Dashboard" }]
+      : []),
+    ...(isAnalyst ? [{ href: "/studio", label: "Studio" }] : []),
+    ...(isAdmin ? [{ href: "/admin", label: "Admin" }] : []),
+  ];
   // ==========================================================================================
 
   return (
@@ -42,17 +65,28 @@ export default function Navbar() {
         </Link>
 
         {/* Section links */}
-        <div className="hidden items-center gap-9 lg:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="group relative font-mono text-[10px] font-bold tracking-[0.25em] text-[var(--color-primary-light)]/60 uppercase transition-colors hover:text-[var(--color-primary-light)]"
-            >
-              {link.label}
-              <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-[var(--color-accent-orange)] transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
+        <div className="hidden items-center gap-7 lg:flex">
+          {links.map((link) => {
+            const active = !link.href.startsWith("#") && pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`group relative font-mono text-[10px] font-bold tracking-[0.25em] uppercase transition-colors ${
+                  active
+                    ? "text-[var(--color-accent-orange)]"
+                    : "text-[var(--color-primary-light)]/60 hover:text-[var(--color-primary-light)]"
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute -bottom-1.5 left-0 h-px bg-[var(--color-accent-orange)] transition-all duration-300 ${
+                    active ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </div>
 
         {/* Session actions */}

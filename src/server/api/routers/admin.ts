@@ -1,64 +1,87 @@
 import { z } from "zod";
-import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
+import { TRPCError } from "@trpc/server";
+import { createTRPCRouter, adminProcedure } from "~/server/api/trpc";
 import { db } from "~/server/db";
 
-function checkAdmin(ctx: any) {
-  const adminEmail = process.env.ADMIN_EMAIL;
-  if (process.env.NODE_ENV === "development") return true;
-  return Boolean(
-    ctx.session?.user?.email && ctx.session.user.email === adminEmail,
-  );
-}
+const ROLE = z.enum(["ADMIN", "ANALYST", "MEMBER"]);
+const PLAN = z.enum(["FREE", "BASIC", "PREMIUM", "ENTERPRISE"]);
+const STATUS = z.enum(["INVITED", "ACTIVE", "SUSPENDED"]);
 
 export const adminRouter = createTRPCRouter({
-  checkIsAdmin: protectedProcedure.query(({ ctx }) => {
-    return { isAdmin: checkAdmin(ctx) };
+  /** Dashboard counters for the admin console. */
+  overview: adminProcedure.query(async () => {
+    const [users, activeUsers, suspended, charts, posts, published, invites] =
+      await Promise.all([
+        db.user.count(),
+        db.user.count({ where: { status: "ACTIVE" } }),
+        db.user.count({ where: { status: "SUSPENDED" } }),
+        db.nativityChart.count(),
+        db.post.count(),
+        db.post.count({ where: { status: "PUBLISHED" } }),
+        db.invite.count({ where: { status: "PENDING" } }),
+      ]);
+
+    return { users, activeUsers, suspended, charts, posts, published, invites };
   }),
 
-  // Users: list / update / delete
-  listUsers: protectedProcedure.query(async ({ ctx }) => {
-    if (!checkAdmin(ctx)) throw new Error("Unauthorized");
+  // ── Users ────────────────────────────────────────────────────────────────
+  listUsers: adminProcedure.query(async () => {
     return db.user.findMany({
       select: {
         id: true,
         name: true,
         email: true,
         mobile: true,
+        role: true,
+        plan: true,
+        status: true,
         createdAt: true,
+        _count: { select: { nativityCharts: true, posts: true } },
       },
       orderBy: { createdAt: "desc" },
       take: 200,
     });
   }),
 
-  updateUser: protectedProcedure
+  updateUser: adminProcedure
     .input(
       z.object({
         id: z.string(),
         name: z.string().optional(),
-        email: z.string().optional(),
+        email: z.string().email().optional(),
         mobile: z.string().optional(),
+        role: ROLE.optional(),
+        plan: PLAN.optional(),
+        status: STATUS.optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      if (!checkAdmin(ctx)) throw new Error("Unauthorized");
-      return db.user.update({
-        where: { id: input.id },
-        data: { name: input.name, email: input.email, mobile: input.mobile },
-      });
+      const { id, ...data } = input;
+
+      if (id === ctx.account.id && data.role && data.role !== "ADMIN") {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "You cannot demote your own admin account",
+        });
+      }
+
+      return db.user.update({ where: { id }, data });
     }),
 
-  deleteUser: protectedProcedure
+  deleteUser: adminProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      if (!checkAdmin(ctx)) throw new Error("Unauthorized");
-      // cascade deletes are handled by Prisma schema if configured
+      if (input.id === ctx.account.id) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "You cannot delete your own account",
+        });
+      }
       return db.user.delete({ where: { id: input.id } });
     }),
 
-  // Nativity charts across all users
-  getAllNativityCharts: protectedProcedure.query(async ({ ctx }) => {
-    if (!checkAdmin(ctx)) throw new Error("Unauthorized");
+  // ── Astrology data ──────────────────────────────────────────────────────
+  getAllNativityCharts: adminProcedure.query(async () => {
     return db.nativityChart.findMany({
       select: {
         id: true,
@@ -73,10 +96,9 @@ export const adminRouter = createTRPCRouter({
     });
   }),
 
-  getNativityChartAdmin: protectedProcedure
+  getNativityChartAdmin: adminProcedure
     .input(z.object({ id: z.string() }))
-    .query(async ({ ctx, input }) => {
-      if (!checkAdmin(ctx)) throw new Error("Unauthorized");
+    .query(async ({ input }) => {
       return db.nativityChart.findUnique({
         where: { id: input.id },
         include: {
@@ -88,7 +110,7 @@ export const adminRouter = createTRPCRouter({
       });
     }),
 
-  updateNativityChartAdmin: protectedProcedure
+  updateNativityChartAdmin: adminProcedure
     .input(
       z.object({
         id: z.string(),
@@ -97,27 +119,19 @@ export const adminRouter = createTRPCRouter({
         locationName: z.string().optional(),
       }),
     )
-    .mutation(async ({ ctx, input }) => {
-      if (!checkAdmin(ctx)) throw new Error("Unauthorized");
-      return db.nativityChart.update({
-        where: { id: input.id },
-        data: {
-          name: input.name,
-          description: input.description,
-          locationName: input.locationName,
-        },
-      });
+    .mutation(async ({ input }) => {
+      const { id, ...data } = input;
+      return db.nativityChart.update({ where: { id }, data });
     }),
-  deleteNativityChartAdmin: protectedProcedure
+
+  deleteNativityChartAdmin: adminProcedure
     .input(z.object({ id: z.string() }))
-    .mutation(async ({ ctx, input }) => {
-      if (!checkAdmin(ctx)) throw new Error("Unauthorized");
+    .mutation(async ({ input }) => {
       return db.nativityChart.delete({ where: { id: input.id } });
     }),
 
-  // Current stories (global)
-  listCurrentStories: protectedProcedure.query(async ({ ctx }) => {
-    if (!checkAdmin(ctx)) throw new Error("Unauthorized");
+  // ── Stories ─────────────────────────────────────────────────────────────
+  listCurrentStories: adminProcedure.query(async () => {
     return db.currentStory.findMany({
       include: {
         nativityChart: { select: { id: true, name: true, userId: true } },
@@ -127,11 +141,24 @@ export const adminRouter = createTRPCRouter({
     });
   }),
 
-  deleteCurrentStory: protectedProcedure
+  deleteCurrentStory: adminProcedure
     .input(z.object({ id: z.string() }))
-    .mutation(async ({ ctx, input }) => {
-      if (!checkAdmin(ctx)) throw new Error("Unauthorized");
+    .mutation(async ({ input }) => {
       return db.currentStory.delete({ where: { id: input.id } });
+    }),
+
+  // ── Waitlist ────────────────────────────────────────────────────────────
+  listWaitlist: adminProcedure.query(async () => {
+    return db.waitlist.findMany({ orderBy: { createdAt: "desc" }, take: 500 });
+  }),
+
+  approveWaitlist: adminProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ input }) => {
+      return db.waitlist.update({
+        where: { id: input.id },
+        data: { approved: true },
+      });
     }),
 });
 

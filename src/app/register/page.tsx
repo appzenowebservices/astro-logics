@@ -12,6 +12,7 @@ import {
   Moon,
   Orbit,
   ChevronRight,
+  Ticket,
 } from "lucide-react";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
@@ -26,6 +27,7 @@ export default function RegisterPage() {
     email: "",
     mobile: "",
     password: "",
+    inviteCode: "",
   });
   const [error, setError] = useState("");
 
@@ -50,9 +52,8 @@ export default function RegisterPage() {
       name: formData.name,
       email: formData.email,
       mobile: formData.mobile || undefined,
-      passwordHash: formData.password
-        ? `hashed_${formData.password}`
-        : undefined,
+      inviteCode: formData.inviteCode.trim() || undefined,
+      password: formData.password,
     });
   };
 
@@ -199,6 +200,28 @@ export default function RegisterPage() {
                   placeholder="••••••••"
                 />
               </div>
+            </div>
+
+            {/* Invite code */}
+            <div className="group space-y-1">
+              <label className="ml-1 text-[10px] font-black tracking-[0.3em] text-[var(--color-ring-bronze)] uppercase group-focus-within:text-[var(--color-accent-glow)]">
+                Invite Code
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  value={formData.inviteCode}
+                  onChange={(e) =>
+                    handleInputChange("inviteCode", e.target.value.toUpperCase())
+                  }
+                  className="w-full rounded-2xl border border-[var(--color-ring-bronze)]/20 bg-[var(--color-primary-light)]/5 px-6 py-4 font-mono text-sm font-medium tracking-[0.15em] text-[var(--color-primary-light)] uppercase transition-all placeholder:text-[var(--color-ring-bronze)]/30 focus:border-[var(--color-accent-glow)] focus:outline-none"
+                  placeholder="KAAL-XXXX-XXXX"
+                />
+                <Ticket className="absolute top-1/2 right-5 h-4 w-4 -translate-y-1/2 text-[var(--color-ring-bronze)]/40" />
+              </div>
+              <p className="ml-1 text-[10px] font-medium text-[var(--color-ring-bronze)]/70">
+                Leave blank if registration is open.
+              </p>
             </div>
 
             <button

@@ -128,6 +128,10 @@ exports.Prisma.UserScalarFieldEnum = {
   lastLoginAt: 'lastLoginAt',
   totalGenerations: 'totalGenerations',
   totalStorageUsed: 'totalStorageUsed',
+  role: 'role',
+  plan: 'plan',
+  status: 'status',
+  planExpiresAt: 'planExpiresAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -456,6 +460,85 @@ exports.Prisma.ChartDrawingScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.InviteScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  email: 'email',
+  role: 'role',
+  plan: 'plan',
+  status: 'status',
+  note: 'note',
+  maxUses: 'maxUses',
+  uses: 'uses',
+  expiresAt: 'expiresAt',
+  createdById: 'createdById',
+  usedById: 'usedById',
+  usedAt: 'usedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WaitlistScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  source: 'source',
+  approved: 'approved',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SubscriptionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  plan: 'plan',
+  status: 'status',
+  period: 'period',
+  provider: 'provider',
+  providerSubId: 'providerSubId',
+  providerPlanId: 'providerPlanId',
+  currentStart: 'currentStart',
+  currentEnd: 'currentEnd',
+  cancelAtEnd: 'cancelAtEnd',
+  amount: 'amount',
+  currency: 'currency',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PostScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  kind: 'kind',
+  status: 'status',
+  visibility: 'visibility',
+  title: 'title',
+  excerpt: 'excerpt',
+  body: 'body',
+  payload: 'payload',
+  symbol: 'symbol',
+  coverImage: 'coverImage',
+  authorId: 'authorId',
+  chartId: 'chartId',
+  publishedAt: 'publishedAt',
+  views: 'views',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TradingAccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  label: 'label',
+  broker: 'broker',
+  login: 'login',
+  server: 'server',
+  bridgeUrl: 'bridgeUrl',
+  status: 'status',
+  isDefault: 'isDefault',
+  lastSeenAt: 'lastSeenAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -465,6 +548,25 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
+exports.Role = exports.$Enums.Role = {
+  ADMIN: 'ADMIN',
+  ANALYST: 'ANALYST',
+  MEMBER: 'MEMBER'
+};
+
+exports.PlanType = exports.$Enums.PlanType = {
+  FREE: 'FREE',
+  BASIC: 'BASIC',
+  PREMIUM: 'PREMIUM',
+  ENTERPRISE: 'ENTERPRISE'
+};
+
+exports.UserStatus = exports.$Enums.UserStatus = {
+  INVITED: 'INVITED',
+  ACTIVE: 'ACTIVE',
+  SUSPENDED: 'SUSPENDED'
+};
+
 exports.TimeResolution = exports.$Enums.TimeResolution = {
   MINUTE: 'MINUTE',
   SECOND: 'SECOND',
@@ -480,6 +582,52 @@ exports.PlanetDirection = exports.$Enums.PlanetDirection = {
   DIRECT: 'DIRECT',
   RETROGRADE: 'RETROGRADE',
   STATIONARY: 'STATIONARY'
+};
+
+exports.InviteStatus = exports.$Enums.InviteStatus = {
+  PENDING: 'PENDING',
+  CLAIMED: 'CLAIMED',
+  REVOKED: 'REVOKED',
+  EXPIRED: 'EXPIRED'
+};
+
+exports.SubscriptionStatus = exports.$Enums.SubscriptionStatus = {
+  PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED',
+  SUSPENDED: 'SUSPENDED'
+};
+
+exports.BillingPeriod = exports.$Enums.BillingPeriod = {
+  MONTHLY: 'MONTHLY',
+  YEARLY: 'YEARLY',
+  LIFETIME: 'LIFETIME',
+  ONE_TIME: 'ONE_TIME'
+};
+
+exports.PostKind = exports.$Enums.PostKind = {
+  TRADE_IDEA: 'TRADE_IDEA',
+  ASTRO_READING: 'ASTRO_READING'
+};
+
+exports.PostStatus = exports.$Enums.PostStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED'
+};
+
+exports.PostVisibility = exports.$Enums.PostVisibility = {
+  PUBLIC: 'PUBLIC',
+  MEMBERS: 'MEMBERS',
+  PREMIUM: 'PREMIUM'
+};
+
+exports.TradingAccountStatus = exports.$Enums.TradingAccountStatus = {
+  PENDING: 'PENDING',
+  CONNECTED: 'CONNECTED',
+  ERROR: 'ERROR',
+  DISABLED: 'DISABLED'
 };
 
 exports.Prisma.ModelName = {
@@ -502,7 +650,12 @@ exports.Prisma.ModelName = {
   MarketStateSnapshot: 'MarketStateSnapshot',
   OperatorEventLog: 'OperatorEventLog',
   TradeSignal: 'TradeSignal',
-  ChartDrawing: 'ChartDrawing'
+  ChartDrawing: 'ChartDrawing',
+  Invite: 'Invite',
+  Waitlist: 'Waitlist',
+  Subscription: 'Subscription',
+  Post: 'Post',
+  TradingAccount: 'TradingAccount'
 };
 
 /**
