@@ -1,16 +1,22 @@
 import { expect, test } from "@playwright/test";
-import { hasAdminCredentials, login, skipWithoutCredentials } from "./helpers/auth";
+import {
+  hasAdminCredentials,
+  loginAdmin,
+  skipWithoutCredentials,
+} from "./helpers/auth";
 
 /**
  * RBAC — role checks are enforced server-side and surfaced as gates.
- * A member must never see the console or the composer.
+ * Admins authenticate through the dedicated env-backed /admin/login route.
  */
 test.describe("rbac", () => {
-  test("anonymous visitors cannot open the admin console", async ({ page }) => {
+  test("guests are redirected to the admin sign-in", async ({ page }) => {
     await page.goto("/admin");
 
-    await expect(page.getByRole("heading", { name: /admins only/i })).toBeVisible();
-    await expect(page.getByText(/control plane/i)).toHaveCount(0);
+    await page.waitForURL("**/admin/login", { timeout: 15_000 });
+    await expect(
+      page.getByRole("heading", { name: /administrator access/i }),
+    ).toBeVisible();
   });
 
   test("anonymous visitors cannot open the studio", async ({ page }) => {
@@ -22,12 +28,11 @@ test.describe("rbac", () => {
     await expect(page.getByRole("button", { name: /save draft/i })).toHaveCount(0);
   });
 
-  test("admin sees the console, the studio and the admin nav", async ({ page }) => {
+  test("admin signs in at /admin/login and sees the console", async ({ page }) => {
     test.skip(!hasAdminCredentials(), skipWithoutCredentials());
 
-    await login(page);
+    await loginAdmin(page);
 
-    await page.goto("/admin");
     await expect(page.getByRole("heading", { name: /admin console/i })).toBeVisible();
     await expect(page.getByText(/open invites/i)).toBeVisible();
     await expect(page.getByRole("button", { name: /^invites$/i })).toBeVisible();
@@ -37,5 +42,12 @@ test.describe("rbac", () => {
 
     await expect(page.getByRole("link", { name: /^admin$/i })).toBeVisible();
     await expect(page.getByRole("link", { name: /^studio$/i })).toBeVisible();
+  });
+
+  test("member accounts see the admins-only gate", async ({ page }) => {
+    test.fixme(
+      true,
+      "Needs a seeded MEMBER account — set MEMBER_EMAIL / MEMBER_PASSWORD and log in via /login.",
+    );
   });
 });

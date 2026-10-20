@@ -1,6 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { motion } from "framer-motion";
 import { api } from "~/trpc/react";
 import Navbar from "../components/Navbar";
 import {
@@ -19,10 +23,32 @@ const ROLE_OPTIONS = ["ADMIN", "ANALYST", "MEMBER"] as const;
 const PLAN_OPTIONS = ["FREE", "BASIC", "PREMIUM", "ENTERPRISE"] as const;
 const STATUS_OPTIONS = ["INVITED", "ACTIVE", "SUSPENDED"] as const;
 
+/** Full-screen boot state so the console never flashes empty. */
+function ConsoleBootState({ title }: { title: string }) {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center gap-5 bg-[var(--color-primary-light)] text-[var(--color-primary-dark)]">
+      <div className="relative grid h-12 w-12 place-items-center">
+        <span className="absolute inset-0 animate-pulse rounded-full bg-[var(--color-accent-orange)]/15" />
+        <span className="absolute inset-0 animate-spin rounded-full border-2 border-[var(--color-accent-orange)] border-t-transparent" />
+      </div>
+      <p className="font-mono text-[10px] font-black tracking-[0.3em] uppercase opacity-60">
+        {title}
+      </p>
+    </div>
+  );
+}
+
 export default function AdminPage() {
+  const router = useRouter();
+  const { status } = useSession();
   const utils = api.useUtils();
   const [tab, setTab] = useState<Tab>("users");
   const [copied, setCopied] = useState<string | null>(null);
+
+  // Guests are sent to the dedicated administrator sign-in.
+  useEffect(() => {
+    if (status === "unauthenticated") router.replace("/admin/login");
+  }, [status, router]);
 
   const me = api.user.me.useQuery();
   const isAdmin = me.data?.role === "ADMIN";
@@ -57,17 +83,36 @@ export default function AdminPage() {
     expiresInDays: 30,
   });
 
-  if (!me.isLoading && !isAdmin) {
+  if (status === "unauthenticated") {
+    return <ConsoleBootState title="Redirecting to administrator sign in…" />;
+  }
+
+  if (me.isLoading) {
+    return <ConsoleBootState title="Verifying administrator access…" />;
+  }
+
+  if (!isAdmin) {
     return (
       <div className="min-h-screen bg-[var(--color-primary-light)] text-[var(--color-primary-dark)]">
         <Navbar />
-        <div className="mx-auto max-w-3xl px-6 py-24 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto max-w-3xl px-6 py-24 text-center"
+        >
           <ShieldAlert className="mx-auto mb-4 h-9 w-9 text-[var(--color-accent-orange)]" />
           <h1 className="text-2xl font-black tracking-tight">Admins only</h1>
           <p className="mt-2 text-sm font-medium opacity-60">
             Your account does not have access to this console.
           </p>
-        </div>
+          <Link
+            href="/admin/login"
+            className="mt-7 inline-flex rounded-full border border-[var(--color-primary-dark)]/25 px-6 py-3 font-mono text-[10px] font-black tracking-[0.18em] uppercase transition-colors hover:border-[var(--color-primary-dark)]/60"
+          >
+            Sign in as an administrator
+          </Link>
+        </motion.div>
       </div>
     );
   }
@@ -83,7 +128,12 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--color-primary-light)] text-[var(--color-primary-dark)]">
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      className="min-h-screen bg-[var(--color-primary-light)] text-[var(--color-primary-dark)]"
+    >
       <Navbar />
 
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
@@ -390,6 +440,6 @@ export default function AdminPage() {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

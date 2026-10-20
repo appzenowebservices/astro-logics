@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { hasAdminCredentials, login, skipWithoutCredentials } from "./helpers/auth";
+import { hasAdminCredentials, loginAdmin, skipWithoutCredentials } from "./helpers/auth";
 
 /**
  * Publishing — the studio writes a post, publishing flips it live, and the
@@ -15,7 +15,7 @@ test.describe("publishing", () => {
     const excerpt = "Excerpt written by the browser spec.";
     const body = "An automated reading written by the browser spec.";
 
-    await login(page);
+    await loginAdmin(page);
     await page.goto("/studio");
 
     await page.getByLabel("Title").fill(title);

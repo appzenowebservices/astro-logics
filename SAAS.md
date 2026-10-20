@@ -116,3 +116,24 @@ nobody is locked out, but every new account is properly hashed.
 
 Suspended accounts (`status = SUSPENDED`) cannot sign in.
 
+### Admin login (environment-backed)
+
+Admins sign in at **`/admin/login`**, which uses a second NextAuth provider
+(`admin-credentials`) that reads credentials from the server environment:
+
+```env
+ADMIN_EMAIL=you@example.com
+ADMIN_PASSWORD=a-long-random-secret
+```
+
+- Both values are server-only — never use `NEXT_PUBLIC_*` for the password.
+- Comparison is constant-time (`timingSafeEqual`).
+- On success the matching database user is created, or promoted to
+  `role=ADMIN` / `status=ACTIVE`, so RBAC keeps reading from the database.
+- If either variable is unset, the admin route cannot authenticate anyone.
+- `/admin` redirects guests to `/admin/login`; non-admin members still see the
+  "Admins only" gate.
+
+`ADMIN_EMAILS` (comma-separated) still controls which emails are created as
+admins at registration.
+

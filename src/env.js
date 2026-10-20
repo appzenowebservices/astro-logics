@@ -19,6 +19,8 @@ export const env = createEnv({
     OPENROUTER_API_KEY: z.string().optional(),
 
     // SaaS
+    ADMIN_EMAIL: z.string().optional(),
+    ADMIN_PASSWORD: z.string().optional(),
     ADMIN_EMAILS: z.string().optional(),
     INVITE_ONLY: z.string().optional(),
     RAZORPAY_KEY_ID: z.string().optional(),
@@ -52,6 +54,8 @@ export const env = createEnv({
     NEXT_PUBLIC_FIREBASE_VAPID_KEY: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
 
     // SaaS
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
     ADMIN_EMAILS: process.env.ADMIN_EMAILS,
     INVITE_ONLY: process.env.INVITE_ONLY,
     RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID,

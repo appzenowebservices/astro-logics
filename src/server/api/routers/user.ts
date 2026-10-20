@@ -41,9 +41,12 @@ export const userRouter = createTRPCRouter({
         });
       }
 
-      // Bootstrap admins listed in ADMIN_EMAILS are always allowed through.
-      const adminEmails = (process.env.ADMIN_EMAILS ?? "")
-        .split(",")
+      // Bootstrap admins listed in ADMIN_EMAILS (and ADMIN_EMAIL) are always
+      // allowed through and get the ADMIN role on registration.
+      const adminEmails = [
+        ...(process.env.ADMIN_EMAILS ?? "").split(","),
+        process.env.ADMIN_EMAIL ?? "",
+      ]
         .map((entry) => entry.trim().toLowerCase())
         .filter(Boolean);
       const isBootstrapAdmin = adminEmails.includes(email);

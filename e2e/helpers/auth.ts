@@ -41,3 +41,22 @@ export const ADMINS_ONLY = /admins only/i;
 
 /** The studio gate text shown to non-analysts. */
 export const ANALYSTS_ONLY = /analyst access required/i;
+
+/**
+ * Administrator sign-in through the dedicated env-backed route.
+ * Uses ADMIN_EMAIL / ADMIN_PASSWORD checked server-side.
+ */
+export async function loginAdmin(
+  page: Page,
+  email: string = ADMIN_EMAIL,
+  password: string = ADMIN_PASSWORD,
+): Promise<void> {
+  await page.goto("/admin/login");
+
+  await page.getByLabel("Admin email").fill(email);
+  await page.getByLabel("Admin password").fill(password);
+  await page.getByRole("button", { name: /enter console/i }).click();
+
+  await page.waitForURL("**/admin", { timeout: 20_000 });
+  await expect(page).toHaveURL(/\/admin$/);
+}

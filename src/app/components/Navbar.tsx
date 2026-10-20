@@ -1,8 +1,10 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { LogOut, Loader2, LayoutDashboard } from "lucide-react";
 import { api } from "~/trpc/react";
 
@@ -18,11 +20,25 @@ export default function Navbar() {
 
   const { data: session, status } = useSession();
   const pathname = usePathname();
+  const router = useRouter();
   const isHome = pathname === "/";
+  const [signingOut, setSigningOut] = useState(false);
 
   const me = api.user.me.useQuery(undefined, {
     enabled: status === "authenticated",
   });
+
+  /**
+   * Smooth sign-out: show a short overlay, clear the session, then land on the
+   * landing page instead of an abrupt reload.
+   */
+  async function handleSignOut() {
+    setSigningOut(true);
+    await new Promise((resolve) => setTimeout(resolve, 450));
+    await signOut({ redirect: false });
+    router.replace("/");
+    router.refresh();
+  }
 
   const accountLabel = session?.user?.name?.length
     ? session.user.name
@@ -125,8 +141,9 @@ export default function Navbar() {
               </Link>
 
               <button
-                onClick={() => signOut({ callbackUrl: "/" })}
-                className="group flex items-center gap-1.5 font-mono text-[10px] font-bold tracking-[0.2em] text-[var(--color-primary-light)]/50 uppercase transition-all hover:text-[var(--color-accent-orange)]"
+                onClick={handleSignOut}
+                disabled={signingOut}
+                className="group flex items-center gap-1.5 font-mono text-[10px] font-bold tracking-[0.2em] text-[var(--color-primary-light)]/50 uppercase transition-all hover:text-[var(--color-accent-orange)] disabled:opacity-60"
               >
                 <LogOut className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 <span className="hidden sm:inline">Exit</span>
@@ -135,6 +152,40 @@ export default function Navbar() {
           )}
         </div>
       </nav>
+
+      {/* Sign-out transition — keeps the session clearing from feeling abrupt */}
+      <AnimatePresence>
+        {signingOut && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-6 bg-[var(--color-primary-dark)]/95 backdrop-blur-md"
+            role="status"
+            aria-live="polite"
+          >
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col items-center gap-5"
+            >
+              <Image
+                src="/logo.png"
+                alt="Kaalvanta logo"
+                width={152}
+                height={80}
+                className="h-16 w-auto animate-pulse object-contain drop-shadow-[0_0_30px_rgba(234,221,189,0.3)]"
+              />
+              <p className="font-mono text-[10px] font-black tracking-[0.3em] text-[var(--color-primary-light)]/60 uppercase">
+                Signing out…
+              </p>
+              <Loader2 className="h-5 w-5 animate-spin text-[var(--color-accent-orange)]" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
