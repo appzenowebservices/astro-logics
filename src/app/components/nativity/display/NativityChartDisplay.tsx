@@ -36,36 +36,31 @@ import NativityCharacterTab from "./NativityCharacterTab";
 import NativityAgentTab from "./NativityAgentTab"; // ... other imports
 
 const TAB_GROUPS = [
-  // {
-  //   group: "Identity",
-  //   items: [
-  //     { id: 'character', label: 'Character', icon: <User size={14} /> },
-  //     { id: 'agent', label: 'Astro Agent', icon: <Bot size={14} /> },
-  //     { id: 'profiles', label: 'Profiles', icon: <Sparkles size={14} /> },
-  //   ]
-  // },
   {
     group: "Narrative",
     items: [
-      // { id: 'story', label: 'The Story', icon: <ScrollText size={14} /> },
       { id: "current", label: "Today’s Stage", icon: <Theater size={14} /> },
-      // { id: 'timeline', label: 'Timeline', icon: <CalendarDays size={14} /> },
+      { id: "story", label: "The Story", icon: <ScrollText size={14} /> },
+      { id: "timeline", label: "Timeline", icon: <CalendarDays size={14} /> },
     ],
   },
-  // {
-  //   group: "Mechanics",
-  //   items: [
-  //     { id: 'planets', label: 'Planets', icon: <Globe2 size={14} /> },
-  //     { id: 'aspects', label: 'Aspects', icon: <Zap size={14} /> },
-  //     { id: 'geometry', label: 'Geometry', icon: <Compass size={14} /> },
-  //   ]
-  // },
+  {
+    group: "Identity",
+    items: [
+      { id: "profiles", label: "Profiles", icon: <Sparkles size={14} /> },
+    ],
+  },
+  {
+    group: "Mechanics",
+    items: [
+      { id: "planets", label: "Planets", icon: <Globe2 size={14} /> },
+      { id: "aspects", label: "Aspects", icon: <Zap size={14} /> },
+      { id: "geometry", label: "Geometry", icon: <Compass size={14} /> },
+    ],
+  },
   {
     group: "Play",
-    items: [
-      { id: "meet", label: "Meet Cast", icon: <Users size={14} /> },
-      // { id: 'game', label: 'Game of Life', icon: <Gamepad2 size={14} /> },
-    ],
+    items: [{ id: "meet", label: "Meet Cast", icon: <Users size={14} /> }],
   },
 ];
 
@@ -95,7 +90,7 @@ export default function NativityChartDisplay({
             <div className="rounded-lg border border-[var(--color-accent-orange)]/20 bg-[var(--color-accent-orange)]/10 p-2">
               <Orbit size={18} className="text-[var(--color-accent-orange)]" />
             </div>
-            <h1 className="text-[10px] font-black tracking-[0.4em] text-[var(--color-primary-light)] uppercase">
+            <h1 className="text-[12px] font-black tracking-[0.4em] text-[var(--color-primary-light)] uppercase">
               Systems
             </h1>
           </div>
@@ -104,7 +99,7 @@ export default function NativityChartDisplay({
         <nav className="custom-scrollbar flex-1 overflow-y-auto px-4 pb-6">
           {TAB_GROUPS.map((group, idx) => (
             <div key={group.group} className={idx !== 0 ? "mt-10" : ""}>
-              <h3 className="mb-4 px-4 text-[9px] font-black tracking-[0.3em] text-[var(--color-ring-bronze)] uppercase opacity-50">
+              <h3 className="mb-4 px-4 text-[11px] font-black tracking-[0.3em] text-[var(--color-ring-bronze)] uppercase opacity-50">
                 {group.group}
               </h3>
               <div className="space-y-1">
@@ -128,7 +123,7 @@ export default function NativityChartDisplay({
                       >
                         {tab.icon}
                       </span>
-                      <span className="text-[10px] font-black tracking-widest uppercase">
+                      <span className="text-[12px] font-black tracking-widest uppercase">
                         {tab.label}
                       </span>
                       {isActive && (
@@ -148,14 +143,14 @@ export default function NativityChartDisplay({
         {/* Vessel ID Footer */}
         <div className="border-t border-[var(--color-ring-bronze)]/10 p-6">
           <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--color-ring-bronze)]/20 bg-[var(--color-primary-dark)] text-[10px] font-black text-[var(--color-accent-orange)]">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--color-ring-bronze)]/20 bg-[var(--color-primary-dark)] text-[12px] font-black text-[var(--color-accent-orange)]">
               {chartId.substring(0, 2).toUpperCase()}
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-[8px] font-black tracking-tighter text-[var(--color-ring-bronze)] uppercase">
+              <p className="text-[10px] font-black tracking-tighter text-[var(--color-ring-bronze)] uppercase">
                 Manifest ID
               </p>
-              <p className="truncate font-mono text-[9px] text-[var(--color-primary-light)]/40">
+              <p className="truncate font-mono text-[11px] text-[var(--color-primary-light)]/40">
                 {chartId}
               </p>
             </div>
@@ -186,15 +181,27 @@ export default function NativityChartDisplay({
                 className="h-full w-full"
               >
                 {/* Tab content rendering logic remains the same */}
-                {/* {activeTab === 'timeline' && <NativityTimelineTab nativityChartId={chartId} />}
-                {activeTab === 'character' && <NativityCharacterTab nativityChartId={chartId} />}
-                {activeTab === 'agent' && <NativityAgentTab nativityChartId={chartId} />}
-                {activeTab === 'planets' && planetsData && <NativityPlanetsTab planets={planetsData.planets} />}
-                {activeTab === 'game' && <NativityGameOfLifeTab nativityChartId={chartId} />}
-                {activeTab === 'aspects' && <NativityAspectsTable aspects={aspects} />}
-                {activeTab === 'geometry' && <NativityGeometryView distances={angularDistances} />}
-                {activeTab === 'profiles' && <NativityProfilesView profiles={planetaryProfiles} planets={planets} />}
-                {activeTab === 'story' && <NativityStoryTab nativityChartId={chartId} />} */}
+                {activeTab === "timeline" && (
+                  <NativityTimelineTab nativityChartId={chartId} />
+                )}
+                {activeTab === "planets" && planetsData && (
+                  <NativityPlanetsTab planets={planetsData.planets} />
+                )}
+                {activeTab === "aspects" && (
+                  <NativityAspectsTable aspects={aspects} />
+                )}
+                {activeTab === "geometry" && (
+                  <NativityGeometryView distances={angularDistances} />
+                )}
+                {activeTab === "profiles" && (
+                  <NativityProfilesView
+                    profiles={planetaryProfiles}
+                    planets={planets}
+                  />
+                )}
+                {activeTab === "story" && (
+                  <NativityStoryTab nativityChartId={chartId} />
+                )}
                 {activeTab === "meet" && (
                   <NativityMeetPlanetsTab nativityChartId={chartId} />
                 )}

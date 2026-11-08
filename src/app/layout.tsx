@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 
 import { type Metadata } from "next";
-import { Manrope, Cormorant_Garamond, Geist_Mono } from "next/font/google";
+import { Manrope, Cormorant_Garamond, Geist_Mono, Anton } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { SessionProvider } from "next-auth/react";
@@ -58,13 +58,20 @@ const codeFont = Geist_Mono({
   variable: "--font-code",
 });
 
+/** Poster face — condensed, very heavy. Campaign/comic headlines only. */
+const posterFont = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-poster-face",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      className={`${bodyFont.variable} ${displayFont.variable} ${codeFont.variable}`}
+      className={`${bodyFont.variable} ${displayFont.variable} ${codeFont.variable} ${posterFont.variable}`}
     >
       <body>
         <SessionProvider>

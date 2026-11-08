@@ -1,11 +1,11 @@
 # Kaalvanta Trading (`trading/`)
 
 The single home for the trading stack: the **algo-trader MCP server**, the
-shared **market-state analysis engine**, and the Python **MT5 bridge** it
-spawns and manages as a child process.
+shared **market-state analysis engine**, the Python **MT5 bridge** it spawns,
+and a local **Timestral forecasting service**.
 
-Live MT5 market data, market-state analysis, and gated order execution — one
-product, three layers.
+Live MT5 market data, market-state analysis, probabilistic forecasts, and
+gated order execution — one product, four layers.
 
 ## Layout
 
@@ -16,6 +16,7 @@ trading/
   engine/     shared analysis engine — consumed by the Next app
               (MarketStateEngine + extractors + operators)
   bridge/     Python FastAPI bridge → MetaTrader5 (bridge.py + bridge_mock.py)
+  forecast/   Python FastAPI service wrapping Mistral Timestral (quantiles)
   skill/      SKILL.md — how an agent operates this system
   scripts/    smoke test
 ```
@@ -34,15 +35,19 @@ talks to the MT5 terminal, and hermes/paperclip orchestrate the agent.
 # 1. install TS deps + bootstrap the Python bridge venv
 npm install
 npm run bridge:install        # creates bridge/env with fastapi/uvicorn/MetaTrader5
+npm run forecast:install      # creates forecast/env with torch + timestral (large)
 
 # 2. configure
 cp .env.example .env
 #   edit .env: MCP_AUTH_TOKEN (generate one), TRADING_ENABLED, MT5_LOGIN/... for your demo account
 
-# 3. run in HTTP mode (or hermes spawns it in stdio mode automatically)
+# 3. run the forecast service in its own terminal (optional but recommended)
+npm run forecast              # → http://127.0.0.1:8001
+
+# 4. run in HTTP mode (or hermes spawns it in stdio mode automatically)
 npm run dev                   # starts on http://127.0.0.1:8767/mcp
 
-# 4. verify without MT5 (mock bridge)
+# 5. verify without MT5 (mock bridge)
 npm run smoke                 # full run: spawns mock bridge + server, runs checks
 ```
 
@@ -57,6 +62,10 @@ hermes / client ──(stdio or HTTP /mcp)──► algo-trader MCP server (TS)
                                               │  MetaTrader5 API
                                               ▼
                                          MT5 terminal
+
+                         forecast/  (Timestral, CPU)
+                              ▲  HTTP /forecast + /health
+                              └── MCP tool `market.forecast`
 ```
 
 - **stdio mode** (default for hermes): `src/index.ts --stdio`.
@@ -84,6 +93,9 @@ hermes / client ──(stdio or HTTP /mcp)──► algo-trader MCP server (TS)
 | `MT5_BRIDGE_MOCK` | empty | `true` spawns the mock bridge. |
 | `MT5_LOGIN` / `MT5_PASSWORD` / `MT5_SERVER` | empty | Demo/live account creds for `mt5.initialize`. |
 | `MT5_PATH` | auto | Path to the MT5 terminal .exe. |
+| `FORECAST_URL` | `http://127.0.0.1:8001` | Timestral service used by `market.forecast`. |
+| `FORECAST_MODEL` | `mistralai/Timestral-209M` | Model size/repo (28M is ~5× faster). |
+| `FORECAST_DEVICE` | `cpu` | `cpu`, `cuda` or `mps`. |
 
 ## Tools
 
@@ -96,6 +108,8 @@ hermes / client ──(stdio or HTTP /mcp)──► algo-trader MCP server (TS)
 | `market.get_account` | Balance/equity/margin/leverage/currency/trade-mode. |
 | `market.analyze_state` | Run the analysis engine over history: trend/volatility/compression/liquidity/astro state + operator events. Optional `astroChart` input. |
 | `market.scan_window` | Candle-by-candle event scan over a history window. |
+| `market.forecast` | Zero-shot probabilistic forecast (median + quantile bands) via Timestral — pass `symbol` or a raw `series`. Read-only. |
+| `market.forecast_health` | Whether the Timestral service is up and whether weights are loaded. |
 | `trade.place_order` | Market or pending order (gated by `TRADING_ENABLED` + `MAX_VOLUME`). |
 | `trade.close_position` | Close a position by ticket. |
 | `trade.get_positions` / `trade.get_orders` | Open positions / pending orders. |

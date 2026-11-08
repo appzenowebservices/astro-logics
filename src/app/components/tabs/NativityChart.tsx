@@ -73,7 +73,7 @@ export default function NativityChart() {
             <Star size={16} className="text-[var(--color-accent-orange)]" />
           </div>
           <div className="flex flex-col">
-            <span className="text-[10px] font-black tracking-[0.3em] text-[var(--color-ring-bronze)] uppercase">
+            <span className="text-[12px] font-black tracking-[0.3em] text-[var(--color-ring-bronze)] uppercase">
               {viewMode === "list" ? "Archive" : "Navigation"}
             </span>
             <h2 className="text-sm font-black tracking-tighter text-[var(--color-primary-light)] uppercase">
@@ -89,7 +89,7 @@ export default function NativityChart() {
           {viewMode === "list" ? (
             <button
               onClick={() => setViewMode("create")}
-              className="flex items-center gap-2 rounded-full bg-[var(--color-accent-glow)] px-5 py-2 text-[10px] font-black tracking-widest text-[var(--color-primary-dark)] uppercase shadow-[0_0_20px_rgba(164,196,217,0.2)] transition-all hover:bg-[var(--color-primary-light)] active:scale-95"
+              className="flex items-center gap-2 rounded-full bg-[var(--color-accent-glow)] px-5 py-2 text-[12px] font-black tracking-widest text-[var(--color-primary-dark)] uppercase shadow-[0_0_20px_rgba(164,196,217,0.2)] transition-all hover:bg-[var(--color-primary-light)] active:scale-95"
             >
               <Plus size={14} strokeWidth={3} />
               Add Chart
@@ -97,7 +97,7 @@ export default function NativityChart() {
           ) : (
             <button
               onClick={handleBack}
-              className="flex items-center gap-2 rounded-full border border-[var(--color-ring-bronze)]/20 px-4 py-2 text-[10px] font-black tracking-widest text-[var(--color-ring-bronze)] uppercase transition-colors hover:text-[var(--color-primary-light)]"
+              className="flex items-center gap-2 rounded-full border border-[var(--color-ring-bronze)]/20 px-4 py-2 text-[12px] font-black tracking-widest text-[var(--color-ring-bronze)] uppercase transition-colors hover:text-[var(--color-primary-light)]"
             >
               <ChevronLeft size={14} strokeWidth={3} />
               Back

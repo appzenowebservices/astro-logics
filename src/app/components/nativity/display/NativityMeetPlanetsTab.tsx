@@ -242,7 +242,7 @@ export default function NativityMeetPlanetsTab({ nativityChartId }: MeetProps) {
                 <button
                   key={planet}
                   onClick={() => setSelectedPlanet(planet)}
-                  className={`rounded-lg px-3.5 py-1.5 text-[10px] font-black tracking-wider whitespace-nowrap uppercase transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-orange)] ${
+                  className={`rounded-lg px-3.5 py-1.5 text-[12px] font-black tracking-wider whitespace-nowrap uppercase transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-orange)] ${
                     isActive
                       ? "bg-[var(--color-accent-orange)] font-black text-[var(--bg-main)] shadow-md"
                       : "border border-transparent text-[var(--color-primary-light)]/60 hover:bg-white/5 hover:text-[var(--color-primary-light)]"
@@ -272,11 +272,11 @@ export default function NativityMeetPlanetsTab({ nativityChartId }: MeetProps) {
             {/* Visual Metadata Overlay Label */}
             {selectedPlanet && (
               <div className="absolute right-3 bottom-3 left-3 flex items-center justify-between rounded-xl border border-[var(--color-primary-light)]/10 bg-black/40 px-3.5 py-2 backdrop-blur-md">
-                <span className="text-[10px] font-black tracking-widest text-[var(--color-accent-glow)] uppercase">
+                <span className="text-[12px] font-black tracking-widest text-[var(--color-accent-glow)] uppercase">
                   Entity: {selectedPlanet}
                 </span>
                 {selectedConfig?.mood && (
-                  <span className="rounded-md border border-[var(--color-ring-bronze)]/30 bg-[var(--color-ring-bronze)]/20 px-2 py-0.5 text-[9px] font-black tracking-widest text-[var(--color-primary-light)]/90 uppercase">
+                  <span className="rounded-md border border-[var(--color-ring-bronze)]/30 bg-[var(--color-ring-bronze)]/20 px-2 py-0.5 text-[11px] font-black tracking-widest text-[var(--color-primary-light)]/90 uppercase">
                     Mood: {selectedConfig.mood}
                   </span>
                 )}
@@ -298,7 +298,7 @@ export default function NativityMeetPlanetsTab({ nativityChartId }: MeetProps) {
           ) : (
             <div className="flex h-full flex-col items-center justify-center p-6 text-center text-[var(--color-primary-light)]/40">
               <span className="mb-1 animate-pulse text-xl opacity-40">✦</span>
-              <p className="max-w-[200px] text-[11px] leading-relaxed tracking-wide">
+              <p className="max-w-[200px] text-[12px] leading-relaxed tracking-wide">
                 Select a planet from the telemetry bar to establish interactive
                 communication links.
               </p>

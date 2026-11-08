@@ -288,7 +288,7 @@ export default function NativityCurrentStoryTab({
               <h1 className="text-xs font-black tracking-tighter text-white uppercase sm:text-sm">
                 Astro_Script
               </h1>
-              <p className="xs:block hidden font-mono text-[9px] tracking-widest text-stone-500 uppercase">
+              <p className="xs:block hidden font-mono text-[11px] tracking-widest text-stone-500 uppercase">
                 Llama-3.2-1B
               </p>
             </div>
@@ -329,7 +329,7 @@ export default function NativityCurrentStoryTab({
                   : undefined
             }
             // disabled={isGenerating || (currentStory && currentStory.mainNarrative)}
-            className="flex items-center gap-2 rounded bg-[#E29626] px-3 py-2 text-[10px] font-black tracking-widest text-black uppercase transition-all hover:bg-white disabled:opacity-20 sm:px-5"
+            className="flex items-center gap-2 rounded bg-[#E29626] px-3 py-2 text-[12px] font-black tracking-widest text-black uppercase transition-all hover:bg-white disabled:opacity-20 sm:px-5"
           >
             {isGenerating ? (
               <Loader className="animate-spin" size={12} />
@@ -406,14 +406,14 @@ export default function NativityCurrentStoryTab({
                   <div className="space-y-4">
                     <div className="rounded-3xl border border-black/5 bg-white/60 p-4 shadow-sm">
                       <div className="mb-4 flex items-center justify-between">
-                        <h2 className="text-[10px] font-black tracking-[0.2em] text-[#E29626] uppercase">
+                        <h2 className="text-[12px] font-black tracking-[0.2em] text-[#E29626] uppercase">
                           Planetary Scenes
                         </h2>
                         <button
                           type="button"
                           onClick={handleRecalculateScenes}
                           disabled={isRecalculatingScenes}
-                          className="flex items-center gap-1 rounded-full bg-[#E29626] px-3 py-1.5 text-[8px] font-black text-[#0F0D0C] uppercase transition hover:bg-[#ffb86c] disabled:opacity-50"
+                          className="flex items-center gap-1 rounded-full bg-[#E29626] px-3 py-1.5 text-[10px] font-black text-[#0F0D0C] uppercase transition hover:bg-[#ffb86c] disabled:opacity-50"
                         >
                           {isRecalculatingScenes ? (
                             <Loader size={8} className="animate-spin" />
@@ -474,7 +474,7 @@ const MetaItem = ({
 }) => (
   <div className="flex items-center gap-2">
     <span className="text-stone-600">{icon}</span>
-    <span className="text-[10px] font-black tracking-widest text-white uppercase">
+    <span className="text-[12px] font-black tracking-widest text-white uppercase">
       {value}
     </span>
   </div>
@@ -518,7 +518,7 @@ const StatCard = ({
   caption: string;
 }) => (
   <div className="rounded-3xl border border-black/5 bg-white/60 p-6 shadow-sm">
-    <p className="mb-3 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+    <p className="mb-3 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
       {label}
     </p>
     <p className="text-3xl font-black text-stone-900">{value}</p>
@@ -548,16 +548,16 @@ const PlanetSceneButton = ({
   >
     <div className="flex items-start justify-between gap-3">
       <div>
-        <p className="text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+        <p className="text-[12px] tracking-[0.2em] text-stone-500 uppercase">
           Planet
         </p>
         <p className="text-base font-black text-stone-900">{scene.planet}</p>
       </div>
-      <span className="rounded-full bg-black/5 px-2 py-1 text-[10px] font-black text-stone-700 uppercase">
+      <span className="rounded-full bg-black/5 px-2 py-1 text-[12px] font-black text-stone-700 uppercase">
         {Math.round(scene.intensity)}%
       </span>
     </div>
-    <div className="mt-3 space-y-2 text-[11px] text-stone-600">
+    <div className="mt-3 space-y-2 text-[12px] text-stone-600">
       <div className="flex justify-between">
         <span>Natal</span>
         <span>{formatPosition(scene.natalLongitude)}</span>
@@ -593,13 +593,13 @@ const PlanetSceneDetail = ({
     <div className="rounded-3xl border border-black/5 bg-white/60 p-6 shadow-sm">
       <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+          <p className="text-[12px] tracking-[0.2em] text-stone-500 uppercase">
             Selected Scene
           </p>
           <h3 className="text-2xl font-black text-stone-900">{scene.planet}</h3>
         </div>
         <div className="flex items-center gap-2">
-          <div className="rounded-full bg-[#E29626] px-3 py-1 text-[10px] font-black text-[#0F0D0C] uppercase">
+          <div className="rounded-full bg-[#E29626] px-3 py-1 text-[12px] font-black text-[#0F0D0C] uppercase">
             {Math.round(scene.intensity)}% intensity
           </div>
           {onRecalculate && (
@@ -607,7 +607,7 @@ const PlanetSceneDetail = ({
               type="button"
               onClick={() => onRecalculate(scene.id)}
               disabled={isRecalculating}
-              className="flex items-center gap-1 rounded-full bg-[#E29626] px-3 py-1.5 text-[8px] font-black text-[#0F0D0C] uppercase transition hover:bg-[#ffb86c] disabled:opacity-50"
+              className="flex items-center gap-1 rounded-full bg-[#E29626] px-3 py-1.5 text-[10px] font-black text-[#0F0D0C] uppercase transition hover:bg-[#ffb86c] disabled:opacity-50"
             >
               {isRecalculating ? (
                 <Loader size={8} className="animate-spin" />
@@ -619,21 +619,21 @@ const PlanetSceneDetail = ({
         </div>
       </div>
 
-      <div className="grid gap-4 text-[11px] text-stone-700 sm:grid-cols-2">
+      <div className="grid gap-4 text-[12px] text-stone-700 sm:grid-cols-2">
         <div className="rounded-2xl bg-[#F8F5F0] p-4">
-          <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+          <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
             Sign
           </p>
           <p className="font-semibold text-stone-900">{scene.sign}</p>
         </div>
         <div className="rounded-2xl bg-[#F8F5F0] p-4">
-          <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+          <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
             House
           </p>
           <p className="font-semibold text-stone-900">{scene.house}</p>
         </div>
         <div className="rounded-2xl bg-[#F8F5F0] p-4">
-          <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+          <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
             Natal Position
           </p>
           <p className="font-semibold text-stone-900">
@@ -641,7 +641,7 @@ const PlanetSceneDetail = ({
           </p>
         </div>
         <div className="rounded-2xl bg-[#F8F5F0] p-4">
-          <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+          <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
             Transit Position
           </p>
           <p className="font-semibold text-stone-900">
@@ -649,7 +649,7 @@ const PlanetSceneDetail = ({
           </p>
         </div>
         <div className="rounded-2xl bg-[#F8F5F0] p-4">
-          <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+          <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
             Motion
           </p>
           <p className="font-semibold text-stone-900">
@@ -658,7 +658,7 @@ const PlanetSceneDetail = ({
           </p>
         </div>
         <div className="rounded-2xl bg-[#F8F5F0] p-4">
-          <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+          <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
             Collapse Risk
           </p>
           <p className="font-semibold text-stone-900">
@@ -670,7 +670,7 @@ const PlanetSceneDetail = ({
       <div className="mt-6 space-y-4">
         {scene.dominantPressure && (
           <div>
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+            <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
               Dominant Pressure
             </p>
             <p className="text-sm font-semibold text-stone-900">
@@ -681,7 +681,7 @@ const PlanetSceneDetail = ({
 
         {scene.behavioralPattern && (
           <div>
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+            <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
               Behavioral Pattern
             </p>
             <p className="text-sm font-semibold text-stone-900">
@@ -692,7 +692,7 @@ const PlanetSceneDetail = ({
 
         {scene.externalConflict && (
           <div>
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+            <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
               External Conflict
             </p>
             <p className="text-sm font-semibold text-stone-900">
@@ -703,7 +703,7 @@ const PlanetSceneDetail = ({
 
         {scene.relationshipEffect && (
           <div>
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+            <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
               Relationship Effect
             </p>
             <p className="text-sm font-semibold text-stone-900">
@@ -714,7 +714,7 @@ const PlanetSceneDetail = ({
 
         {scene.pressureDirection && (
           <div>
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+            <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
               Pressure Direction
             </p>
             <p className="text-sm font-semibold text-stone-900">
@@ -725,7 +725,7 @@ const PlanetSceneDetail = ({
 
         {scene.momentumDirection && (
           <div>
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+            <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
               Momentum Direction
             </p>
             <p className="text-sm font-semibold text-stone-900">
@@ -736,7 +736,7 @@ const PlanetSceneDetail = ({
 
         {scene.storyFunction && (
           <div>
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+            <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
               Story Function
             </p>
             <p className="text-sm font-semibold text-stone-900">
@@ -747,7 +747,7 @@ const PlanetSceneDetail = ({
 
         {scene.sceneAttributes?.vectorState && (
           <div>
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+            <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
               Psychological Vectors
             </p>
             <div className="grid grid-cols-2 gap-2 text-xs">
@@ -769,14 +769,14 @@ const PlanetSceneDetail = ({
 
         {scene.activeAspects?.length ? (
           <div>
-            <p className="mb-2 text-[10px] tracking-[0.2em] text-stone-500 uppercase">
+            <p className="mb-2 text-[12px] tracking-[0.2em] text-stone-500 uppercase">
               Active Aspects
             </p>
             <div className="grid gap-2 sm:grid-cols-2">
               {parseAspects(scene.activeAspects).map((aspect, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-between rounded-2xl bg-[#F8F5F0] p-3 text-[11px] text-stone-700"
+                  className="flex items-center justify-between rounded-2xl bg-[#F8F5F0] p-3 text-[12px] text-stone-700"
                 >
                   <span className="capitalize">{aspect.aspectType}</span>
                   <span>{aspect.orb.toFixed(1)}°</span>

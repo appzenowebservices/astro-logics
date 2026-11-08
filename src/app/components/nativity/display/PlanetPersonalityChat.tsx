@@ -148,7 +148,7 @@ export default function PlanetPersonalityChat({
             </p>
           </div>
           <div className="text-right">
-            <div className="rounded border border-(--color-primary-light)/5 bg-black/30 px-2 py-0.5 font-mono text-[10px] tracking-wider text-(--color-accent-glow)">
+            <div className="rounded border border-(--color-primary-light)/5 bg-black/30 px-2 py-0.5 font-mono text-[12px] tracking-wider text-(--color-accent-glow)">
               {Math.abs(context.speed).toFixed(2)}°/d
             </div>
           </div>
@@ -159,13 +159,13 @@ export default function PlanetPersonalityChat({
       {context.aspectsWithOthers && context.aspectsWithOthers.length > 0 && (
         <div className="flex-shrink-0 border-b border-(--color-primary-light)/10 bg-black/10 px-4 py-2">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="mr-1 text-[10px] font-bold tracking-wider text-(--color-primary-light)/40 uppercase">
+            <span className="mr-1 text-[12px] font-bold tracking-wider text-(--color-primary-light)/40 uppercase">
               Aspects:
             </span>
             {context.aspectsWithOthers.slice(0, 4).map((aspect, idx) => (
               <span
                 key={`${aspect.planet}-${idx}`}
-                className="rounded border border-(--color-primary-light)/10 bg-black/30 px-2 py-0.5 text-[10px] font-semibold text-(--color-primary-light)/90 transition-colors hover:border-(--color-accent-glow)/30"
+                className="rounded border border-(--color-primary-light)/10 bg-black/30 px-2 py-0.5 text-[12px] font-semibold text-(--color-primary-light)/90 transition-colors hover:border-(--color-accent-glow)/30"
                 title={`${aspect?.aspectType} (orb: ${aspect?.orb?.toFixed(2)}°)`}
               >
                 {aspect.aspectType[0]} {aspect.planet}
@@ -202,7 +202,7 @@ export default function PlanetPersonalityChat({
               >
                 <p>{msg.content}</p>
                 <span
-                  className={`mt-1 block text-right font-mono text-[9px] opacity-50 ${isUser ? "text-(--bg-main)" : "text-(--color-accent-glow)"}`}
+                  className={`mt-1 block text-right font-mono text-[11px] opacity-50 ${isUser ? "text-(--bg-main)" : "text-(--color-accent-glow)"}`}
                 >
                   {msg.timestamp.toLocaleTimeString([], {
                     hour: "2-digit",
@@ -255,7 +255,7 @@ export default function PlanetPersonalityChat({
             {isLoading ? "..." : "Send"}
           </button>
         </div>
-        <div className="mt-2 flex justify-between px-1 text-[10px] font-medium text-(--color-primary-light)/30">
+        <div className="mt-2 flex justify-between px-1 text-[12px] font-medium text-(--color-primary-light)/30">
           <span>Shift + Enter for break</span>
           <span>✦ Connected</span>
         </div>

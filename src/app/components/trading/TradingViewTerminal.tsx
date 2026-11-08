@@ -4,7 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { api } from "~/trpc/react";
 import type { UTCTimestamp } from "lightweight-charts";
 import TradingChart from "./TradingChart";
-import WatchlistSidebar from "./WatchlistSidebar";
+import "./tv.css";
+
 
 export interface CandlestickData {
   time: UTCTimestamp;
@@ -125,13 +126,6 @@ function expandM1Bars(
 
 function isSubMinuteTimeframe(timeframe: Timeframe): boolean {
   return timeframe.value < 60;
-}
-
-function formatPrice(price: number | undefined): string {
-  if (price === undefined || !Number.isFinite(price)) return "—";
-  if (price >= 1000) return price.toFixed(2);
-  if (price >= 1) return price.toFixed(5);
-  return price.toFixed(6);
 }
 
 function formatBrokerTime(brokerTime: string | undefined): string {
@@ -259,78 +253,30 @@ export default function TradingViewTerminal() {
         : "LIVE";
 
   return (
-    <div className="flex h-[calc(100vh-140px)] w-full rounded-2xl border border-white/[0.05] bg-[#060607] shadow-2xl">
-      <div className="relative flex-1 border-r border-white/[0.03]">
-        <div className="absolute top-4 left-1/2 z-[60] flex -translate-x-1/2 flex-wrap items-center justify-center gap-2 px-2">
-          <div className="rounded-full border border-white/10 bg-black/70 px-3 py-1.5 font-mono text-[11px] text-white/80 backdrop-blur">
-            <span className="font-bold text-white">{selectedAsset.symbol}</span>
-            <span className="mx-2 text-white/30">|</span>
-            <span
-              className={
-                livePrice
-                  ? "text-[var(--color-accent-orange)]"
-                  : "text-white/50"
-              }
-            >
-              {formatPrice(displayedPrice)}
-            </span>
-            <span className="mx-2 text-white/30">|</span>
-            <span
-              className={
-                liveStatus === "LIVE"
-                  ? "text-emerald-400"
-                  : liveStatus === "SYNC"
-                    ? "text-amber-400"
-                    : "text-red-400"
-              }
-            >
-              {liveStatus}
-            </span>
-            {brokerTime ? (
-              <>
-                <span className="mx-2 text-white/30">|</span>
-                <span>{brokerTime}</span>
-              </>
-            ) : null}
-          </div>
-
-          <select
-            value={selectedAsset.symbol}
-            onChange={(event) => {
-              const nextAsset = AVAILABLE_ASSETS.find(
-                (asset) => asset.symbol === event.target.value,
-              );
-              if (nextAsset) setSelectedAsset(nextAsset);
-            }}
-            className="h-8 rounded-full border border-white/10 bg-black/70 px-3 pr-8 text-[11px] font-bold text-white uppercase backdrop-blur outline-none"
-          >
-            {AVAILABLE_ASSETS.map((asset) => (
-              <option key={asset.symbol} value={asset.symbol}>
-                {asset.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {historyQuery.isFetching ? (
-          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#060607] font-mono text-[10px] text-white/30">
-            <div className="mb-3 h-6 w-6 animate-spin rounded-full border-2 border-[var(--color-accent-orange)] border-t-transparent" />
-            SYNCHRONIZING ENGINE...
-          </div>
-        ) : (
-          <TradingChart
-            history={history}
-            symbol={selectedAsset.symbol}
-            timeframe={timeframe.tfParam}
-            astroChart={astroChartQuery.data ?? null}
-            assetAstroState={assetAstroQuery.data?.data ?? null}
-            onTimeframeChange={(tf) => {
-              const nextTf = TIMEFRAMES.find((t) => t.tfParam === tf);
-              if (nextTf) setTimeframe(nextTf);
-            }}
-          />
-        )}
-      </div>
+    <div className="tv-terminal relative h-[calc(100vh-140px)] w-full">
+      <TradingChart
+        history={history}
+        symbol={selectedAsset.symbol}
+        timeframe={timeframe.tfParam}
+        astroChart={astroChartQuery.data ?? null}
+        assetAstroState={assetAstroQuery.data?.data ?? null}
+        onTimeframeChange={(tf) => {
+          const nextTf = TIMEFRAMES.find((t) => t.tfParam === tf);
+          if (nextTf) setTimeframe(nextTf);
+        }}
+        price={displayedPrice}
+        status={liveStatus}
+        brokerTime={brokerTime}
+        assets={AVAILABLE_ASSETS}
+        timeframes={TIMEFRAMES}
+        onSymbolChange={(symbol) => {
+          const nextAsset = AVAILABLE_ASSETS.find(
+            (asset) => asset.symbol === symbol,
+          );
+          if (nextAsset) setSelectedAsset(nextAsset);
+        }}
+        loading={historyQuery.isFetching}
+      />
     </div>
   );
 }

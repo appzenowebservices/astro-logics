@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { compare, hash } from "bcryptjs";
+import { randomBytes } from "node:crypto";
 import {
   createTRPCRouter,
   protectedProcedure,
@@ -16,13 +17,23 @@ export const userRouter = createTRPCRouter({
         name: z.string().min(1, "Name is required"),
         mobile: z.string().optional(),
         email: z.string().email("Invalid email"),
-        password: z.string().min(8, "Password must be at least 8 characters"),
+        password: z
+          .string()
+          .min(8, "Password must be at least 8 characters")
+          .optional(),
         inviteCode: z.string().optional(),
       }),
     )
     .mutation(async ({ input }) => {
       const email = input.email.toLowerCase();
       const inviteOnly = process.env.INVITE_ONLY === "true";
+
+      // No password supplied (the form no longer asks for one) — issue a
+      // one-time temporary password and return it so the account stays usable.
+      const generatedPassword = input.password
+        ? null
+        : randomBytes(9).toString("base64url").slice(0, 12);
+      const plainPassword = input.password ?? generatedPassword ?? "";
 
       // Check if user already exists
       const existingUser = await db.user.findFirst({
@@ -75,7 +86,7 @@ export const userRouter = createTRPCRouter({
           name: input.name,
           mobile: input.mobile,
           email,
-          passwordHash: await hash(input.password, 10),
+          passwordHash: await hash(plainPassword, 10),
           role: isBootstrapAdmin ? "ADMIN" : (invite?.role ?? "MEMBER"),
           plan: isBootstrapAdmin ? "ENTERPRISE" : (invite?.plan ?? "FREE"),
           status:
@@ -93,6 +104,7 @@ export const userRouter = createTRPCRouter({
 
       return {
         message: "User registered successfully",
+        temporaryPassword: generatedPassword,
         user: {
           id: newUser.id,
           name: newUser.name,
@@ -169,6 +181,7 @@ export const userRouter = createTRPCRouter({
         id: true,
         name: true,
         email: true,
+        image: true,
         avatar: true,
         role: true,
         plan: true,
@@ -178,11 +191,13 @@ export const userRouter = createTRPCRouter({
       },
     });
 
-    if (!user) {
-      throw new TRPCError({ code: "NOT_FOUND", message: "User not found" });
-    }
+    // A stale JWT can point at a deleted user. Return null instead of throwing
+    // so the client can clear the session instead of retrying forever.
+    if (!user) return null;
 
-    return user;
+    // OAuth sign-ups store the picture in `image` (Auth.js field); the app
+    // renders `avatar`, so expose whichever one exists.
+    return { ...user, avatar: user.avatar ?? user.image };
   }),
 
   getCurrentUser: protectedProcedure.query(async ({ ctx }) => {

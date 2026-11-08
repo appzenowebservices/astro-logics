@@ -2,6 +2,8 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import type { UTCTimestamp } from "lightweight-charts";
+import { LineSeries, LineStyle } from "lightweight-charts";
+import type { ISeriesApi } from "lightweight-charts";
 import { DrawingManager, getToolRegistry } from "lightweight-charts-drawing";
 
 import { MarketStateEngine } from "../../../../trading/engine/MarketStateEngine";
@@ -16,9 +18,12 @@ import { registerCustomFibTool } from "./CustomFibRetracement";
 import MarketChartRenderer, {
   type MarketVisualizationData,
 } from "./MarketChartRenderer";
+import ControlPanel, { type ForecastView } from "./ControlPanel";
+import MarketToolbar from "./MarketToolbar";
 import DrawingToolbar from "./DrawingToolbar";
 import WindowAnalysisPanel from "./WindowAnalysisPanel";
 import DrawingStyleEditor from "./DrawingStyleEditor";
+import { PanelRightOpen } from "lucide-react";
 
 type LayerState = Record<string, boolean>;
 
@@ -47,6 +52,15 @@ export default function TradingChart({
   timeframe,
   assetAstroState,
   onTimeframeChange,
+  price,
+  status = "—",
+  brokerTime,
+  assets = [],
+  timeframes = [],
+  onSymbolChange,
+  drawingsCount = 0,
+  loading = false,
+  executionPanel,
 }: {
   history: CandlestickData[];
   symbol: string;
@@ -54,6 +68,15 @@ export default function TradingChart({
   timeframe: string;
   assetAstroState?: any;
   onTimeframeChange?: (tf: string) => void;
+  price?: number;
+  status?: string;
+  brokerTime?: string;
+  assets?: ReadonlyArray<{ symbol: string; label: string }>;
+  timeframes?: ReadonlyArray<{ label: string; tfParam: string }>;
+  onSymbolChange?: (symbol: string) => void;
+  drawingsCount?: number;
+  loading?: boolean;
+  executionPanel?: React.ReactNode;
 }) {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const drawingManagerRef = useRef<DrawingManager | null>(null);
@@ -82,6 +105,9 @@ export default function TradingChart({
   const [selectedDrawingStyle, setSelectedDrawingStyle] = useState<any>(null);
   const [isChartInitialized, setIsChartInitialized] = useState(false);
   const [activeTool, setActiveTool] = useState<string | null>(null);
+  const [panelOpen, setPanelOpen] = useState(true);
+  const [forecast, setForecast] = useState<ForecastView | null>(null);
+  const forecastSeriesRef = useRef<ISeriesApi<"Line">[]>([]);
 const [layers, setLayers] = useState<LayerState>({
     swingHighs: false,
     swingLows: false,
@@ -318,6 +344,7 @@ const [layers, setLayers] = useState<LayerState>({
       (engineRef.current as any).previousState = null;
     }
     initializedKeyRef.current = null;
+    setForecast(null);
   }, [symbol, timeframe]);
 
   const chartKey = `${symbol}:${timeframe}`;
@@ -351,6 +378,65 @@ const [layers, setLayers] = useState<LayerState>({
     series.update(lastCandle);
     lastRenderedTimeRef.current = lastCandle.time;
   }, [chartKey, chartRef, normalizedHistory, seriesRef]);
+
+  // Draw the Timestral forecast to the right of the last candle.
+  useEffect(() => {
+    const chart = chartRef.current;
+    if (!chart) return;
+
+    for (const series of forecastSeriesRef.current) {
+      try {
+        chart.removeSeries(series);
+      } catch {
+        /* chart already reset */
+      }
+    }
+    forecastSeriesRef.current = [];
+
+    if (!forecast || normalizedHistory.length < 2) return;
+
+    const last = normalizedHistory[normalizedHistory.length - 1];
+    const prev = normalizedHistory[normalizedHistory.length - 2];
+    if (!last || !prev) return;
+
+    const step = Number(last.time) - Number(prev.time) || 60;
+    const startTime = Number(last.time);
+
+    const add = (
+      color: string,
+      style: LineStyle,
+      width: 1 | 2,
+      values: number[],
+    ) => {
+      if (values.length === 0) return;
+      const series = chart.addSeries(LineSeries, {
+        color,
+        lineWidth: width,
+        lineStyle: style,
+        priceLineVisible: false,
+        lastValueVisible: false,
+        crosshairMarkerVisible: false,
+      });
+      series.setData(
+        values.map((value, index) => ({
+          time: (startTime + step * (index + 1)) as UTCTimestamp,
+          value,
+        })),
+      );
+      forecastSeriesRef.current.push(series);
+    };
+
+    const band = (level: string) => forecast.bands[level]?.[0] ?? [];
+    const median = forecast.median[0] ?? [];
+
+    add("rgba(42,65,112,0.55)", LineStyle.Dashed, 1, band("0.05"));
+    add("rgba(42,65,112,0.55)", LineStyle.Dashed, 1, band("0.95"));
+    add("rgba(209,122,56,0.6)", LineStyle.Dotted, 1, band("0.25"));
+    add("rgba(209,122,56,0.6)", LineStyle.Dotted, 1, band("0.75"));
+    add("#d17a38", LineStyle.Solid, 2, median);
+
+    chart.timeScale().fitContent();
+  }, [forecast, normalizedHistory, chartRef]);
 
   // Sync activeTool changes to the drawing manager
   useEffect(() => {
@@ -589,59 +675,30 @@ const unsubscribe = manager.on("drawing:added", (event) => {
     };
   }, [chartRef, seriesRef, isChartInitialized, activeTool, savedDrawings]);
 
+  const panelDrawings =
+    drawingsCount > 0 ? drawingsCount : (savedDrawings?.data?.length ?? 0);
+
   return (
-    <div className="relative h-full min-h-[500px] w-full rounded-2xl border border-white/[0.05] bg-[var(--color-primary-dark)]">
-      <DrawingToolbar 
-        activeTool={activeTool} 
-        onToolSelect={setActiveTool}
-        hasTimeRangeSelection={!!timeRangeSelection}
-        onProcessRange={handleAnalyzeWindow}
-        isProcessing={isAnalyzing}
+    <div className="flex h-full min-h-[500px] w-full flex-col overflow-hidden rounded-2xl border border-white/[0.05] bg-[#060607]">
+      <MarketToolbar
+        symbol={symbol}
+        price={price}
+        status={status}
+        brokerTime={brokerTime}
+        assets={assets}
+        onSymbolChange={onSymbolChange ?? (() => undefined)}
+        timeframes={timeframes}
+        timeframe={timeframe}
+        onTimeframeChange={(tf) => onTimeframeChange?.(tf)}
+        layers={layers}
+        onToggleLayer={(key) =>
+          setLayers((prev) => ({ ...prev, [key]: !prev[key] }))
+        }
       />
 
-      <div className="absolute top-2 right-2 z-[100] flex items-center gap-2">
-        <div className="flex gap-1 rounded border border-white/20 bg-black/70 p-1 backdrop-blur-sm">
-          <span className="px-2 py-1 text-xs text-white/60">TF:</span>
-          <select
-            value={timeframe}
-            onChange={(e) => {
-              const newTimeframe = e.target.value;
-              onTimeframeChange?.(newTimeframe);
-            }}
-            className="rounded border border-white/10 bg-black/50 px-2 py-1 text-xs text-white focus:outline-none"
-            style={{ colorScheme: "dark" }}
-          >
-            <option value="M1" className="bg-black">
-              1m
-            </option>
-            <option value="M5" className="bg-black">
-              5m
-            </option>
-            <option value="M15" className="bg-black">
-              15m
-            </option>
-            <option value="M30" className="bg-black">
-              30m
-            </option>
-            <option value="H1" className="bg-black">
-              1h
-            </option>
-            <option value="H4" className="bg-black">
-              4h
-            </option>
-            <option value="D1" selected className="bg-black">
-              1d
-            </option>
-          </select>
-          {savedDrawings?.data && savedDrawings.data.length > 0 && (
-            <span className="ml-1 rounded-full bg-blue-500/20 px-1.5 py-0.5 text-[10px] text-blue-400">
-              {savedDrawings.data.length}
-            </span>
-          )}
-        </div>
-      </div>
-
-      <MarketChartRenderer
+      <div className="flex min-h-0 flex-1">
+        <div className="relative min-w-0 flex-1">
+        <MarketChartRenderer
         chartRef={chartRef}
         seriesRef={seriesRef}
         markersRef={markersRef}
@@ -649,33 +706,103 @@ const unsubscribe = manager.on("drawing:added", (event) => {
         layers={layers}
       />
 
-      {windowAnalysis && (
-        <WindowAnalysisPanel
-          analysis={windowAnalysis}
-          symbol={symbol}
-          timeframe={timeframe}
-          onStitch={() => {
-            console.log("Stitch triggered for:", windowAnalysis);
-          }}
-          isAnalyzing={isAnalyzing}
+        {windowAnalysis && (
+          <WindowAnalysisPanel
+            analysis={windowAnalysis}
+            symbol={symbol}
+            timeframe={timeframe}
+            onStitch={() => {
+              console.log("Stitch triggered for:", windowAnalysis);
+            }}
+            isAnalyzing={isAnalyzing}
+          />
+        )}
+
+        {selectedDrawingId && (
+          <DrawingStyleEditor
+            selectedDrawingId={selectedDrawingId}
+            currentStyle={selectedDrawingStyle}
+            onUpdateAllStyles={handleUpdateAllStyles}
+            onDelete={handleDeleteDrawing}
+            onClose={() => {
+              setSelectedDrawingId(null);
+              setSelectedDrawingStyle(null);
+            }}
+          />
+        )}
+
+        <div ref={chartContainerRef} className="h-full w-full" />
+
+        {loading && (
+          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#060607]/90 font-mono text-[12px] tracking-[0.2em] text-white/40 uppercase backdrop-blur-sm">
+            <div className="mb-3 h-6 w-6 animate-spin rounded-full border-2 border-[var(--color-accent-orange)] border-t-transparent" />
+            Synchronising engine…
+          </div>
+        )}
+
+        {forecast && (
+          <div className="absolute top-3 left-3 z-[80] flex items-center gap-2 rounded-full border border-[var(--color-accent-orange)]/40 bg-black/70 px-3 py-1.5 font-mono text-[11px] font-black tracking-[0.14em] text-[var(--color-accent-orange)] uppercase backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent-orange)]" />
+            Forecast {forecast.horizon}
+            <span className="text-white/30">5–95% · 25–75%</span>
+            <button
+              type="button"
+              onClick={() => setForecast(null)}
+              aria-label="Clear forecast overlay"
+              className="ml-1 text-white/40 transition-colors hover:text-white"
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
+        {!panelOpen && (
+          <button
+            type="button"
+            onClick={() => setPanelOpen(true)}
+            className="absolute top-3 right-3 z-[90] flex items-center gap-2 rounded-lg border border-white/15 bg-black/70 px-3 py-2 font-mono text-[11px] font-black tracking-[0.18em] text-white/70 uppercase backdrop-blur transition-colors hover:border-[var(--color-accent-orange)]/50 hover:text-white"
+          >
+            <PanelRightOpen className="h-3.5 w-3.5" />
+            Controls
+          </button>
+        )}
+
+        <DrawingToolbar
+          variant="rail"
+          activeTool={activeTool}
+          onToolSelect={setActiveTool}
+          hasTimeRangeSelection={!!timeRangeSelection}
+          onProcessRange={handleAnalyzeWindow}
+          isProcessing={isAnalyzing}
         />
-      )}
+        </div>
 
-      {selectedDrawingId && (
-        <DrawingStyleEditor
-          selectedDrawingId={selectedDrawingId}
-          currentStyle={selectedDrawingStyle}
-          onUpdateAllStyles={handleUpdateAllStyles}
-          onDelete={handleDeleteDrawing}
-          onClose={() => {
-            setSelectedDrawingId(null);
-            setSelectedDrawingStyle(null);
-          }}
-        />
-
-      )}
-
-      <div ref={chartContainerRef} className="h-full w-full" />
+      <ControlPanel
+        open={panelOpen}
+        onClose={() => setPanelOpen(false)}
+        symbol={symbol}
+        price={price}
+        status={status}
+        brokerTime={brokerTime}
+        drawingsCount={panelDrawings}
+        assets={assets}
+        onSymbolChange={onSymbolChange ?? (() => undefined)}
+        timeframes={timeframes}
+        timeframe={timeframe}
+        onTimeframeChange={(tf) => onTimeframeChange?.(tf)}
+        layers={layers}
+        onToggleLayer={(key) =>
+          setLayers((prev) => ({ ...prev, [key]: !prev[key] }))
+        }
+        activeTool={activeTool}
+        onToolSelect={setActiveTool}
+        hasTimeRangeSelection={!!timeRangeSelection}
+        onProcessRange={handleAnalyzeWindow}
+        isProcessing={isAnalyzing}
+        analysis={windowAnalysis}
+        onForecast={setForecast}
+      />
+      </div>
     </div>
   );
 }

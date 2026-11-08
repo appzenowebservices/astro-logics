@@ -76,7 +76,7 @@ export default function CurrentStoryDetailsPage() {
           >
             <ChevronLeft size={14} /> Back to Deck
           </button>
-          <span className="font-roboto text-[10px] tracking-widest text-white/30 uppercase">
+          <span className="font-roboto text-[12px] tracking-widest text-white/30 uppercase">
             Engine Instance ID // {storyId.slice(0, 8)}...
           </span>
         </div>
@@ -117,11 +117,11 @@ export default function CurrentStoryDetailsPage() {
           {/* --- UI INTERFACE STACK OVERLAY --- */}
           <div className="relative z-10 max-w-xl space-y-4 text-left lg:max-w-2xl">
             <div className="flex flex-wrap items-center gap-2">
-              <div className="rounded-sm border border-orange-500/20 bg-[var(--color-accent-orange)] px-2 py-0.5 text-[9px] font-black tracking-widest text-white uppercase shadow-lg">
+              <div className="rounded-sm border border-orange-500/20 bg-[var(--color-accent-orange)] px-2 py-0.5 text-[11px] font-black tracking-widest text-white uppercase shadow-lg">
                 LIVE TRACK
               </div>
               {story.intensity && (
-                <div className="flex items-center gap-1.5 rounded border border-white/10 bg-slate-900/60 px-2.5 py-0.5 font-mono text-[10px] text-white/90 shadow-md backdrop-blur-md">
+                <div className="flex items-center gap-1.5 rounded border border-white/10 bg-slate-900/60 px-2.5 py-0.5 font-mono text-[12px] text-white/90 shadow-md backdrop-blur-md">
                   <Flame
                     size={12}
                     className="animate-pulse text-[var(--color-accent-orange)]"
@@ -135,7 +135,7 @@ export default function CurrentStoryDetailsPage() {
             </div>
 
             <div className="space-y-2">
-              <span className="flex items-center gap-2 font-mono text-[10px] font-black tracking-[0.35em] text-[var(--color-accent-orange)] uppercase drop-shadow-sm">
+              <span className="flex items-center gap-2 font-mono text-[12px] font-black tracking-[0.35em] text-[var(--color-accent-orange)] uppercase drop-shadow-sm">
                 <Activity size={12} className="animate-pulse text-sky-400" />{" "}
                 SYSTEM SYSTEMIC NATIVITY RUN
               </span>
@@ -156,7 +156,7 @@ export default function CurrentStoryDetailsPage() {
           <div className="space-y-8 lg:col-span-2">
             {/* Main Narrative Block */}
             <div className="space-y-3">
-              <h3 className="flex items-center gap-2 text-[10px] font-bold tracking-[0.25em] text-white/40 uppercase">
+              <h3 className="flex items-center gap-2 text-[12px] font-bold tracking-[0.25em] text-white/40 uppercase">
                 <Compass size={12} /> Logline Overview
               </h3>
               <p className="rounded-xl border border-white/5 bg-white/[0.01] p-6 text-sm leading-relaxed font-medium tracking-wide text-white/90 shadow-2xl sm:text-base">
@@ -166,7 +166,7 @@ export default function CurrentStoryDetailsPage() {
 
             {/* INVERTED MATRIX SUB-NAVIGATION PILLS ROW */}
             <div className="space-y-3">
-              <h3 className="text-[10px] font-bold tracking-[0.25em] text-white/40 uppercase">
+              <h3 className="text-[12px] font-bold tracking-[0.25em] text-white/40 uppercase">
                 Active Environment Node Selector
               </h3>
               <div className="flex flex-wrap gap-2.5">
@@ -187,7 +187,7 @@ export default function CurrentStoryDetailsPage() {
                       />
                       {scene.planet}
                       <span
-                        className={`font-roboto rounded px-1.5 py-0.5 text-[10px] font-medium tracking-normal lowercase ${
+                        className={`font-roboto rounded px-1.5 py-0.5 text-[12px] font-medium tracking-normal lowercase ${
                           isSelected
                             ? "bg-[var(--color-primary-dark)]/10 text-[var(--color-primary-dark)]/80"
                             : "bg-white/10 text-[var(--color-accent-glow)]"
@@ -209,7 +209,7 @@ export default function CurrentStoryDetailsPage() {
                     Blueprint Realtime Specs // {currentActiveScene.planet}
                   </span>
                   {currentActiveScene.collapseRisk && (
-                    <span className="font-roboto flex items-center gap-1.5 text-[10px] text-white/40">
+                    <span className="font-roboto flex items-center gap-1.5 text-[12px] text-white/40">
                       <AlertTriangle size={11} className="text-amber-500" />
                       RISK VALUE:{" "}
                       <span className="font-bold text-white">
@@ -220,7 +220,7 @@ export default function CurrentStoryDetailsPage() {
                 </div>
                 <div className="grid grid-cols-1 gap-4 text-xs leading-relaxed md:grid-cols-2">
                   <div className="space-y-1">
-                    <span className="block text-[9px] tracking-widest text-white/30 uppercase">
+                    <span className="block text-[11px] tracking-widest text-white/30 uppercase">
                       Behavioral Blueprint Script
                     </span>
                     <p className="font-medium text-white/80">
@@ -229,7 +229,7 @@ export default function CurrentStoryDetailsPage() {
                     </p>
                   </div>
                   <div className="space-y-1">
-                    <span className="block text-[9px] tracking-widest text-white/30 uppercase">
+                    <span className="block text-[11px] tracking-widest text-white/30 uppercase">
                       Structural Pressure Point
                     </span>
                     <p className="font-medium text-white/80 italic">
@@ -248,7 +248,7 @@ export default function CurrentStoryDetailsPage() {
           <div className="space-y-6">
             {/* Temporal Alignment Block */}
             <div className="space-y-4 rounded-xl border border-white/5 bg-white/[0.02] p-5 text-xs">
-              <span className="block text-[9px] font-bold tracking-[0.25em] text-white/30 uppercase">
+              <span className="block text-[11px] font-bold tracking-[0.25em] text-white/30 uppercase">
                 Temporal Tracking Metrics
               </span>
               <div className="space-y-2.5">
@@ -278,7 +278,7 @@ export default function CurrentStoryDetailsPage() {
                   size={13}
                   className="text-[var(--color-accent-orange)]"
                 />
-                <h3 className="text-[10px] font-bold tracking-[0.25em] text-white/40 uppercase">
+                <h3 className="text-[12px] font-bold tracking-[0.25em] text-white/40 uppercase">
                   Core Alpha Themes Map
                 </h3>
               </div>
@@ -291,7 +291,7 @@ export default function CurrentStoryDetailsPage() {
                     <span className="text-sm font-bold tracking-wide text-white uppercase">
                       {themeName}
                     </span>
-                    <span className="text-[9px] font-bold text-white/20">
+                    <span className="text-[11px] font-bold text-white/20">
                       0{idx + 1}
                     </span>
                   </div>

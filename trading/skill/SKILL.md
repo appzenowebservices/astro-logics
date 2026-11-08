@@ -68,6 +68,8 @@ values you did not observe from a tool response.
 | `market.get_account` | Account balance/equity/margin/leverage/currency. |
 | `market.analyze_state` | Analysis engine over history: trend/volatility/compression/liquidity/astro state + events. Optional `astroChart` input. |
 | `market.scan_window` | Candle-by-candle event scan over a history window. |
+| `market.forecast` | Zero-shot probabilistic forecast via Timestral: median + quantile bands. Pass `symbol` (MT5 closes) or `series`. Read-only. |
+| `market.forecast_health` | Whether the local Timestral service is up and weights are loaded. |
 | `trade.place_order` | Market or pending order (gated by TRADING_ENABLED + MAX_VOLUME). |
 | `trade.close_position` | Close a position by ticket. |
 | `trade.get_positions` / `trade.get_orders` | Open positions / pending orders. |
@@ -88,6 +90,10 @@ values you did not observe from a tool response.
    `market.analyze_state`, or `market.scan_window` when the issue wants events
    over a window. Pass an optional `astroChart` from the Kaalvanta MCP server
    (`compute_transits`) when astro context is available.
+   For a probabilistic view, call `market.forecast` with the symbol and
+   horizon; treat the returned quantiles as risk bands (e.g. 0.05 / 0.95),
+   never as an instruction to trade. Check `market.forecast_health` first if
+   the call errors.
 5. **Act** - for orders, `trade.place_order` (BUY/SELL or a pending type) with
    the symbol and volume; confirm the returned `retcode`/`order`/`deal`.
 6. **Verify** - re-read `trade.get_positions` / `trade.get_orders` to confirm

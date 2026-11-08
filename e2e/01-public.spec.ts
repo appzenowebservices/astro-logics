@@ -33,7 +33,7 @@ test.describe("public surface", () => {
     await expect(page.locator('input[placeholder="Email or Mobile"]')).toBeVisible();
     await expect(page.locator('input[type="password"]')).toBeVisible();
     await expect(
-      page.getByRole("button", { name: /align records/i }),
+      page.getByRole("button", { name: /let me in/i }),
     ).toBeVisible();
   });
 

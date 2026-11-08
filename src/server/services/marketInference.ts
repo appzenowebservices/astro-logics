@@ -169,9 +169,10 @@ export async function inferMarketState(
   input: MarketInferenceInput,
 ): Promise<MarketInferenceOutput> {
   const provider = createProvider({
+    provider: "opencode",
     temperature: 0.3,
     maxTokens: 1024,
-    model: process.env.OPENROUTER_MODEL || "nex-agi/nex-n2-pro:free",
+    model: process.env.OPENCODE_MODEL || "deepseek-v4.1-flash",
   });
 
   const system = buildSystemPrompt();

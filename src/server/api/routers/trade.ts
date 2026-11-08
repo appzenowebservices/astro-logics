@@ -100,6 +100,68 @@ const AssetSessionBriefSchema = z.object({
   steps: z.number().min(3).max(12).default(8),
 });
 
+const BRIDGE_BASE = process.env.MT5_BRIDGE_URL ?? "http://127.0.0.1:8000";
+const FORECAST_BASE = process.env.FORECAST_URL ?? "http://127.0.0.1:8001";
+const MAX_VOLUME = Number(process.env.MT5_MAX_VOLUME ?? 1);
+
+const tradingEnabled = () => process.env.MT5_TRADING_ENABLED === "true";
+
+/**
+ * Small helper around the Python MT5 bridge. Normalizes its
+ * `{ success, data }` envelope and surfaces upstream detail as tRPC errors.
+ */
+async function bridgeCall<T>(
+  method: "GET" | "POST",
+  path: string,
+  body?: unknown,
+): Promise<T> {
+  try {
+    const response = await axios.request({
+      method,
+      url: `${BRIDGE_BASE}${path}`,
+      data: body,
+      timeout: 20_000,
+    });
+    const payload = response.data as {
+      success?: boolean;
+      data?: T;
+      error?: string;
+    };
+    if (payload?.success === false) {
+      throw new Error(payload.error ?? "MT5 bridge reported a failure");
+    }
+    return (payload?.data !== undefined ? payload.data : payload) as T;
+  } catch (error) {
+    const detail = axios.isAxiosError(error)
+      ? ((error.response?.data as { detail?: string } | undefined)?.detail ??
+        error.message)
+      : error instanceof Error
+        ? error.message
+        : "MT5 bridge unreachable";
+    throw new TRPCError({ code: "BAD_GATEWAY", message: detail });
+  }
+}
+
+type ForecastHealth = {
+  status?: string;
+  available: boolean;
+  model: string;
+  device: string;
+  loaded: boolean;
+  error: string | null;
+};
+
+type ForecastResult = {
+  model: string;
+  device: string;
+  horizon: number;
+  variates: number;
+  quantile_levels: number[];
+  median: number[][];
+  bands: Record<string, number[][]>;
+  elapsed_ms: number;
+};
+
 export const tradeRouter = createTRPCRouter({
   // ==========================================
   // FETCH MT5 HISTORICAL DATA PIPELINE
@@ -151,6 +213,88 @@ export const tradeRouter = createTRPCRouter({
     }),
 
   // ==========================================
+  // TIMESTRAL FORECAST SERVICE (visual surface)
+  // ==========================================
+  forecastHealth: protectedProcedure.query(async () => {
+    try {
+      const res = await axios.get<ForecastHealth>(`${FORECAST_BASE}/health`, {
+        timeout: 5000,
+      });
+      return { reachable: true, ...res.data };
+    } catch (error) {
+      return {
+        reachable: false,
+        available: false,
+        loaded: false,
+        model: null,
+        device: null,
+        error: error instanceof Error ? error.message : "unreachable",
+      };
+    }
+  }),
+
+  forecast: protectedProcedure
+    .input(
+      z.object({
+        symbol: z.string(),
+        timeframe: z.string().default("M15"),
+        count: z.number().int().min(64).max(32768).default(2000),
+        predictionLength: z.number().int().min(1).max(1024).default(96),
+        quantiles: z
+          .array(z.number().min(0.01).max(0.99))
+          .default([0.05, 0.25, 0.5, 0.75, 0.95]),
+      }),
+    )
+    .mutation(async ({ input }) => {
+      const started = Date.now();
+
+      const history = await axios.get(
+        `${BRIDGE_BASE}/history/${input.symbol}`,
+        { params: { timeframe: input.timeframe, count: input.count } },
+      );
+
+      const candles = Array.isArray(history.data?.data) ? history.data.data : [];
+      const closes = candles
+        .map((candle: { close?: unknown }) => Number(candle?.close))
+        .filter((value: number) => Number.isFinite(value));
+
+      if (closes.length < 32) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: `Only ${closes.length} usable candles for ${input.symbol}`,
+        });
+      }
+
+      try {
+        const res = await axios.post<ForecastResult>(
+          `${FORECAST_BASE}/forecast`,
+          {
+            series: [closes],
+            prediction_length: input.predictionLength,
+            quantiles: input.quantiles,
+          },
+          { timeout: 60000 },
+        );
+
+        return {
+          ...res.data,
+          source: `${input.symbol} ${input.timeframe} · ${closes.length} bars`,
+          roundTripMs: Date.now() - started,
+        };
+      } catch (error) {
+        const detail = axios.isAxiosError(error)
+          ? ((error.response?.data as { detail?: string } | undefined)?.detail ??
+            error.message)
+          : String(error);
+
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: `Forecast service: ${detail}`,
+        });
+      }
+    }),
+
+  // ==========================================
   // FETCH MT5 LIVE TICK STREAM
   // ==========================================
   getPrice: protectedProcedure
@@ -188,6 +332,159 @@ export const tradeRouter = createTRPCRouter({
           message: "Failed to fetch MT5 price",
         });
       }
+    }),
+
+  // ==========================================
+  // MT5 EXECUTION DESK
+  // ==========================================
+  mt5Account: protectedProcedure.query(async () => {
+    const account = await bridgeCall<Record<string, unknown>>("GET", "/account");
+    return {
+      ...account,
+      tradingEnabled: tradingEnabled(),
+      maxVolume: MAX_VOLUME,
+    };
+  }),
+
+  mt5Positions: protectedProcedure
+    .input(z.object({ symbol: z.string().optional() }).optional())
+    .query(async ({ input }) => {
+      const q = input?.symbol
+        ? `?symbol=${encodeURIComponent(input.symbol)}`
+        : "";
+      return bridgeCall<Array<Record<string, unknown>>>(
+        "GET",
+        `/positions${q}`,
+      );
+    }),
+
+  mt5PendingOrders: protectedProcedure.query(async () =>
+    bridgeCall<Array<Record<string, unknown>>>("GET", "/orders"),
+  ),
+
+  mt5Symbols: protectedProcedure.query(async () =>
+    bridgeCall<Array<Record<string, unknown>>>("GET", "/symbols"),
+  ),
+
+  mt5Deals: protectedProcedure
+    .input(z.object({ days: z.number().int().min(1).max(365).default(30) }))
+    .query(async ({ input }) =>
+      bridgeCall<Array<Record<string, unknown>>>(
+        "GET",
+        `/deals/history?days=${input.days}`,
+      ),
+    ),
+
+  placeOrder: protectedProcedure
+    .input(
+      z.object({
+        symbol: z.string().min(1),
+        action: z.enum([
+          "BUY",
+          "SELL",
+          "BUY_LIMIT",
+          "BUY_STOP",
+          "SELL_LIMIT",
+          "SELL_STOP",
+        ]),
+        volume: z.number().positive().max(100),
+        price: z.number().positive().optional(),
+        sl: z.number().positive().optional(),
+        tp: z.number().positive().optional(),
+        comment: z.string().max(31).optional(),
+        deviation: z.number().int().min(0).max(500).optional(),
+      }),
+    )
+    .mutation(async ({ input }) => {
+      if (!tradingEnabled()) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message:
+            "Execution is locked. Set MT5_TRADING_ENABLED=true in .env to allow order placement.",
+        });
+      }
+      if (input.volume > MAX_VOLUME) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: `Volume ${input.volume} exceeds the configured limit of ${MAX_VOLUME} lots.`,
+        });
+      }
+
+      const result = await bridgeCall<Record<string, unknown>>(
+        "POST",
+        "/orders",
+        input,
+      );
+
+      if (!result.success) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: `MT5 rejected the order: ${String(result.comment ?? "unknown")} (retcode ${String(result.retcode)})`,
+        });
+      }
+
+      return result;
+    }),
+
+  closePosition: protectedProcedure
+    .input(
+      z.object({
+        ticket: z.number().int().positive(),
+        volume: z.number().positive().optional(),
+      }),
+    )
+    .mutation(async ({ input }) => {
+      if (!tradingEnabled()) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Execution is locked (MT5_TRADING_ENABLED is not true).",
+        });
+      }
+      return bridgeCall<Record<string, unknown>>(
+        "POST",
+        `/positions/${input.ticket}/close`,
+        { volume: input.volume },
+      );
+    }),
+
+  cancelOrder: protectedProcedure
+    .input(z.object({ ticket: z.number().int().positive() }))
+    .mutation(async ({ input }) => {
+      if (!tradingEnabled()) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Execution is locked (MT5_TRADING_ENABLED is not true).",
+        });
+      }
+      return bridgeCall<Record<string, unknown>>(
+        "POST",
+        `/orders/${input.ticket}/cancel`,
+        {},
+      );
+    }),
+
+  modifyOrder: protectedProcedure
+    .input(
+      z.object({
+        ticket: z.number().int().positive(),
+        price: z.number().positive().optional(),
+        sl: z.number().positive().optional(),
+        tp: z.number().positive().optional(),
+      }),
+    )
+    .mutation(async ({ input }) => {
+      if (!tradingEnabled()) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Execution is locked (MT5_TRADING_ENABLED is not true).",
+        });
+      }
+      const { ticket, ...payload } = input;
+      return bridgeCall<Record<string, unknown>>(
+        "POST",
+        `/orders/${ticket}/modify`,
+        payload,
+      );
     }),
 
   // ==========================================

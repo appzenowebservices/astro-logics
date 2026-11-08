@@ -1,0 +1,338 @@
+/* src/ui/astro.css
+   Live sidereal HUD + in-world graha tags. Dark glass to sit over any world. */
+
+.astro-hud {
+  position: fixed;
+  top: 62px;
+  right: 18px;
+  z-index: 32;
+  width: 286px;
+  max-height: calc(100vh - 96px);
+  overflow: auto;
+  padding: 12px 12px 10px;
+  border: 1px solid rgba(143, 179, 217, 0.22);
+  border-radius: 14px;
+  background:
+    radial-gradient(120% 80% at 85% 0%, rgba(209, 122, 56, 0.14), transparent 60%),
+    rgba(6, 10, 18, 0.78);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px);
+  color: #dbe7f3;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+.astro-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(143, 179, 217, 0.14);
+}
+
+.astro-head b {
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.astro-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.astro-dot.ok {
+  background: #4ade80;
+  color: #4ade80;
+}
+
+.astro-dot.bad {
+  background: #f87171;
+  color: #f87171;
+}
+
+.astro-src {
+  font-size: 8px;
+  color: rgba(219, 231, 243, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.astro-toggle {
+  margin-left: auto;
+  padding: 3px 8px;
+  border: 1px solid rgba(143, 179, 217, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(219, 231, 243, 0.65);
+  font: inherit;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+}
+
+.astro-toggle:hover {
+  border-color: rgba(244, 185, 66, 0.5);
+  color: #f4b942;
+}
+
+.astro-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(143, 179, 217, 0.1);
+  font-size: 9px;
+  color: rgba(219, 231, 243, 0.55);
+}
+
+.astro-meta button {
+  margin-left: auto;
+  padding: 2px 7px;
+  border: 1px solid rgba(143, 179, 217, 0.2);
+  border-radius: 999px;
+  background: rgba(143, 179, 217, 0.08);
+  color: rgba(219, 231, 243, 0.7);
+  font: inherit;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+}
+
+.astro-meta button:disabled {
+  opacity: 0.4;
+  cursor: wait;
+}
+
+.astro-error,
+.astro-empty {
+  margin: 8px 0 2px;
+  padding: 7px 8px;
+  border-radius: 8px;
+  background: rgba(248, 113, 113, 0.08);
+  color: #fca5a5;
+  font-size: 9px;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.astro-empty {
+  background: rgba(143, 179, 217, 0.06);
+  color: rgba(219, 231, 243, 0.5);
+}
+
+.astro-list {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+}
+
+.astro-list li + li {
+  margin-top: 1px;
+}
+
+.astro-list button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.astro-list button:hover {
+  background: rgba(143, 179, 217, 0.08);
+}
+
+.astro-list button.on {
+  background: rgba(244, 185, 66, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(244, 185, 66, 0.28);
+}
+
+.astro-list .g {
+  width: 14px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.astro-list .n {
+  min-width: 58px;
+  font-weight: 700;
+}
+
+.astro-list .p {
+  flex: 1;
+  color: rgba(219, 231, 243, 0.55);
+  font-size: 9px;
+}
+
+.astro-list .h {
+  color: rgba(219, 231, 243, 0.35);
+  font-size: 8px;
+}
+
+.astro-list .r {
+  padding: 0 4px;
+  border-radius: 999px;
+  background: rgba(240, 180, 41, 0.16);
+  color: #f0b429;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.astro-detail {
+  margin-top: 9px;
+  padding: 9px 9px 8px;
+  border: 1px solid rgba(244, 185, 66, 0.2);
+  border-radius: 10px;
+  background: rgba(244, 185, 66, 0.06);
+}
+
+.astro-detail-title {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.astro-detail-title em {
+  margin-left: auto;
+  font-style: normal;
+  font-size: 8px;
+  color: rgba(219, 231, 243, 0.35);
+}
+
+.astro-detail dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 10px;
+  margin: 8px 0;
+}
+
+.astro-detail dt {
+  color: rgba(219, 231, 243, 0.35);
+  font-size: 7px;
+  letter-spacing: 0.16em;
+}
+
+.astro-detail dd {
+  margin: 2px 0 0;
+  font-size: 9px;
+  color: rgba(219, 231, 243, 0.85);
+  text-transform: uppercase;
+}
+
+.astro-detail dd.cond.retrograde {
+  color: #f0b429;
+}
+
+.astro-detail dd.cond.combust {
+  color: #f87171;
+}
+
+.astro-detail dd.cond.direct {
+  color: #4ade80;
+}
+
+.astro-close {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid rgba(143, 179, 217, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(219, 231, 243, 0.6);
+  font: inherit;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+}
+
+.astro-foot {
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid rgba(143, 179, 217, 0.1);
+  color: rgba(219, 231, 243, 0.28);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── In-world labels (rendered through drei <Html>) ─────────────────── */
+
+.astro-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border: 1px solid rgba(219, 231, 243, 0.22);
+  border-radius: 999px;
+  background: rgba(5, 10, 20, 0.72);
+  color: #dbe7f3;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.astro-tag.sel,
+.astro-tag:hover {
+  border-color: rgba(244, 185, 66, 0.6);
+  background: rgba(244, 185, 66, 0.14);
+}
+
+.astro-tag-glyph {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.astro-tag-name {
+  text-transform: uppercase;
+}
+
+.astro-tag-deg {
+  color: rgba(219, 231, 243, 0.45);
+  font-size: 8px;
+}
+
+.astro-sign {
+  color: rgba(143, 179, 217, 0.55);
+  font-size: 12px;
+  line-height: 1;
+  user-select: none;
+}
+
+.astro-asc {
+  color: #f4b942;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  user-select: none;
+}
+
+.astro-earth {
+  color: rgba(143, 179, 217, 0.7);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+  user-select: none;
+}
+
+@media (max-width: 760px) {
+  .astro-hud {
+    display: none;
+  }
+}

@@ -180,7 +180,7 @@ export default function WindowAnalysisPanel({
                 {narrative.digitalTwinVoice}
               </p>
               {astroSummary && (
-                <div className="mt-2 text-[10px] text-white/40">
+                <div className="mt-2 text-[12px] text-white/40">
                   Pressure: {astroSummary.pressure} | Tension: {astroSummary.tension}
                 </div>
               )}
@@ -206,7 +206,7 @@ export default function WindowAnalysisPanel({
                       </span>
                     </div>
                     {event.narrative && (
-                      <p className="mt-1 text-[10px] leading-tight text-white/40">
+                      <p className="mt-1 text-[12px] leading-tight text-white/40">
                         {event.narrative}
                       </p>
                     )}
@@ -233,7 +233,7 @@ export default function WindowAnalysisPanel({
                   Clear
                 </button>
               </div>
-              <div className="text-[10px] text-white/40">
+              <div className="text-[12px] text-white/40">
                 {stitchHistory.map((_, i) => (
                   <div key={i}>
                     #{i + 1}: {Math.round((_.summary?.totalEvents ?? 0) * 100)}%

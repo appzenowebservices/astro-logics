@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "./components/Navbar";
+import PlanetaryOrrery from "./components/PlanetaryOrrery";
+import PlanetarySkit from "./components/PlanetarySkit";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -15,7 +17,6 @@ import {
   Layers,
   LineChart,
   MessageSquare,
-  Moon,
   Network,
   Orbit,
   Sparkles,
@@ -37,6 +38,7 @@ const STARS = Array.from({ length: 54 }, (_, i) => ({
 }));
 
 const MODULES = [
+  "Astro-Financial Feed",
   "Cosmic Climate",
   "Planetary Parliament",
   "Tension Network",
@@ -149,7 +151,7 @@ function Reveal({
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="font-mono text-[10px] font-black tracking-[0.4em] text-[var(--color-accent-orange)] uppercase">
+    <span className="font-mono text-[12px] font-black tracking-[0.4em] text-[var(--color-accent-orange)] uppercase">
       {children}
     </span>
   );
@@ -157,14 +159,53 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 /* ========================================================================== */
 export default function HomePage() {
+  const heroRef = useRef<HTMLElement | null>(null);
+  const skitRef = useRef<HTMLElement | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const { scrollYProgress: skitProgress } = useScroll({
+    target: skitRef,
+    offset: ["start end", "start start"],
+  });
+
+  // Camera push: macro hero → micro house.
+  const copyOpacity = useTransform(heroProgress, [0, 0.55], [1, 0]);
+  const copyY = useTransform(heroProgress, [0, 0.55], [0, -80]);
+  const zoom = useTransform(heroProgress, [0, 1], [1, 1.9]);
+  const driftX = useTransform(heroProgress, [0, 1], ["0%", "-30%"]);
+  const driftY = useTransform(heroProgress, [0, 1], ["0%", "1%"]);
+  const cueOpacity = useTransform(heroProgress, [0, 0.15], [1, 0]);
+  const heroOpacity = useTransform(heroProgress, [0.5, 1], [1, 0]);
+  const heroScale = useTransform(heroProgress, [0.5, 1], [1, 1.08]);
+  const skitOpacity = useTransform(skitProgress, [0, 0.75], [0, 1]);
+  const skitScale = useTransform(skitProgress, [0, 1], [1.12, 1]);
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] antialiased">
+    <div className="relative min-h-screen overflow-x-clip bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] antialiased">
       <Navbar />
 
       {/* ══════════════════════════════════ HERO ═════════════════════════════ */}
-      <section className="relative overflow-hidden">
-        {/* Atmosphere */}
-        <div className="pointer-events-none absolute inset-0" aria-hidden>
+      <div className="relative">
+        <section ref={heroRef} className="relative h-screen overflow-hidden">
+          {/* Scene 01 — macro */}
+          <motion.div
+            style={{ opacity: heroOpacity, scale: heroScale }}
+            className="absolute inset-0 flex items-center"
+          >
+          {/* Atmosphere */}
+          <div className="pointer-events-none absolute inset-0" aria-hidden>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_70%_-10%,rgba(164,196,217,0.16),transparent_60%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_10%_110%,rgba(209,122,56,0.12),transparent_60%)]" />
           <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(to_right,var(--color-primary-light)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-primary-light)_1px,transparent_1px)] [background-size:64px_64px]" />
@@ -187,12 +228,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-16 px-4 pt-16 pb-24 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-8 lg:pt-24 lg:pb-32">
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:gap-6 lg:px-8">
           {/* Copy */}
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            style={{ opacity: copyOpacity, y: copyY }}
             className="text-center lg:text-left"
           >
             <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-[var(--color-primary-light)]/15 bg-[var(--color-primary-light)]/[0.04] px-4 py-2 backdrop-blur-sm">
@@ -200,7 +239,7 @@ export default function HomePage() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent-orange)] opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-accent-orange)]" />
               </span>
-              <span className="font-mono text-[10px] font-black tracking-[0.3em] text-[var(--color-primary-light)]/70 uppercase">
+              <span className="font-mono text-[12px] font-black tracking-[0.3em] text-[var(--color-primary-light)]/70 uppercase">
                 Sidereal engine · Live session
               </span>
             </div>
@@ -245,7 +284,7 @@ export default function HomePage() {
                   <p className="font-mono text-3xl font-black tracking-tight text-[var(--color-primary-light)]">
                     {s.value}
                   </p>
-                  <p className="mt-1 font-mono text-[9px] font-bold tracking-[0.2em] text-[var(--color-ring-bronze)]/80 uppercase">
+                  <p className="mt-1 font-mono text-[11px] font-bold tracking-[0.2em] text-[var(--color-ring-bronze)]/80 uppercase">
                     {s.label}
                   </p>
                 </div>
@@ -253,67 +292,47 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* Planet */}
+          {/* Live sidereal orrery — Earth at the centre */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="relative flex items-center justify-center"
+            style={{
+              scale: zoom,
+              x: isDesktop ? driftX : 0,
+              y: driftY,
+            }}
+            className="relative flex items-center justify-center will-change-transform"
           >
-            {/* Glow */}
-            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-              <div className="h-[280px] w-[280px] animate-glow rounded-full bg-[radial-gradient(circle,var(--color-accent-glow)/35_0%,rgba(209,122,56,0.18)_45%,transparent_72%)] blur-3xl sm:h-[420px] sm:w-[420px]" />
-            </div>
-
-            {/* Orbit rings */}
-            <div className="pointer-events-none absolute h-[320px] w-[320px] rounded-full border border-[var(--color-ring-bronze)]/20 sm:h-[460px] sm:w-[460px]" />
-            <div className="pointer-events-none absolute h-[400px] w-[400px] animate-spin-slow rounded-full border border-dashed border-[var(--color-primary-light)]/10 sm:h-[560px] sm:w-[560px]">
-              <span className="absolute top-0 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-[var(--color-accent-orange)] shadow-[0_0_12px_var(--color-accent-orange)]" />
-            </div>
-
-            <div className="animate-float relative">
-              <Image
-                src="/logo.png"
-                alt="The Kaalvanta planetary emblem"
-                width={620}
-                height={326}
-                priority
-                className="relative h-auto w-[280px] select-none drop-shadow-[0_0_70px_rgba(234,221,189,0.28)] sm:w-[420px] lg:w-[520px]"
-              />
-            </div>
-
-            {/* Floating readouts */}
-            <motion.div
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.7, duration: 0.5 }}
-              className="absolute bottom-2 left-0 rounded-2xl border border-[var(--color-primary-light)]/12 bg-[var(--color-primary-dark)]/70 px-4 py-3 backdrop-blur-md sm:bottom-8 sm:left-2"
-            >
-              <p className="font-mono text-[9px] font-bold tracking-[0.2em] text-[var(--color-ring-bronze)] uppercase">
-                Dominant signal
-              </p>
-              <p className="mt-1 flex items-center gap-1.5 text-sm font-black tracking-tight">
-                <Moon className="h-3.5 w-3.5 text-[var(--color-accent-glow)]" />
-                Moon → Capricorn
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.85, duration: 0.5 }}
-              className="absolute top-4 right-0 rounded-2xl border border-[var(--color-accent-orange)]/25 bg-[var(--color-accent-orange)]/10 px-4 py-3 backdrop-blur-md sm:top-10 sm:right-2"
-            >
-              <p className="font-mono text-[9px] font-bold tracking-[0.2em] text-[var(--color-accent-orange)] uppercase">
-                Confidence
-              </p>
-              <p className="font-mono text-lg font-black tracking-tight text-[var(--color-primary-light)]">
-                0.82
-              </p>
-            </motion.div>
+            <PlanetaryOrrery />
           </motion.div>
         </div>
-      </section>
+
+        {/* Scroll cue */}
+        <motion.div
+          style={{ opacity: cueOpacity }}
+          className="pointer-events-none absolute inset-x-0 bottom-6 z-20 flex justify-center"
+        >
+          <span className="flex flex-col items-center gap-2 font-mono text-[11px] font-bold tracking-[0.3em] text-[var(--color-primary-light)]/40 uppercase">
+            Scroll to zoom
+            <span className="h-6 w-px bg-[var(--color-primary-light)]/30" />
+          </span>
+        </motion.div>
+
+        {/* Micro view caption */}
+          </motion.div>
+        </section>
+
+        {/* Scene 02 — micro skit */}
+        <section
+          ref={skitRef}
+          className="relative h-screen overflow-hidden bg-[var(--color-primary-dark)]"
+        >
+          <motion.div
+            style={{ opacity: skitOpacity, scale: skitScale }}
+            className="pointer-events-none absolute inset-0 will-change-transform"
+          >
+            <PlanetarySkit />
+          </motion.div>
+        </section>
+      </div>
 
       {/* ══════════════════════════════ MARQUEE ══════════════════════════════ */}
       <div className="relative flex overflow-hidden border-y border-[var(--color-ring-bronze)]/20 bg-[var(--color-primary-light)]/[0.02] py-5 [mask-image:linear-gradient(to_right,transparent,black_9%,black_91%,transparent)]">
@@ -321,7 +340,7 @@ export default function HomePage() {
           {[...MODULES, ...MODULES].map((module, i) => (
             <span
               key={`${module}-${i}`}
-              className="flex items-center gap-6 px-6 font-mono text-[11px] font-bold tracking-[0.32em] text-[var(--color-primary-light)]/45 uppercase"
+              className="flex items-center gap-6 px-6 font-mono text-[12px] font-bold tracking-[0.32em] text-[var(--color-primary-light)]/45 uppercase"
             >
               {module}
               <Sparkles className="h-3 w-3 shrink-0 text-[var(--color-accent-orange)]/60" />
@@ -352,6 +371,97 @@ export default function HomePage() {
             </p>
           </Reveal>
 
+          {/* Flagship: MT5 as a read-only price provider */}
+          <Reveal className="mb-6">
+            <article className="relative overflow-hidden rounded-3xl border border-[var(--color-accent-orange)]/30 bg-[var(--color-primary-light)]/[0.04] p-6 sm:p-9">
+              <div className="pointer-events-none absolute -top-24 -right-20 h-64 w-64 rounded-full bg-[var(--color-accent-orange)]/10 blur-3xl" />
+
+              <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+                <div>
+                  <div className="flex items-start gap-3">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-[var(--color-accent-orange)]/40 bg-[var(--color-accent-orange)]/10 text-[var(--color-accent-orange)]">
+                      <TrendingUpDown className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="font-mono text-[11px] font-black tracking-[0.3em] text-[var(--color-accent-orange)] uppercase">
+                        Flagship · Astro-financial intelligence
+                      </p>
+                      <h3 className="mt-1 text-2xl font-black tracking-tight sm:text-3xl">
+                        Live MT5 data, read through the{" "}
+                        <span className="font-serif font-normal text-[var(--color-accent-glow)] italic">
+                          sky
+                        </span>
+                        .
+                      </h3>
+                    </div>
+                  </div>
+
+                  <p className="mt-4 max-w-xl text-sm leading-relaxed font-medium text-[var(--color-primary-light)]/60">
+                    Every tick from MetaTrader 5 is scored against the live
+                    sidereal chart — houses, transits, tension — so the signals,
+                    trade ideas and astro content you publish are targeted to what
+                    the sky is actually doing. Paper-trade your own book; broker
+                    orders stay off unless you opt in.
+                  </p>
+
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {[
+                      "Sidereal-scored ticks",
+                      "Astro-targeted ideas",
+                      "Broker orders off by default",
+                    ].map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-center gap-1.5 rounded-full border border-[var(--color-primary-light)]/12 bg-[var(--color-primary-light)]/[0.03] px-3 py-1 font-mono text-[11px] font-bold tracking-[0.14em] text-[var(--color-primary-light)]/55 uppercase"
+                      >
+                        <span className="h-1 w-1 rounded-full bg-[var(--color-accent-orange)]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="relative rounded-2xl border border-[var(--color-primary-light)]/10 bg-[var(--color-primary-dark)]/70 p-4">
+                  <div className="flex items-center justify-between font-mono text-[11px] font-black tracking-[0.2em] uppercase">
+                    <span className="text-[var(--color-primary-light)]/45">
+                      MT5 × Sky · Targeted
+                    </span>
+                    <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[10px] text-emerald-300">
+                      Read-only
+                    </span>
+                  </div>
+
+                  <div className="mt-4 flex h-24 items-end gap-1">
+                    {[38, 52, 44, 61, 55, 72, 66, 81, 74, 90].map(
+                      (height, index) => (
+                        <span
+                          key={index}
+                          className={`flex-1 rounded-t-sm ${
+                            index % 3 === 0
+                              ? "bg-[var(--color-accent-orange)]/70"
+                              : "bg-[var(--color-primary-light)]/20"
+                          }`}
+                          style={{ height: `${height}%` }}
+                        />
+                      ),
+                    )}
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-between border-t border-[var(--color-primary-light)]/10 pt-3 font-mono text-[11px] font-bold tracking-[0.16em] uppercase">
+                    {["EURUSD", "XAUUSD", "BTCUSD"].map((symbol) => (
+                      <span
+                        key={symbol}
+                        className="text-[var(--color-primary-light)]/40"
+                      >
+                        {symbol}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          </Reveal>
+
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((feature, i) => {
               const Icon = feature.icon;
@@ -364,7 +474,7 @@ export default function HomePage() {
                       <span className="grid h-12 w-12 place-items-center rounded-2xl border border-[var(--color-ring-bronze)]/25 bg-[var(--color-primary-dark)] text-[var(--color-accent-orange)] transition-colors duration-500 group-hover:border-[var(--color-accent-orange)]/50">
                         <Icon className="h-5 w-5" />
                       </span>
-                      <span className="font-mono text-[11px] font-black tracking-[0.2em] text-[var(--color-primary-light)]/25">
+                      <span className="font-mono text-[12px] font-black tracking-[0.2em] text-[var(--color-primary-light)]/25">
                         {feature.index}
                       </span>
                     </div>
@@ -376,7 +486,7 @@ export default function HomePage() {
                       {feature.body}
                     </p>
 
-                    <span className="relative mt-6 inline-flex items-center gap-1.5 font-mono text-[10px] font-bold tracking-[0.2em] text-[var(--color-accent-orange)] uppercase opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                    <span className="relative mt-6 inline-flex items-center gap-1.5 font-mono text-[12px] font-bold tracking-[0.2em] text-[var(--color-accent-orange)] uppercase opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                       Open module
                       <ArrowUpRight className="h-3 w-3" />
                     </span>
@@ -442,17 +552,17 @@ export default function HomePage() {
                       <BarChart3 className="h-3.5 w-3.5" />
                     </span>
                     <div>
-                      <p className="font-mono text-[10px] font-black tracking-[0.22em] text-[var(--color-primary-light)] uppercase">
+                      <p className="font-mono text-[12px] font-black tracking-[0.22em] text-[var(--color-primary-light)] uppercase">
                         Cosmic Climate
                       </p>
-                      <p className="font-mono text-[9px] tracking-[0.14em] text-[var(--color-ring-bronze)]/70 uppercase">
+                      <p className="font-mono text-[11px] tracking-[0.14em] text-[var(--color-ring-bronze)]/70 uppercase">
                         Session · 27 Apr 2026
                       </p>
                     </div>
                   </div>
                   <span className="flex items-center gap-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-2.5 py-1">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                    <span className="font-mono text-[9px] font-black tracking-[0.18em] text-emerald-300 uppercase">
+                    <span className="font-mono text-[11px] font-black tracking-[0.18em] text-emerald-300 uppercase">
                       Live
                     </span>
                   </span>
@@ -465,7 +575,7 @@ export default function HomePage() {
                       <div className="mb-2 flex items-baseline justify-between">
                         <span className="text-xs font-bold tracking-wide">
                           {row.planet}
-                          <span className="ml-2 font-mono text-[10px] font-medium tracking-[0.12em] text-[var(--color-primary-light)]/40 uppercase">
+                          <span className="ml-2 font-mono text-[12px] font-medium tracking-[0.12em] text-[var(--color-primary-light)]/40 uppercase">
                             {row.sign}
                           </span>
                         </span>
@@ -498,10 +608,10 @@ export default function HomePage() {
 
                 {/* Panel footer */}
                 <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[var(--color-primary-light)]/10 bg-[var(--color-primary-light)]/[0.02] px-6 py-4">
-                  <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-[var(--color-ring-bronze)]/80 uppercase">
+                  <span className="font-mono text-[12px] font-bold tracking-[0.18em] text-[var(--color-ring-bronze)]/80 uppercase">
                     State · Balanced
                   </span>
-                  <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-[var(--color-accent-orange)] uppercase">
+                  <span className="font-mono text-[12px] font-bold tracking-[0.18em] text-[var(--color-accent-orange)] uppercase">
                     Tension 0.31
                   </span>
                 </div>
@@ -527,7 +637,7 @@ export default function HomePage() {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-primary-dark)] via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-0 left-0 p-6">
-                  <p className="font-mono text-[10px] font-black tracking-[0.28em] text-[var(--color-primary-light)]/70 uppercase">
+                  <p className="font-mono text-[12px] font-black tracking-[0.28em] text-[var(--color-primary-light)]/70 uppercase">
                     Session 214 · Open floor
                   </p>
                 </div>
@@ -623,10 +733,10 @@ export default function HomePage() {
                       <Layers className="h-3.5 w-3.5" />
                     </span>
                     <div>
-                      <p className="font-mono text-[10px] font-black tracking-[0.22em] uppercase">
+                      <p className="font-mono text-[12px] font-black tracking-[0.22em] uppercase">
                         Sky ↔ Market
                       </p>
-                      <p className="font-mono text-[9px] tracking-[0.14em] text-[var(--color-ring-bronze)]/70 uppercase">
+                      <p className="font-mono text-[11px] tracking-[0.14em] text-[var(--color-ring-bronze)]/70 uppercase">
                         Rolling correlation ρ 0.72
                       </p>
                     </div>
@@ -655,7 +765,7 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <div className="mt-4 flex items-center justify-between border-t border-[var(--color-primary-light)]/10 pt-4 font-mono text-[9px] font-bold tracking-[0.18em] text-[var(--color-primary-light)]/35 uppercase">
+                <div className="mt-4 flex items-center justify-between border-t border-[var(--color-primary-light)]/10 pt-4 font-mono text-[11px] font-bold tracking-[0.18em] text-[var(--color-primary-light)]/35 uppercase">
                   <span>T-14d</span>
                   <span className="text-[var(--color-accent-orange)]/80">
                     Alignment window
@@ -678,7 +788,7 @@ export default function HomePage() {
             <div className="pointer-events-none absolute -top-16 -left-16 h-52 w-52 rounded-full bg-[var(--color-accent-orange)]/10 blur-3xl" aria-hidden />
 
             <div className="relative">
-              <span className="font-mono text-[10px] font-black tracking-[0.4em] text-[var(--color-accent-orange)] uppercase">
+              <span className="font-mono text-[12px] font-black tracking-[0.4em] text-[var(--color-accent-orange)] uppercase">
                 Step one is free
               </span>
 
@@ -708,7 +818,7 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[9px] font-bold tracking-[0.22em] text-[var(--color-primary-dark)]/45 uppercase">
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[11px] font-bold tracking-[0.22em] text-[var(--color-primary-dark)]/45 uppercase">
                 <span>No credit card</span>
                 <span className="text-[var(--color-accent-orange)]/60">{"//"}</span>
                 <span>Sidereal by default</span>
@@ -760,7 +870,7 @@ export default function HomePage() {
               },
             ].map((column) => (
               <div key={column.title}>
-                <h3 className="font-mono text-[10px] font-black tracking-[0.28em] text-[var(--color-ring-bronze)] uppercase">
+                <h3 className="font-mono text-[12px] font-black tracking-[0.28em] text-[var(--color-ring-bronze)] uppercase">
                   {column.title}
                 </h3>
                 <ul className="mt-5 space-y-3">
@@ -780,10 +890,10 @@ export default function HomePage() {
           </div>
 
           <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[var(--color-primary-light)]/10 pt-7 sm:flex-row">
-            <p className="font-mono text-[10px] font-bold tracking-[0.18em] text-[var(--color-primary-light)]/35 uppercase">
+            <p className="font-mono text-[12px] font-bold tracking-[0.18em] text-[var(--color-primary-light)]/35 uppercase">
               © 2026 Kaalvanta · Collective State Engine
             </p>
-            <p className="font-mono text-[10px] font-bold tracking-[0.18em] text-[var(--color-primary-light)]/25 uppercase">
+            <p className="font-mono text-[12px] font-bold tracking-[0.18em] text-[var(--color-primary-light)]/25 uppercase">
               Sidereal · v1.1.1
             </p>
           </div>

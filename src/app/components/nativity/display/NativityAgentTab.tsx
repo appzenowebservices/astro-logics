@@ -353,7 +353,7 @@ export default function NativityAgentTab({
               {(runTraceQuery.data as any[]).map((event, idx) => (
                 <div
                   key={idx}
-                  className="rounded border border-[#2D241E] bg-[#0F0D0C] p-2 text-[10px]"
+                  className="rounded border border-[#2D241E] bg-[#0F0D0C] p-2 text-[12px]"
                 >
                   <div className="mb-1 flex items-center justify-between">
                     <span className="font-mono text-stone-400">
@@ -373,7 +373,7 @@ export default function NativityAgentTab({
                       <summary className="cursor-pointer text-stone-500 hover:text-stone-400">
                         Details
                       </summary>
-                      <pre className="mt-1 max-h-32 overflow-x-auto rounded bg-[#14110F] p-1 text-[9px] text-stone-400">
+                      <pre className="mt-1 max-h-32 overflow-x-auto rounded bg-[#14110F] p-1 text-[11px] text-stone-400">
                         {JSON.stringify(event.payload, null, 1)}
                       </pre>
                     </details>

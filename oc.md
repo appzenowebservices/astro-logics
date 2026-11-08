@@ -1,1 +1,1 @@
-opencode -s ses_1447489b9ffeWvDuH4O5JEjUXb --auto
+opencode -s ses_e506505cdffeQRGhIuyYoaSJi8 --auto

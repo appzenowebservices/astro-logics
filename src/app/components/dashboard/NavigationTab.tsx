@@ -20,7 +20,7 @@ export const NavigationTab = () => {
       <div className="mb-3 flex h-12 items-center gap-6 px-4">
         <div className="mr-4 flex items-center text-[var(--color-ring-bronze)]">
           <Layers size={16} className="mr-2 opacity-50" />
-          <span className="text-[10px] font-black tracking-widest uppercase">
+          <span className="text-[12px] font-black tracking-widest uppercase">
             Modules
           </span>
         </div>
@@ -32,7 +32,7 @@ export const NavigationTab = () => {
             className="group relative py-2"
           >
             <span
-              className={`text-[10px] font-black tracking-[0.2em] uppercase transition-all duration-300 ${
+              className={`text-[12px] font-black tracking-[0.2em] uppercase transition-all duration-300 ${
                 activeTab === tab.id
                   ? "text-[var(--color-primary-light)]"
                   : "text-[var(--color-ring-bronze)]/40 group-hover:text-[var(--color-accent-glow)]"
@@ -51,7 +51,7 @@ export const NavigationTab = () => {
         ))}
         {/* Dynamic Asset Label in the light theme */}
         <div className="absolute top-6 right-8 z-20">
-          <div className="flex items-center rounded-full bg-[var(--color-primary-dark)] px-4 py-1.5 text-[10px] font-black tracking-tighter text-[var(--color-primary-light)] shadow-lg">
+          <div className="flex items-center rounded-full bg-[var(--color-primary-dark)] px-4 py-1.5 text-[12px] font-black tracking-tighter text-[var(--color-primary-light)] shadow-lg">
             <span className="mr-2 h-1 w-1 animate-ping rounded-full bg-[var(--color-accent-orange)]" />
             {activeTab === "Trading" ? asset : activeTab.toUpperCase()}
           </div>

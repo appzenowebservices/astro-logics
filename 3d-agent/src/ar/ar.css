@@ -1,0 +1,383 @@
+/* ============================================================
+   Mithuna Engine — /ar-feature
+   Mobile-first camera passthrough layer. Colors come only from the
+   :root tokens in simhud.css.
+   ============================================================ */
+
+.ar-root {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--background);
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI", monospace;
+  touch-action: none;
+}
+
+.ar-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ar-video.live {
+  opacity: 1;
+}
+
+.ar-root.mirrored .ar-video,
+.ar-root.mirrored .ar-stage {
+  transform: scaleX(-1);
+}
+
+.ar-demo-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(246, 173, 63, 0.14), transparent 60%),
+    linear-gradient(180deg, #101830 0%, #070b14 62%, #0b1120 100%);
+}
+
+.ar-demo-bg::after {
+  content: "";
+  position: absolute;
+  inset: 42% 0 0 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: perspective(340px) rotateX(56deg);
+  transform-origin: top center;
+  opacity: 0.55;
+}
+
+.ar-stage {
+  position: absolute;
+  inset: 0;
+}
+
+.ar-stage canvas {
+  display: block;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.ar-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 24px;
+}
+
+.ar-fallback b {
+  color: var(--status-err);
+}
+
+/* ---------------- Permission gate ---------------- */
+
+.ar-gate {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    radial-gradient(900px 500px at 50% -10%, rgba(246, 173, 63, 0.16), transparent 60%),
+    linear-gradient(180deg, rgba(7, 11, 20, 0.92), rgba(7, 11, 20, 0.98));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.ar-gate-card {
+  width: min(440px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding: 26px 22px;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 40%),
+    rgba(19, 27, 48, 0.78);
+  border: 1px solid rgba(246, 173, 63, 0.24);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.ar-gate-kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--accent);
+}
+
+.ar-gate-title {
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--hud-text);
+}
+
+.ar-gate-copy {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--hud-dim);
+}
+
+.ar-gate-note {
+  font-size: 10.5px;
+  letter-spacing: 0.4px;
+  color: var(--hud-dim);
+  opacity: 0.8;
+}
+
+.ar-error {
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--status-err);
+  background: rgba(251, 113, 133, 0.08);
+  border: 1px solid rgba(251, 113, 133, 0.35);
+  border-radius: 12px;
+}
+
+.ar-cta {
+  padding: 14px 18px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  color: #1a0e02;
+  background: var(--accent-gradient);
+  border: 1px solid rgba(246, 173, 63, 0.8);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(246, 173, 63, 0.35);
+  transition: transform 0.15s var(--ease-premium), box-shadow 0.15s ease;
+}
+
+.ar-cta:active {
+  transform: scale(0.97);
+}
+
+.ar-cta:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.ar-cta.ghost {
+  color: var(--hud-text);
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  box-shadow: none;
+}
+
+.ar-back {
+  margin-top: 2px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--hud-dim);
+  text-decoration: none;
+}
+
+.ar-back:hover {
+  color: var(--primary);
+}
+
+/* ---------------- Live HUD ---------------- */
+
+.ar-topbar {
+  position: absolute;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  left: 12px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  flex-wrap: wrap;
+}
+
+.ar-badge,
+.ar-chip {
+  padding: 7px 12px;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  border-radius: 999px;
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  pointer-events: auto;
+  white-space: nowrap;
+}
+
+.ar-badge.live {
+  color: #1a0e02;
+  background: var(--accent-gradient);
+  box-shadow: 0 4px 18px rgba(246, 173, 63, 0.45);
+}
+
+.ar-badge.demo {
+  color: var(--secondary);
+  background: var(--accent-2);
+  box-shadow: 0 4px 18px rgba(94, 234, 212, 0.35);
+}
+
+.ar-chip {
+  color: var(--hud-text);
+  background: rgba(19, 27, 48, 0.62);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  cursor: default;
+}
+
+.ar-chip.hint {
+  color: var(--accent);
+  border-color: rgba(246, 173, 63, 0.45);
+  animation: ar-pulse 1.6s ease-in-out infinite;
+}
+
+.ar-chip.ok {
+  color: var(--accent-green);
+  border-color: rgba(52, 211, 153, 0.45);
+}
+
+button.ar-chip {
+  cursor: pointer;
+}
+
+.ar-controls {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 45%),
+    rgba(14, 20, 36, 0.72);
+  border: 1px solid rgba(246, 173, 63, 0.18);
+  backdrop-filter: blur(22px) saturate(1.3);
+  -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.ar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ar-row-compact {
+  gap: 12px;
+}
+
+.ar-btn {
+  flex: 1 1 auto;
+  min-width: 62px;
+  padding: 12px 10px;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: var(--hud-text);
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.12s var(--ease-premium), background 0.15s ease;
+  touch-action: manipulation;
+}
+
+.ar-btn:active {
+  transform: scale(0.96);
+}
+
+.ar-btn.on {
+  color: #1a0e02;
+  background: var(--accent-gradient);
+  border-color: rgba(246, 173, 63, 0.8);
+  box-shadow: 0 4px 16px rgba(246, 173, 63, 0.35);
+}
+
+.ar-btn.rec {
+  color: var(--status-err);
+  border-color: rgba(251, 113, 133, 0.5);
+}
+
+.ar-btn.talking {
+  animation: ar-pulse 1.1s ease-in-out infinite;
+}
+
+.ar-btn.rec.recording {
+  color: #fff;
+  background: rgba(251, 113, 133, 0.85);
+  border-color: rgba(251, 113, 133, 0.9);
+  animation: ar-pulse 1.2s ease-in-out infinite;
+}
+
+.ar-field {
+  flex: 1 1 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--hud-dim);
+}
+
+.ar-field input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.ar-asset-name {
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  color: var(--hud-dim);
+  opacity: 0.75;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes ar-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (min-width: 700px) {
+  .ar-controls {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(640px, 92vw);
+  }
+}

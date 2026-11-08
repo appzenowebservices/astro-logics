@@ -20,7 +20,7 @@ export default function EventPanel({ events }: EventPanelProps) {
     <div className="absolute bottom-4 left-4 z-50 max-h-[40%] w-80 overflow-y-auto rounded-xl bg-black/70 px-4 py-3 text-xs text-white backdrop-blur">
       <div className="mb-2 flex items-center justify-between">
         <div className="font-bold">Events ({events.length})</div>
-        <div className="text-[10px] tracking-wide text-white/50 uppercase">
+        <div className="text-[12px] tracking-wide text-white/50 uppercase">
           S(t-1) → S(t)
         </div>
       </div>
@@ -40,23 +40,23 @@ export default function EventPanel({ events }: EventPanelProps) {
                     className="inline-block h-2 w-2 rounded-full"
                     style={{ backgroundColor: style.color }}
                   />
-                  <span className="font-mono text-[10px] font-bold uppercase">
+                  <span className="font-mono text-[12px] font-bold uppercase">
                     {event.type.replaceAll("_", " ")}
                   </span>
                 </div>
 
-                <span className="text-[10px] text-white/50">
+                <span className="text-[12px] text-white/50">
                   {formatEventTime(event.time)}
                 </span>
               </div>
 
               {event.narrative ? (
-                <div className="mt-1 text-[11px] text-white/70">
+                <div className="mt-1 text-[12px] text-white/70">
                   {event.narrative}
                 </div>
               ) : null}
 
-              <div className="mt-1 flex gap-3 text-[10px] text-white/50">
+              <div className="mt-1 flex gap-3 text-[12px] text-white/50">
                 <span>
                   str{" "}
                   {typeof event.strength === "number"

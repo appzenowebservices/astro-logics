@@ -12,6 +12,7 @@ import {
   dealsHistoryTool,
 } from "./trade.js";
 import { getDefaultsTool, setDefaultsTool } from "./config.js";
+import { forecastTool, forecastHealthTool } from "./forecast.js";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const tools: Array<McpToolDef<any>> = [
@@ -31,4 +32,6 @@ export const tools: Array<McpToolDef<any>> = [
   dealsHistoryTool,
   getDefaultsTool,
   setDefaultsTool,
+  forecastTool,
+  forecastHealthTool,
 ];

@@ -220,10 +220,14 @@ enum PlanetDirection {
 model User {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String
-  mobile         String?   @unique // Optional for Google OAuth users
+  // Not @unique: MongoDB's unique index permits only one missing/null value,
+  // which would block every OAuth user without a mobile. Uniqueness is
+  // enforced in the register mutation instead.
+  mobile         String?
   email          String    @unique
   passwordHash   String? // For future password auth
-  avatar         String? // Profile picture URL
+  image          String? // NextAuth adapter field (OAuth profile picture)
+  avatar         String? // Profile picture URL (app-level alias)
   isActive       Boolean   @default(true)
   isDeleted      Boolean   @default(false)
   emailVerified  Boolean   @default(false)

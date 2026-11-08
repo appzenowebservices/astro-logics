@@ -2,10 +2,31 @@ from __future__ import annotations
 
 import os
 import time
+from pathlib import Path
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
 import MetaTrader5 as mt5
+
+
+def _load_env() -> None:
+    """Load trading/.env without adding a dependency.
+
+    The bridge is usually started by `npm run bridge`, which does not export
+    the trading env file, so read it here (existing process vars win).
+    """
+    env_file = Path(__file__).resolve().parent.parent / ".env"
+    if not env_file.exists():
+        return
+    for raw in env_file.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+_load_env()
 
 app = FastAPI(title="algo-trader MT5 bridge")
 
@@ -31,14 +52,28 @@ def ensure_initialized() -> None:
     password = os.environ.get("MT5_PASSWORD") or None
     server = os.environ.get("MT5_SERVER") or None
 
+    # A logged-in terminal only needs the path. Passing login=None (or a login
+    # without its server) makes MT5 fail with `Invalid "login" argument`.
+    kwargs = {}
+    if path:
+        kwargs["path"] = path
+    if login and password and server:
+        kwargs.update(login=login, password=password, server=server)
+
     for attempt in range(5):
-        ok = mt5.initialize(
-            path=path, login=login, password=password, server=server, timeout=15000
-        )
+        ok = mt5.initialize(**kwargs, timeout=15000)
         if ok:
             _MT5_READY = True
             return
         time.sleep(1.0)
+
+    # Credentials can be rejected even when the terminal already holds a valid
+    # session (e.g. saved login, or a rotated password). Attaching to that live
+    # terminal is enough for account/positions/order calls.
+    fallback = {"path": path} if path else {}
+    if mt5.initialize(**fallback, timeout=15000):
+        _MT5_READY = True
+        return
 
     raise HTTPException(
         status_code=503,
@@ -177,6 +212,10 @@ def get_account():
             "leverage": int(info.leverage),
             "tradeMode": int(info.trade_mode),
             "name": str(info.name),
+            # Terminal-level AutoTrading switch (the green button in MT5).
+            "terminalTradeAllowed": bool(
+                (mt5.terminal_info().trade_allowed if mt5.terminal_info() else False)
+            ),
         },
     }
 

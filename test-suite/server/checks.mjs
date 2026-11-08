@@ -103,6 +103,15 @@ export const CHECKS = [
     args: ["scripts/journey.mjs"],
     timeout: 90000,
   },
+  {
+    id: "forecast-health",
+    group: "Forecasting",
+    label: "Timestral service healthy",
+    desc: "GET {FORECAST_URL}/health → 200 with available=true (model present)",
+    badge: "SAFE",
+    args: ["scripts/forecast-probe.mjs", "{FORECAST_URL}"],
+    timeout: 20000,
+  },
 ];
 
 /**

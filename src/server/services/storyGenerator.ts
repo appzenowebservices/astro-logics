@@ -52,15 +52,30 @@ export class StoryGenerator {
   private timeoutMs: number;
   private maxContextTokens: number;
   private contextLimit: number;
+  private sessionId: string;
 
   constructor(options: StoryGeneratorOptions = {}) {
-    this.baseUrl = options.baseUrl || "http://localhost:8000";
-    this.model = options.model || "llama-3.2-1b";
+    this.useLocal =
+      options.useLocal === true || process.env.USE_LOCAL_LLM === "true";
+
+    this.baseUrl =
+      options.baseUrl ||
+      (this.useLocal
+        ? process.env.LLAMA_CPP_URL || "http://localhost:8000"
+        : process.env.OPENCODE_BASE_URL ||
+          "https://opencode.ai/inference/go/openai/v1");
+    this.model =
+      options.model ||
+      (this.useLocal
+        ? process.env.LLAMA_CPP_MODEL || "llama-3.2-1b"
+        : process.env.OPENCODE_MODEL || "deepseek-v4.1-flash");
     this.apiKey =
       options.apiKey ||
-      process.env.LLAMA_CPP_API_KEY ||
-      process.env.LOCAL_LLM_API_KEY ||
-      "dummy";
+      (this.useLocal
+        ? process.env.LLAMA_CPP_API_KEY ||
+          process.env.LOCAL_LLM_API_KEY ||
+          "dummy"
+        : process.env.OPENCODE_API_KEY || "");
     // INFERENCE SPEED NOTES:
     // Current: Qwen2.5-14B (medium speed - good quality/speed tradeoff)
     // Faster:  Qwen2.5-7B (2x faster than 14B)
@@ -70,12 +85,12 @@ export class StoryGenerator {
     // Default: min 60s, but scale based on context size
     this.maxContextTokens = options.maxContextTokens || 1_000_000;
     this.timeoutMs = options.timeoutMs || this.calculateDynamicTimeout();
-    this.useLocal =
-      options.useLocal === true || process.env.USE_LOCAL_LLM === "true";
     this.contextLimit =
       options.contextLimit ||
       Number(process.env.LLM_CONTEXT_WINDOW) ||
       (this.useLocal ? 8192 : 65536);
+    this.sessionId =
+      process.env.OPENCODE_SESSION_ID || `kaalvanta-${process.pid}`;
   }
 
   /**
@@ -385,7 +400,9 @@ Each line max 40 chars. Max 200 chars total.`;
         `  Est. Max Output: ${optimizedMaxTokens} tokens (optimized for speed)`,
       );
       console.log(`  Total Est. Tokens: ${totalEstimatedTokens} tokens`);
-      console.log(`  Using: LOCAL LLM`);
+      console.log(
+        `  Using: ${this.useLocal ? "LOCAL LLM" : "OPENCODE (DeepSeek V4.1 Flash)"}`,
+      );
       console.log(`  Model: ${this.model}`);
 
       const controller = new AbortController();
@@ -407,7 +424,7 @@ Each line max 40 chars. Max 200 chars total.`;
         : `${endpointBase}/v1/chat/completions`;
 
       console.log(
-        `[STORY_GENERATOR_DEBUG] Sending request to local LLM at ${requestUrl}`,
+        `[STORY_GENERATOR_DEBUG] Sending request to LLM at ${requestUrl}`,
       );
 
       // Optimize for faster inference on large models like Qwen2.5-14B
@@ -435,6 +452,8 @@ Each line max 40 chars. Max 200 chars total.`;
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${this.apiKey}`,
+          "User-Agent": "Kaalvanta/1.1",
+          ...(this.useLocal ? {} : { "x-opencode-session": this.sessionId }),
         },
         body: JSON.stringify(requestBody),
         signal: controller.signal,
@@ -450,7 +469,7 @@ Each line max 40 chars. Max 200 chars total.`;
           errorBody = "Could not read response body";
         }
 
-        console.error("[STORY_GENERATOR_ERROR] Local LLM Error Details:");
+        console.error("[STORY_GENERATOR_ERROR] LLM Error Details:");
         console.error(`  Status: ${response.status} ${response.statusText}`);
         console.error(`  Response Body: ${errorBody}`);
 
@@ -484,7 +503,7 @@ Each line max 40 chars. Max 200 chars total.`;
 
         const errorMsg = isContextError
           ? `Context size has been exceeded. System: ${Math.ceil(systemPrompt.length / 4)} tokens, User: ${Math.ceil(userMessage.length / 4)} tokens`
-          : `Local LLM Server Error ${response.status}: ${response.statusText}\nBody: ${errorBody}\nURL: ${requestUrl}`;
+          : `LLM Server Error ${response.status}: ${response.statusText}\nBody: ${errorBody}\nURL: ${requestUrl}`;
 
         throw new Error(errorMsg);
       }
@@ -508,10 +527,10 @@ Each line max 40 chars. Max 200 chars total.`;
 
       if (error instanceof TypeError && error.message.includes("fetch")) {
         console.error(
-          "[STORY_GENERATOR_ERROR] Connection failed - llama-server not running",
+          `[STORY_GENERATOR_ERROR] Connection failed - ${this.baseUrl} not reachable`,
         );
         throw new Error(
-          `Failed to connect to local LLM at http://localhost:8000. Make sure llama-server is running. Original error: ${error.message}`,
+          `Failed to connect to LLM at ${this.baseUrl}. Original error: ${error.message}`,
         );
       }
       if (error instanceof Error && error.name === "AbortError") {

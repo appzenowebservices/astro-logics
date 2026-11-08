@@ -1,0 +1,62 @@
+/* TradingView-like typography for the /market terminal.
+   Scoped to .tv-terminal so the rest of Kaalvanta keeps its editorial type. */
+
+.tv-terminal {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Trebuchet MS", Roboto, Ubuntu,
+    "Segoe UI", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* TradingView uses one sans stack everywhere, with tabular numerals. */
+.tv-terminal .font-mono {
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+/* UI weights top out at semibold, not black. */
+.tv-terminal .font-black,
+.tv-terminal .font-extrabold,
+.tv-terminal .font-bold {
+  font-weight: 600;
+}
+
+/* Wide mono tracking is what made the labels look tiny. */
+.tv-terminal [class*="tracking-"] {
+  letter-spacing: 0.02em !important;
+}
+
+/* Lift the micro type scale to TradingView's 11–13px range. */
+.tv-terminal .text-\[7px\],
+.tv-terminal .text-\[8px\],
+.tv-terminal .text-\[9px\] {
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.tv-terminal .text-\[10px\],
+.tv-terminal .text-\[11px\] {
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.tv-terminal .text-\[12px\] {
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.tv-terminal .text-\[13px\] {
+  font-size: 14px;
+}
+
+.tv-terminal .text-\[14px\] {
+  font-size: 15px;
+}
+
+.tv-terminal input,
+.tv-terminal select {
+  font-size: 12px;
+}

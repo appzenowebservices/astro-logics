@@ -82,11 +82,11 @@ export default function CurrentStoryHero() {
         <div className="relative z-10 flex h-full w-full flex-col justify-end space-y-4 p-5 text-left sm:space-y-5 sm:p-10 md:absolute md:inset-x-0 md:bottom-0 md:mt-0 md:max-w-xl md:p-16 lg:max-w-2xl">
           {/* Meta System Track Badge Row */}
           <div className="flex flex-wrap items-center gap-2">
-            <div className="rounded-sm border border-orange-500/10 bg-[var(--color-accent-orange,#f97316)] px-2 py-0.5 text-[8px] font-black tracking-widest text-white uppercase shadow-md sm:text-[9px]">
+            <div className="rounded-sm border border-orange-500/10 bg-[var(--color-accent-orange,#f97316)] px-2 py-0.5 text-[10px] font-black tracking-widest text-white uppercase shadow-md sm:text-[11px]">
               LIVE TRACK
             </div>
             {story.intensity && (
-              <div className="flex items-center gap-1.5 rounded border border-white/5 bg-slate-900/80 px-2 py-0.5 font-mono text-[9px] text-white/90 shadow-sm backdrop-blur-md sm:text-[10px]">
+              <div className="flex items-center gap-1.5 rounded border border-white/5 bg-slate-900/80 px-2 py-0.5 font-mono text-[11px] text-white/90 shadow-sm backdrop-blur-md sm:text-[12px]">
                 <Flame
                   size={10}
                   className="animate-pulse text-[var(--color-accent-orange,#f97316)]"
@@ -101,7 +101,7 @@ export default function CurrentStoryHero() {
 
           {/* Main Slate Identifiers */}
           <div className="space-y-2">
-            <span className="flex items-center gap-1.5 font-mono text-[9px] font-black tracking-[0.3em] text-[var(--color-accent-orange,#f97316)] uppercase drop-shadow-sm sm:text-[10px] sm:tracking-[0.35em]">
+            <span className="flex items-center gap-1.5 font-mono text-[11px] font-black tracking-[0.3em] text-[var(--color-accent-orange,#f97316)] uppercase drop-shadow-sm sm:text-[12px] sm:tracking-[0.35em]">
               <Activity size={10} className="animate-pulse text-sky-400" />{" "}
               SYSTEM SYSTEMIC RUN
             </span>
@@ -111,7 +111,7 @@ export default function CurrentStoryHero() {
               {story.title || "Enlightenment at a Cost"}
             </h1>
 
-            <p className="max-w-lg pt-0.5 text-[11px] leading-relaxed font-medium tracking-wide text-slate-300 opacity-90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] sm:text-sm md:text-base">
+            <p className="max-w-lg pt-0.5 text-[12px] leading-relaxed font-medium tracking-wide text-slate-300 opacity-90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] sm:text-sm md:text-base">
               {realityString}
             </p>
           </div>
@@ -122,7 +122,7 @@ export default function CurrentStoryHero() {
               onClick={() =>
                 router.push(`/dashboard/current-story/${story.id}`)
               }
-              className="group/btn flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-md bg-white px-4 py-2.5 text-[10px] font-black tracking-widest text-slate-950 uppercase shadow-xl transition-all duration-300 hover:bg-[var(--color-accent-orange,#f97316)] hover:text-white active:scale-95 sm:w-auto sm:px-5"
+              className="group/btn flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-md bg-white px-4 py-2.5 text-[12px] font-black tracking-widest text-slate-950 uppercase shadow-xl transition-all duration-300 hover:bg-[var(--color-accent-orange,#f97316)] hover:text-white active:scale-95 sm:w-auto sm:px-5"
             >
               Story Details
               <ChevronRight

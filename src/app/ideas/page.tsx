@@ -29,7 +29,7 @@ export default function IdeasPage() {
       <section className="relative overflow-hidden border-b border-[var(--color-primary-light)]/10">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_70%_-20%,rgba(164,196,217,0.14),transparent_60%)]" />
         <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <span className="font-mono text-[10px] font-black tracking-[0.4em] text-[var(--color-accent-orange)] uppercase">
+          <span className="font-mono text-[12px] font-black tracking-[0.4em] text-[var(--color-accent-orange)] uppercase">
             The feed
           </span>
           <h1 className="mt-5 text-4xl font-black tracking-tighter sm:text-5xl lg:text-6xl">
@@ -48,7 +48,7 @@ export default function IdeasPage() {
               <button
                 key={tab.id}
                 onClick={() => setKind(tab.id)}
-                className={`rounded-full border px-4 py-2 font-mono text-[10px] font-bold tracking-[0.2em] uppercase transition-colors ${
+                className={`rounded-full border px-4 py-2 font-mono text-[12px] font-bold tracking-[0.2em] uppercase transition-colors ${
                   kind === tab.id
                     ? "border-[var(--color-accent-orange)] bg-[var(--color-accent-orange)]/10 text-[var(--color-accent-orange)]"
                     : "border-[var(--color-primary-light)]/15 text-[var(--color-primary-light)]/50 hover:text-[var(--color-primary-light)]"
@@ -91,7 +91,7 @@ export default function IdeasPage() {
             >
               <div>
                 <div className="mb-4 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-ring-bronze)]/30 px-2.5 py-1 font-mono text-[9px] font-black tracking-[0.18em] uppercase">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-ring-bronze)]/30 px-2.5 py-1 font-mono text-[11px] font-black tracking-[0.18em] uppercase">
                     {post.kind === "TRADE_IDEA" ? (
                       <TrendingUpDown className="h-3 w-3 text-[var(--color-accent-orange)]" />
                     ) : (
@@ -100,7 +100,7 @@ export default function IdeasPage() {
                     {post.kind === "TRADE_IDEA" ? "Trade" : "Astro"}
                   </span>
                   {post.symbol && (
-                    <span className="font-mono text-[10px] font-bold tracking-[0.15em] text-[var(--color-accent-orange)]">
+                    <span className="font-mono text-[12px] font-bold tracking-[0.15em] text-[var(--color-accent-orange)]">
                       {post.symbol}
                     </span>
                   )}
@@ -117,7 +117,7 @@ export default function IdeasPage() {
               </div>
 
               <div className="mt-6 flex items-center justify-between border-t border-[var(--color-primary-light)]/10 pt-4">
-                <span className="font-mono text-[9px] font-bold tracking-[0.18em] text-[var(--color-ring-bronze)]/80 uppercase">
+                <span className="font-mono text-[11px] font-bold tracking-[0.18em] text-[var(--color-ring-bronze)]/80 uppercase">
                   {post.author.name}
                 </span>
                 <ArrowUpRight className="h-4 w-4 text-[var(--color-accent-orange)] opacity-0 transition-opacity group-hover:opacity-100" />

@@ -3856,6 +3856,7 @@ export namespace Prisma {
     mobile: string | null
     email: string | null
     passwordHash: string | null
+    image: string | null
     avatar: string | null
     isActive: boolean | null
     isDeleted: boolean | null
@@ -3878,6 +3879,7 @@ export namespace Prisma {
     mobile: string | null
     email: string | null
     passwordHash: string | null
+    image: string | null
     avatar: string | null
     isActive: boolean | null
     isDeleted: boolean | null
@@ -3900,6 +3902,7 @@ export namespace Prisma {
     mobile: number
     email: number
     passwordHash: number
+    image: number
     avatar: number
     isActive: number
     isDeleted: number
@@ -3934,6 +3937,7 @@ export namespace Prisma {
     mobile?: true
     email?: true
     passwordHash?: true
+    image?: true
     avatar?: true
     isActive?: true
     isDeleted?: true
@@ -3956,6 +3960,7 @@ export namespace Prisma {
     mobile?: true
     email?: true
     passwordHash?: true
+    image?: true
     avatar?: true
     isActive?: true
     isDeleted?: true
@@ -3978,6 +3983,7 @@ export namespace Prisma {
     mobile?: true
     email?: true
     passwordHash?: true
+    image?: true
     avatar?: true
     isActive?: true
     isDeleted?: true
@@ -4087,6 +4093,7 @@ export namespace Prisma {
     mobile: string | null
     email: string
     passwordHash: string | null
+    image: string | null
     avatar: string | null
     isActive: boolean
     isDeleted: boolean
@@ -4128,6 +4135,7 @@ export namespace Prisma {
     mobile?: boolean
     email?: boolean
     passwordHash?: boolean
+    image?: boolean
     avatar?: boolean
     isActive?: boolean
     isDeleted?: boolean
@@ -4164,6 +4172,7 @@ export namespace Prisma {
     mobile?: boolean
     email?: boolean
     passwordHash?: boolean
+    image?: boolean
     avatar?: boolean
     isActive?: boolean
     isDeleted?: boolean
@@ -4180,7 +4189,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "mobile" | "email" | "passwordHash" | "avatar" | "isActive" | "isDeleted" | "emailVerified" | "mobileVerified" | "lastLoginAt" | "totalGenerations" | "totalStorageUsed" | "role" | "plan" | "status" | "planExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "mobile" | "email" | "passwordHash" | "image" | "avatar" | "isActive" | "isDeleted" | "emailVerified" | "mobileVerified" | "lastLoginAt" | "totalGenerations" | "totalStorageUsed" | "role" | "plan" | "status" | "planExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
@@ -4217,6 +4226,7 @@ export namespace Prisma {
       mobile: string | null
       email: string
       passwordHash: string | null
+      image: string | null
       avatar: string | null
       isActive: boolean
       isDeleted: boolean
@@ -4639,6 +4649,7 @@ export namespace Prisma {
     readonly mobile: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly passwordHash: FieldRef<"User", 'String'>
+    readonly image: FieldRef<"User", 'String'>
     readonly avatar: FieldRef<"User", 'String'>
     readonly isActive: FieldRef<"User", 'Boolean'>
     readonly isDeleted: FieldRef<"User", 'Boolean'>
@@ -32429,6 +32440,7 @@ export namespace Prisma {
     mobile: 'mobile',
     email: 'email',
     passwordHash: 'passwordHash',
+    image: 'image',
     avatar: 'avatar',
     isActive: 'isActive',
     isDeleted: 'isDeleted',
@@ -33222,6 +33234,7 @@ export namespace Prisma {
     mobile?: StringNullableFilter<"User"> | string | null
     email?: StringFilter<"User"> | string
     passwordHash?: StringNullableFilter<"User"> | string | null
+    image?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
     isDeleted?: BoolFilter<"User"> | boolean
@@ -33255,6 +33268,7 @@ export namespace Prisma {
     mobile?: SortOrder
     email?: SortOrder
     passwordHash?: SortOrder
+    image?: SortOrder
     avatar?: SortOrder
     isActive?: SortOrder
     isDeleted?: SortOrder
@@ -33284,13 +33298,14 @@ export namespace Prisma {
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    mobile?: string
     email?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
+    mobile?: StringNullableFilter<"User"> | string | null
     passwordHash?: StringNullableFilter<"User"> | string | null
+    image?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
     isDeleted?: BoolFilter<"User"> | boolean
@@ -33316,7 +33331,7 @@ export namespace Prisma {
     marketStateSnapshots?: MarketStateSnapshotListRelationFilter
     tradeSignals?: TradeSignalListRelationFilter
     chartDrawings?: ChartDrawingListRelationFilter
-  }, "id" | "mobile" | "email">
+  }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -33324,6 +33339,7 @@ export namespace Prisma {
     mobile?: SortOrder
     email?: SortOrder
     passwordHash?: SortOrder
+    image?: SortOrder
     avatar?: SortOrder
     isActive?: SortOrder
     isDeleted?: SortOrder
@@ -33354,6 +33370,7 @@ export namespace Prisma {
     mobile?: StringNullableWithAggregatesFilter<"User"> | string | null
     email?: StringWithAggregatesFilter<"User"> | string
     passwordHash?: StringNullableWithAggregatesFilter<"User"> | string | null
+    image?: StringNullableWithAggregatesFilter<"User"> | string | null
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     isActive?: BoolWithAggregatesFilter<"User"> | boolean
     isDeleted?: BoolWithAggregatesFilter<"User"> | boolean
@@ -35855,6 +35872,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -35888,6 +35906,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -35920,6 +35939,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -35952,6 +35972,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -35985,6 +36006,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -36006,6 +36028,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -36027,6 +36050,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -39005,6 +39029,7 @@ export namespace Prisma {
     mobile?: SortOrder
     email?: SortOrder
     passwordHash?: SortOrder
+    image?: SortOrder
     avatar?: SortOrder
     isActive?: SortOrder
     isDeleted?: SortOrder
@@ -39032,6 +39057,7 @@ export namespace Prisma {
     mobile?: SortOrder
     email?: SortOrder
     passwordHash?: SortOrder
+    image?: SortOrder
     avatar?: SortOrder
     isActive?: SortOrder
     isDeleted?: SortOrder
@@ -39054,6 +39080,7 @@ export namespace Prisma {
     mobile?: SortOrder
     email?: SortOrder
     passwordHash?: SortOrder
+    image?: SortOrder
     avatar?: SortOrder
     isActive?: SortOrder
     isDeleted?: SortOrder
@@ -44123,6 +44150,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -44155,6 +44183,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -44202,6 +44231,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -44233,6 +44263,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -44265,6 +44296,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -44297,6 +44329,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -44344,6 +44377,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -44375,6 +44409,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -44407,6 +44442,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -44439,6 +44475,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -44893,6 +44930,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -44924,6 +44962,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -47377,6 +47416,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -47409,6 +47449,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -47567,6 +47608,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -47598,6 +47640,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -47797,6 +47840,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -47829,6 +47873,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -47919,6 +47964,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -47950,6 +47996,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -47982,6 +48029,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48014,6 +48062,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48061,6 +48110,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48092,6 +48142,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48124,6 +48175,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48156,6 +48208,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48193,6 +48246,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48225,6 +48279,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48272,6 +48327,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48303,6 +48359,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48345,6 +48402,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48376,6 +48434,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48408,6 +48467,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48440,6 +48500,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48487,6 +48548,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48518,6 +48580,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48550,6 +48613,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48582,6 +48646,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48629,6 +48694,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48660,6 +48726,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48692,6 +48759,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48724,6 +48792,7 @@ export namespace Prisma {
     mobile?: string | null
     email: string
     passwordHash?: string | null
+    image?: string | null
     avatar?: string | null
     isActive?: boolean
     isDeleted?: boolean
@@ -48771,6 +48840,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -48802,6 +48872,7 @@ export namespace Prisma {
     mobile?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean

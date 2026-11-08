@@ -104,7 +104,7 @@ export const PlanetSceneDetail = ({
                 size={13}
                 className="animate-[spin_12s_linear_infinite] text-[var(--color-accent-orange)]"
               />
-              <span className="block truncate text-[9px] font-bold tracking-widest uppercase md:text-[10px]">
+              <span className="block truncate text-[11px] font-bold tracking-widest uppercase md:text-[12px]">
                 Orbital System Active
               </span>
             </div>
@@ -185,7 +185,7 @@ export const PlanetSceneDetail = ({
                 }`}
               >
                 <p
-                  className={`text-[9px] font-bold tracking-wider uppercase ${
+                  className={`text-[11px] font-bold tracking-wider uppercase ${
                     item.highlight
                       ? "text-white/60 dark:text-[var(--color-primary-dark)]/60"
                       : hasHighRisk
@@ -224,7 +224,7 @@ export const PlanetSceneDetail = ({
         <div className="rounded-2xl border border-[var(--color-ring-bronze)]/10 bg-white p-4 shadow-sm md:col-span-2 md:p-5 lg:col-span-7 dark:bg-[var(--color-primary-dark)]/20">
           <div className="mb-4 flex items-center gap-2 border-b border-[var(--color-ring-bronze)]/10 pb-2">
             <Award size={14} className="text-[var(--text-muted)]" />
-            <h4 className="text-[10px] font-bold tracking-widest text-[var(--text-muted)] uppercase">
+            <h4 className="text-[12px] font-bold tracking-widest text-[var(--text-muted)] uppercase">
               Narrative Engine Blueprint
             </h4>
           </div>
@@ -252,7 +252,7 @@ export const PlanetSceneDetail = ({
                     key={i}
                     className={`rounded-xl border p-3 ${item.tone} flex flex-col justify-between gap-1`}
                   >
-                    <p className="text-[9px] font-bold tracking-wider uppercase opacity-60">
+                    <p className="text-[11px] font-bold tracking-wider uppercase opacity-60">
                       {item.label}
                     </p>
                     <p className="text-xs leading-relaxed font-semibold tracking-tight">
@@ -269,7 +269,7 @@ export const PlanetSceneDetail = ({
           <div>
             <div className="mb-3 flex items-center gap-2 border-b border-[var(--color-ring-bronze)]/10 pb-2">
               <ShieldAlert size={14} className="text-[var(--text-muted)]" />
-              <h4 className="text-[10px] font-bold tracking-widest text-[var(--text-muted)] uppercase">
+              <h4 className="text-[12px] font-bold tracking-widest text-[var(--text-muted)] uppercase">
                 Active Angular Harmonics
               </h4>
             </div>
@@ -285,7 +285,7 @@ export const PlanetSceneDetail = ({
                       {aspect.aspectType}
                     </span>
                     <span className="h-1 w-1 rounded-full bg-[var(--color-ring-bronze)]/40" />
-                    <span className="font-mono text-[11px] text-[var(--text-muted)]">
+                    <span className="font-mono text-[12px] text-[var(--text-muted)]">
                       {aspect.orb.toFixed(1)}° Orb
                     </span>
                   </div>

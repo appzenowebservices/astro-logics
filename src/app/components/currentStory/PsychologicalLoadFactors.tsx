@@ -37,7 +37,7 @@ export const PsychologicalLoadFactors = ({
             className="animate-pulse text-[var(--color-accent-glow)]"
           />
         </div>
-        <p className="max-w-[200px] text-[11px] font-semibold tracking-wider text-[var(--text-muted)] uppercase">
+        <p className="max-w-[200px] text-[12px] font-semibold tracking-wider text-[var(--text-muted)] uppercase">
           Awaiting orbital anchor alignment...
         </p>
       </div>
@@ -53,11 +53,11 @@ export const PsychologicalLoadFactors = ({
         <div className="mb-3 flex shrink-0 items-center justify-between gap-2 border-b border-[var(--color-ring-bronze)]/10 pb-2">
           <div className="flex items-center gap-2">
             <Activity size={14} className="text-[var(--color-accent-orange)]" />
-            <h4 className="text-[10px] font-bold tracking-widest text-[var(--text-main)] uppercase opacity-80">
+            <h4 className="text-[12px] font-bold tracking-widest text-[var(--text-main)] uppercase opacity-80">
               Psychological Load Factors
             </h4>
           </div>
-          <span className="rounded-md bg-[var(--color-accent-orange)]/10 px-2 py-0.5 font-mono text-[9px] font-bold tracking-wider text-[var(--color-accent-orange)] uppercase">
+          <span className="rounded-md bg-[var(--color-accent-orange)]/10 px-2 py-0.5 font-mono text-[11px] font-bold tracking-wider text-[var(--color-accent-orange)] uppercase">
             Live Vector
           </span>
         </div>

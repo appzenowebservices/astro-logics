@@ -137,3 +137,26 @@ ADMIN_PASSWORD=a-long-random-secret
 `ADMIN_EMAILS` (comma-separated) still controls which emails are created as
 admins at registration.
 
+### Google sign-in
+
+- Credentials come from the Google OAuth client JSON (`google-auth/…json`) and
+  live **server-side only**:
+  ```env
+  GOOGLE_CLIENT_ID=…apps.googleusercontent.com
+  GOOGLE_CLIENT_SECRET=…
+  NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true
+  ```
+- **Authorised redirect URI** must be added in Google Cloud Console →
+  Credentials → the OAuth client:
+  `http://localhost:3000/api/auth/callback/google` (plus the production URL).
+  The default `http://localhost:3000` entry alone is **not** enough.
+- `google-auth/` and `client_secret_*.json` are gitignored — the secret is never
+  committed.
+- On first sign-in the Prisma adapter writes a `User` (role `MEMBER`, plan
+  `FREE`, status `ACTIVE`) and an `Account` row holding
+  `provider: "google"`, `providerAccountId` and the OAuth tokens. That link is
+  the durable credential; the client secret itself is not stored in Mongo.
+- `allowDangerousEmailAccountLinking` is on so a Google identity links to an
+  existing password account with the same email instead of failing with
+  `OAuthAccountNotLinked`.
+

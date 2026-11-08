@@ -41,10 +41,10 @@ export default function NotFound() {
 
           <div className="animate-float-saturn relative">
             <Image
-              src="/saturn-removebg.png"
+              src="/saturn.png"
               alt="Saturn adrift in space"
               width={280}
-              height={280}
+              height={420}
               priority
               className="pointer-events-none relative drop-shadow-[0_0_60px_rgba(234,221,189,0.35)_0_0_30px_rgba(164,196,217,0.25)] select-none"
             />
@@ -53,7 +53,7 @@ export default function NotFound() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
-              className="absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-[var(--color-primary-light)]/95 px-4 py-1.5 text-[9px] font-medium tracking-[0.2em] whitespace-nowrap text-[var(--color-primary-dark)] uppercase shadow-lg backdrop-blur-sm"
+              className="absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-[var(--color-primary-light)]/95 px-4 py-1.5 text-[11px] font-medium tracking-[0.2em] whitespace-nowrap text-[var(--color-primary-dark)] uppercase shadow-lg backdrop-blur-sm"
             >
               <span className="mr-1.5 inline-block h-1 w-1 animate-pulse rounded-full bg-[var(--color-accent-orange)]" />
               Off Orbit
@@ -71,7 +71,7 @@ export default function NotFound() {
           {/* Eyebrow */}
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary-light)]/15 bg-[var(--color-primary-light)]/[0.04] px-4 py-2">
             <Compass size={14} className="text-[var(--color-accent-orange)]" />
-            <span className="text-[10px] font-black tracking-[0.3em] text-[var(--color-primary-light)]/70 uppercase">
+            <span className="text-[12px] font-black tracking-[0.3em] text-[var(--color-primary-light)]/70 uppercase">
               Error 404 // Sector Unknown
             </span>
           </div>
@@ -123,7 +123,7 @@ export default function NotFound() {
           </div>
 
           {/* Coordinates strip */}
-          <div className="mt-10 flex flex-wrap justify-center gap-x-5 gap-y-2 border-t border-[var(--color-primary-light)]/10 pt-5 font-mono text-[9px] font-medium tracking-[0.2em] text-[var(--color-primary-light)]/35 uppercase lg:justify-start">
+          <div className="mt-10 flex flex-wrap justify-center gap-x-5 gap-y-2 border-t border-[var(--color-primary-light)]/10 pt-5 font-mono text-[11px] font-medium tracking-[0.2em] text-[var(--color-primary-light)]/35 uppercase lg:justify-start">
             <span>SEC-404</span>
             <span className="text-[var(--color-accent-orange)]/50">//</span>
             <span>ENGINE_ERR_NULL</span>

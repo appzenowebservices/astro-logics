@@ -56,7 +56,7 @@ export default function NativityChartForm({
   const fieldClass =
     "w-full px-4 py-3 rounded-lg bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] border-2 border-[var(--color-primary-dark)] focus:border-[var(--color-accent-orange)] outline-none font-mono text-sm transition-all";
   const labelClass =
-    "block text-[11px] font-black text-slate-800 uppercase tracking-widest mb-1.5";
+    "block text-[12px] font-black text-slate-800 uppercase tracking-widest mb-1.5";
 
   return (
     <div className="h-full w-full bg-[var(--color-primary-light)] bg-white p-8">

@@ -421,17 +421,19 @@ TRAJECTORY:
 Only output this format.
 `;
 
-  const provider = createProvider({
-    provider: process.env.USE_LOCAL_LLM === "true" ? "local" : "groq",
-    baseUrl:
-      process.env.USE_LOCAL_LLM === "true"
-        ? process.env.LLAMA_CPP_URL || "http://localhost:8000"
-        : undefined,
-    model:
-      process.env.USE_LOCAL_LLM === "true"
-        ? process.env.LLAMA_CPP_MODEL || "local-gguf-model"
-        : process.env.GROQ_MODEL || "mixtral-8x7b-32768",
-  });
+  const useLocalLlm = process.env.USE_LOCAL_LLM === "true";
+  const provider = createProvider(
+    useLocalLlm
+      ? {
+          provider: "local",
+          baseUrl: process.env.LLAMA_CPP_URL || "http://localhost:8000",
+          model: process.env.LLAMA_CPP_MODEL || "local-gguf-model",
+        }
+      : {
+          provider: "opencode",
+          model: process.env.OPENCODE_MODEL || "deepseek-v4.1-flash",
+        },
+  );
 
   const response = await provider.generate({
     system:
@@ -497,17 +499,19 @@ STATE:
 Only output this format.
 `;
 
-  const provider = createProvider({
-    provider: process.env.USE_LOCAL_LLM === "true" ? "local" : "groq",
-    baseUrl:
-      process.env.USE_LOCAL_LLM === "true"
-        ? process.env.LLAMA_CPP_URL || "http://localhost:8000"
-        : undefined,
-    model:
-      process.env.USE_LOCAL_LLM === "true"
-        ? process.env.LLAMA_CPP_MODEL || "local-gguf-model"
-        : process.env.GROQ_MODEL || "mixtral-8x7b-32768",
-  });
+  const useLocalLlm = process.env.USE_LOCAL_LLM === "true";
+  const provider = createProvider(
+    useLocalLlm
+      ? {
+          provider: "local",
+          baseUrl: process.env.LLAMA_CPP_URL || "http://localhost:8000",
+          model: process.env.LLAMA_CPP_MODEL || "local-gguf-model",
+        }
+      : {
+          provider: "opencode",
+          model: process.env.OPENCODE_MODEL || "deepseek-v4.1-flash",
+        },
+  );
 
   const response = await provider.generate({
     system:

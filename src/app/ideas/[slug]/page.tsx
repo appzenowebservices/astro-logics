@@ -23,7 +23,7 @@ export default function IdeaPage() {
       <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
         <Link
           href="/ideas"
-          className="group mb-10 inline-flex items-center gap-2 font-mono text-[10px] font-bold tracking-[0.2em] text-[var(--color-primary-light)]/50 uppercase transition-colors hover:text-[var(--color-accent-orange)]"
+          className="group mb-10 inline-flex items-center gap-2 font-mono text-[12px] font-bold tracking-[0.2em] text-[var(--color-primary-light)]/50 uppercase transition-colors hover:text-[var(--color-accent-orange)]"
         >
           <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
           All ideas
@@ -48,7 +48,7 @@ export default function IdeaPage() {
         {post && (
           <>
             <div className="mb-5 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-ring-bronze)]/30 px-3 py-1 font-mono text-[9px] font-black tracking-[0.18em] uppercase">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-ring-bronze)]/30 px-3 py-1 font-mono text-[11px] font-black tracking-[0.18em] uppercase">
                 {post.kind === "TRADE_IDEA" ? (
                   <TrendingUpDown className="h-3 w-3 text-[var(--color-accent-orange)]" />
                 ) : (
@@ -57,11 +57,11 @@ export default function IdeaPage() {
                 {post.kind === "TRADE_IDEA" ? "Trade idea" : "Astro reading"}
               </span>
               {post.symbol && (
-                <span className="font-mono text-[10px] font-bold tracking-[0.15em] text-[var(--color-accent-orange)]">
+                <span className="font-mono text-[12px] font-bold tracking-[0.15em] text-[var(--color-accent-orange)]">
                   {post.symbol}
                 </span>
               )}
-              <span className="font-mono text-[9px] font-bold tracking-[0.18em] text-[var(--color-ring-bronze)]/70 uppercase">
+              <span className="font-mono text-[11px] font-bold tracking-[0.18em] text-[var(--color-ring-bronze)]/70 uppercase">
                 {post.author.name}
               </span>
             </div>
@@ -92,13 +92,13 @@ export default function IdeaPage() {
                 <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
                   <Link
                     href="/register"
-                    className="rounded-full bg-[var(--color-primary-light)] px-6 py-3 font-mono text-[10px] font-black tracking-[0.18em] text-[var(--color-primary-dark)] uppercase transition-colors hover:bg-[var(--color-accent-orange)] hover:text-white"
+                    className="rounded-full bg-[var(--color-primary-light)] px-6 py-3 font-mono text-[12px] font-black tracking-[0.18em] text-[var(--color-primary-dark)] uppercase transition-colors hover:bg-[var(--color-accent-orange)] hover:text-white"
                   >
                     Get access
                   </Link>
                   <Link
                     href="/login"
-                    className="rounded-full border border-[var(--color-primary-light)]/25 px-6 py-3 font-mono text-[10px] font-black tracking-[0.18em] uppercase transition-colors hover:border-[var(--color-primary-light)]/60"
+                    className="rounded-full border border-[var(--color-primary-light)]/25 px-6 py-3 font-mono text-[12px] font-black tracking-[0.18em] uppercase transition-colors hover:border-[var(--color-primary-light)]/60"
                   >
                     Sign in
                   </Link>

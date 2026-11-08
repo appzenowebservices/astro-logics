@@ -38,11 +38,25 @@
   --font-mono:
     var(--font-code), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
+  /* Poster face — condensed + very heavy, for comic/campaign headlines. */
+  --font-poster:
+    var(--font-poster-face), "Arial Narrow", Impact, ui-sans-serif, sans-serif;
+
   /* Legacy class names scattered around the app (`font-roboto`,
      `font-roboto-mono`) previously resolved to nothing — they now map
      onto the tokens above. */
   --font-roboto: var(--font-sans);
   --font-roboto-mono: var(--font-mono);
+
+  /* ── Type scale — lifted one step for readability across the app ──
+     Only the small end moves; headings keep their existing sizes so
+     dense layouts (nav, tables, badges) stay balanced. */
+  --text-xs: 0.8125rem; /* 13px */
+  --text-xs--line-height: 1.15rem;
+  --text-sm: 0.9375rem; /* 15px */
+  --text-sm--line-height: 1.4rem;
+  --text-base: 1.0625rem; /* 17px */
+  --text-base--line-height: 1.6rem;
 
   /* ── Motion ──────────────────────────────────────────────────────────── */
   --animate-float: float 8s ease-in-out infinite;

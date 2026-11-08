@@ -14,7 +14,7 @@ const ThemeSummaryCard = ({
     <div className="mb-6 flex items-center justify-between">
       <div className="flex items-center gap-2">
         <Compass size={14} className="text-[var(--color-accent-orange)]" />
-        <p className="text-[10px] font-black tracking-[0.4em] text-[var(--text-muted)] uppercase">
+        <p className="text-[12px] font-black tracking-[0.4em] text-[var(--text-muted)] uppercase">
           Story Themes
         </p>
       </div>
@@ -24,7 +24,7 @@ const ThemeSummaryCard = ({
           type="button"
           onClick={onRecalculate}
           disabled={isRecalculating}
-          className="flex items-center gap-2 rounded-xl bg-[var(--color-primary-dark)] px-4 py-2 text-[10px] font-black tracking-widest text-[var(--color-primary-light)] uppercase shadow-md transition-all hover:bg-[var(--color-accent-orange)] hover:text-white disabled:opacity-50"
+          className="flex items-center gap-2 rounded-xl bg-[var(--color-primary-dark)] px-4 py-2 text-[12px] font-black tracking-widest text-[var(--color-primary-light)] uppercase shadow-md transition-all hover:bg-[var(--color-accent-orange)] hover:text-white disabled:opacity-50"
         >
           {isRecalculating ? (
             <Loader2 size={12} className="animate-spin" />

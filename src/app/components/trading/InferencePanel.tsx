@@ -85,7 +85,7 @@ export default function InferencePanel({
         <button
           onClick={handleInfer}
           disabled={isLoading || !engineData}
-          className="rounded-lg bg-white/10 px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase transition-colors hover:bg-white/20 disabled:opacity-30"
+          className="rounded-lg bg-white/10 px-3 py-1.5 text-[12px] font-bold tracking-wider uppercase transition-colors hover:bg-white/20 disabled:opacity-30"
         >
           {isLoading ? "Inferring..." : "Run Inference"}
         </button>
@@ -96,9 +96,9 @@ export default function InferencePanel({
           {/* Bias + Confidence Row */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] text-white/40 uppercase">Bias</span>
+              <span className="text-[12px] text-white/40 uppercase">Bias</span>
               <span
-                className="rounded-md px-2 py-0.5 text-[11px] font-bold"
+                className="rounded-md px-2 py-0.5 text-[12px] font-bold"
                 style={{
                   backgroundColor: `${BIAS_COLORS[inference.marketBias]}20`,
                   color: BIAS_COLORS[inference.marketBias],
@@ -109,7 +109,7 @@ export default function InferencePanel({
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-[10px] text-white/40 uppercase">Conf</span>
+              <span className="text-[12px] text-white/40 uppercase">Conf</span>
               <div className="flex items-center gap-1.5">
                 <div className="h-1.5 w-16 overflow-hidden rounded-full bg-white/10">
                   <div
@@ -120,16 +120,16 @@ export default function InferencePanel({
                     }}
                   />
                 </div>
-                <span className="text-[11px] font-bold">
+                <span className="text-[12px] font-bold">
                   {Math.round(inference.confidence * 100)}%
                 </span>
               </div>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-[10px] text-white/40 uppercase">Risk</span>
+              <span className="text-[12px] text-white/40 uppercase">Risk</span>
               <span
-                className="rounded-md px-2 py-0.5 text-[11px] font-bold"
+                className="rounded-md px-2 py-0.5 text-[12px] font-bold"
                 style={{
                   backgroundColor: `${RISK_COLORS[inference.riskLevel]}20`,
                   color: RISK_COLORS[inference.riskLevel],
@@ -142,9 +142,9 @@ export default function InferencePanel({
 
           {/* Suggested Action */}
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-white/40 uppercase">Action</span>
+            <span className="text-[12px] text-white/40 uppercase">Action</span>
             <span
-              className="rounded-md px-3 py-1 text-[13px] font-bold tracking-wider"
+              className="rounded-md px-3 py-1 text-[14px] font-bold tracking-wider"
               style={{
                 backgroundColor: `${ACTION_COLORS[inference.suggestedAction]}20`,
                 color: ACTION_COLORS[inference.suggestedAction],
@@ -157,10 +157,10 @@ export default function InferencePanel({
           {/* Reasoning */}
           {inference.reasoning && (
             <div>
-              <span className="text-[10px] text-white/40 uppercase">
+              <span className="text-[12px] text-white/40 uppercase">
                 Reasoning
               </span>
-              <p className="mt-1 text-[11px] leading-relaxed text-white/60">
+              <p className="mt-1 text-[12px] leading-relaxed text-white/60">
                 {inference.reasoning}
               </p>
             </div>
@@ -169,14 +169,14 @@ export default function InferencePanel({
           {/* Key Factors */}
           {inference.keyFactors.length > 0 && (
             <div>
-              <span className="text-[10px] text-white/40 uppercase">
+              <span className="text-[12px] text-white/40 uppercase">
                 Key Factors
               </span>
               <div className="mt-1 flex flex-wrap gap-1.5">
                 {inference.keyFactors.map((factor, i) => (
                   <span
                     key={i}
-                    className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-white/50"
+                    className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[12px] text-white/50"
                   >
                     {factor}
                   </span>
@@ -186,7 +186,7 @@ export default function InferencePanel({
           )}
         </div>
       ) : (
-        <div className="py-6 text-center text-[10px] text-white/30">
+        <div className="py-6 text-center text-[12px] text-white/30">
           Click &quot;Run Inference&quot; to analyze the current market state.
         </div>
       )}

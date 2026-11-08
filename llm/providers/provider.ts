@@ -9,7 +9,14 @@ import {
 import chalk from "chalk";
 
 export interface LLMConfig {
-  provider: "openai" | "anthropic" | "local" | "ollama" | "groq" | "openrouter"; // Added 'openrouter'
+  provider:
+    | "openai"
+    | "anthropic"
+    | "local"
+    | "ollama"
+    | "groq"
+    | "openrouter"
+    | "opencode";
   model?: string;
   embeddingModel?: string;
   temperature?: number;
@@ -62,6 +69,16 @@ const DEFAULT_CONFIGS: Record<string, LLMConfig> = {
     model: process.env.OPENROUTER_MODEL || "nex-agi/nex-n2-pro:free",
     baseUrl: "https://openrouter.ai/api/v1",
     apiKey: process.env.OPENROUTER_API_KEY,
+    temperature: 0.3,
+    maxTokens: 4096,
+  },
+  opencode: {
+    provider: "opencode",
+    model: process.env.OPENCODE_MODEL || "deepseek-v4.1-flash",
+    baseUrl:
+      process.env.OPENCODE_BASE_URL ||
+      "https://opencode.ai/inference/go/openai/v1",
+    apiKey: process.env.OPENCODE_API_KEY,
     temperature: 0.3,
     maxTokens: 4096,
   },
@@ -205,6 +222,16 @@ class OpenRouterProvider implements LLMProvider {
   private embeddings: OpenAIEmbeddings;
 
   constructor(config: LLMConfig) {
+    const defaultHeaders: Record<string, string> = {
+      "User-Agent": "Kaalvanta/1.1",
+    };
+
+    // OpenCode Go asks clients to send a stable session identifier so routing
+    // and prompt caching can work. One process = one stable session.
+    if (config.provider === "opencode") {
+      defaultHeaders["x-opencode-session"] = `kaalvanta-${process.pid}`;
+    }
+
     this.chat = new ChatOpenAI({
       modelName: config.model || "nex-agi/nex-n2-pro:free",
       temperature: config.temperature ?? 0.3,
@@ -212,6 +239,7 @@ class OpenRouterProvider implements LLMProvider {
       configuration: {
         baseURL: config.baseUrl || "https://openrouter.ai/api/v1",
         apiKey: config.apiKey,
+        defaultHeaders,
       },
     });
     this.embeddings = new OpenAIEmbeddings({
@@ -219,6 +247,7 @@ class OpenRouterProvider implements LLMProvider {
       configuration: {
         baseURL: config.baseUrl || "https://openrouter.ai/api/v1",
         apiKey: config.apiKey,
+        defaultHeaders,
       },
     });
   }
@@ -352,7 +381,7 @@ class GroqProvider implements LLMProvider {
 // }
 
 export function createProvider(config?: Partial<LLMConfig>): LLMProvider {
-  const providerName = config?.provider || "openrouter"; // Default to openrouter
+  const providerName = config?.provider || "opencode";
   const defaultConfig = DEFAULT_CONFIGS[providerName];
   const finalConfig: LLMConfig = {
     ...defaultConfig,
@@ -372,6 +401,7 @@ export function createProvider(config?: Partial<LLMConfig>): LLMProvider {
     case "ollama":
       return new LocalLlamaProvider(finalConfig);
     case "openrouter":
+    case "opencode":
       return new OpenRouterProvider(finalConfig);
     default:
       throw new Error(`Unsupported LLM provider: ${finalConfig.provider}`);

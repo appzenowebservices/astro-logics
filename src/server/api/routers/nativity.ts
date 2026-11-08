@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { db } from "~/server/db";
 import { getSwissEph } from "~/server/astro/swissEph";
@@ -160,8 +161,9 @@ REQUIRED FIELDS (all must be present):
 Return ONLY valid JSON with all fields populated based on the planetary data analysis.
 `;
 
-  // Try providers in order: local → groq → openai
-  const providerChain: Array<"groq" | "local" | "openai"> = [
+  // Try providers in order: opencode (DeepSeek default) → groq → local → openai
+  const providerChain: Array<"opencode" | "groq" | "local" | "openai"> = [
+    "opencode",
     "groq",
     "local",
     "openai",
@@ -475,7 +477,12 @@ export const nativityRouter = createTRPCRouter({
         where: {
           OR: [{ id: input.id }, { userId: input.id }],
         },
-        // include: { ... } (your includes remain the same)
+        include: {
+          ephemerisData: true,
+          planetaryProfiles: true,
+          aspects: true,
+          geometryIndex: { include: { angularDistances: true } },
+        },
       });
 
       if (!chart || chart.userId !== ctx.session.user.id) {
@@ -1099,10 +1106,21 @@ export const nativityRouter = createTRPCRouter({
         planetaryProfiles,
       };
 
+      const useLocalLlm = process.env.USE_LOCAL_LLM === "true";
       const generator = new StoryGenerator({
-        useLocal: process.env.USE_LOCAL_LLM === "true",
-        baseUrl: process.env.LLAMA_CPP_URL || "http://localhost:8000",
-        model: process.env.LLAMA_CPP_MODEL || "local-gguf-model",
+        useLocal: useLocalLlm,
+        baseUrl: useLocalLlm
+          ? process.env.LLAMA_CPP_URL || "http://localhost:8000"
+          : process.env.OPENCODE_BASE_URL ||
+            "https://opencode.ai/inference/go/openai/v1",
+        model: useLocalLlm
+          ? process.env.LLAMA_CPP_MODEL || "local-gguf-model"
+          : process.env.OPENCODE_MODEL || "deepseek-v4.1-flash",
+        apiKey: useLocalLlm
+          ? process.env.LLAMA_CPP_API_KEY ||
+            process.env.LOCAL_LLM_API_KEY ||
+            "dummy"
+          : process.env.OPENCODE_API_KEY,
         timeoutMs: process.env.LLM_TIMEOUT_MS
           ? parseInt(process.env.LLM_TIMEOUT_MS)
           : undefined,
@@ -1446,13 +1464,23 @@ export const nativityRouter = createTRPCRouter({
         })),
       };
 
+      const useLocalLlm = process.env.USE_LOCAL_LLM === "true";
       const generator = new StoryGenerator({
-        useLocal: process.env.USE_LOCAL_LLM === "true",
-        baseUrl:
-          process.env.OLLAMA_URL ||
-          process.env.LLAMA_CPP_URL ||
-          "http://localhost:8000",
-        model: process.env.OLLAMA_MODEL || "qwen3-coder-next:cloud",
+        useLocal: useLocalLlm,
+        baseUrl: useLocalLlm
+          ? process.env.OLLAMA_URL ||
+            process.env.LLAMA_CPP_URL ||
+            "http://localhost:8000"
+          : process.env.OPENCODE_BASE_URL ||
+            "https://opencode.ai/inference/go/openai/v1",
+        model: useLocalLlm
+          ? process.env.OLLAMA_MODEL || "qwen3-coder-next:cloud"
+          : process.env.OPENCODE_MODEL || "deepseek-v4.1-flash",
+        apiKey: useLocalLlm
+          ? process.env.LLAMA_CPP_API_KEY ||
+            process.env.LOCAL_LLM_API_KEY ||
+            "dummy"
+          : process.env.OPENCODE_API_KEY,
         timeoutMs: process.env.LLM_TIMEOUT_MS
           ? parseInt(process.env.LLM_TIMEOUT_MS)
           : undefined,
@@ -1735,6 +1763,23 @@ export const nativityRouter = createTRPCRouter({
     }),
 
   /**
+   * Latest story belonging to the signed-in user. The dashboard uses this
+   * instead of a hard-coded story id.
+   */
+  getLatestStory: protectedProcedure.query(async ({ ctx }) => {
+    return db.currentStory.findFirst({
+      where: {
+        nativityChart: { userId: ctx.session.user.id },
+      },
+      include: {
+        nativityChart: { select: { id: true, name: true, userId: true } },
+        scenes: { orderBy: { intensity: "desc" } },
+      },
+      orderBy: { transitDate: "desc" },
+    });
+  }),
+
+  /**
    * Compile deterministic visual prompts for a saved story
    */
   getCurrentStoryPrompts: protectedProcedure
@@ -1814,6 +1859,16 @@ export const nativityRouter = createTRPCRouter({
   getPlanetaryScenes: protectedProcedure
     .input(z.object({ currentStoryId: z.string() }))
     .query(async ({ ctx, input }) => {
+      // Never expose another member's scenes by guessing a story id.
+      const parent = await ctx.db.currentStory.findUnique({
+        where: { id: input.currentStoryId },
+        select: { nativityChart: { select: { userId: true } } },
+      });
+      if (!parent) throw new TRPCError({ code: "NOT_FOUND" });
+      if (parent.nativityChart.userId !== ctx.session.user.id) {
+        throw new TRPCError({ code: "FORBIDDEN" });
+      }
+
       const scenes = await ctx.db.planetaryScene.findMany({
         where: {
           currentStoryId: input.currentStoryId,
@@ -2484,10 +2539,21 @@ Be authentic, emotional, and reveal something about your nature or your relation
 User said: "${input.userMessage}"
 `;
 
+      const useLocalLlm = process.env.USE_LOCAL_LLM === "true";
       const generator = new StoryGenerator({
-        useLocal: process.env.USE_LOCAL_LLM === "true",
-        baseUrl: process.env.OLLAMA_URL || "http://127.0.0.1:11434",
-        model: process.env.OLLAMA_MODEL || "qwen3-coder-next:cloud",
+        useLocal: useLocalLlm,
+        baseUrl: useLocalLlm
+          ? process.env.OLLAMA_URL || "http://127.0.0.1:11434"
+          : process.env.OPENCODE_BASE_URL ||
+            "https://opencode.ai/inference/go/openai/v1",
+        model: useLocalLlm
+          ? process.env.OLLAMA_MODEL || "qwen3-coder-next:cloud"
+          : process.env.OPENCODE_MODEL || "deepseek-v4.1-flash",
+        apiKey: useLocalLlm
+          ? process.env.LLAMA_CPP_API_KEY ||
+            process.env.LOCAL_LLM_API_KEY ||
+            "dummy"
+          : process.env.OPENCODE_API_KEY,
         timeoutMs: process.env.LLM_TIMEOUT_MS
           ? parseInt(process.env.LLM_TIMEOUT_MS)
           : undefined,
@@ -2621,8 +2687,8 @@ INTERACTION GUIDELINES:
             : `${input.userMessage} \n\nConversation history: \n${historyText}`;
 
         const provider = createProvider({
-          provider: "groq",
-          model: process.env.GROQ_MODEL || "mixtral-8x7b-32768",
+          provider: "opencode",
+          model: process.env.OPENCODE_MODEL || "deepseek-v4.1-flash",
         });
 
         const response = await provider.generate({
@@ -2730,17 +2796,19 @@ Provide a single, coherent theme statement (2-3 sentences) that captures the ess
 
 Theme:`;
 
-      const provider = createProvider({
-        provider: process.env.USE_LOCAL_LLM === "true" ? "local" : "groq",
-        baseUrl:
-          process.env.USE_LOCAL_LLM === "true"
-            ? process.env.LLAMA_CPP_URL || "http://localhost:8000"
-            : undefined,
-        model:
-          process.env.USE_LOCAL_LLM === "true"
-            ? process.env.LLAMA_CPP_MODEL || "local-gguf-model"
-            : process.env.GROQ_MODEL || "mixtral-8x7b-32768",
-      });
+      const useLocalLlm = process.env.USE_LOCAL_LLM === "true";
+      const provider = createProvider(
+        useLocalLlm
+          ? {
+              provider: "local",
+              baseUrl: process.env.LLAMA_CPP_URL || "http://localhost:8000",
+              model: process.env.LLAMA_CPP_MODEL || "local-gguf-model",
+            }
+          : {
+              provider: "opencode",
+              model: process.env.OPENCODE_MODEL || "deepseek-v4.1-flash",
+            },
+      );
 
       const response = await provider.generate({
         system:

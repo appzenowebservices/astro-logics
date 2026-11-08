@@ -60,3 +60,10 @@ venv/
 # playwright
 test-results/
 playwright-report/
+
+# google oauth client secret
+google-auth/
+client_secret_*.json
+
+# prisma engine temp downloads
+prisma-client/binaries/*.tmp*

@@ -13,15 +13,21 @@ export const env = createEnv({
     // AUTH_DISCORD_ID: isProd ? z.string() : z.string().optional(),
     // AUTH_DISCORD_SECRET: isProd ? z.string() : z.string().optional(),
     DATABASE_URL: isProd ? z.string().url() : z.string().url().optional(),
+    MONGODB_URI: z.string().url().optional(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
     OPENROUTER_API_KEY: z.string().optional(),
+    OPENCODE_API_KEY: z.string().optional(),
+    OPENCODE_MODEL: z.string().optional(),
+    OPENCODE_BASE_URL: z.string().url().optional(),
 
     // SaaS
     ADMIN_EMAIL: z.string().optional(),
     ADMIN_PASSWORD: z.string().optional(),
     ADMIN_EMAILS: z.string().optional(),
+    GOOGLE_CLIENT_ID: z.string().optional(),
+    GOOGLE_CLIENT_SECRET: z.string().optional(),
     INVITE_ONLY: z.string().optional(),
     RAZORPAY_KEY_ID: z.string().optional(),
     RAZORPAY_SECRET: z.string().optional(),
@@ -37,6 +43,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_FIREBASE_VAPID_KEY: z.string().optional(),
+    NEXT_PUBLIC_GOOGLE_AUTH_ENABLED: z.enum(["true", "false"]).optional(),
   },
 
   /**
@@ -51,12 +58,19 @@ export const env = createEnv({
     MONGODB_URI: process.env.MONGODB_URI,
     NODE_ENV: process.env.NODE_ENV,
     OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
+    OPENCODE_API_KEY: process.env.OPENCODE_API_KEY,
+    OPENCODE_MODEL: process.env.OPENCODE_MODEL,
+    OPENCODE_BASE_URL: process.env.OPENCODE_BASE_URL,
     NEXT_PUBLIC_FIREBASE_VAPID_KEY: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
+    NEXT_PUBLIC_GOOGLE_AUTH_ENABLED:
+      process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED,
 
     // SaaS
     ADMIN_EMAIL: process.env.ADMIN_EMAIL,
     ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
     ADMIN_EMAILS: process.env.ADMIN_EMAILS,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     INVITE_ONLY: process.env.INVITE_ONLY,
     RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID,
     RAZORPAY_SECRET: process.env.RAZORPAY_SECRET,

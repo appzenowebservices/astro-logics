@@ -80,6 +80,7 @@ interface PlanetaryPosition {
   longitude: number;
   degree: number;
   sign: string;
+  house: number;
   speed: number;
   isRetrograde: boolean;
 }
@@ -162,6 +163,9 @@ export const mundaneRouter = createTRPCRouter({
         swe.set_sid_mode(swe.SE_SIDM_LAHIRI);
 
         const flags = swe.SEFLG_SIDEREAL;
+        // Without SEFLG_SPEED Swiss Ephemeris returns speed 0 for every body,
+        // which silently breaks retrograde detection.
+        const planetFlags = flags | swe.SEFLG_SPEED;
 
         // -------------------------
         // 3. Ascendant (ONLY use houses_ex for this)
@@ -199,7 +203,7 @@ export const mundaneRouter = createTRPCRouter({
         ];
 
         const planets: PlanetaryPosition[] = planetsToCalc.map((planetId) => {
-          const res = swe.calc_ut(jd, planetId, flags);
+          const res = swe.calc_ut(jd, planetId, planetFlags);
           if (isNaN(res[0])) {
             throw new Error(`Invalid calculation for planet ${planetId}`);
           }

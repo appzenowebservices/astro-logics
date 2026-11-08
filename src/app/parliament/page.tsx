@@ -137,7 +137,7 @@ export default function CosmicClimatePage() {
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
 
             <div className="relative z-10 mx-auto space-y-1 text-center">
-              <span className="font-mono text-[10px] font-bold tracking-[0.3em] text-[var(--color-ring-bronze)] uppercase">
+              <span className="font-mono text-[12px] font-bold tracking-[0.3em] text-[var(--color-ring-bronze)] uppercase">
                 Current Regime
               </span>
               <h3 className="font-roboto-mono py-2 text-3xl font-black tracking-[0.12em] text-white uppercase drop-shadow-sm filter md:text-4xl">
@@ -148,7 +148,7 @@ export default function CosmicClimatePage() {
             {/* Dial Graphic Overlay */}
             <div className="relative z-10 flex flex-col items-center justify-center py-2">
               <div className="absolute -bottom-1 h-22 w-44 rounded-t-full border-t-2 border-dashed border-[var(--color-ring-bronze)]/30" />
-              <span className="font-mono text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+              <span className="font-mono text-[12px] font-bold tracking-widest text-slate-400 uppercase">
                 Confidence
               </span>
               <span className="mt-1 text-4xl font-extrabold tracking-tight text-white">
@@ -157,7 +157,7 @@ export default function CosmicClimatePage() {
             </div>
 
             <div className="z-10 border-t border-white/[0.06] pt-3 text-center">
-              <p className="font-mono text-[11px] tracking-widest text-slate-400 uppercase">
+              <p className="font-mono text-[12px] tracking-widest text-slate-400 uppercase">
                 System Mechanics Validated Matrix
               </p>
             </div>
@@ -188,7 +188,7 @@ export default function CosmicClimatePage() {
                           {driver.name}
                         </h4>
                         <p
-                          className={`flex items-center gap-0.5 font-mono text-[10px] font-bold ${driver.isPositive ? "text-emerald-600" : "text-[var(--color-accent-orange)]"}`}
+                          className={`flex items-center gap-0.5 font-mono text-[12px] font-bold ${driver.isPositive ? "text-emerald-600" : "text-[var(--color-accent-orange)]"}`}
                         >
                           {driver.isPositive ? "↑" : "↓"} {driver.status}
                         </p>
@@ -204,7 +204,7 @@ export default function CosmicClimatePage() {
               </div>
             </div>
 
-            <button className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-xl border border-black/[0.05] bg-black/[0.03] py-2 text-[11px] font-bold tracking-wider uppercase transition-all hover:bg-black/[0.05]">
+            <button className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-xl border border-black/[0.05] bg-black/[0.03] py-2 text-[12px] font-bold tracking-wider uppercase transition-all hover:bg-black/[0.05]">
               View All Forces <ChevronRight size={12} />
             </button>
           </div>
@@ -222,7 +222,7 @@ export default function CosmicClimatePage() {
                   className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-white/60 bg-white/80 p-4 shadow-sm backdrop-blur-sm"
                 >
                   <div>
-                    <span className="mb-1 block font-mono text-[10px] font-bold tracking-wider text-slate-400 uppercase">
+                    <span className="mb-1 block font-mono text-[12px] font-bold tracking-wider text-slate-400 uppercase">
                       {vital.label}
                     </span>
                     <div className="flex items-baseline gap-2">
@@ -235,7 +235,7 @@ export default function CosmicClimatePage() {
                         {isUp ? "↑" : "↓"} {vital.change}
                       </span>
                     </div>
-                    <span className="font-mono text-[9px] text-slate-400">
+                    <span className="font-mono text-[11px] text-slate-400">
                       vs yesterday
                     </span>
                   </div>
@@ -277,7 +277,7 @@ export default function CosmicClimatePage() {
               remains contained. Decision quality improves when operating
               through existing structures.
             </p>
-            <div className="mt-4 flex items-center justify-between border-t border-black/[0.04] pt-3 font-mono text-[9px] text-slate-400">
+            <div className="mt-4 flex items-center justify-between border-t border-black/[0.04] pt-3 font-mono text-[11px] text-slate-400">
               <span>ENGINE: LLM PARSE VECTOR</span>
               <span>3-4 LINES MAX</span>
             </div>
@@ -293,7 +293,7 @@ export default function CosmicClimatePage() {
                 • Last 7 Days
               </span>
             </h3>
-            <span className="font-mono text-[10px] text-slate-400">
+            <span className="font-mono text-[12px] text-slate-400">
               Trajectory Timeline
             </span>
           </div>
@@ -336,7 +336,7 @@ export default function CosmicClimatePage() {
             <h3 className="font-mono text-xs font-bold tracking-wider text-slate-500 uppercase">
               Planetary Parliament Preview
             </h3>
-            <span className="font-mono text-[10px] text-slate-400">
+            <span className="font-mono text-[12px] text-slate-400">
               Operator Metrics Matrix
             </span>
           </div>
@@ -350,18 +350,18 @@ export default function CosmicClimatePage() {
                 <div>
                   <div className="flex items-start justify-between">
                     <span className="text-xl">{p.img}</span>
-                    <span className="rounded bg-black/30 px-1.5 py-0.5 font-mono text-[10px] font-bold text-[var(--color-ring-bronze)]">
+                    <span className="rounded bg-black/30 px-1.5 py-0.5 font-mono text-[12px] font-bold text-[var(--color-ring-bronze)]">
                       {p.value}
                     </span>
                   </div>
                   <h4 className="mt-2 text-xs font-bold tracking-wide text-[var(--color-primary-light)]">
                     {p.name}
                   </h4>
-                  <p className="mt-0.5 truncate text-[9px] leading-tight font-medium text-slate-400">
+                  <p className="mt-0.5 truncate text-[11px] leading-tight font-medium text-slate-400">
                     {p.role}
                   </p>
                 </div>
-                <div className="mt-2 font-mono text-[8px] font-bold tracking-widest text-[var(--color-accent-glow)]/40 uppercase transition-colors group-hover:text-[var(--color-accent-orange)]">
+                <div className="mt-2 font-mono text-[10px] font-bold tracking-widest text-[var(--color-accent-glow)]/40 uppercase transition-colors group-hover:text-[var(--color-accent-orange)]">
                   INFLUENCE STATE
                 </div>
               </div>

@@ -707,7 +707,7 @@ export default function AstroLatentSpaceVisualizer() {
           {/* Progress Timeline Scrubber Bar */}
           {timelineDataCache.totalSteps > 0 && (
             <div className="mb-4 flex items-center gap-3 rounded-xl border border-zinc-900 bg-zinc-900/30 p-2">
-              <span className="font-mono text-[10px] text-zinc-500">Day 1</span>
+              <span className="font-mono text-[12px] text-zinc-500">Day 1</span>
               <input
                 type="range"
                 min={0}
@@ -719,7 +719,7 @@ export default function AstroLatentSpaceVisualizer() {
                 }}
                 className="h-1 flex-1 cursor-pointer appearance-none rounded-lg bg-zinc-800 accent-sky-500"
               />
-              <span className="font-mono text-[10px] text-zinc-400">
+              <span className="font-mono text-[12px] text-zinc-400">
                 {currentStep + 1}/{timelineDataCache.totalSteps}
               </span>
             </div>
@@ -912,7 +912,7 @@ export default function AstroLatentSpaceVisualizer() {
                 vector deltas. Cumulative steps form a topological trail through
                 the manifold coordinates.
               </p>
-              <div className="space-y-1 rounded-xl border border-zinc-800 bg-zinc-900/60 p-2.5 font-mono text-[11px] text-zinc-300">
+              <div className="space-y-1 rounded-xl border border-zinc-800 bg-zinc-900/60 p-2.5 font-mono text-[12px] text-zinc-300">
                 <div className="flex justify-between">
                   <span className="text-zinc-500">Cache Frames:</span>
                   <span className="font-bold text-emerald-400">

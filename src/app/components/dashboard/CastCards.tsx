@@ -160,7 +160,7 @@ export default function CastCards({
               </h4>
 
               {/* Subtext Attribution */}
-              <p className="truncate font-sans text-[9px] font-semibold text-white/95 antialiased drop-shadow-sm">
+              <p className="truncate font-sans text-[11px] font-semibold text-white/95 antialiased drop-shadow-sm">
                 {scene.storyFunction || art.subtext}
               </p>
 
@@ -177,17 +177,17 @@ export default function CastCards({
                     </svg>
                   ))}
                 </div>
-                <span className="font-sans text-[9px] font-bold tracking-wide text-white/80">
+                <span className="font-sans text-[11px] font-bold tracking-wide text-white/80">
                   {art.ratingText}
                 </span>
               </div>
 
               {/* Genre Pills */}
               <div className="mt-1 flex items-center gap-1">
-                <span className="rounded-[5px] bg-sky-500 px-2 py-0.5 font-sans text-[8px] font-extrabold tracking-tight text-white shadow-sm">
+                <span className="rounded-[5px] bg-sky-500 px-2 py-0.5 font-sans text-[10px] font-extrabold tracking-tight text-white shadow-sm">
                   {art.tag1}
                 </span>
-                <span className="rounded-[5px] bg-orange-600 px-2 py-0.5 font-sans text-[8px] font-extrabold tracking-tight text-white shadow-sm">
+                <span className="rounded-[5px] bg-orange-600 px-2 py-0.5 font-sans text-[10px] font-extrabold tracking-tight text-white shadow-sm">
                   {art.tag2}
                 </span>
               </div>

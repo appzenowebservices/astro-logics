@@ -55,7 +55,7 @@ const PlanetSceneButton = ({
         >
           {scene.planet}
         </p>
-        <div className="mt-1 flex items-center gap-2 font-mono text-[10px] font-bold tracking-tight opacity-70">
+        <div className="mt-1 flex items-center gap-2 font-mono text-[12px] font-bold tracking-tight opacity-70">
           <span>N: {formatPosition(scene.natalLongitude)}</span>
           <span className="opacity-40">|</span>
           <span
@@ -72,7 +72,7 @@ const PlanetSceneButton = ({
 
       {/* Metric Badge: Highly Compressed */}
       <span
-        className={`shrink-0 rounded-md px-2 py-0.5 text-[11px] font-black tracking-tighter ${
+        className={`shrink-0 rounded-md px-2 py-0.5 text-[12px] font-black tracking-tighter ${
           selected
             ? "bg-[var(--color-accent-orange)] text-white"
             : "bg-[var(--color-primary-dark)]/5 text-[var(--color-primary-dark)]/80"

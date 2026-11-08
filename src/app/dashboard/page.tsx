@@ -17,18 +17,11 @@ export default function KaalvantaHomeScreen() {
   const router = useRouter();
 
   // --- tRPC API Queries ---
-  const { data: currentStory, isLoading: storyLoading } =
-    api.nativity.getCurrentStory.useQuery({
-      storyId: "6a1a8ec1880574e3556fad8b",
-    });
-  const { data: planetaryScenes, isLoading: scenesLoading } =
-    api.nativity.getPlanetaryScenes.useQuery({
-      currentStoryId: "6a1a8ec1880574e3556fad8b",
-    });
+  // The signed-in member's newest story, with its scenes ordered by intensity.
+  const { data: story, isLoading: storyLoading } =
+    api.nativity.getLatestStory.useQuery();
 
-  // Fallbacks using your exact data schema shapes
-  const story = currentStory ?? null;
-  const scenes = planetaryScenes || [];
+  const scenes = story?.scenes ?? [];
 
   // A story document can be missing, or present without a narrative yet.
   // Never call .replace on undefined. Strip markdown bold markers when text exists.
@@ -36,15 +29,14 @@ export default function KaalvantaHomeScreen() {
 
   // --- State for tracking selected Architectural Driver ---
   const [selectedPlanetId, setSelectedPlanetId] = useState<string>("");
-  console.log(selectedPlanetId);
   // Auto-select the first driver once data arrives
   useEffect(() => {
     if (scenes && scenes.length > 0) {
-      setSelectedPlanetId(scenes[0]._id);
+      setSelectedPlanetId(scenes[0].id);
     }
   }, [scenes]);
 
-  if (storyLoading || scenesLoading) {
+  if (storyLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[var(--color-primary-light)]">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-[var(--color-accent-orange)] border-t-transparent" />
@@ -52,9 +44,32 @@ export default function KaalvantaHomeScreen() {
     );
   }
 
+  if (!story) {
+    return (
+      <Layout>
+        <div className="mx-auto flex min-h-[60vh] max-w-lg flex-col items-center justify-center px-6 text-center">
+          <Compass className="h-10 w-10 text-[var(--color-accent-orange)]" />
+          <h1 className="mt-5 text-4xl font-black tracking-tighter uppercase">
+            No active story
+          </h1>
+          <p className="mt-3 max-w-sm text-sm leading-relaxed font-medium opacity-60">
+            Your account has no transit story yet. Select a nativity chart to
+            generate the first reading.
+          </p>
+          <button
+            onClick={() => router.push("/profile-selection")}
+            className="mt-7 rounded-full bg-[var(--color-primary-dark)] px-6 py-3 font-mono text-[10px] font-black tracking-[0.18em] text-[var(--color-primary-light)] uppercase transition-transform hover:-translate-y-0.5"
+          >
+            Choose a chart
+          </button>
+        </div>
+      </Layout>
+    );
+  }
+
   // Find the complete scene payload match based on selected label ID
   const activeScene =
-    scenes.find((s) => s._id === selectedPlanetId) || scenes[0];
+    scenes.find((s) => s.id === selectedPlanetId) || scenes[0];
 
   return (
     <Layout>
@@ -64,21 +79,21 @@ export default function KaalvantaHomeScreen() {
         {/* ================= 1. TOP NAV SECTION: LABELS SELECTOR ================= */}
         <section className="space-y-3">
           <div className="flex items-center justify-between">
-            <p className="text-[10px] font-bold tracking-[0.2em] text-[var(--color-accent-orange)] uppercase">
+            <p className="text-[12px] font-bold tracking-[0.2em] text-[var(--color-accent-orange)] uppercase">
               Active Architectural Drivers // Click to Inspect Target
             </p>
-            <span className="font-mono text-[10px] opacity-50">
+            <span className="font-mono text-[12px] opacity-50">
               {scenes.length} Forces Present
             </span>
           </div>
 
           <div className="flex flex-wrap gap-2.5">
             {scenes.map((scene) => {
-              const isSelected = scene._id === selectedPlanetId;
+              const isSelected = scene.id === selectedPlanetId;
               return (
                 <button
-                  key={scene._id}
-                  onClick={() => setSelectedPlanetId(scene._id)}
+                  key={scene.id}
+                  onClick={() => setSelectedPlanetId(scene.id)}
                   className={`flex cursor-pointer items-center gap-2 rounded-xl border px-5 py-3 text-xs font-bold tracking-widest uppercase transition-all duration-200 ${
                     isSelected
                       ? "scale-[1.02] border-[var(--color-accent-orange)] bg-white/90 text-[var(--color-primary-dark)] shadow-md"
@@ -94,7 +109,7 @@ export default function KaalvantaHomeScreen() {
 
                   {/* Micro System Function Tag */}
                   <span
-                    className={`rounded px-1.5 py-0.5 font-mono text-[10px] font-medium tracking-normal lowercase ${
+                    className={`rounded px-1.5 py-0.5 font-mono text-[12px] font-medium tracking-normal lowercase ${
                       isSelected
                         ? "bg-[var(--color-primary-dark)]/10 text-[var(--color-primary-dark)]/80"
                         : "bg-white/10 text-[var(--color-accent-glow)]"
@@ -118,13 +133,13 @@ export default function KaalvantaHomeScreen() {
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent-orange)] bg-[var(--color-accent-orange)]/10 px-3 py-1 text-xs font-bold tracking-wider text-[var(--color-accent-orange)] uppercase">
                   <Sparkles size={12} /> Live Narrative Theme:{" "}
-                  {story?.theme ?? "Unresolved"}
+                  {story?.themes?.[0] ?? "Unresolved"}
                 </div>
               </div>
 
               <div className="space-y-4">
                 <h1 className="text-4xl leading-none font-black tracking-tighter text-white uppercase italic md:text-6xl">
-                  {story?.title ?? "No Active Session"}
+                  {story?.nativityChart?.name ?? "Current Transit"}
                 </h1>
                 <p className="max-w-2xl text-base leading-relaxed font-normal text-[var(--color-primary-light)]/80 md:text-lg">
                   {narrative.length > 0
@@ -136,7 +151,7 @@ export default function KaalvantaHomeScreen() {
 
             <div className="relative z-10 mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
               <button
-                onClick={() => router.push("/dashboard/story")}
+                onClick={() => router.push(`/dashboard/current-story/${story.id}`)}
                 className="group/btn inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[var(--color-accent-orange)] uppercase transition-colors hover:text-white"
               >
                 View Full Story{" "}
@@ -154,7 +169,7 @@ export default function KaalvantaHomeScreen() {
               <div className="space-y-5">
                 <div className="flex items-center justify-between border-b border-[var(--color-ring-bronze)]/20 pb-3">
                   <div>
-                    <span className="block font-mono text-[9px] tracking-wider uppercase opacity-50">
+                    <span className="block font-mono text-[11px] tracking-wider uppercase opacity-50">
                       Driver Spotlight
                     </span>
                     <h3 className="text-2xl font-black tracking-tight text-[var(--color-primary-dark)]">
@@ -162,7 +177,7 @@ export default function KaalvantaHomeScreen() {
                     </h3>
                   </div>
                   <div className="text-right">
-                    <span className="block font-mono text-[9px] tracking-wider uppercase opacity-50">
+                    <span className="block font-mono text-[11px] tracking-wider uppercase opacity-50">
                       Dynamic Function
                     </span>
                     <span className="font-mono text-xs font-bold tracking-wide text-[var(--color-accent-orange)] uppercase">
@@ -174,7 +189,7 @@ export default function KaalvantaHomeScreen() {
                 {/* Operational Scripts Map */}
                 <div className="space-y-4">
                   <div>
-                    <span className="mb-1 block font-mono text-[9px] tracking-wider uppercase opacity-40">
+                    <span className="mb-1 block font-mono text-[11px] tracking-wider uppercase opacity-40">
                       Active Behavioral Script
                     </span>
                     <p className="text-sm leading-snug font-bold text-[var(--text-main)]">
@@ -183,7 +198,7 @@ export default function KaalvantaHomeScreen() {
                   </div>
 
                   <div className="rounded-r-lg border-l-2 border-[var(--color-accent-orange)] bg-[var(--color-primary-light)]/30 p-3">
-                    <span className="mb-0.5 block font-mono text-[9px] tracking-wider uppercase opacity-50">
+                    <span className="mb-0.5 block font-mono text-[11px] tracking-wider uppercase opacity-50">
                       Environmental Tension
                     </span>
                     <p className="text-xs leading-normal font-medium text-[var(--text-muted)] italic">
@@ -197,7 +212,7 @@ export default function KaalvantaHomeScreen() {
               <div className="mt-6 space-y-3 border-t border-[var(--color-ring-bronze)]/20 pt-5">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="block font-mono text-[9px] tracking-wider uppercase opacity-40">
+                    <span className="block font-mono text-[11px] tracking-wider uppercase opacity-40">
                       Systemic Failure Vector
                     </span>
                     <span className="font-mono text-sm font-black">
@@ -225,11 +240,11 @@ export default function KaalvantaHomeScreen() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
           <div className="flex items-center justify-between rounded-2xl border border-[var(--color-ring-bronze)]/30 bg-white/50 p-5 backdrop-blur-sm lg:col-span-1">
             <div>
-              <span className="block font-mono text-[9px] uppercase opacity-40">
+              <span className="block font-mono text-[11px] uppercase opacity-40">
                 Global Intensity
               </span>
               <span className="font-mono text-3xl font-black tracking-tight">
-                {story?.intensity ?? "—"}
+                {story?.overallIntensity ?? "—"}
               </span>
             </div>
             <div className="rounded bg-[var(--color-accent-orange)]/10 px-2 py-1 text-right font-mono text-xs font-bold text-[var(--color-accent-orange)]">
@@ -239,7 +254,7 @@ export default function KaalvantaHomeScreen() {
 
           <div className="grid grid-cols-3 gap-2 rounded-2xl border border-[var(--color-ring-bronze)]/30 bg-white/50 p-4 backdrop-blur-sm lg:col-span-2">
             <div className="rounded-xl border border-black/5 bg-white/60 p-2.5 text-center">
-              <span className="block text-[9px] font-bold uppercase opacity-50">
+              <span className="block text-[11px] font-bold uppercase opacity-50">
                 Focus
               </span>
               <span className="mt-0.5 flex items-center justify-center gap-0.5 font-mono text-xs font-bold text-emerald-600">
@@ -247,7 +262,7 @@ export default function KaalvantaHomeScreen() {
               </span>
             </div>
             <div className="rounded-xl border border-black/5 bg-white/60 p-2.5 text-center">
-              <span className="block text-[9px] font-bold uppercase opacity-50">
+              <span className="block text-[11px] font-bold uppercase opacity-50">
                 Pressure
               </span>
               <span className="mt-0.5 flex items-center justify-center gap-0.5 font-mono text-xs font-bold text-[var(--color-accent-orange)]">
@@ -255,7 +270,7 @@ export default function KaalvantaHomeScreen() {
               </span>
             </div>
             <div className="rounded-xl border border-black/5 bg-white/60 p-2.5 text-center">
-              <span className="block text-[9px] font-bold uppercase opacity-50">
+              <span className="block text-[11px] font-bold uppercase opacity-50">
                 Adaptation
               </span>
               <span className="mt-0.5 flex items-center justify-center gap-0.5 font-mono text-xs font-bold text-amber-600">
@@ -268,7 +283,7 @@ export default function KaalvantaHomeScreen() {
             <div className="shrink-0 rounded-lg bg-[var(--color-primary-dark)] p-2 text-[var(--color-primary-light)]">
               <BookOpen size={14} />
             </div>
-            <p className="text-[11px] leading-tight text-[var(--text-muted)]">
+            <p className="text-[12px] leading-tight text-[var(--text-muted)]">
               Cosmic vectors map seamlessly to your behavioral scripts.
             </p>
           </div>

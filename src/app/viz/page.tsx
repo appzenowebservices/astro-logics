@@ -187,7 +187,7 @@ function GeneratePanel() {
       <div className="flex h-[500px] flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-950 sm:h-[600px] lg:col-span-7">
         <div className="flex items-center justify-between border-b border-slate-800 bg-slate-900/40 px-4 py-3 text-xs text-slate-400">
           <span className="font-mono">Canvas</span>
-          <span className="rounded bg-slate-800 px-2 py-0.5 font-mono text-[10px]">
+          <span className="rounded bg-slate-800 px-2 py-0.5 font-mono text-[12px]">
             {size}
           </span>
         </div>
@@ -420,7 +420,7 @@ function VisionPanel() {
         <div className="flex items-center justify-between border-b border-slate-800 bg-slate-900/40 px-4 py-3 text-xs text-slate-400">
           <span className="font-mono">Analysis</span>
           {previewUrl && (
-            <span className="rounded bg-slate-800 px-2 py-0.5 font-mono text-[10px]">
+            <span className="rounded bg-slate-800 px-2 py-0.5 font-mono text-[12px]">
               Loaded
             </span>
           )}
@@ -755,10 +755,10 @@ function LivePanel() {
                 className="rounded-lg border border-slate-800/50 bg-slate-900/50 p-3"
               >
                 <div className="mb-1 flex items-center gap-2">
-                  <span className="rounded bg-slate-800 px-1.5 py-0.5 font-mono text-[10px] text-slate-500">
+                  <span className="rounded bg-slate-800 px-1.5 py-0.5 font-mono text-[12px] text-slate-500">
                     #{log.frame}
                   </span>
-                  <span className="text-[10px] text-slate-600">Live</span>
+                  <span className="text-[12px] text-slate-600">Live</span>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-200">
                   {log.text}

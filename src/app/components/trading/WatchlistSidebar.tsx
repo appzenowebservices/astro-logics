@@ -59,7 +59,7 @@ export default function WatchlistSidebar({
                   {asset.symbol}
                 </span>
 
-                <span className="text-[10px] tracking-wider text-[var(--color-primary-dark)]/50 uppercase">
+                <span className="text-[12px] tracking-wider text-[var(--color-primary-dark)]/50 uppercase">
                   {asset.exchange}
                 </span>
               </div>

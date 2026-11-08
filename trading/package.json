@@ -16,7 +16,9 @@
     "smoke": "node scripts/smoke.mjs",
     "smoke:mock": "node scripts/smoke.mjs --mock",
     "bridge": "cd bridge && env\\Scripts\\python.exe -m uvicorn bridge:app --reload",
-    "bridge:install": "python -m venv bridge/env && bridge\\env\\Scripts\\python.exe -m pip install -r bridge/requirements.txt"
+    "bridge:install": "python -m venv bridge/env && bridge\\env\\Scripts\\python.exe -m pip install -r bridge/requirements.txt",
+    "forecast": "cd forecast && env\\Scripts\\python.exe -m uvicorn app:app --port 8001",
+    "forecast:install": "python -m venv forecast/env && forecast\\env\\Scripts\\python.exe -m pip install -r forecast/requirements.txt"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",

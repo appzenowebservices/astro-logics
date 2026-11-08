@@ -131,7 +131,7 @@ export default function ClientChatUI() {
                 <div className="w-full space-y-3">
                   {msg.reasoning && (
                     <div className="max-w-full space-y-2 overflow-x-auto rounded-xl border border-white/[0.03] bg-[#171921] p-4 font-mono text-xs text-slate-400">
-                      <div className="flex items-center gap-2 text-[10px] font-bold tracking-wider text-amber-500/80 uppercase">
+                      <div className="flex items-center gap-2 text-[12px] font-bold tracking-wider text-amber-500/80 uppercase">
                         <div className="h-1.5 w-1.5 animate-ping rounded-full bg-amber-500" />
                         Nemotron Thinking Process:
                       </div>

@@ -18,7 +18,7 @@
     "preview": "next build && next start",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "dev:web": "next dev --turbo",
+    "dev:web": "next dev --turbo -p 8888",
     "dev:bridge": "cd trading && npm run bridge",
     "dev": "concurrently \"npm run dev:web\" \"npm run dev:bridge\""
   },

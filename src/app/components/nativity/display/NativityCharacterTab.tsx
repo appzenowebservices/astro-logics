@@ -166,7 +166,7 @@ export default function NativityCharacterTab({
               Computing planetary core...
             </span>
           </div>
-          <div className="flex items-center gap-2 text-[10px] tracking-widest uppercase">
+          <div className="flex items-center gap-2 text-[12px] tracking-widest uppercase">
             <div className="h-2 w-2 animate-pulse rounded-full bg-yellow-500 shadow-[0_0_8px_#eab308]" />
             <span>Processing</span>
           </div>
@@ -242,7 +242,7 @@ export default function NativityCharacterTab({
             Celestial_OS v2.0.4
           </span>
         </div>
-        <div className="flex items-center gap-6 text-[10px] tracking-widest uppercase">
+        <div className="flex items-center gap-6 text-[12px] tracking-widest uppercase">
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e]" />
             <span>Agent_Active</span>
@@ -254,7 +254,7 @@ export default function NativityCharacterTab({
       <div className="relative flex flex-1">
         {/* 2. LEFT SIDEBAR: THE TERMINAL LOG (ChatDev Style) */}
         <div className="hidden w-64 flex-col gap-4 border-r border-white/5 bg-black/20 p-4 md:flex">
-          <div className="mb-2 flex items-center gap-2 text-[10px] text-orange-500/70">
+          <div className="mb-2 flex items-center gap-2 text-[12px] text-orange-500/70">
             <Terminal size={12} /> CONSOLE_OUTPUT
           </div>
           <div className="space-y-3">
@@ -264,7 +264,7 @@ export default function NativityCharacterTab({
                   key={log + i}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="border-l border-white/10 pl-2 text-[9px] leading-relaxed opacity-60"
+                  className="border-l border-white/10 pl-2 text-[11px] leading-relaxed opacity-60"
                 >
                   {log}
                 </motion.div>
@@ -308,7 +308,7 @@ export default function NativityCharacterTab({
 
                 {/* Role Label Tag */}
                 <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 rounded-full border border-white/20 bg-black/80 px-3 py-1 whitespace-nowrap shadow-xl">
-                  <span className="text-[10px] font-bold tracking-tighter text-white/90 uppercase">
+                  <span className="text-[12px] font-bold tracking-tighter text-white/90 uppercase">
                     {selectedPlanet} // {PLANET_ROLES[selectedPlanet]}
                   </span>
                 </div>
@@ -323,7 +323,7 @@ export default function NativityCharacterTab({
 
       {/* 4. FOOTER: GAME CONTROLS */}
       <div className="flex h-32 flex-col gap-3 border-t border-white/10 bg-black p-4">
-        <div className="flex items-center justify-between px-2 text-[10px] tracking-widest text-stone-500 uppercase">
+        <div className="flex items-center justify-between px-2 text-[12px] tracking-widest text-stone-500 uppercase">
           <span>Select Active Unit</span>
           <span>
             Energy Output:{" "}
@@ -339,7 +339,7 @@ export default function NativityCharacterTab({
             <button
               key={planet}
               onClick={() => setSelectedPlanet(planet)}
-              className={`flex-shrink-0 rounded-md border px-4 py-2 text-[11px] font-bold transition-all ${
+              className={`flex-shrink-0 rounded-md border px-4 py-2 text-[12px] font-bold transition-all ${
                 selectedPlanet === planet
                   ? "translate-y-[-2px] border-orange-400 bg-orange-500 text-black shadow-[0_4px_0_#9a3412]"
                   : "border-white/5 bg-white/5 text-stone-500 hover:bg-white/10"

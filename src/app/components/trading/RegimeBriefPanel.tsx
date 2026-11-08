@@ -40,7 +40,7 @@ export default function RegimeBriefPanel({
           <div className="font-black tracking-widest text-[var(--color-accent-orange)] uppercase">
             Asset Natal Brief
           </div>
-          <div className="mt-0.5 font-mono text-[10px] text-white/50">
+          <div className="mt-0.5 font-mono text-[12px] text-white/50">
             {brief?.summary ??
               "Press Start Day Scan to prepare regime context."}
           </div>
@@ -57,21 +57,21 @@ export default function RegimeBriefPanel({
 
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-xl bg-white/[0.04] p-2">
-          <div className="text-[9px] text-white/40 uppercase">Astro Conf</div>
+          <div className="text-[11px] text-white/40 uppercase">Astro Conf</div>
           <div className="mt-1 font-mono text-sm font-bold">
             {Math.round(confidence * 100)}%
           </div>
         </div>
 
         <div className="rounded-xl bg-white/[0.04] p-2">
-          <div className="text-[9px] text-white/40 uppercase">Pressure</div>
+          <div className="text-[11px] text-white/40 uppercase">Pressure</div>
           <div className="mt-1 font-mono text-sm font-bold">
             {Math.round(pressure * 100)}%
           </div>
         </div>
 
         <div className="rounded-xl bg-white/[0.04] p-2">
-          <div className="text-[9px] text-white/40 uppercase">Planets</div>
+          <div className="text-[11px] text-white/40 uppercase">Planets</div>
           <div className="mt-1 truncate font-mono text-sm font-bold">
             {planets.join(" + ") || "—"}
           </div>
@@ -79,14 +79,14 @@ export default function RegimeBriefPanel({
       </div>
 
       <div className="mt-3 rounded-xl border border-white/5 bg-white/[0.03] p-2">
-        <div className="mb-1 text-[9px] tracking-wide text-white/40 uppercase">
+        <div className="mb-1 text-[11px] tracking-wide text-white/40 uppercase">
           Dominant Latent Axes
         </div>
         <div className="flex flex-wrap gap-1.5">
           {axes.slice(0, 5).map((axis) => (
             <span
               key={axis.axis}
-              className="rounded-full bg-white/10 px-2 py-0.5 font-mono text-[10px] text-white/70"
+              className="rounded-full bg-white/10 px-2 py-0.5 font-mono text-[12px] text-white/70"
             >
               {axis.axis.replaceAll("_", " ")} {axis.value > 0 ? "+" : ""}
               {axis.value.toFixed(2)}
@@ -99,20 +99,20 @@ export default function RegimeBriefPanel({
       </div>
 
       <div className="mt-3">
-        <div className="mb-1 text-[9px] tracking-wide text-white/40 uppercase">
+        <div className="mb-1 text-[11px] tracking-wide text-white/40 uppercase">
           Prepared Because
         </div>
         <div className="space-y-1">
           {(brief?.preparedBecause ?? []).slice(0, 4).map((line, index) => (
             <div
               key={`${line}-${index}`}
-              className="text-[11px] leading-relaxed text-white/70"
+              className="text-[12px] leading-relaxed text-white/70"
             >
               {index + 1}. {line}
             </div>
           ))}
           {!brief?.preparedBecause?.length ? (
-            <div className="text-[11px] text-white/40">
+            <div className="text-[12px] text-white/40">
               No session brief prepared yet.
             </div>
           ) : null}

@@ -49,11 +49,14 @@ export interface MarketNarrative {
 export async function generateMarketNarrative(
   input: MarketNarrativeInput,
 ): Promise<MarketNarrative> {
-  const llm = createProvider({ provider: "openrouter" });
+  const llm = createProvider({ provider: "opencode" });
 
   const eventsSummary = input.events
     .slice(0, 10)
-    .map((e) => `${e.type}: strength=${e.strength?.toFixed(2) ?? 0.5}, narrative="${e.narrative ?? ""}"`)
+    .map(
+      (e) =>
+        `${e.type}: strength=${e.strength?.toFixed(2) ?? 0.5}, narrative="${e.narrative ?? ""}"`,
+    )
     .join("\n");
 
   const astroSummary = input.astroState
@@ -99,7 +102,8 @@ Return ONLY valid JSON.
 
   try {
     const response = await llm.generate({
-      system: 'You are a market astrologer expert. Output ONLY valid JSON with the required fields. No markdown, no comments.',
+      system:
+        "You are a market astrologer expert. Output ONLY valid JSON with the required fields. No markdown, no comments.",
       user: prompt,
     });
 
@@ -108,11 +112,15 @@ Return ONLY valid JSON.
 
     const parsed = JSON.parse(text);
     return {
-      digitalTwinVoice: parsed.digitalTwinVoice || "The market is stable with minor fluctuations.",
+      digitalTwinVoice:
+        parsed.digitalTwinVoice ||
+        "The market is stable with minor fluctuations.",
       marketPersonality: parsed.marketPersonality || "Balanced and methodical",
       transitInfluences: parsed.transitInfluences || [],
-      behavioralReading: parsed.behavioralReading || "Price action shows consolidation.",
-      tradingImplication: parsed.tradingImplication || "Watch for breakout confirmation.",
+      behavioralReading:
+        parsed.behavioralReading || "Price action shows consolidation.",
+      tradingImplication:
+        parsed.tradingImplication || "Watch for breakout confirmation.",
       confidence: parsed.confidence ?? 0.7,
       timestamp: Date.now(),
     };
@@ -122,7 +130,8 @@ Return ONLY valid JSON.
       digitalTwinVoice: "Market conditions are evolving with mixed signals.",
       marketPersonality: "Adaptive and responsive",
       transitInfluences: ["Mercury direct", "Venus steady"],
-      behavioralReading: "Events show alternating bullish and bearish pressure.",
+      behavioralReading:
+        "Events show alternating bullish and bearish pressure.",
       tradingImplication: "Wait for clearer directional confirmation.",
       confidence: 0.5,
       timestamp: Date.now(),

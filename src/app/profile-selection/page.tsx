@@ -51,7 +51,7 @@ export default function ProfileBentoSelection() {
           {/* Main Identity Block (Cosmic Blue) */}
           <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[var(--color-primary-dark)] p-8 text-[var(--color-primary-light)] shadow-2xl md:col-span-2 md:row-span-2">
             <div className="z-10">
-              <div className="mb-6 inline-block rounded-full border border-[var(--color-accent-glow)] px-3 py-1 text-[10px] font-bold tracking-widest text-[var(--color-accent-glow)] uppercase">
+              <div className="mb-6 inline-block rounded-full border border-[var(--color-accent-glow)] px-3 py-1 text-[12px] font-bold tracking-widest text-[var(--color-accent-glow)] uppercase">
                 Active Collective
               </div>
               <h2 className="mb-2 text-6xl leading-none font-black tracking-tighter italic">
@@ -79,7 +79,7 @@ export default function ProfileBentoSelection() {
           <div className="flex flex-col justify-between rounded-2xl border border-[var(--color-ring-bronze)] bg-white/50 p-6 shadow-sm backdrop-blur-md">
             <Clock size={20} className="text-[var(--color-accent-orange)]" />
             <div>
-              <p className="text-[10px] font-bold tracking-tighter uppercase opacity-50">
+              <p className="text-[12px] font-bold tracking-tighter uppercase opacity-50">
                 Birth Epoch
               </p>
               <p className="text-lg leading-tight font-bold">1995-07-14</p>
@@ -91,7 +91,7 @@ export default function ProfileBentoSelection() {
           <div className="flex flex-col justify-between rounded-2xl bg-[var(--color-accent-orange)] p-6 text-white shadow-lg">
             <Compass size={20} />
             <div>
-              <p className="text-[10px] font-bold tracking-tighter uppercase opacity-80">
+              <p className="text-[12px] font-bold tracking-tighter uppercase opacity-80">
                 Coordinate System
               </p>
               <p className="text-2xl font-bold tracking-tighter">
@@ -110,7 +110,7 @@ export default function ProfileBentoSelection() {
                 />
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase opacity-50">
+                <p className="text-[12px] font-bold uppercase opacity-50">
                   Geo Location
                 </p>
                 <p className="text-xl font-bold">{profile?.locationName}, IN</p>
@@ -127,7 +127,7 @@ export default function ProfileBentoSelection() {
         </div>
 
         {/* System Mechanics Footer */}
-        <footer className="mt-12 flex items-center justify-between text-[10px] font-bold tracking-[0.3em] uppercase opacity-40">
+        <footer className="mt-12 flex items-center justify-between text-[12px] font-bold tracking-[0.3em] uppercase opacity-40">
           <p>Engine ID // SEC-01</p>
           <p>Validated Matrix // {profile?._id?.substring(0, 8)}</p>
         </footer>

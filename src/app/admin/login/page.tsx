@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
       >
         <Link
           href="/login"
-          className="group mb-8 inline-flex items-center gap-2 font-mono text-[10px] font-bold tracking-[0.2em] text-[var(--color-primary-light)]/50 uppercase transition-colors hover:text-[var(--color-accent-orange)]"
+          className="group mb-8 inline-flex items-center gap-2 font-mono text-[12px] font-bold tracking-[0.2em] text-[var(--color-primary-light)]/50 uppercase transition-colors hover:text-[var(--color-accent-orange)]"
         >
           <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
           Member sign in
@@ -111,7 +111,7 @@ export default function AdminLoginPage() {
                   <ShieldCheck className="h-7 w-7 text-[var(--color-accent-orange)]" />
                 </motion.div>
 
-                <p className="font-mono text-[9px] font-black tracking-[0.3em] text-[var(--color-accent-orange)] uppercase">
+                <p className="font-mono text-[11px] font-black tracking-[0.3em] text-[var(--color-accent-orange)] uppercase">
                   Access granted
                 </p>
                 <h2 className="mt-2 text-2xl font-black tracking-tight">
@@ -120,7 +120,7 @@ export default function AdminLoginPage() {
 
                 <div className="mx-auto mt-7 flex items-center justify-center gap-2">
                   <Loader2 className="h-4 w-4 animate-spin text-[var(--color-accent-glow)]" />
-                  <span className="font-mono text-[9px] font-bold tracking-[0.2em] text-[var(--color-primary-light)]/40 uppercase">
+                  <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-[var(--color-primary-light)]/40 uppercase">
                     Verifying session
                   </span>
                 </div>
@@ -141,7 +141,7 @@ export default function AdminLoginPage() {
                     className="h-10 w-auto object-contain drop-shadow-[0_0_12px_rgba(234,221,189,0.3)]"
                   />
                   <div>
-                    <p className="font-mono text-[9px] font-black tracking-[0.3em] text-[var(--color-accent-orange)] uppercase">
+                    <p className="font-mono text-[11px] font-black tracking-[0.3em] text-[var(--color-accent-orange)] uppercase">
                       Restricted
                     </p>
                     <h1 className="text-xl font-black tracking-tight">
@@ -154,7 +154,7 @@ export default function AdminLoginPage() {
                   <div>
                     <label
                       htmlFor="admin-email"
-                      className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.25em] text-[var(--color-ring-bronze)] uppercase"
+                      className="mb-1.5 block font-mono text-[11px] font-black tracking-[0.25em] text-[var(--color-ring-bronze)] uppercase"
                     >
                       Admin email
                     </label>
@@ -175,7 +175,7 @@ export default function AdminLoginPage() {
                   <div>
                     <label
                       htmlFor="admin-password"
-                      className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.25em] text-[var(--color-ring-bronze)] uppercase"
+                      className="mb-1.5 block font-mono text-[11px] font-black tracking-[0.25em] text-[var(--color-ring-bronze)] uppercase"
                     >
                       Admin password
                     </label>
@@ -213,7 +213,7 @@ export default function AdminLoginPage() {
                   <button
                     type="submit"
                     disabled={busy}
-                    className="flex w-full items-center justify-center gap-2.5 rounded-xl bg-[var(--color-primary-light)] py-3.5 text-[11px] font-black tracking-[0.18em] text-[var(--color-primary-dark)] uppercase shadow-[0_0_40px_rgba(234,221,189,0.15)] transition-all hover:bg-[var(--color-accent-orange)] hover:text-white active:scale-[0.99] disabled:cursor-wait disabled:opacity-70"
+                    className="flex w-full items-center justify-center gap-2.5 rounded-xl bg-[var(--color-primary-light)] py-3.5 text-[12px] font-black tracking-[0.18em] text-[var(--color-primary-dark)] uppercase shadow-[0_0_40px_rgba(234,221,189,0.15)] transition-all hover:bg-[var(--color-accent-orange)] hover:text-white active:scale-[0.99] disabled:cursor-wait disabled:opacity-70"
                   >
                     {busy ? (
                       <>
@@ -229,7 +229,7 @@ export default function AdminLoginPage() {
                   </button>
                 </form>
 
-                <p className="mt-7 border-t border-[var(--color-primary-light)]/10 pt-5 font-mono text-[9px] leading-relaxed tracking-[0.12em] text-[var(--color-primary-light)]/35 uppercase">
+                <p className="mt-7 border-t border-[var(--color-primary-light)]/10 pt-5 font-mono text-[11px] leading-relaxed tracking-[0.12em] text-[var(--color-primary-light)]/35 uppercase">
                   Credentials are read from{" "}
                   <span className="text-[var(--color-ring-bronze)]">ADMIN_EMAIL</span> /{" "}
                   <span className="text-[var(--color-ring-bronze)]">ADMIN_PASSWORD</span> in the

@@ -46,6 +46,7 @@ export default function NativityChartViewer({
   }
 
   const chart = chartQuery.data;
+  const profiles = chart.planetaryProfiles ?? [];
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden bg-white">
@@ -53,34 +54,30 @@ export default function NativityChartViewer({
       <div className="flex-1 overflow-hidden">
         <NativityChartDisplay
           chartId={chartId}
-          planets={
-            chart.ephemerisData?.planets?.map((p) => ({
-              id: p.id,
-              planet: p.planet,
-              longitude: p.longitude,
-              latitude: p.latitude,
-              speed: p.speed,
-              acceleration: p.acceleration,
-              direction: p.direction,
-              houseCusp: p.houseCusp || 1,
-              houseDegree: p.houseDegree || 0,
-              houseSign: p.houseSign || "ARIES",
-            })) || []
-          }
+          planets={profiles.map((p) => ({
+            id: p.id,
+            planet: p.planet,
+            longitude: p.longitude,
+            latitude: p.latitude ?? 0,
+            speed: p.speed ?? 0,
+            acceleration: p.acceleration ?? 0,
+            direction: p.direction,
+            houseCusp: p.houseCusp || 1,
+            houseDegree: p.houseDegree || 0,
+            houseSign: p.houseSign || "ARIES",
+          }))}
           aspects={chart.aspects || []}
           angularDistances={chart.geometryIndex?.angularDistances || []}
-          planetaryProfiles={
-            chart.planetaryProfiles?.map((p) => ({
-              id: p.id,
-              planet: p.planet,
-              dignityType: p.dignity || "Neutral",
-              strength: p.strength,
-              primaryDomain: p.primaryDomain || "Unknown",
-              secondaryDomain: p.secondaryDomain,
-              visibility: p.visibility,
-              saturationLevel: p.saturationLevel,
-            })) || []
-          }
+          planetaryProfiles={profiles.map((p) => ({
+            id: p.id,
+            planet: p.planet,
+            dignityType: p.dignity || "Neutral",
+            strength: p.strength ?? 0,
+            primaryDomain: p.primaryDomain || "Unknown",
+            secondaryDomain: p.secondaryDomain,
+            visibility: 0,
+            saturationLevel: 0,
+          }))}
         />
       </div>
     </div>

@@ -47,6 +47,7 @@ const SUBS = {
   "{TARGET}": TARGET,
   "{SUBSCRIPTION_ID}": env.RAZORPAY_TEST_SUBSCRIPTION_ID || "",
   "{USER_ID}": env.RAZORPAY_TEST_USER_ID || "",
+  "{FORECAST_URL}": env.FORECAST_URL || "http://127.0.0.1:8001",
 };
 
 const fill = (s) =>

@@ -49,7 +49,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 rounded-md border border-[var(--color-accent-orange)]/20 bg-[var(--color-accent-orange)]/10 px-2.5 py-1">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-accent-orange)] shadow-[0_0_8px_var(--color-accent-orange)]" />
-                <span className="text-[10px] font-black tracking-widest text-[var(--color-accent-orange)] uppercase">
+                <span className="text-[12px] font-black tracking-widest text-[var(--color-accent-orange)] uppercase">
                   LIVE SESSION
                 </span>
               </div>
@@ -57,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <span className="text-sm font-black tracking-wider text-white uppercase">
                   STRUCTURED EXPANSION
                 </span>
-                <span className="mt-0.5 text-[9px] font-black tracking-[0.2em] text-white/30 uppercase">
+                <span className="mt-0.5 text-[11px] font-black tracking-[0.2em] text-white/30 uppercase">
                   ENGINE ID // SEC-01
                 </span>
               </div>
@@ -76,7 +76,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     .toUpperCase()}
                 </span>
                 <div className="mt-0.5 flex items-center justify-end gap-1.5">
-                  <span className="text-[10px] font-black tracking-wider text-white/50">
+                  <span className="text-[12px] font-black tracking-wider text-white/50">
                     {time || "--:-- --"}
                   </span>
                 </div>

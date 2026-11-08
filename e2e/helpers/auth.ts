@@ -30,7 +30,7 @@ export async function login(
 
   await page.locator('input[placeholder="Email or Mobile"]').fill(email);
   await page.locator('input[type="password"]').fill(password);
-  await page.getByRole("button", { name: /align records/i }).click();
+  await page.getByRole("button", { name: /let me in/i }).click();
 
   await page.waitForURL("**/dashboard", { timeout: 20_000 });
   await expect(page).toHaveURL(/\/dashboard$/);

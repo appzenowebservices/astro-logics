@@ -44,7 +44,9 @@ const chartSchema = z.object({
     .describe("The planetaryProfiles array from compute_natal_chart"),
 });
 
-function buildNativityContext(chart: z.infer<typeof chartSchema>): NativityContext {
+function buildNativityContext(
+  chart: z.infer<typeof chartSchema>,
+): NativityContext {
   return {
     planets: chart.planets.map((p) => ({
       planet: p.planet,
@@ -92,10 +94,21 @@ export const generateReadingTool: McpToolDef<typeof readingInputSchema> = {
   inputSchema: readingInputSchema,
   handler: async ({ chart, prompt }) => {
     const context = buildNativityContext(chart);
+    const useLocalLlm = process.env.USE_LOCAL_LLM === "true";
     const generator = new StoryGenerator({
-      useLocal: process.env.USE_LOCAL_LLM === "true",
-      baseUrl: process.env.LLAMA_CPP_URL || "http://localhost:8000",
-      model: process.env.LLAMA_CPP_MODEL || "local-gguf-model",
+      useLocal: useLocalLlm,
+      baseUrl: useLocalLlm
+        ? process.env.LLAMA_CPP_URL || "http://localhost:8000"
+        : process.env.OPENCODE_BASE_URL ||
+          "https://opencode.ai/inference/go/openai/v1",
+      model: useLocalLlm
+        ? process.env.LLAMA_CPP_MODEL || "local-gguf-model"
+        : process.env.OPENCODE_MODEL || "deepseek-v4.1-flash",
+      apiKey: useLocalLlm
+        ? process.env.LLAMA_CPP_API_KEY ||
+          process.env.LOCAL_LLM_API_KEY ||
+          "dummy"
+        : process.env.OPENCODE_API_KEY,
       timeoutMs: process.env.LLM_TIMEOUT_MS
         ? Number(process.env.LLM_TIMEOUT_MS)
         : undefined,

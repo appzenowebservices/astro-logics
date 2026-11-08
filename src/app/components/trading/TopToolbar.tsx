@@ -79,12 +79,12 @@ export default function TopToolbar({
                       <div className="font-semibold text-zinc-200">
                         {asset.symbol}
                       </div>
-                      <div className="text-[10px] text-zinc-500">
+                      <div className="text-[12px] text-zinc-500">
                         {asset.label}
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="rounded border border-zinc-800 bg-zinc-900 px-1 text-[9px] text-zinc-400 uppercase">
+                      <span className="rounded border border-zinc-800 bg-zinc-900 px-1 text-[11px] text-zinc-400 uppercase">
                         {asset.category}
                       </span>
                       {selectedAsset.symbol === asset.symbol && (
@@ -119,7 +119,7 @@ export default function TopToolbar({
 
       <div className="flex items-center gap-4 font-mono text-xs">
         <div className="text-right">
-          <span className="mb-0.5 block text-[10px] leading-none text-zinc-500 uppercase">
+          <span className="mb-0.5 block text-[12px] leading-none text-zinc-500 uppercase">
             MT5 Live Bid
           </span>
           <span

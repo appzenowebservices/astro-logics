@@ -12,7 +12,7 @@ test.describe("authentication", () => {
 
     await page.locator('input[placeholder="Email or Mobile"]').fill("nobody@kaalvanta.test");
     await page.locator('input[type="password"]').fill("definitely-not-the-password");
-    await page.getByRole("button", { name: /align records/i }).click();
+    await page.getByRole("button", { name: /let me in/i }).click();
 
     // signIn resolves with an error, so the router never pushes to /dashboard.
     await page.waitForTimeout(2_000);
@@ -26,7 +26,7 @@ test.describe("authentication", () => {
       .locator('input[placeholder="Email or Mobile"]')
       .fill(`missing.${Date.now()}@kaalvanta.test`);
     await page.locator('input[type="password"]').fill("whatever-1234");
-    await page.getByRole("button", { name: /align records/i }).click();
+    await page.getByRole("button", { name: /let me in/i }).click();
 
     await page.waitForTimeout(2_000);
     await expect(page).toHaveURL(/\/login/);

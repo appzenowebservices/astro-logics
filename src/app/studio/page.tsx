@@ -56,7 +56,7 @@ export default function StudioPage() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-[var(--color-ring-bronze)]/40 pb-6">
           <div>
-            <p className="font-mono text-[10px] font-black tracking-[0.35em] text-[var(--color-accent-orange)] uppercase">
+            <p className="font-mono text-[12px] font-black tracking-[0.35em] text-[var(--color-accent-orange)] uppercase">
               Analyst studio
             </p>
             <h1 className="mt-3 text-4xl font-black tracking-tighter">
@@ -66,7 +66,7 @@ export default function StudioPage() {
           </div>
           <Link
             href="/ideas"
-            className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase underline underline-offset-4"
+            className="font-mono text-[12px] font-bold tracking-[0.2em] uppercase underline underline-offset-4"
           >
             View public feed
           </Link>
@@ -104,7 +104,7 @@ export default function StudioPage() {
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="block">
-                  <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.2em] uppercase opacity-60">
+                  <span className="mb-1.5 block font-mono text-[11px] font-black tracking-[0.2em] uppercase opacity-60">
                     Kind
                   </span>
                   <select
@@ -118,7 +118,7 @@ export default function StudioPage() {
                 </label>
 
                 <label className="block">
-                  <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.2em] uppercase opacity-60">
+                  <span className="mb-1.5 block font-mono text-[11px] font-black tracking-[0.2em] uppercase opacity-60">
                     Visibility
                   </span>
                   <select
@@ -134,7 +134,7 @@ export default function StudioPage() {
               </div>
 
               <label className="block">
-                <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.2em] uppercase opacity-60">
+                <span className="mb-1.5 block font-mono text-[11px] font-black tracking-[0.2em] uppercase opacity-60">
                   Title
                 </span>
                 <input
@@ -149,7 +149,7 @@ export default function StudioPage() {
 
               {form.kind === "TRADE_IDEA" && (
                 <label className="block">
-                  <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.2em] uppercase opacity-60">
+                  <span className="mb-1.5 block font-mono text-[11px] font-black tracking-[0.2em] uppercase opacity-60">
                     Symbol
                   </span>
                   <input
@@ -162,7 +162,7 @@ export default function StudioPage() {
               )}
 
               <label className="block">
-                <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.2em] uppercase opacity-60">
+                <span className="mb-1.5 block font-mono text-[11px] font-black tracking-[0.2em] uppercase opacity-60">
                   Excerpt
                 </span>
                 <input
@@ -174,7 +174,7 @@ export default function StudioPage() {
               </label>
 
               <label className="block">
-                <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.2em] uppercase opacity-60">
+                <span className="mb-1.5 block font-mono text-[11px] font-black tracking-[0.2em] uppercase opacity-60">
                   Body
                 </span>
                 <textarea
@@ -190,7 +190,7 @@ export default function StudioPage() {
               <button
                 type="submit"
                 disabled={create.isPending}
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary-dark)] px-6 py-3 font-mono text-[10px] font-black tracking-[0.18em] text-[var(--color-primary-light)] uppercase transition-colors hover:bg-[var(--color-accent-orange)] hover:text-white disabled:opacity-50"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary-dark)] px-6 py-3 font-mono text-[12px] font-black tracking-[0.18em] text-[var(--color-primary-light)] uppercase transition-colors hover:bg-[var(--color-accent-orange)] hover:text-white disabled:opacity-50"
               >
                 {create.isPending ? (
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -209,7 +209,7 @@ export default function StudioPage() {
 
             {/* Drafts */}
             <div className="space-y-3">
-              <h2 className="font-mono text-[10px] font-black tracking-[0.25em] uppercase opacity-60">
+              <h2 className="font-mono text-[12px] font-black tracking-[0.25em] uppercase opacity-60">
                 Your posts
               </h2>
 
@@ -233,7 +233,7 @@ export default function StudioPage() {
                       <p className="text-sm font-black tracking-tight">
                         {post.title}
                       </p>
-                      <p className="mt-1 font-mono text-[9px] font-bold tracking-[0.16em] uppercase opacity-50">
+                      <p className="mt-1 font-mono text-[11px] font-bold tracking-[0.16em] uppercase opacity-50">
                         {post.status} · {post.visibility}
                       </p>
                     </div>

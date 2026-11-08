@@ -31,7 +31,7 @@ const ScriptEmptyState = ({
         </h2>
         <div className="flex items-center justify-center gap-3">
           <div className="h-[1px] w-4 bg-[var(--color-accent-orange)] opacity-50" />
-          <p className="font-mono text-[10px] leading-relaxed font-bold tracking-[0.2em] text-[var(--text-muted)] uppercase">
+          <p className="font-mono text-[12px] leading-relaxed font-bold tracking-[0.2em] text-[var(--text-muted)] uppercase">
             {isThemeMode
               ? "No celestial resonance detected. Sync transits to extract theme."
               : "Configuration set. Awaiting sequence generation."}
@@ -81,7 +81,7 @@ const ScriptEmptyState = ({
       {/* Decorative Technical Detail: Bronze Metallic Tones */}
       <div className="mt-16 flex items-center gap-6 opacity-40">
         <div className="h-[1px] w-12 bg-[var(--color-ring-bronze)]" />
-        <span className="font-mono text-[9px] font-black tracking-[0.5em] text-[var(--color-primary-dark)] uppercase">
+        <span className="font-mono text-[11px] font-black tracking-[0.5em] text-[var(--color-primary-dark)] uppercase">
           Awaiting Input
         </span>
         <div className="h-[1px] w-12 bg-[var(--color-ring-bronze)]" />

@@ -23,7 +23,7 @@ const MainNarrativePanel = ({
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-accent-orange)] shadow-[0_0_8px_var(--color-accent-orange)]" />
-            <p className="text-[10px] font-black tracking-[0.4em] text-[var(--text-muted)] uppercase">
+            <p className="text-[12px] font-black tracking-[0.4em] text-[var(--text-muted)] uppercase">
               Chronicle Output
             </p>
           </div>
@@ -42,7 +42,7 @@ const MainNarrativePanel = ({
           type="button"
           onClick={hasNarrative ? onRecalculate : onGenerateScript}
           disabled={isGenerating}
-          className={`relative flex items-center gap-3 rounded-2xl px-6 py-3 text-[11px] font-black tracking-widest uppercase transition-all duration-300 ${
+          className={`relative flex items-center gap-3 rounded-2xl px-6 py-3 text-[12px] font-black tracking-widest uppercase transition-all duration-300 ${
             hasNarrative
               ? "bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] shadow-md hover:bg-[var(--color-accent-orange)] hover:text-white"
               : "bg-[var(--color-accent-orange)] text-white shadow-lg hover:scale-105 active:scale-95"
@@ -76,7 +76,7 @@ const MainNarrativePanel = ({
           </div>
         ) : (
           <div className="max-w-[240px] space-y-3">
-            <p className="font-mono text-[10px] font-bold tracking-[0.2em] text-[var(--color-primary-dark)] uppercase">
+            <p className="font-mono text-[12px] font-bold tracking-[0.2em] text-[var(--color-primary-dark)] uppercase">
               Awaiting celestial alignment...
             </p>
             <p className="text-xs font-medium italic opacity-70">
@@ -98,11 +98,11 @@ const MainNarrativePanel = ({
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <span className="font-mono text-[10px] font-bold tracking-widest text-[var(--text-muted)] uppercase">
+          <span className="font-mono text-[12px] font-bold tracking-widest text-[var(--text-muted)] uppercase">
             {hasNarrative ? "Log: Confirmed" : "System: Idle"}
           </span>
           <div className="h-4 w-[1px] bg-[var(--color-ring-bronze)]/30" />
-          <span className="font-mono text-[10px] font-bold text-[var(--color-accent-orange)]">
+          <span className="font-mono text-[12px] font-bold text-[var(--color-accent-orange)]">
             v4.0.0
           </span>
         </div>
