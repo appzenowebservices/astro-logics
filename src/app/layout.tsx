@@ -1,10 +1,16 @@
 import "../styles/globals.css";
 
 import { type Metadata } from "next";
-import { Manrope, Cormorant_Garamond, Geist_Mono, Anton } from "next/font/google";
+import {
+  Poppins,
+  Cormorant_Garamond,
+  Geist_Mono,
+  Anton,
+} from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { SessionProvider } from "next-auth/react";
+import { ActiveProfileProvider } from "./components/profile/ActiveProfileProvider";
 // import TheatreStudio from "./components/TheatreStudio";
 // import TheatreStudio from '@/components/TheatreStudio'; // Adjust path as needed
 export const metadata: Metadata = {
@@ -37,11 +43,11 @@ export const metadata: Metadata = {
      --font-code     → mono labels + code   (globals.css --font-mono)
 
    To experiment: swap the family below, e.g.
-     Manrope → Plus_Jakarta_Sans | Inter | Sora | Figtree
+     Poppins → Plus_Jakarta_Sans | Manrope | Inter | Sora | Figtree
    ═══════════════════════════════════════════════════════════════════════════ */
-const bodyFont = Manrope({
+const bodyFont = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-body",
 });
 
@@ -76,7 +82,9 @@ export default function RootLayout({
       <body>
         <SessionProvider>
           {/* <TheatreStudio /> */}
-          <TRPCReactProvider>{children}</TRPCReactProvider>
+          <TRPCReactProvider>
+            <ActiveProfileProvider>{children}</ActiveProfileProvider>
+          </TRPCReactProvider>
         </SessionProvider>
       </body>
     </html>

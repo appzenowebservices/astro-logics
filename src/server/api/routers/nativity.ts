@@ -460,6 +460,7 @@ export const nativityRouter = createTRPCRouter({
         latitude: true,
         longitude: true,
         locationName: true,
+        timezone: true,
         coordinateSystem: true,
         createdAt: true,
       },
@@ -1766,18 +1767,29 @@ export const nativityRouter = createTRPCRouter({
    * Latest story belonging to the signed-in user. The dashboard uses this
    * instead of a hard-coded story id.
    */
-  getLatestStory: protectedProcedure.query(async ({ ctx }) => {
-    return db.currentStory.findFirst({
-      where: {
-        nativityChart: { userId: ctx.session.user.id },
-      },
-      include: {
-        nativityChart: { select: { id: true, name: true, userId: true } },
-        scenes: { orderBy: { intensity: "desc" } },
-      },
-      orderBy: { transitDate: "desc" },
-    });
-  }),
+  getLatestStory: protectedProcedure
+    .input(
+      z
+        .object({
+          nativityChartId: z.string().optional(),
+        })
+        .optional(),
+    )
+    .query(async ({ ctx, input }) => {
+      return db.currentStory.findFirst({
+        where: {
+          nativityChart: { userId: ctx.session.user.id },
+          ...(input?.nativityChartId
+            ? { nativityChartId: input.nativityChartId }
+            : {}),
+        },
+        include: {
+          nativityChart: { select: { id: true, name: true, userId: true } },
+          scenes: { orderBy: { intensity: "desc" } },
+        },
+        orderBy: { transitDate: "desc" },
+      });
+    }),
 
   /**
    * Compile deterministic visual prompts for a saved story

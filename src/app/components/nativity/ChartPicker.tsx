@@ -1,24 +1,19 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Orbit } from "lucide-react";
 import { api } from "~/trpc/react";
+import { useActiveProfile } from "../profile/ActiveProfileProvider";
 
 export function useNativitySelection() {
-  const chartsQuery = api.nativity.getCharts.useQuery();
-  const [chartId, setChartId] = useState("");
-
-  useEffect(() => {
-    if (!chartId && chartsQuery.data?.[0]) {
-      setChartId(chartsQuery.data[0].id);
-    }
-  }, [chartId, chartsQuery.data]);
+  const { charts, activeChartId, setActiveChartId, isLoading } =
+    useActiveProfile();
 
   return {
-    chartId,
-    setChartId,
-    charts: chartsQuery.data ?? [],
-    isLoading: chartsQuery.isLoading,
+    chartId: activeChartId,
+    setChartId: setActiveChartId,
+    charts,
+    isLoading,
   };
 }
 

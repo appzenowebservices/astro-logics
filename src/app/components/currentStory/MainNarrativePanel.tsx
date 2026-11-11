@@ -1,5 +1,6 @@
 import React from "react";
 import { Loader2, RefreshCw, PenTool, Sparkles } from "lucide-react";
+import ScreenplayDocument from "./ScreenplayDocument";
 
 const MainNarrativePanel = ({
   narrative,
@@ -12,17 +13,17 @@ const MainNarrativePanel = ({
   onRecalculate: () => void;
   isGenerating: boolean;
 }) => {
-  const hasNarrative = Boolean(narrative);
+  const hasNarrative = Boolean(narrative?.trim());
 
   return (
     <div className="group relative overflow-hidden rounded-[2rem] border border-[var(--color-ring-bronze)]/30 bg-[var(--bg-main)] p-8 shadow-xl transition-colors duration-500">
       {/* Decorative Glow: Soft blue atmospheric aura */}
-      <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 bg-[var(--color-accent-glow)] opacity-10 blur-[100px]" />
+
 
       <div className="relative z-10 mb-6 flex items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-accent-orange)] shadow-[0_0_8px_var(--color-accent-orange)]" />
+            <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-accent-orange)] " />
             <p className="text-[12px] font-black tracking-[0.4em] text-[var(--text-muted)] uppercase">
               Chronicle Output
             </p>
@@ -62,19 +63,10 @@ const MainNarrativePanel = ({
         </button>
       </div>
 
-      {/* Narrative Body: Styled like a moon-lit manuscript */}
-      <div
-        className={`text-md min-h-[260px] rounded-3xl border p-7 leading-relaxed transition-all duration-500 ${
-          hasNarrative
-            ? "border-[var(--color-ring-bronze)]/20 bg-[var(--color-primary-light)] text-[var(--color-primary-dark)] shadow-inner"
-            : "flex items-center justify-center border-dashed border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-light)]/20 text-center text-[var(--text-muted)]"
-        } `}
-      >
-        {hasNarrative ? (
-          <div className="font-serif whitespace-pre-wrap italic opacity-95 first-letter:float-left first-letter:mr-2 first-letter:text-4xl first-letter:leading-none first-letter:font-black first-letter:text-[var(--color-accent-orange)]">
-            {narrative}
-          </div>
-        ) : (
+      {hasNarrative ? (
+        <ScreenplayDocument content={narrative ?? ""} />
+      ) : (
+        <div className="flex min-h-[260px] items-center justify-center rounded-3xl border border-dashed border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-light)]/20 p-7 text-center text-[var(--text-muted)]">
           <div className="max-w-[240px] space-y-3">
             <p className="font-mono text-[12px] font-bold tracking-[0.2em] text-[var(--color-primary-dark)] uppercase">
               Awaiting celestial alignment...
@@ -84,8 +76,8 @@ const MainNarrativePanel = ({
               transit-driven story.
             </p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Technical Footer Detail: Nautical Instrument Vibes */}
       <div className="mt-6 flex items-center justify-between px-2">

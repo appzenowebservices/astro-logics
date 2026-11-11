@@ -234,9 +234,9 @@ export default function HomePage() {
             style={{ opacity: copyOpacity, y: copyY }}
             className="text-center lg:text-left"
           >
-            <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-[var(--color-primary-light)]/15 bg-[var(--color-primary-light)]/[0.04] px-4 py-2 backdrop-blur-sm">
+            <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-[var(--color-primary-light)]/15 bg-[#22365d] px-4 py-2">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent-orange)] opacity-75" />
+                <span className="hidden" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-accent-orange)]" />
               </span>
               <span className="font-mono text-[12px] font-black tracking-[0.3em] text-[var(--color-primary-light)]/70 uppercase">
@@ -262,7 +262,7 @@ export default function HomePage() {
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
               <Link
                 href="/register"
-                className="group flex w-full items-center justify-center gap-2.5 rounded-full bg-[var(--color-primary-light)] px-8 py-4 text-xs font-black tracking-[0.15em] text-[var(--color-primary-dark)] uppercase shadow-[0_0_40px_rgba(234,221,189,0.18)] transition-all hover:bg-[var(--color-accent-orange)] hover:text-white active:scale-[0.98] sm:w-auto"
+                className="group flex w-full items-center justify-center gap-2.5 rounded-full bg-[var(--color-primary-light)] px-8 py-4 text-xs font-black tracking-[0.15em] text-[var(--color-primary-dark)] uppercase shadow-sm transition-all hover:bg-[var(--color-accent-orange)] hover:text-white active:scale-[0.98] sm:w-auto"
               >
                 Begin your chart
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -412,7 +412,7 @@ export default function HomePage() {
                     ].map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-1.5 rounded-full border border-[var(--color-primary-light)]/12 bg-[var(--color-primary-light)]/[0.03] px-3 py-1 font-mono text-[11px] font-bold tracking-[0.14em] text-[var(--color-primary-light)]/55 uppercase"
+                        className="flex items-center gap-1.5 rounded-full border border-[var(--color-primary-light)]/12 bg-[#22365d] px-3 py-1 font-mono text-[11px] font-bold tracking-[0.14em] text-[var(--color-primary-light)]/55 uppercase"
                       >
                         <span className="h-1 w-1 rounded-full bg-[var(--color-accent-orange)]" />
                         {item}
@@ -523,7 +523,7 @@ export default function HomePage() {
                       {step.step}
                     </span>
                     {i < STEPS.length - 1 && (
-                      <span className="mt-2 w-px flex-1 bg-gradient-to-b from-[var(--color-ring-bronze)]/40 to-transparent" />
+                      <span className="mt-2 w-px flex-1 bg-[var(--color-ring-bronze)]/40" />
                     )}
                   </div>
                   <div className="pb-1">
@@ -544,7 +544,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-[radial-gradient(circle_at_70%_20%,rgba(164,196,217,0.14),transparent_65%)] blur-2xl" />
 
-              <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--color-primary-light)]/12 bg-[var(--color-primary-dark)]/80 shadow-2xl backdrop-blur-sm">
+              <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--color-primary-light)]/12 bg-[#22365d] shadow-sm">
                 {/* Panel header */}
                 <div className="flex items-center justify-between border-b border-[var(--color-primary-light)]/10 px-6 py-4">
                   <div className="flex items-center gap-2.5">
@@ -595,9 +595,9 @@ export default function HomePage() {
                           }}
                           className={`h-full rounded-full ${
                             row.tone === "up"
-                              ? "bg-gradient-to-r from-[var(--color-accent-orange)] to-[var(--color-ring-bronze)]"
+                              ? "bg-[var(--color-accent-orange)]"
                               : row.tone === "down"
-                                ? "bg-gradient-to-r from-[var(--color-accent-glow)]/80 to-[var(--color-accent-glow)]/40"
+                                ? "bg-[var(--color-accent-glow)]"
                                 : "bg-[var(--color-primary-light)]/35"
                           }`}
                         />
@@ -627,7 +627,7 @@ export default function HomePage() {
           <Reveal className="order-2 lg:order-1">
             <div className="relative">
               <div className="pointer-events-none absolute -inset-5 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_70%,rgba(209,122,56,0.14),transparent_65%)] blur-2xl" />
-              <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--color-ring-bronze)]/30 shadow-2xl">
+              <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--color-ring-bronze)]/30 shadow-sm">
                 <Image
                   src="/scene.jpg"
                   alt="Two planetary characters in debate against a starfield"
@@ -635,7 +635,7 @@ export default function HomePage() {
                   height={635}
                   className="h-auto w-full object-cover"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-primary-dark)] via-transparent to-transparent opacity-80" />
+                <div className="pointer-events-none absolute inset-0 bg-[var(--color-primary-dark)]/55" />
                 <div className="absolute bottom-0 left-0 p-6">
                   <p className="font-mono text-[12px] font-black tracking-[0.28em] text-[var(--color-primary-light)]/70 uppercase">
                     Session 214 · Open floor
@@ -707,7 +707,7 @@ export default function HomePage() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/register"
-                className="group flex items-center justify-center gap-2 rounded-full bg-[var(--color-accent-orange)] px-7 py-3.5 text-xs font-black tracking-[0.15em] text-white uppercase shadow-[0_0_40px_rgba(209,122,56,0.25)] transition-all hover:brightness-110 active:scale-[0.98]"
+                className="group flex items-center justify-center gap-2 rounded-full bg-[var(--color-accent-orange)] px-7 py-3.5 text-xs font-black tracking-[0.15em] text-white uppercase shadow-sm transition-all hover:brightness-110 active:scale-[0.98]"
               >
                 Open the overlay
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -726,7 +726,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_30%,rgba(164,196,217,0.14),transparent_65%)] blur-2xl" />
 
-              <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--color-primary-light)]/12 bg-[var(--color-primary-dark)]/80 p-6 shadow-2xl backdrop-blur-sm sm:p-7">
+              <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--color-primary-light)]/12 bg-[#22365d] p-6 shadow-sm sm:p-7">
                 <div className="mb-7 flex items-center justify-between">
                   <div className="flex items-center gap-2.5">
                     <span className="grid h-7 w-7 place-items-center rounded-lg bg-[var(--color-accent-glow)]/12 text-[var(--color-accent-glow)]">
@@ -758,8 +758,8 @@ export default function HomePage() {
                       }}
                       className={`flex-1 rounded-t-sm ${
                         i % 3 === 0
-                          ? "bg-gradient-to-t from-[var(--color-accent-orange)]/25 to-[var(--color-accent-orange)]"
-                          : "bg-gradient-to-t from-[var(--color-primary-light)]/12 to-[var(--color-primary-light)]/45"
+                          ? "bg-[var(--color-accent-orange)]"
+                          : "bg-[var(--color-primary-light)]/30"
                       }`}
                     />
                   ))}
@@ -781,7 +781,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════ CTA ═════════════════════════════════ */}
       <section className="relative px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
         <Reveal className="mx-auto max-w-6xl">
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-[var(--color-primary-light)] px-8 py-14 text-center shadow-2xl sm:px-16 sm:py-20 md:py-24">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-[var(--color-primary-light)] px-8 py-14 text-center shadow-sm sm:px-16 sm:py-20 md:py-24">
             {/* Ring motifs */}
             <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full border border-[var(--color-primary-dark)]/10" aria-hidden />
             <div className="pointer-events-none absolute -right-12 -bottom-16 h-56 w-56 rounded-full border border-[var(--color-primary-dark)]/10" aria-hidden />

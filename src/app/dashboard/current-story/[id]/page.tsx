@@ -69,85 +69,58 @@ export default function CurrentStoryDetailsPage() {
     <Layout>
       <div className="font-roboto min-h-screen w-full space-y-8 overflow-y-auto bg-[var(--color-primary-dark)] p-4 text-white sm:p-6 lg:p-8">
         {/* ================= HEADER CONTROL BAR ================= */}
-        <div className="flex items-center justify-between border-b border-white/[0.04] pb-4">
+        <div className="flex items-center justify-between border-b border-[var(--color-ring-bronze)]/20 pb-4">
           <button
             onClick={() => router.back()}
-            className="flex cursor-pointer items-center gap-2 rounded-lg border border-white/5 bg-white/[0.01] px-3 py-1.5 text-xs font-bold text-white/60 transition-all hover:bg-white/5 hover:text-white"
+            className="flex cursor-pointer items-center gap-2 rounded-lg border border-[var(--color-ring-bronze)]/25 bg-[#22365d] px-3 py-1.5 text-xs font-bold text-[var(--color-primary-light)]/65 transition-all hover:bg-[#2e466f] hover:text-[var(--color-primary-light)]"
           >
             <ChevronLeft size={14} /> Back to Deck
           </button>
-          <span className="font-roboto text-[12px] tracking-widest text-white/30 uppercase">
+          <span className="font-roboto text-[12px] tracking-widest text-[var(--color-primary-light)]/55 uppercase">
             Engine Instance ID // {storyId.slice(0, 8)}...
           </span>
         </div>
 
         {/* ================= THEATRICAL HERO SNAP ================= */}
-        <div className="group relative flex min-h-[460px] w-full flex-col justify-end overflow-hidden rounded-2xl border border-white/5 bg-slate-950 p-6 shadow-2xl sm:min-h-[420px] sm:p-10 md:p-14">
-          {/* --- CAST CHARACTER ACTION ZONE --- */}
-          {/* Widescreen locks the character frame to the right half; mobile opens it up full-screen */}
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-0 w-full overflow-hidden rounded-r-2xl select-none md:w-[55%]">
-            {/* Action Shot Image Layer */}
-            <Image
-              src={"/scene.jpg"}
-              fill
-              alt="Cast Member Action Close-up"
-              /* object-top preserves facial features; group-hover adds a subtle dramatic camera-zoom effect */
-              className="object-cover object-center opacity-90 transition-transform duration-1000 ease-out group-hover:scale-[1.03] md:object-top"
-              priority
-            />
-
-            {/* Edge-Feathering Mask: Seamlessly melts the left edge of the character image into the dark UI text block */}
-            <div className="absolute inset-0 hidden bg-gradient-to-r from-slate-950 via-slate-950/40 to-transparent md:block" />
-
-            {/* Bottom Vignette Mask: Prevents the lower half of the action shot from fighting with mobile text layouts */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent md:hidden" />
-
-            {/* Cybernetic Edge Glow Rim (Highlights the character's side profile) */}
-            <div className="absolute inset-y-0 left-0 hidden w-[80px] bg-gradient-to-r from-slate-950 to-transparent md:block" />
-
-            {/* Color Dodge Backlight Flare (Simulates dramatic studio lighting behind the character headshot) */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_30%,rgba(56,189,248,0.15)_0%,transparent_60%)] mix-blend-color-dodge" />
-          </div>
-
-          {/* --- CINEMATIC TEXT READABILITY UNDERLAYS --- */}
-          {/* Solid foundational shadow depth to guarantee the typography passes absolute accessibility checks */}
-          <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black via-black/80 to-transparent md:via-black/20" />
-          <div className="absolute inset-y-0 left-0 z-[1] hidden w-full bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent md:block md:w-[60%]" />
-
-          {/* --- UI INTERFACE STACK OVERLAY --- */}
-          <div className="relative z-10 max-w-xl space-y-4 text-left lg:max-w-2xl">
+        <div className="group relative grid w-full overflow-hidden rounded-2xl border border-[var(--color-ring-bronze)]/30 bg-[var(--color-primary-dark)] shadow-sm lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+          <div className="relative z-10 flex flex-col justify-center gap-5 p-6 text-left sm:p-10 lg:p-14">
             <div className="flex flex-wrap items-center gap-2">
-              <div className="rounded-sm border border-orange-500/20 bg-[var(--color-accent-orange)] px-2 py-0.5 text-[11px] font-black tracking-widest text-white uppercase shadow-lg">
-                LIVE TRACK
+              <div className="rounded-md bg-[var(--color-accent-orange)] px-2.5 py-1 text-[10px] font-extrabold tracking-[0.16em] text-white uppercase">
+                Live track
               </div>
               {story.intensity && (
-                <div className="flex items-center gap-1.5 rounded border border-white/10 bg-slate-900/60 px-2.5 py-0.5 font-mono text-[12px] text-white/90 shadow-md backdrop-blur-md">
+                <div className="flex items-center gap-1.5 rounded-md border border-[var(--color-ring-bronze)]/40 bg-[#22365d] px-2.5 py-1 font-sans text-[11px] font-bold text-[var(--color-primary-light)]">
                   <Flame
                     size={12}
-                    className="animate-pulse text-[var(--color-accent-orange)]"
+                    className="text-[var(--color-accent-orange)]"
                   />
-                  INTENSITY CRITERIA //{" "}
-                  <span className="font-bold text-[var(--color-accent-orange)]">
+                  Intensity criteria //{" "}
+                  <span className="font-extrabold text-[var(--color-accent-orange)]">
                     {story.intensity}
                   </span>
                 </div>
               )}
             </div>
 
-            <div className="space-y-2">
-              <span className="flex items-center gap-2 font-mono text-[12px] font-black tracking-[0.35em] text-[var(--color-accent-orange)] uppercase drop-shadow-sm">
-                <Activity size={12} className="animate-pulse text-sky-400" />{" "}
-                SYSTEM SYSTEMIC NATIVITY RUN
+            <div className="space-y-3">
+              <span className="flex items-center gap-2 font-sans text-[11px] font-extrabold tracking-[0.26em] text-[var(--color-accent-orange)] uppercase">
+                <Activity size={12} /> System systemic nativity run
               </span>
-              {/* Tight tracking and custom line-height mirror professional film title cards */}
-              <h1 className="text-4xl leading-[0.85] font-black tracking-tighter text-white uppercase italic drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] sm:text-6xl md:text-7xl">
+              <h1 className="text-4xl leading-[0.9] font-black tracking-tighter text-white uppercase italic sm:text-6xl md:text-7xl">
                 {story.title || "Overcommitting"}
               </h1>
             </div>
           </div>
 
-          {/* Bottom Cinematic Accent Bar */}
-          <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--color-accent-orange)]/40 to-transparent opacity-70" />
+          <div className="relative order-first min-h-[280px] w-full overflow-hidden lg:order-last lg:min-h-[500px] lg:border-l lg:border-[var(--color-ring-bronze)]/20">
+            <Image
+              src={"/scene.jpg"}
+              fill
+              alt="Cast Member Action Close-up"
+              className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03] lg:object-top"
+              priority
+            />
+          </div>
         </div>
 
         {/* ================= MAIN MATRIX SPLIT LAYOUT ================= */}
@@ -156,17 +129,17 @@ export default function CurrentStoryDetailsPage() {
           <div className="space-y-8 lg:col-span-2">
             {/* Main Narrative Block */}
             <div className="space-y-3">
-              <h3 className="flex items-center gap-2 text-[12px] font-bold tracking-[0.25em] text-white/40 uppercase">
+              <h3 className="flex items-center gap-2 text-[12px] font-bold tracking-[0.25em] text-[var(--color-primary-light)]/60 uppercase">
                 <Compass size={12} /> Logline Overview
               </h3>
-              <p className="rounded-xl border border-white/5 bg-white/[0.01] p-6 text-sm leading-relaxed font-medium tracking-wide text-white/90 shadow-2xl sm:text-base">
+              <p className="rounded-xl border border-[var(--color-ring-bronze)]/25 bg-[#22365d] p-6 text-sm leading-relaxed font-medium tracking-wide text-[var(--color-primary-light)] shadow-sm sm:text-base">
                 {cleanNarrativeText}
               </p>
             </div>
 
             {/* INVERTED MATRIX SUB-NAVIGATION PILLS ROW */}
             <div className="space-y-3">
-              <h3 className="text-[12px] font-bold tracking-[0.25em] text-white/40 uppercase">
+              <h3 className="text-[12px] font-bold tracking-[0.25em] text-[var(--color-primary-light)]/60 uppercase">
                 Active Environment Node Selector
               </h3>
               <div className="flex flex-wrap gap-2.5">
@@ -178,8 +151,8 @@ export default function CurrentStoryDetailsPage() {
                       onClick={() => setSelectedPlanetId(scene._id)}
                       className={`flex cursor-pointer items-center gap-2 rounded-xl border px-5 py-3 text-xs font-bold tracking-widest uppercase transition-all duration-200 ${
                         isSelected
-                          ? "scale-[1.02] border-[var(--color-accent-orange)] bg-white/90 text-[var(--color-primary-dark)] shadow-md"
-                          : "border border-white/10 bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] hover:border-[var(--color-accent-orange)] hover:bg-white/5"
+                          ? "scale-[1.02] border-[var(--color-accent-orange)] bg-white text-[var(--color-primary-dark)] shadow-sm"
+                          : "border border-[var(--color-ring-bronze)]/30 bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] hover:border-[var(--color-accent-orange)] hover:bg-[#2e466f]"
                       }`}
                     >
                       <div
@@ -190,7 +163,7 @@ export default function CurrentStoryDetailsPage() {
                         className={`font-roboto rounded px-1.5 py-0.5 text-[12px] font-medium tracking-normal lowercase ${
                           isSelected
                             ? "bg-[var(--color-primary-dark)]/10 text-[var(--color-primary-dark)]/80"
-                            : "bg-white/10 text-[var(--color-accent-glow)]"
+                            : "bg-[#2e466f] text-[var(--color-accent-glow)]"
                         }`}
                       >
                         {scene.storyFunction || "driver"}
@@ -203,13 +176,13 @@ export default function CurrentStoryDetailsPage() {
 
             {/* Active Inspect Data Panel Module */}
             {currentActiveScene && (
-              <div className="animate-fadeIn space-y-4 rounded-xl border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent p-6">
-                <div className="flex items-center justify-between border-b border-white/[0.05] pb-3">
+              <div className="animate-fadeIn space-y-4 rounded-xl border border-[var(--color-ring-bronze)]/25 bg-[#22365d] p-6">
+                <div className="flex items-center justify-between border-b border-[var(--color-ring-bronze)]/20 pb-3">
                   <span className="text-xs font-black tracking-widest text-[var(--color-accent-orange)] uppercase">
                     Blueprint Realtime Specs // {currentActiveScene.planet}
                   </span>
                   {currentActiveScene.collapseRisk && (
-                    <span className="font-roboto flex items-center gap-1.5 text-[12px] text-white/40">
+                    <span className="font-roboto flex items-center gap-1.5 text-[12px] text-[var(--color-primary-light)]/60">
                       <AlertTriangle size={11} className="text-amber-500" />
                       RISK VALUE:{" "}
                       <span className="font-bold text-white">
@@ -220,19 +193,19 @@ export default function CurrentStoryDetailsPage() {
                 </div>
                 <div className="grid grid-cols-1 gap-4 text-xs leading-relaxed md:grid-cols-2">
                   <div className="space-y-1">
-                    <span className="block text-[11px] tracking-widest text-white/30 uppercase">
+                    <span className="block text-[11px] tracking-widest text-[var(--color-primary-light)]/55 uppercase">
                       Behavioral Blueprint Script
                     </span>
-                    <p className="font-medium text-white/80">
+                    <p className="font-medium text-[var(--color-primary-light)]/85">
                       {currentActiveScene.behavioralPattern ||
                         "No behavioral overrides flagged."}
                     </p>
                   </div>
                   <div className="space-y-1">
-                    <span className="block text-[11px] tracking-widest text-white/30 uppercase">
+                    <span className="block text-[11px] tracking-widest text-[var(--color-primary-light)]/55 uppercase">
                       Structural Pressure Point
                     </span>
-                    <p className="font-medium text-white/80 italic">
+                    <p className="font-medium text-[var(--color-primary-light)]/85 italic">
                       "
                       {currentActiveScene.dominantPressure ||
                         "Load balanced normally."}
@@ -247,21 +220,21 @@ export default function CurrentStoryDetailsPage() {
           {/* Right Column: Temporal Tracking Metadata & Alpha Themes Layout */}
           <div className="space-y-6">
             {/* Temporal Alignment Block */}
-            <div className="space-y-4 rounded-xl border border-white/5 bg-white/[0.02] p-5 text-xs">
-              <span className="block text-[11px] font-bold tracking-[0.25em] text-white/30 uppercase">
+            <div className="space-y-4 rounded-xl border border-[var(--color-ring-bronze)]/25 bg-[#22365d] p-5 text-xs">
+              <span className="block text-[11px] font-bold tracking-[0.25em] text-[var(--color-primary-light)]/55 uppercase">
                 Temporal Tracking Metrics
               </span>
               <div className="space-y-2.5">
-                <div className="flex items-center justify-between border-b border-white/[0.05] py-1.5">
-                  <span className="flex items-center gap-2 text-white/40">
+                <div className="flex items-center justify-between border-b border-[var(--color-ring-bronze)]/20 py-1.5">
+                  <span className="flex items-center gap-2 text-[var(--color-primary-light)]/60">
                     <Calendar size={13} /> Target Window
                   </span>
                   <span className="font-medium text-white">
                     {story.transitWindow || "May 28 - June 15"}
                   </span>
                 </div>
-                <div className="flex items-center justify-between border-b border-white/[0.05] py-1.5">
-                  <span className="flex items-center gap-2 text-white/40">
+                <div className="flex items-center justify-between border-b border-[var(--color-ring-bronze)]/20 py-1.5">
+                  <span className="flex items-center gap-2 text-[var(--color-primary-light)]/60">
                     <Clock size={13} /> TTL Threshold
                   </span>
                   <span className="font-bold text-amber-500">
@@ -278,7 +251,7 @@ export default function CurrentStoryDetailsPage() {
                   size={13}
                   className="text-[var(--color-accent-orange)]"
                 />
-                <h3 className="text-[12px] font-bold tracking-[0.25em] text-white/40 uppercase">
+                <h3 className="text-[12px] font-bold tracking-[0.25em] text-[var(--color-primary-light)]/60 uppercase">
                   Core Alpha Themes Map
                 </h3>
               </div>
@@ -286,12 +259,12 @@ export default function CurrentStoryDetailsPage() {
                 {activeThemes.map((themeName, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center justify-between rounded-xl border border-white/5 bg-gradient-to-r from-white/[0.02] to-transparent p-4 transition-colors hover:border-white/10"
+                    className="flex items-center justify-between rounded-xl border border-[var(--color-ring-bronze)]/25 bg-[#22365d] p-4 transition-colors hover:border-[var(--color-ring-bronze)]/30"
                   >
                     <span className="text-sm font-bold tracking-wide text-white uppercase">
                       {themeName}
                     </span>
-                    <span className="text-[11px] font-bold text-white/20">
+                    <span className="text-[11px] font-bold text-[var(--color-primary-light)]/40">
                       0{idx + 1}
                     </span>
                   </div>
@@ -302,7 +275,7 @@ export default function CurrentStoryDetailsPage() {
         </div>
 
         {/* ================= COMPACT CAST GRAPH MODULARS ROW ================= */}
-        <div className="border-t border-white/[0.04] pt-4">
+        <div className="border-t border-[var(--color-ring-bronze)]/20 pt-4">
           <CastCards
             currentStoryId={storyId}
             selectedPlanetId={selectedPlanetId}

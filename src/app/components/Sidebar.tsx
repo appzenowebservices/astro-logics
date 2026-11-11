@@ -72,19 +72,19 @@ export default function Sidebar({
           isCollapsed ? "justify-center gap-0" : "gap-3.5"
         } ${
           isActive
-            ? "border-[var(--color-accent-orange)]/20 bg-gradient-to-r from-[var(--color-accent-orange)]/10 to-[var(--color-accent-glow)]/[0.02] text-white shadow-[0_4px_20px_rgba(209,122,56,0.05)]"
-            : "border-transparent bg-transparent text-white/60 hover:bg-white/[0.02] hover:text-white"
+            ? "border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-light)] text-[var(--color-primary-dark)]"
+            : "border-transparent bg-transparent text-[var(--color-primary-light)]/65 hover:bg-[var(--color-primary-dark)]/60 hover:text-[var(--color-primary-light)]"
         }`}
       >
         {isActive && (
-          <div className="absolute top-2.5 bottom-2.5 left-0 w-0.5 rounded-r bg-[var(--color-accent-orange)] shadow-[0_0_8px_var(--color-accent-orange)]" />
+          <div className="absolute top-2.5 bottom-2.5 left-0 w-[3px] rounded-r bg-[var(--color-accent-orange)]" />
         )}
 
         <span
           className={`shrink-0 transform transition-all duration-300 ${
             isActive
-              ? "scale-105 text-[var(--color-accent-orange)] drop-shadow-[0_0_4px_rgba(209,122,56,0.4)] filter"
-              : "text-white/40 group-hover:scale-102 group-hover:text-[var(--color-accent-glow)]"
+              ? "scale-105 text-[var(--color-accent-orange)]"
+              : "text-[var(--color-primary-light)]/45 group-hover:scale-105 group-hover:text-[var(--color-accent-glow)]"
           }`}
         >
           <Icon size={17} />
@@ -95,20 +95,19 @@ export default function Sidebar({
             isCollapsed
               ? "pointer-events-none w-0 opacity-0"
               : "w-auto opacity-100"
-          } ${isActive ? "font-semibold text-white" : "font-medium group-hover:text-white/90"}`}
+          } ${isActive ? "font-extrabold" : "font-semibold group-hover:text-[var(--color-primary-light)]"}`}
         >
           {item.label}
         </span>
 
         {isActive && !isCollapsed && (
-          <span className="relative ml-auto flex h-1 w-1">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent-orange)] opacity-75" />
-            <span className="relative inline-flex h-1 w-1 rounded-full bg-[var(--color-accent-orange)]" />
+          <span className="relative ml-auto flex h-1.5 w-1.5">
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-accent-orange)]" />
           </span>
         )}
 
         {isCollapsed && (
-          <div className="pointer-events-none invisible absolute left-[64px] z-50 rounded-md border border-white/10 bg-black/95 px-3 py-1.5 font-mono text-[11px] tracking-widest whitespace-nowrap text-white uppercase opacity-0 shadow-2xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+          <div className="pointer-events-none invisible absolute left-[64px] z-50 rounded-md border border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-dark)] px-3 py-1.5 font-sans text-[11px] font-bold tracking-widest whitespace-nowrap text-[var(--color-primary-light)] uppercase opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
             {item.label}
           </div>
         )}
@@ -118,16 +117,12 @@ export default function Sidebar({
 
   return (
     <aside
-      className={`font-roboto-mono fixed inset-y-0 left-0 z-50 flex h-screen shrink-0 transform flex-col justify-between border-r border-white/[0.04] bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] transition-all duration-500 ease-in-out md:relative md:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} ${isCollapsed ? "md:w-[68px]" : "md:w-[264px]"} w-[264px]`}
-      style={{
-        backgroundImage:
-          "linear-gradient(180deg, rgba(10,25,47,0.4) 0%, rgba(0,0,0,0.5) 100%)",
-      }}
+      className={`font-sans fixed inset-y-0 left-0 z-50 flex h-screen shrink-0 transform flex-col justify-between border-r border-[var(--color-ring-bronze)]/20 bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] transition-all duration-500 ease-in-out md:relative md:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} ${isCollapsed ? "md:w-[68px]" : "md:w-[264px]"} w-[264px]`}
     >
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
         aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-        className="absolute top-9 -right-3 z-50 hidden h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-[var(--color-primary-dark)] text-white/50 shadow-md transition-transform duration-300 hover:scale-110 hover:text-white active:scale-95 md:flex"
+        className={`absolute top-9 -right-3 z-50 hidden h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-dark)] text-[var(--color-primary-light)]/60 shadow-md transition-transform duration-300 hover:scale-110 hover:text-[var(--color-primary-light)] active:scale-95 md:flex`}
       >
         {isCollapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
       </button>
@@ -137,14 +132,10 @@ export default function Sidebar({
         className={`flex shrink-0 flex-col items-center px-4 pt-7 pb-4 text-center transition-all duration-300 ${isCollapsed ? "pb-2" : ""}`}
       >
         <div className="group relative mb-1">
-          <div
-            className={`absolute inset-0 rounded-full bg-[var(--color-accent-glow)]/20 blur-[32px] transition-transform duration-700 ease-out ${isCollapsed ? "scale-75" : "scale-125 group-hover:scale-150"}`}
-          />
-          <div className="absolute inset-0 rounded-full bg-white/5 blur-[2px]" />
           <img
             src="/logo.png"
             alt="Kaalvanta Logo"
-            className={`relative z-10 object-contain drop-shadow-[0_0_15px_rgba(255,152,0,0.3)] transition-all duration-300 ${
+            className={`relative z-10 object-contain transition-all duration-300 ${
               isCollapsed ? "h-8 w-8" : "h-20 w-20"
             }`}
           />
@@ -153,10 +144,10 @@ export default function Sidebar({
         <div
           className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isCollapsed ? "h-0 opacity-0" : "h-auto opacity-100"}`}
         >
-          <h1 className="mt-3 font-mono text-base font-black tracking-[0.25em] text-white uppercase">
+          <h1 className="mt-3 font-sans text-base font-black tracking-[0.2em] text-white uppercase">
             Kaalvanta
           </h1>
-          <p className="mt-1 text-[10px] font-black tracking-[0.2em] text-[var(--color-ring-bronze)] uppercase opacity-85">
+          <p className="mt-1 font-sans text-[10px] font-extrabold tracking-[0.18em] text-[var(--color-ring-bronze)] uppercase">
             Collective State Engine
           </p>
         </div>
@@ -185,12 +176,12 @@ export default function Sidebar({
                   }
                   className={`mb-1 flex w-full items-center gap-2 px-3 py-1.5 text-left transition-colors ${
                     isSuperAdmin
-                      ? "text-[var(--color-accent-orange)]/70 hover:text-[var(--color-accent-orange)]"
-                      : "text-white/30 hover:text-white/55"
+                      ? "text-[var(--color-accent-orange)]/80 hover:text-[var(--color-accent-orange)]"
+                      : "text-[var(--color-primary-light)]/40 hover:text-[var(--color-primary-light)]/70"
                   }`}
                 >
                   {isSuperAdmin && <ShieldCheck size={11} />}
-                  <span className="font-mono text-[10px] font-bold tracking-[0.24em] uppercase">
+                  <span className="font-sans text-[10px] font-extrabold tracking-[0.22em] uppercase">
                     {group.label}
                   </span>
                   <ChevronDown
@@ -212,17 +203,17 @@ export default function Sidebar({
 
       {/* Footer System Identity Block */}
       <div
-        className={`shrink-0 border-t border-white/[0.03] bg-black/15 transition-all duration-300 ${isCollapsed ? "p-2" : "p-3.5"}`}
+        className={`shrink-0 border-t border-[var(--color-ring-bronze)]/20 bg-[var(--color-primary-dark)] transition-all duration-300 ${isCollapsed ? "p-2" : "p-3.5"}`}
       >
         <div
-          className={`flex items-center rounded-xl border border-white/[0.02] bg-white/[0.01] transition-all duration-300 ${
+          className={`flex items-center rounded-xl border border-[var(--color-ring-bronze)]/25 bg-[var(--color-primary-dark)] transition-all duration-300 ${
             isCollapsed ? "justify-center p-1" : "justify-between px-2 py-1"
           }`}
         >
           <div className="flex min-w-0 items-center gap-3">
-            <div className="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-[var(--color-primary-light)]/5 text-[12px] font-black text-[var(--color-accent-orange)]">
+            <div className="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[var(--color-ring-bronze)]/30 bg-[var(--color-primary-dark)] text-[12px] font-black text-[var(--color-accent-orange)]">
               {status === "loading" ? (
-                <RefreshCw size={12} className="animate-spin text-white/30" />
+                <RefreshCw size={12} className="animate-spin text-[var(--color-primary-light)]/50" />
               ) : session?.user?.image ? (
                 <img
                   src={session.user.image}
@@ -238,7 +229,7 @@ export default function Sidebar({
               )}
 
               <span
-                className={`absolute -right-0.5 -bottom-0.5 h-2 w-2 rounded-full border border-[var(--color-primary-dark)] shadow-[0_0_6px_rgba(52,211,153,0.6)] ${
+                className={`absolute -right-0.5 -bottom-0.5 h-2 w-2 rounded-full border border-[var(--color-primary-dark)] ${
                   status === "loading"
                     ? "bg-amber-400"
                     : session
@@ -255,14 +246,14 @@ export default function Sidebar({
                   : "w-auto opacity-100"
               }`}
             >
-              <p className="max-w-[140px] truncate text-[12px] font-black tracking-wider text-white uppercase">
+              <p className="max-w-[140px] truncate text-[12px] font-black tracking-wider text-[var(--color-primary-light)] uppercase">
                 {status === "loading"
                   ? "FETCHING CORE..."
                   : session?.user?.name
                     ? session.user.name
                     : "GUEST // OPERATOR"}
               </p>
-              <span className="-mt-0.5 max-w-[140px] truncate text-[10px] font-black tracking-[0.15em] text-white/30 uppercase">
+              <span className="-mt-0.5 max-w-[140px] truncate text-[10px] font-bold tracking-[0.15em] text-[var(--color-primary-light)]/50 uppercase">
                 {isAdmin
                   ? "SUPER ADMIN // FULL ACCESS"
                   : "LAGNA // UNCALIBRATED"}

@@ -19,7 +19,6 @@ import {
   ShieldCheck,
   Sparkles,
   TrendingUpDown,
-  UserCircle,
   Users,
 } from "lucide-react";
 
@@ -204,28 +203,6 @@ export const NAV_GROUPS: NavGroup[] = [
         icon: ShieldCheck,
         description: "Top-down control of every platform domain",
         adminOnly: true,
-      },
-      {
-        id: "admin-profile",
-        href: "/profile-selection",
-        label: "Profile Selection",
-        icon: UserCircle,
-        description: "Choose the active nativity profile",
-        adminOnly: true,
-      },
-    ],
-  },
-  {
-    id: "system",
-    label: "System",
-    items: [
-      {
-        id: "profile",
-        href: "/profile-selection",
-        label: "Profile Selection",
-        icon: UserCircle,
-        description: "Choose the active nativity profile",
-        userOnly: true,
       },
     ],
   },

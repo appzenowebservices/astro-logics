@@ -122,7 +122,7 @@ function Pill({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[10px] font-black tracking-[0.1em] uppercase ${tone}`}
+      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-sans text-[10px] font-black tracking-[0.1em] uppercase ${tone}`}
     >
       {dot && <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />}
       {children}
@@ -149,7 +149,7 @@ function OptionGroup<T extends string>({
 }) {
   return (
     <div>
-      <p className="mb-2 font-mono text-[10px] font-black tracking-[0.2em] uppercase opacity-40">
+      <p className="mb-2 font-sans text-[10px] font-black tracking-[0.2em] uppercase opacity-40">
         {label}
       </p>
       <div className="flex flex-wrap gap-2">
@@ -163,10 +163,10 @@ function OptionGroup<T extends string>({
               type="button"
               disabled={disabled}
               onClick={() => onChange(option)}
-              className={`rounded-full px-3.5 py-2 font-mono text-[10px] font-black tracking-[0.1em] uppercase transition ${
+              className={`rounded-full px-3.5 py-2 font-sans text-[10px] font-black tracking-[0.1em] uppercase transition ${
                 active
                   ? `${tones[option] ?? "bg-white"} ring-2 ring-[var(--color-primary-dark)]/20`
-                  : "bg-white/60 text-[var(--color-primary-dark)]/55 hover:bg-white hover:text-[var(--color-primary-dark)]"
+                  : "bg-white text-[var(--color-primary-dark)]/55 hover:bg-white hover:text-[var(--color-primary-dark)]"
               } ${disabled ? "cursor-not-allowed opacity-35" : ""}`}
             >
               {option}
@@ -175,7 +175,7 @@ function OptionGroup<T extends string>({
         })}
       </div>
       {disabledOptions?.length ? (
-        <p className="mt-2 font-mono text-[9px] tracking-[0.06em] uppercase opacity-35">
+        <p className="mt-2 font-sans text-[9px] tracking-[0.06em] uppercase opacity-35">
           {disabledHint}
         </p>
       ) : null}
@@ -264,13 +264,13 @@ export default function MembersPanel() {
 
   return (
     <>
-      <section className="overflow-hidden rounded-3xl border border-[var(--color-primary-dark)]/10 bg-white/70 shadow-[0_24px_50px_-32px_rgba(42,65,112,0.45)]">
+      <section className="overflow-hidden rounded-3xl border border-[var(--color-primary-dark)]/10 bg-white shadow-sm">
         <div className="flex flex-wrap items-center gap-3 border-b border-[var(--color-primary-dark)]/8 bg-[var(--color-primary-light)]/50 px-5 py-3.5">
           <span className="grid h-7 w-7 place-items-center rounded-full bg-[var(--color-accent-orange)]/15 text-[var(--color-accent-orange)]">
             <Users className="h-3.5 w-3.5" />
           </span>
           <h2 className="font-poster text-lg uppercase">The roster</h2>
-          <span className="rounded-full bg-[var(--color-primary-dark)]/8 px-2 py-0.5 font-mono text-[10px] font-black">
+          <span className="rounded-full bg-[var(--color-primary-dark)]/8 px-2 py-0.5 font-sans text-[10px] font-black">
             {filteredUsers.length}
             {query ? `/${users.data?.length ?? 0}` : ""}
           </span>
@@ -290,7 +290,7 @@ export default function MembersPanel() {
         {users.isLoading && (
           <div className="flex items-center gap-3 px-5 py-6">
             <Loader2 className="h-5 w-5 animate-spin opacity-35" />
-            <span className="font-mono text-[11px] font-black tracking-[0.2em] uppercase opacity-40">
+            <span className="font-sans text-[11px] font-black tracking-[0.2em] uppercase opacity-40">
               Loading crew…
             </span>
           </div>
@@ -318,15 +318,15 @@ export default function MembersPanel() {
                   <div className="flex items-center gap-2">
                     <p className="truncate text-sm font-black">{user.name}</p>
                     {self && (
-                      <span className="rounded-full bg-[var(--color-accent-orange)]/15 px-2 py-0.5 font-mono text-[9px] font-black tracking-[0.16em] text-[var(--color-accent-orange)] uppercase">
+                      <span className="rounded-full bg-[var(--color-accent-orange)]/15 px-2 py-0.5 font-sans text-[9px] font-black tracking-[0.16em] text-[var(--color-accent-orange)] uppercase">
                         You
                       </span>
                     )}
                   </div>
-                  <p className="truncate font-mono text-[12px] opacity-50">
+                  <p className="truncate font-sans text-[12px] opacity-50">
                     {user.email}
                   </p>
-                  <p className="mt-1 font-mono text-[10px] tracking-[0.08em] uppercase opacity-35">
+                  <p className="mt-1 font-sans text-[10px] tracking-[0.08em] uppercase opacity-35">
                     {user._count.nativityCharts} charts · {user._count.posts}{" "}
                     posts · joined {shortDate(user.createdAt)}
                   </p>
@@ -359,7 +359,7 @@ export default function MembersPanel() {
                     }}
                     title={`Manage ${user.name}`}
                     aria-label={`Manage ${user.name}`}
-                    className="ml-1 grid h-8 w-8 place-items-center rounded-full border border-[var(--color-primary-dark)]/10 bg-white/70 text-[var(--color-primary-dark)]/55 shadow-sm transition-colors hover:border-[var(--color-accent-orange)]/40 hover:text-[var(--color-accent-orange)]"
+                    className="ml-1 grid h-8 w-8 place-items-center rounded-full border border-[var(--color-primary-dark)]/10 bg-white text-[var(--color-primary-dark)]/55 shadow-sm transition-colors hover:border-[var(--color-accent-orange)]/40 hover:text-[var(--color-accent-orange)]"
                   >
                     <SlidersHorizontal className="h-4 w-4" />
                   </button>
@@ -380,7 +380,7 @@ export default function MembersPanel() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={closeEditor}
-                className="fixed inset-0 z-[160] flex items-end justify-center bg-[var(--color-primary-dark)]/35 p-4 backdrop-blur-sm sm:items-center"
+                className="fixed inset-0 z-[160] flex items-end justify-center bg-[var(--color-primary-dark)]/35 p-4 sm:items-center"
               >
                 <motion.div
                   role="dialog"
@@ -404,10 +404,10 @@ export default function MembersPanel() {
                       <p className="truncate text-base font-black">
                         {editingUser.name}
                       </p>
-                      <p className="truncate font-mono text-[11px] opacity-50">
+                      <p className="truncate font-sans text-[11px] opacity-50">
                         {editingUser.email}
                       </p>
-                      <p className="mt-1 font-mono text-[10px] tracking-[0.08em] uppercase opacity-35">
+                      <p className="mt-1 font-sans text-[10px] tracking-[0.08em] uppercase opacity-35">
                         Member since {shortDate(editingUser.createdAt)}
                       </p>
                     </div>
@@ -415,7 +415,7 @@ export default function MembersPanel() {
                       type="button"
                       onClick={closeEditor}
                       aria-label="Close editor"
-                      className="grid h-8 w-8 place-items-center rounded-full text-[var(--color-primary-dark)]/40 transition-colors hover:bg-white/60 hover:text-[var(--color-primary-dark)]"
+                      className="grid h-8 w-8 place-items-center rounded-full text-[var(--color-primary-dark)]/40 transition-colors hover:bg-white hover:text-[var(--color-primary-dark)]"
                     >
                       <X className="h-4 w-4" />
                     </button>
@@ -463,12 +463,12 @@ export default function MembersPanel() {
 
                   <div className="mt-6 rounded-2xl border border-red-900/10 bg-red-500/5 px-4 py-3">
                     {isSelf ? (
-                      <p className="font-mono text-[10px] tracking-[0.06em] uppercase opacity-40">
+                      <p className="font-sans text-[10px] tracking-[0.06em] uppercase opacity-40">
                         You can’t delete your own account.
                       </p>
                     ) : confirmingDelete ? (
                       <div className="flex flex-wrap items-center gap-3">
-                        <p className="min-w-0 flex-1 basis-52 font-mono text-[10px] leading-relaxed tracking-[0.05em] uppercase opacity-60">
+                        <p className="min-w-0 flex-1 basis-52 font-sans text-[10px] leading-relaxed tracking-[0.05em] uppercase opacity-60">
                           Delete {editingUser.name} permanently? Charts, posts
                           and login access are removed.
                         </p>
@@ -476,7 +476,7 @@ export default function MembersPanel() {
                           <button
                             type="button"
                             onClick={() => setConfirmingDelete(false)}
-                            className="rounded-full px-3 py-2 font-mono text-[10px] font-black tracking-[0.12em] uppercase opacity-55 transition-colors hover:bg-white/70 hover:opacity-100"
+                            className="rounded-full px-3 py-2 font-sans text-[10px] font-black tracking-[0.12em] uppercase opacity-55 transition-colors hover:bg-white hover:opacity-100"
                           >
                             Keep
                           </button>
@@ -486,7 +486,7 @@ export default function MembersPanel() {
                               deleteUser.mutate({ id: editingUser.id })
                             }
                             disabled={deleteUser.isPending}
-                            className="inline-flex items-center gap-1.5 rounded-full bg-red-700 px-4 py-2 font-mono text-[10px] font-black tracking-[0.12em] text-white uppercase transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-50"
+                            className="inline-flex items-center gap-1.5 rounded-full bg-red-700 px-4 py-2 font-sans text-[10px] font-black tracking-[0.12em] text-white uppercase transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-50"
                           >
                             {deleteUser.isPending && (
                               <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -497,13 +497,13 @@ export default function MembersPanel() {
                       </div>
                     ) : (
                       <div className="flex items-center justify-between gap-3">
-                        <p className="font-mono text-[10px] tracking-[0.06em] uppercase opacity-40">
+                        <p className="font-sans text-[10px] tracking-[0.06em] uppercase opacity-40">
                           Remove this member
                         </p>
                         <button
                           type="button"
                           onClick={() => setConfirmingDelete(true)}
-                          className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[10px] font-black tracking-[0.12em] text-red-700 uppercase transition-colors hover:bg-red-500/10"
+                          className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-sans text-[10px] font-black tracking-[0.12em] text-red-700 uppercase transition-colors hover:bg-red-500/10"
                         >
                           <X className="h-3.5 w-3.5" /> Delete
                         </button>
@@ -512,7 +512,7 @@ export default function MembersPanel() {
                   </div>
 
                   {(deleteUser.error || updateUser.error) && (
-                    <p className="mt-3 rounded-xl bg-red-500/10 px-3 py-2 font-mono text-[10px] leading-relaxed tracking-[0.04em] text-red-700 uppercase">
+                    <p className="mt-3 rounded-xl bg-red-500/10 px-3 py-2 font-sans text-[10px] leading-relaxed tracking-[0.04em] text-red-700 uppercase">
                       {deleteUser.error?.message ?? updateUser.error?.message}
                     </p>
                   )}
@@ -521,7 +521,7 @@ export default function MembersPanel() {
                     <button
                       type="button"
                       onClick={closeEditor}
-                      className="rounded-full px-4 py-2.5 font-mono text-[10px] font-black tracking-[0.16em] uppercase opacity-55 transition-colors hover:bg-white/60 hover:opacity-100"
+                      className="rounded-full px-4 py-2.5 font-sans text-[10px] font-black tracking-[0.16em] uppercase opacity-55 transition-colors hover:bg-white hover:opacity-100"
                     >
                       Cancel
                     </button>
@@ -529,7 +529,7 @@ export default function MembersPanel() {
                       type="button"
                       onClick={saveDraft}
                       disabled={!dirty || updateUser.isPending}
-                      className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary-dark)] px-5 py-2.5 font-mono text-[10px] font-black tracking-[0.16em] text-[var(--color-primary-light)] uppercase shadow-[0_14px_28px_-14px_rgba(42,65,112,0.8)] transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-40"
+                      className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary-dark)] px-5 py-2.5 font-sans text-[10px] font-black tracking-[0.16em] text-[var(--color-primary-light)] uppercase shadow-sm transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-40"
                     >
                       {updateUser.isPending && (
                         <Loader2 className="h-3.5 w-3.5 animate-spin" />

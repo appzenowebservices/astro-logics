@@ -81,21 +81,20 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-[var(--color-primary-light)]/10 bg-[var(--color-primary-dark)]/75 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-[var(--color-ring-bronze)]/25 bg-[var(--color-primary-dark)]">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         {/* Identity */}
         <Link href="/" className="group flex items-center gap-3">
           <span className="relative grid h-10 w-10 shrink-0 place-items-center">
-            <span className="absolute inset-0 rounded-full bg-[var(--color-accent-glow)]/25 blur-lg transition-colors duration-500 group-hover:bg-[var(--color-accent-orange)]/30" />
             <Image
               src="/logo.png"
               alt="Kaalvanta logo"
               width={76}
               height={40}
-              className="relative h-10 w-auto object-contain drop-shadow-[0_0_12px_rgba(234,221,189,0.35)]"
+              className="relative h-10 w-auto object-contain"
             />
           </span>
-          <span className="text-sm font-black tracking-[0.28em] text-[var(--color-primary-light)] uppercase sm:text-base">
+          <span className="text-sm font-black tracking-[0.22em] text-[var(--color-primary-light)] uppercase sm:text-base">
             Kaal<span className="text-[var(--color-accent-orange)]">vanta</span>
           </span>
         </Link>
@@ -108,15 +107,15 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`group relative font-mono text-[12px] font-bold tracking-[0.25em] uppercase transition-colors ${
+                className={`group relative font-sans text-[12px] font-extrabold tracking-[0.2em] uppercase transition-colors ${
                   active
                     ? "text-[var(--color-accent-orange)]"
-                    : "text-[var(--color-primary-light)]/60 hover:text-[var(--color-primary-light)]"
+                    : "text-[var(--color-primary-light)]/65 hover:text-[var(--color-primary-light)]"
                 }`}
               >
                 {link.label}
                 <span
-                  className={`absolute -bottom-1.5 left-0 h-px bg-[var(--color-accent-orange)] transition-all duration-300 ${
+                  className={`absolute -bottom-1.5 left-0 h-0.5 bg-[var(--color-accent-orange)] transition-all duration-300 ${
                     active ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -135,13 +134,13 @@ export default function Navbar() {
             <div className="flex items-center gap-2 sm:gap-4">
               <Link
                 href="/login"
-                className="hidden font-mono text-[12px] font-bold tracking-[0.25em] text-[var(--color-primary-light)]/60 uppercase transition-colors hover:text-[var(--color-primary-light)] sm:block"
+                className="hidden font-sans text-[12px] font-extrabold tracking-[0.2em] text-[var(--color-primary-light)]/65 uppercase transition-colors hover:text-[var(--color-primary-light)] sm:block"
               >
                 Sign In
               </Link>
               <Link
                 href="/register"
-                className="rounded-full bg-[var(--color-primary-light)] px-5 py-2.5 text-[12px] font-black tracking-[0.15em] text-[var(--color-primary-dark)] uppercase shadow-[0_0_30px_rgba(234,221,189,0.15)] transition-all hover:bg-[var(--color-accent-orange)] hover:text-white active:scale-95"
+                className="rounded-full bg-[var(--color-primary-light)] px-5 py-2.5 text-[12px] font-black tracking-[0.15em] text-[var(--color-primary-dark)] uppercase transition-all hover:bg-[var(--color-accent-orange)] hover:text-white active:scale-95"
               >
                 Begin
               </Link>
@@ -152,9 +151,9 @@ export default function Navbar() {
             <div className="flex items-center gap-3 sm:gap-5">
               <Link
                 href="/dashboard"
-                className="hidden items-center gap-2.5 rounded-full border border-[var(--color-accent-glow)]/25 bg-[var(--color-primary-light)]/5 py-1 pr-4 pl-1 transition-colors hover:border-[var(--color-accent-orange)]/50 sm:flex"
+                className="hidden items-center gap-2.5 rounded-full border border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-dark)] py-1 pr-4 pl-1 transition-colors hover:border-[var(--color-accent-orange)] sm:flex"
               >
-                <span className="relative grid h-7 w-7 shrink-0 place-items-center overflow-hidden rounded-full border border-[var(--color-primary-light)]/30 bg-[var(--color-primary-light)]/10">
+                <span className="relative grid h-7 w-7 shrink-0 place-items-center overflow-hidden rounded-full border border-[var(--color-ring-bronze)]/50 bg-[var(--color-primary-light)]">
                   {avatarUrl ? (
                     <img
                       src={avatarUrl}
@@ -163,12 +162,12 @@ export default function Navbar() {
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <span className="font-mono text-[12px] font-black text-[var(--color-accent-orange)]">
+                    <span className="font-sans text-[12px] font-black text-[var(--color-primary-dark)]">
                       {initial}
                     </span>
                   )}
                 </span>
-                <span className="max-w-[140px] truncate font-mono text-[12px] font-bold tracking-[0.15em] text-[var(--color-primary-light)]/80 uppercase">
+                <span className="max-w-[140px] truncate font-sans text-[12px] font-extrabold tracking-[0.12em] text-[var(--color-primary-light)]/85 uppercase">
                   {accountLabel}
                 </span>
               </Link>
@@ -176,7 +175,7 @@ export default function Navbar() {
               <button
                 onClick={handleSignOut}
                 disabled={signingOut}
-                className="group flex items-center gap-1.5 font-mono text-[12px] font-bold tracking-[0.2em] text-[var(--color-primary-light)]/50 uppercase transition-all hover:text-[var(--color-accent-orange)] disabled:opacity-60"
+                className="group flex items-center gap-1.5 font-sans text-[12px] font-extrabold tracking-[0.18em] text-[var(--color-primary-light)]/60 uppercase transition-all hover:text-[var(--color-accent-orange)] disabled:opacity-60"
               >
                 <LogOut className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 <span className="hidden sm:inline">Exit</span>
@@ -188,8 +187,7 @@ export default function Navbar() {
 
       </header>
 
-      {/* Sign-out transition — portaled to <body> so the navbar's backdrop-blur
-          can't trap the fixed overlay inside the header. */}
+      {/* Sign-out transition — portaled to <body> so it stays above the app shell. */}
       {mounted &&
         createPortal(
           <AnimatePresence>
@@ -199,17 +197,10 @@ export default function Navbar() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25 }}
-                className="fixed inset-0 z-[200] flex items-center justify-center bg-[var(--color-primary-dark)]/90 backdrop-blur-xl"
+                className="fixed inset-0 z-[200] flex items-center justify-center bg-[var(--color-primary-dark)]"
                 role="status"
                 aria-live="polite"
               >
-                <div
-                  className="pointer-events-none absolute inset-0 flex items-center justify-center"
-                  aria-hidden
-                >
-                  <div className="h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,var(--color-accent-glow)/20_0%,rgba(209,122,56,0.10)_45%,transparent_70%)] blur-3xl" />
-                </div>
-
                 <motion.div
                   initial={{ scale: 0.94, opacity: 0, y: 14 }}
                   animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -217,24 +208,23 @@ export default function Navbar() {
                   className="relative flex w-full max-w-sm flex-col items-center px-8 text-center"
                 >
                   <div className="relative grid h-24 w-24 place-items-center">
-                    <span className="absolute inset-0 animate-pulse rounded-full bg-[var(--color-accent-glow)]/20 blur-2xl" />
                     <Image
                       src="/logo.png"
                       alt="Kaalvanta logo"
                       width={152}
                       height={80}
-                      className="relative h-14 w-auto object-contain drop-shadow-[0_0_30px_rgba(234,221,189,0.35)]"
+                      className="relative h-14 w-auto object-contain"
                     />
                   </div>
 
                   <p className="mt-7 font-serif text-3xl leading-none font-normal text-[var(--color-primary-light)] italic">
                     Until next orbit
                   </p>
-                  <p className="mt-3 font-mono text-[11px] font-black tracking-[0.34em] text-[var(--color-primary-light)]/40 uppercase">
+                  <p className="mt-3 font-sans text-[11px] font-extrabold tracking-[0.3em] text-[var(--color-primary-light)]/55 uppercase">
                     Signing out
                   </p>
 
-                  <div className="mt-7 h-1 w-48 overflow-hidden rounded-full bg-[var(--color-primary-light)]/10">
+                  <div className="mt-7 h-1 w-48 overflow-hidden rounded-full bg-[var(--color-primary-light)]/15">
                     <motion.div
                       initial={{ x: "-100%" }}
                       animate={{ x: "100%" }}

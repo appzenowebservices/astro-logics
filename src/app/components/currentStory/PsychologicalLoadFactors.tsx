@@ -87,7 +87,7 @@ export const PsychologicalLoadFactors = ({
                   <div className="flex min-w-[110px] shrink-0 items-center justify-end gap-2.5">
                     <div className="h-1.5 w-16 overflow-hidden rounded-full bg-neutral-200 p-[0.5px] dark:bg-black/30">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-[var(--color-accent-orange)] to-[var(--color-ring-bronze)] transition-all duration-500"
+                        className="h-full rounded-full bg-[var(--color-accent-orange)] transition-all duration-500"
                         style={{ width: `${Math.min(100, numericVal * 100)}%` }}
                       />
                     </div>

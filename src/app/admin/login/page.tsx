@@ -57,9 +57,7 @@ export default function AdminLoginPage() {
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--color-primary-dark)] px-4 py-16 text-[var(--color-primary-light)]">
       {/* Atmosphere */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_70%_-10%,rgba(164,196,217,0.16),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_10%_110%,rgba(209,122,56,0.12),transparent_60%)]" />
-        <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(to_right,var(--color-primary-light)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-primary-light)_1px,transparent_1px)] [background-size:64px_64px]" />
+        <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(to_right,var(--color-primary-light)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-primary-light)_1px,transparent_1px)] [background-size:64px_64px]" />
       </div>
 
       <motion.div
@@ -76,7 +74,7 @@ export default function AdminLoginPage() {
           Member sign in
         </Link>
 
-        <div className="relative overflow-hidden rounded-[2rem] border border-[var(--color-primary-light)]/12 bg-[var(--color-primary-light)]/[0.03] p-8 shadow-2xl backdrop-blur-sm sm:p-10">
+        <div className="relative overflow-hidden rounded-[2rem] border border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-dark)] p-8 shadow-sm sm:p-10">
           {/* Soft progress line while the form is submitting */}
           <AnimatePresence>
             {busy && (
@@ -138,7 +136,7 @@ export default function AdminLoginPage() {
                     alt="Kaalvanta logo"
                     width={76}
                     height={40}
-                    className="h-10 w-auto object-contain drop-shadow-[0_0_12px_rgba(234,221,189,0.3)]"
+                    className="h-10 w-auto object-contain"
                   />
                   <div>
                     <p className="font-mono text-[11px] font-black tracking-[0.3em] text-[var(--color-accent-orange)] uppercase">
@@ -168,7 +166,7 @@ export default function AdminLoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="admin@kaalvanta.local"
-                      className="w-full rounded-xl border border-[var(--color-ring-bronze)]/25 bg-[var(--color-primary-light)]/5 px-4 py-3 font-medium text-[var(--color-primary-light)] transition-colors outline-none placeholder:text-[var(--color-ring-bronze)]/30 focus:border-[var(--color-accent-glow)] disabled:opacity-60"
+                      className="w-full rounded-xl border border-[var(--color-ring-bronze)]/40 bg-[#22365d] px-4 py-3 font-medium text-[var(--color-primary-light)] transition-colors outline-none placeholder:text-[var(--color-primary-light)]/35 focus:border-[var(--color-accent-orange)] disabled:opacity-60"
                     />
                   </div>
 
@@ -189,7 +187,7 @@ export default function AdminLoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full rounded-xl border border-[var(--color-ring-bronze)]/25 bg-[var(--color-primary-light)]/5 px-4 py-3 pr-11 font-medium text-[var(--color-primary-light)] transition-colors outline-none placeholder:text-[var(--color-ring-bronze)]/30 focus:border-[var(--color-accent-glow)] disabled:opacity-60"
+                        className="w-full rounded-xl border border-[var(--color-ring-bronze)]/40 bg-[#22365d] px-4 py-3 pr-11 font-medium text-[var(--color-primary-light)] transition-colors outline-none placeholder:text-[var(--color-primary-light)]/35 focus:border-[var(--color-accent-orange)] disabled:opacity-60"
                       />
                       <Lock className="absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2 text-[var(--color-ring-bronze)]/40" />
                     </div>
@@ -213,7 +211,7 @@ export default function AdminLoginPage() {
                   <button
                     type="submit"
                     disabled={busy}
-                    className="flex w-full items-center justify-center gap-2.5 rounded-xl bg-[var(--color-primary-light)] py-3.5 text-[12px] font-black tracking-[0.18em] text-[var(--color-primary-dark)] uppercase shadow-[0_0_40px_rgba(234,221,189,0.15)] transition-all hover:bg-[var(--color-accent-orange)] hover:text-white active:scale-[0.99] disabled:cursor-wait disabled:opacity-70"
+                    className="flex w-full items-center justify-center gap-2.5 rounded-xl bg-[var(--color-primary-light)] py-3.5 text-[12px] font-black tracking-[0.18em] text-[var(--color-primary-dark)] uppercase transition-all hover:bg-[var(--color-accent-orange)] hover:text-white active:scale-[0.99] disabled:cursor-wait disabled:opacity-70"
                   >
                     {busy ? (
                       <>

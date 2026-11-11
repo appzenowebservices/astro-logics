@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
+import ProfileSwitcher from "./profile/ProfileSwitcher";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -40,55 +41,53 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* 2. Main Terminal Content Area Wrapper */}
         <div className="relative flex h-full min-w-0 flex-1 flex-col">
-          {/* Ambient Top-Right Backdrop Atmosphere Glow Layer */}
-          <div className="pointer-events-none absolute top-0 right-0 z-0 h-[400px] w-[500px] rounded-full bg-[var(--color-accent-glow)]/5 blur-[130px]" />
-
           {/* 3. System Command Header Control Bar */}
-          <header className="relative z-10 flex h-16 shrink-0 items-center justify-between border-b border-white/[0.04] bg-black/10 px-6 backdrop-blur-md">
+          <header className="relative z-30 flex h-16 shrink-0 items-center justify-between gap-3 border-b border-[var(--color-ring-bronze)]/25 bg-[var(--color-primary-dark)] px-3 sm:px-6">
             {/* Left Side: Current State Intelligence Session Info */}
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 rounded-md border border-[var(--color-accent-orange)]/20 bg-[var(--color-accent-orange)]/10 px-2.5 py-1">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-accent-orange)] shadow-[0_0_8px_var(--color-accent-orange)]" />
-                <span className="text-[12px] font-black tracking-widest text-[var(--color-accent-orange)] uppercase">
-                  LIVE SESSION
+            <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+              <div className="flex shrink-0 items-center gap-2 rounded-md border border-[var(--color-accent-orange)] bg-[var(--color-accent-orange)] px-2.5 py-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-primary-light)]" />
+                <span className="text-[11px] font-extrabold tracking-[0.18em] text-white uppercase">
+                  Live session
                 </span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-sm font-black tracking-wider text-white uppercase">
+              <div className="hidden min-w-0 flex-col sm:flex">
+                <span className="truncate text-sm font-black tracking-wider text-white uppercase">
                   STRUCTURED EXPANSION
                 </span>
-                <span className="mt-0.5 text-[11px] font-black tracking-[0.2em] text-white/30 uppercase">
+                <span className="mt-0.5 truncate text-[11px] font-bold tracking-[0.2em] text-[var(--color-primary-light)]/55 uppercase">
                   ENGINE ID // SEC-01
                 </span>
               </div>
             </div>
 
-            {/* Right Side: High-Density Telemetry Master Clock */}
-            <div className="flex h-8 items-center gap-4 border-l border-white/[0.06] pl-4">
-              <div className="flex flex-col text-right">
-                <span className="text-sm font-black tracking-wide text-white uppercase">
-                  {new Date()
-                    .toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      year: "2-digit",
-                    })
-                    .toUpperCase()}
-                </span>
-                <div className="mt-0.5 flex items-center justify-end gap-1.5">
-                  <span className="text-[12px] font-black tracking-wider text-white/50">
-                    {time || "--:-- --"}
+            {/* Right Side: Active Profile Switcher + Telemetry Master Clock */}
+            <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+              <ProfileSwitcher />
+
+              <div className="hidden h-8 items-center gap-4 border-l border-[var(--color-ring-bronze)]/25 pl-4 md:flex">
+                <div className="flex flex-col text-right">
+                  <span className="text-sm font-black tracking-wide text-[var(--color-primary-light)] uppercase">
+                    {new Date()
+                      .toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "2-digit",
+                      })
+                      .toUpperCase()}
                   </span>
+                  <div className="mt-0.5 flex items-center justify-end gap-1.5">
+                    <span className="text-[12px] font-bold tracking-wider text-[var(--color-primary-light)]/60">
+                      {time || "--:-- --"}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </header>
           {/* 4. Secondary Frame Window Container (The High-Contrast Workspace) */}
           <main className="relative z-10 flex-1 overflow-hidden p-3 md:p-5">
-            <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[24px] border border-white/20 bg-[var(--color-primary-light)] text-[var(--color-primary-dark)] shadow-2xl">
-              {/* Fine systemic matte texture canvas layer */}
-              <div className="pointer-events-none absolute inset-0 z-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-multiply" />
-
+            <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[20px] border border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-light)] text-[var(--color-primary-dark)] shadow-xl">
               {/* Dynamic Content Frame Port - Page Components Render Right Here */}
               <div className="custom-scrollbar relative z-10 h-full w-full flex-1 overflow-y-auto p-6">
                 {children}

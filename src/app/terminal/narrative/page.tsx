@@ -5,12 +5,18 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, Loader2, Sparkles } from "lucide-react";
 import { api } from "~/trpc/react";
 import Layout from "../../components/Layout";
+import ScreenplayDocument from "../../components/currentStory/ScreenplayDocument";
+import { useActiveProfile } from "../../components/profile/ActiveProfileProvider";
 
 const stripMarkdown = (value?: string | null) =>
   (value ?? "").replace(/\*\*[^*]+\*\*/g, "");
 
 export default function NarrativeEnginePage() {
-  const storyQuery = api.nativity.getLatestStory.useQuery();
+  const { activeChartId, isLoading: profileLoading } = useActiveProfile();
+  const storyQuery = api.nativity.getLatestStory.useQuery(
+    { nativityChartId: activeChartId || undefined },
+    { enabled: !profileLoading },
+  );
   const story = storyQuery.data;
 
   return (
@@ -39,7 +45,7 @@ export default function NarrativeEnginePage() {
           )}
         </header>
 
-        {storyQuery.isLoading ? (
+        {storyQuery.isLoading || profileLoading ? (
           <div className="flex min-h-[320px] items-center justify-center gap-3">
             <Loader2 className="h-5 w-5 animate-spin text-[var(--color-accent-orange)]" />
             <span className="font-mono text-[11px] font-black tracking-[0.18em] uppercase opacity-50">
@@ -86,13 +92,20 @@ export default function NarrativeEnginePage() {
             </div>
 
             <div className="grid gap-4 lg:grid-cols-[1.5fr_1fr]">
-              <article className="rounded-2xl border border-black/10 bg-white/75 p-6">
+              <article className="rounded-2xl border border-black/10 bg-white/75 p-4 sm:p-6">
                 <p className="font-mono text-[10px] font-black tracking-[0.22em] uppercase opacity-40">
                   Main narrative
                 </p>
-                <div className="mt-3 font-serif text-lg leading-relaxed whitespace-pre-wrap italic opacity-90">
-                  {stripMarkdown(story.mainNarrative) ||
-                    "No narrative has been compiled for this run yet."}
+                <div className="mt-4">
+                  {stripMarkdown(story.mainNarrative) ? (
+                    <ScreenplayDocument
+                      content={stripMarkdown(story.mainNarrative)}
+                    />
+                  ) : (
+                    <p className="rounded-xl bg-slate-50 p-5 text-sm text-slate-600">
+                      No narrative has been compiled for this run yet.
+                    </p>
+                  )}
                 </div>
               </article>
 
@@ -114,7 +127,7 @@ export default function NarrativeEnginePage() {
                       </span>
                     </div>
                     <p className="mt-1 line-clamp-2 text-[11px] opacity-55">
-                      {scene.storyFunction || scene.dominantPressure || "—"}
+                      {scene.storyFunction ?? scene.dominantPressure ?? "—"}
                     </p>
                   </div>
                 ))}

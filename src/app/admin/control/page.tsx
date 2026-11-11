@@ -55,9 +55,9 @@ const TABS: Array<{
 ];
 
 const PANEL =
-  "rounded-2xl border border-black/10 bg-white/70 shadow-[0_20px_45px_-34px_rgba(42,65,112,0.45)]";
+  "rounded-2xl border border-[var(--color-ring-bronze)]/40 bg-white shadow-sm";
 const FIELD =
-  "rounded-lg border border-black/10 bg-white px-2.5 py-1.5 font-mono text-[11px] font-semibold outline-none focus:border-[var(--color-accent-orange)]";
+  "rounded-lg border border-[var(--color-ring-bronze)]/50 bg-white px-3 py-2 font-sans text-[12px] font-semibold outline-none focus:border-[var(--color-accent-orange)]";
 
 const fmtDate = (value?: Date | string | null) =>
   value
@@ -81,7 +81,7 @@ function StatusPill({ value }: { value: string }) {
 
   return (
     <span
-      className={`inline-flex rounded-full px-2 py-0.5 font-mono text-[10px] font-black tracking-[0.08em] uppercase ${tone}`}
+      className={`inline-flex rounded-full px-2 py-0.5 font-sans text-[10px] font-black tracking-[0.08em] uppercase ${tone}`}
     >
       {value}
     </span>
@@ -98,15 +98,15 @@ function Stat({
   hint?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-black/10 bg-white/80 p-4 shadow-sm">
+    <div className="rounded-2xl border border-[var(--color-ring-bronze)]/40 bg-white p-4 shadow-sm">
       <p className="font-poster text-3xl leading-none tracking-tight text-[var(--color-primary-dark)]">
         {typeof value === "number" ? fmtNumber(value) : (value ?? "—")}
       </p>
-      <p className="mt-1.5 font-mono text-[10px] font-black tracking-[0.18em] uppercase opacity-45">
+      <p className="mt-1.5 font-sans text-[10px] font-extrabold tracking-[0.16em] uppercase opacity-60">
         {label}
       </p>
       {hint && (
-        <p className="mt-1 font-mono text-[9px] tracking-[0.06em] uppercase opacity-30">
+        <p className="mt-1 font-sans text-[9px] font-semibold tracking-[0.06em] uppercase opacity-45">
           {hint}
         </p>
       )}
@@ -124,10 +124,10 @@ function SectionHeader({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-wrap items-center gap-2 border-b border-black/8 px-4 py-3">
+    <div className="flex flex-wrap items-center gap-2 border-b border-[var(--color-ring-bronze)]/25 px-4 py-3">
       <h2 className="font-poster text-lg uppercase">{title}</h2>
       {typeof count === "number" && (
-        <span className="rounded-full bg-black/5 px-2 py-0.5 font-mono text-[10px] font-black">
+        <span className="rounded-full bg-[var(--color-primary-light)] px-2 py-0.5 font-sans text-[10px] font-black">
           {count}
         </span>
       )}
@@ -240,7 +240,7 @@ export default function AdminControlRoom() {
       <Layout>
         <div className="flex min-h-[50vh] items-center justify-center gap-3">
           <Loader2 className="h-5 w-5 animate-spin text-[var(--color-accent-orange)]" />
-          <span className="font-mono text-[11px] font-black tracking-[0.2em] uppercase opacity-50">
+          <span className="font-sans text-[11px] font-black tracking-[0.2em] uppercase opacity-50">
             Verifying super-admin clearance…
           </span>
         </div>
@@ -262,7 +262,7 @@ export default function AdminControlRoom() {
           </p>
           <Link
             href="/dashboard"
-            className="mt-6 rounded-full bg-[var(--color-primary-dark)] px-5 py-2.5 font-mono text-[11px] font-black tracking-[0.16em] text-white uppercase"
+            className="mt-6 rounded-full bg-[var(--color-primary-dark)] px-5 py-2.5 font-sans text-[11px] font-black tracking-[0.16em] text-white uppercase"
           >
             Back to dashboard
           </Link>
@@ -277,15 +277,15 @@ export default function AdminControlRoom() {
     <Layout>
       <div className="space-y-5 text-[var(--color-primary-dark)]">
         {/* Header */}
-        <header className="flex flex-wrap items-end justify-between gap-4 border-b border-black/10 pb-4">
+        <header className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--color-ring-bronze)]/40 pb-4">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent-orange)]/15 px-3 py-1 font-mono text-[10px] font-black tracking-[0.2em] text-[var(--color-accent-orange)] uppercase">
+            <p className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent-orange)] px-3 py-1 font-sans text-[10px] font-extrabold tracking-[0.18em] text-white uppercase">
               <ShieldCheck size={12} /> Super admin · top-down control
             </p>
             <h1 className="font-poster mt-3 text-4xl leading-none uppercase">
               Platform control room
             </h1>
-            <p className="mt-2 max-w-2xl text-sm font-medium opacity-55">
+            <p className="mt-2 max-w-2xl text-sm font-semibold opacity-65">
               Every tenant, chart, story, market state, subscription, and engine
               surface in one console.
             </p>
@@ -296,13 +296,13 @@ export default function AdminControlRoom() {
               onClick={() => {
                 void utils.invalidate();
               }}
-              className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 font-mono text-[10px] font-black tracking-[0.14em] uppercase transition hover:border-[var(--color-accent-orange)]"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-ring-bronze)]/50 bg-white px-4 py-2 font-sans text-[10px] font-extrabold tracking-[0.14em] uppercase transition hover:border-[var(--color-accent-orange)]"
             >
               <RefreshCw size={13} /> Refresh all
             </button>
             <Link
               href="/dashboard"
-              className="rounded-full bg-[var(--color-primary-dark)] px-4 py-2 font-mono text-[10px] font-black tracking-[0.14em] text-white uppercase"
+              className="rounded-full bg-[var(--color-primary-dark)] px-4 py-2 font-sans text-[10px] font-extrabold tracking-[0.14em] text-white uppercase transition-colors hover:bg-[var(--color-accent-orange)]"
             >
               Back to dashboard
             </Link>
@@ -310,16 +310,16 @@ export default function AdminControlRoom() {
         </header>
 
         {/* Tabs */}
-        <div className="custom-scrollbar flex gap-1 overflow-x-auto rounded-2xl border border-black/10 bg-white/60 p-1.5">
+        <div className="custom-scrollbar flex gap-1 overflow-x-auto rounded-2xl border border-[var(--color-ring-bronze)]/40 bg-white p-1.5">
           {TABS.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
               type="button"
               onClick={() => setTab(id)}
-              className={`inline-flex shrink-0 items-center gap-2 rounded-xl px-3.5 py-2 font-mono text-[10px] font-black tracking-[0.14em] uppercase transition ${
+              className={`inline-flex shrink-0 items-center gap-2 rounded-xl px-3.5 py-2 font-sans text-[10px] font-extrabold tracking-[0.12em] uppercase transition ${
                 tab === id
-                  ? "bg-[var(--color-primary-dark)] text-white shadow"
-                  : "text-[var(--color-primary-dark)]/50 hover:bg-black/5"
+                  ? "bg-[var(--color-primary-dark)] text-white shadow-sm"
+                  : "text-[var(--color-primary-dark)]/60 hover:bg-[var(--color-primary-light)]"
               }`}
             >
               <Icon size={13} /> {label}
@@ -327,8 +327,8 @@ export default function AdminControlRoom() {
                 <span
                   className={`grid h-4 min-w-4 place-items-center rounded-full px-1 text-[9px] ${
                     tab === id
-                      ? "bg-white/15 text-white"
-                      : "bg-black/8 text-[var(--color-primary-dark)]/60"
+                      ? "bg-[var(--color-accent-orange)] text-white"
+                      : "bg-[var(--color-primary-light)] text-[var(--color-primary-dark)]"
                   }`}
                 >
                   {o.users}
@@ -340,8 +340,8 @@ export default function AdminControlRoom() {
                   <span
                     className={`grid h-4 min-w-4 place-items-center rounded-full px-1 text-[9px] ${
                       tab === id
-                        ? "bg-white/15 text-white"
-                        : "bg-[var(--color-accent-orange)]/15 text-[var(--color-accent-orange)]"
+                        ? "bg-[var(--color-accent-orange)] text-white"
+                        : "bg-[var(--color-accent-orange)] text-white"
                     }`}
                   >
                     {o.pendingInvites}
@@ -399,7 +399,7 @@ export default function AdminControlRoom() {
                     <button
                       type="button"
                       onClick={() => setTab("access")}
-                      className="font-mono text-[10px] font-black tracking-[0.12em] text-[var(--color-accent-orange)] uppercase"
+                      className="font-sans text-[10px] font-black tracking-[0.12em] text-[var(--color-accent-orange)] uppercase"
                     >
                       Manage
                     </button>
@@ -436,11 +436,11 @@ export default function AdminControlRoom() {
                     <span className="font-black">
                       {sub.user?.name ?? "Unknown"}
                     </span>
-                    <span className="font-mono opacity-45">
+                    <span className="font-sans opacity-45">
                       {sub.user?.email}
                     </span>
                     <StatusPill value={sub.status} />
-                    <span className="ml-auto font-mono text-[11px] opacity-50">
+                    <span className="ml-auto font-sans text-[11px] opacity-50">
                       {sub.plan} · {sub.currency} {sub.amount ?? 0}
                     </span>
                   </div>
@@ -465,7 +465,7 @@ export default function AdminControlRoom() {
               <SectionHeader
                 title="Mint invite"
                 action={
-                  <span className="font-mono text-[10px] font-black tracking-[0.16em] uppercase opacity-35">
+                  <span className="font-sans text-[10px] font-black tracking-[0.16em] uppercase opacity-35">
                     One code, one seat
                   </span>
                 }
@@ -484,7 +484,7 @@ export default function AdminControlRoom() {
                 className="grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-6"
               >
                 <label className="block lg:col-span-2">
-                  <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.18em] uppercase opacity-45">
+                  <span className="mb-1.5 block font-sans text-[9px] font-black tracking-[0.18em] uppercase opacity-45">
                     Email (optional)
                   </span>
                   <input
@@ -501,7 +501,7 @@ export default function AdminControlRoom() {
                   />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.18em] uppercase opacity-45">
+                  <span className="mb-1.5 block font-sans text-[9px] font-black tracking-[0.18em] uppercase opacity-45">
                     Role
                   </span>
                   <select
@@ -520,7 +520,7 @@ export default function AdminControlRoom() {
                   </select>
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.18em] uppercase opacity-45">
+                  <span className="mb-1.5 block font-sans text-[9px] font-black tracking-[0.18em] uppercase opacity-45">
                     Plan
                   </span>
                   <select
@@ -539,7 +539,7 @@ export default function AdminControlRoom() {
                   </select>
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.18em] uppercase opacity-45">
+                  <span className="mb-1.5 block font-sans text-[9px] font-black tracking-[0.18em] uppercase opacity-45">
                     Uses
                   </span>
                   <input
@@ -557,7 +557,7 @@ export default function AdminControlRoom() {
                   />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block font-mono text-[9px] font-black tracking-[0.18em] uppercase opacity-45">
+                  <span className="mb-1.5 block font-sans text-[9px] font-black tracking-[0.18em] uppercase opacity-45">
                     Expires (days)
                   </span>
                   <input
@@ -578,7 +578,7 @@ export default function AdminControlRoom() {
                   <button
                     type="submit"
                     disabled={createInvite.isPending}
-                    className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent-orange)] px-5 py-2.5 font-mono text-[10px] font-black tracking-[0.16em] text-white uppercase transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-50"
+                    className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent-orange)] px-5 py-2.5 font-sans text-[10px] font-black tracking-[0.16em] text-white uppercase transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-50"
                   >
                     {createInvite.isPending ? (
                       <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -606,7 +606,7 @@ export default function AdminControlRoom() {
                       type="button"
                       onClick={() => copy(invite.code)}
                       title="Copy invite code"
-                      className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary-dark)] px-3 py-1.5 font-mono text-[11px] font-black tracking-[0.12em] text-white transition-colors hover:bg-[var(--color-accent-orange)]"
+                      className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary-dark)] px-3 py-1.5 font-sans text-[11px] font-black tracking-[0.12em] text-white transition-colors hover:bg-[var(--color-accent-orange)]"
                     >
                       {invite.code}
                       {copied === invite.code ? (
@@ -615,14 +615,14 @@ export default function AdminControlRoom() {
                         <Copy className="h-3 w-3 opacity-50" />
                       )}
                     </button>
-                    <span className="font-mono text-[10px] font-black tracking-[0.1em] uppercase opacity-55">
+                    <span className="font-sans text-[10px] font-black tracking-[0.1em] uppercase opacity-55">
                       {invite.role} · {invite.plan}
                     </span>
-                    <span className="rounded-full bg-black/5 px-2.5 py-1 font-mono text-[9px] font-black uppercase">
+                    <span className="rounded-full bg-[var(--color-primary-light)] px-2.5 py-1 font-sans text-[9px] font-black uppercase">
                       {invite.uses}/{invite.maxUses} used
                     </span>
                     <StatusPill value={invite.status} />
-                    <span className="flex-1 truncate font-mono text-[11px] opacity-35">
+                    <span className="flex-1 truncate font-sans text-[11px] opacity-35">
                       {invite.email ?? "any email"}
                     </span>
                     {invite.status === "PENDING" && (
@@ -650,7 +650,7 @@ export default function AdminControlRoom() {
                 title="Waitlist"
                 count={waitlist.data?.length}
                 action={
-                  <span className="font-mono text-[10px] font-black tracking-[0.16em] uppercase opacity-35">
+                  <span className="font-sans text-[10px] font-black tracking-[0.16em] uppercase opacity-35">
                     {waitlist.data?.filter((entry) => !entry.approved).length ??
                       0}{" "}
                     pending
@@ -664,10 +664,10 @@ export default function AdminControlRoom() {
                     className="flex flex-wrap items-center gap-3 px-4 py-3"
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-mono text-xs font-bold">
+                      <p className="truncate font-sans text-xs font-bold">
                         {entry.email}
                       </p>
-                      <p className="font-mono text-[9px] tracking-[0.1em] uppercase opacity-35">
+                      <p className="font-sans text-[9px] tracking-[0.1em] uppercase opacity-35">
                         joined {fmtDate(entry.createdAt)}
                       </p>
                     </div>
@@ -676,7 +676,7 @@ export default function AdminControlRoom() {
                       <button
                         type="button"
                         onClick={() => approveWaitlist.mutate({ id: entry.id })}
-                        className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent-orange)]/15 px-3 py-1.5 font-mono text-[9px] font-black tracking-[0.14em] text-[var(--color-accent-orange)] uppercase transition-colors hover:bg-[var(--color-accent-orange)] hover:text-white"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent-orange)]/15 px-3 py-1.5 font-sans text-[9px] font-black tracking-[0.14em] text-[var(--color-accent-orange)] uppercase transition-colors hover:bg-[var(--color-accent-orange)] hover:text-white"
                       >
                         <Check className="h-3 w-3" /> Approve
                       </button>
@@ -708,14 +708,14 @@ export default function AdminControlRoom() {
                 >
                   <div className="min-w-0 flex-1 basis-48">
                     <p className="truncate text-sm font-black">{chart.name}</p>
-                    <p className="font-mono text-[10px] opacity-40">
+                    <p className="font-sans text-[10px] opacity-40">
                       {chart.id} · owner {chart.userId}
                     </p>
                   </div>
-                  <span className="font-mono text-[11px] opacity-55">
+                  <span className="font-sans text-[11px] opacity-55">
                     {fmtDate(chart.birthDateTime)}
                   </span>
-                  <span className="font-mono text-[11px] opacity-55">
+                  <span className="font-sans text-[11px] opacity-55">
                     {chart.locationName || "Unknown location"}
                   </span>
                   <button
@@ -758,14 +758,14 @@ export default function AdminControlRoom() {
                     <p className="truncate text-sm font-black">
                       {story.nativityChart?.name ?? "Unnamed chart"}
                     </p>
-                    <p className="font-mono text-[10px] opacity-40">
+                    <p className="font-sans text-[10px] opacity-40">
                       {story.id} · {fmtDate(story.transitDate)}
                     </p>
                   </div>
-                  <span className="font-mono text-[11px] opacity-55">
+                  <span className="font-sans text-[11px] opacity-55">
                     intensity {story.overallIntensity ?? "—"}
                   </span>
-                  <span className="max-w-[240px] truncate font-mono text-[11px] opacity-45">
+                  <span className="max-w-[240px] truncate font-sans text-[11px] opacity-45">
                     {story.themes?.slice(0, 2).join(" · ") || "No themes"}
                   </span>
                   <button
@@ -803,16 +803,16 @@ export default function AdminControlRoom() {
                     key={profile.id}
                     className="flex flex-wrap items-center gap-3 px-4 py-3"
                   >
-                    <span className="min-w-20 font-mono text-sm font-black">
+                    <span className="min-w-20 font-sans text-sm font-black">
                       {profile.symbol}
                     </span>
-                    <span className="font-mono text-[11px] opacity-50">
+                    <span className="font-sans text-[11px] opacity-50">
                       {profile.label ?? profile.category ?? "—"}
                     </span>
-                    <span className="font-mono text-[11px] opacity-45">
+                    <span className="font-sans text-[11px] opacity-45">
                       {profile.locationName} · {profile.coordinateSystem}
                     </span>
-                    <span className="ml-auto font-mono text-[11px] opacity-50">
+                    <span className="ml-auto font-sans text-[11px] opacity-50">
                       {profile._count.marketStateSnapshots} snapshots
                     </span>
                   </div>
@@ -831,18 +831,18 @@ export default function AdminControlRoom() {
                     key={snapshot.id}
                     className="flex flex-wrap items-center gap-3 px-4 py-3"
                   >
-                    <span className="min-w-20 font-mono text-sm font-black">
+                    <span className="min-w-20 font-sans text-sm font-black">
                       {snapshot.symbol}
                     </span>
-                    <span className="font-mono text-[11px] opacity-50">
+                    <span className="font-sans text-[11px] opacity-50">
                       {snapshot.timeframe || "—"} ·{" "}
                       {fmtDate(snapshot.createdAt)}
                     </span>
-                    <span className="font-mono text-[11px] opacity-45">
+                    <span className="font-sans text-[11px] opacity-45">
                       {snapshot._count.events} events ·{" "}
                       {snapshot._count.signals} signals
                     </span>
-                    <span className="ml-auto font-mono text-[10px] opacity-35">
+                    <span className="ml-auto font-sans text-[10px] opacity-35">
                       {snapshot.user?.email ?? "system"}
                     </span>
                   </div>
@@ -867,14 +867,14 @@ export default function AdminControlRoom() {
                     className="flex flex-wrap items-center gap-3 px-4 py-3"
                   >
                     <StatusPill value={signal.marketBias} />
-                    <span className="font-mono text-[11px] font-black">
+                    <span className="font-sans text-[11px] font-black">
                       {signal.snapshot?.symbol ?? "—"}
                     </span>
-                    <span className="font-mono text-[11px] opacity-50">
+                    <span className="font-sans text-[11px] opacity-50">
                       {Math.round((signal.confidence ?? 0) * 100)}% confidence ·{" "}
                       {signal.riskLevel}
                     </span>
-                    <span className="ml-auto font-mono text-[10px] opacity-35">
+                    <span className="ml-auto font-sans text-[10px] opacity-35">
                       {fmtDate(signal.createdAt)}
                     </span>
                   </div>
@@ -904,7 +904,7 @@ export default function AdminControlRoom() {
                 >
                   <div className="min-w-0 flex-1 basis-56">
                     <p className="truncate text-sm font-black">{post.title}</p>
-                    <p className="truncate font-mono text-[10px] opacity-40">
+                    <p className="truncate font-sans text-[10px] opacity-40">
                       {post.kind} · by {post.author?.name ?? post.authorId} ·{" "}
                       {post.slug}
                     </p>
@@ -982,18 +982,18 @@ export default function AdminControlRoom() {
                     <p className="truncate text-sm font-black">
                       {sub.user?.name ?? "Unknown member"}
                     </p>
-                    <p className="truncate font-mono text-[11px] opacity-45">
+                    <p className="truncate font-sans text-[11px] opacity-45">
                       {sub.user?.email}
                     </p>
                   </div>
-                  <span className="font-mono text-[11px] font-black">
+                  <span className="font-sans text-[11px] font-black">
                     {sub.plan}
                   </span>
                   <StatusPill value={sub.status} />
-                  <span className="font-mono text-[11px] opacity-50">
+                  <span className="font-sans text-[11px] opacity-50">
                     {sub.currency} {sub.amount ?? 0} / {sub.period}
                   </span>
-                  <span className="ml-auto font-mono text-[10px] opacity-40">
+                  <span className="ml-auto font-sans text-[10px] opacity-40">
                     {fmtDate(sub.currentStart)} → {fmtDate(sub.currentEnd)}
                   </span>
                 </div>
@@ -1017,17 +1017,17 @@ export default function AdminControlRoom() {
                   ([service, enabled]) => (
                     <div
                       key={service}
-                      className="flex items-center justify-between rounded-xl border border-black/5 bg-white/70 px-3 py-2"
+                      className="flex items-center justify-between rounded-xl border border-[var(--color-ring-bronze)]/20 bg-white px-3 py-2"
                     >
-                      <span className="font-mono text-[11px] font-bold tracking-[0.06em] uppercase">
+                      <span className="font-sans text-[11px] font-bold tracking-[0.06em] uppercase">
                         {service}
                       </span>
                       {enabled ? (
-                        <span className="inline-flex items-center gap-1.5 font-mono text-[10px] font-black text-emerald-700 uppercase">
+                        <span className="inline-flex items-center gap-1.5 font-sans text-[10px] font-black text-emerald-700 uppercase">
                           <CheckCircle2 size={12} /> Configured
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1.5 font-mono text-[10px] font-black text-red-700 uppercase">
+                        <span className="inline-flex items-center gap-1.5 font-sans text-[10px] font-black text-red-700 uppercase">
                           <XCircle size={12} /> Missing
                         </span>
                       )}
@@ -1045,8 +1045,8 @@ export default function AdminControlRoom() {
                 <Stat label="Snapshots" value={system.data?.counts.snapshots} />
                 <Stat label="Posts" value={system.data?.counts.posts} />
               </div>
-              <div className="border-t border-black/5 p-4">
-                <p className="font-mono text-[10px] leading-relaxed tracking-[0.05em] uppercase opacity-40">
+              <div className="border-t border-[var(--color-ring-bronze)]/20 p-4">
+                <p className="font-sans text-[10px] leading-relaxed tracking-[0.05em] uppercase opacity-40">
                   Secrets are never returned to the client. This panel only
                   reports whether each integration is configured.
                 </p>

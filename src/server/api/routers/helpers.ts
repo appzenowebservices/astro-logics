@@ -460,43 +460,35 @@ export async function generateSceneScriptFromScenarios(
 ${scenarioOutline}
 
 [TASK]
-Convert this narrative state into ONE continuous real-life scene unfolding in 3 escalating beats.
+Write this as a short, professionally formatted screenplay scene. It is ONE
+continuous real-life scene that unfolds through 3 escalating beats.
 
-This must feel like:
-- pressure becoming visible
-- behavior creating consequences
-- tension escalating naturally
+OUTPUT FORMAT:
 
-FORMAT:
+TITLE: A short, specific title
 
-TITLE:
-SETTING:
+INT. OR EXT. SPECIFIC LOCATION - DAY OR NIGHT
 
-BEAT 1:
-ACTION:
-DIALOGUE:
-STATE:
+Write concise, visual action in present tense. Show pressure becoming visible
+through behavior and consequences; do not describe private thoughts.
 
-BEAT 2:
-ACTION:
-DIALOGUE:
-STATE:
+CHARACTER NAME
+Short, natural dialogue.
 
-BEAT 3:
-ACTION:
-DIALOGUE:
-STATE:
+Continue the same scene through three escalating turns. Use a new action
+paragraph when the situation changes. Give each speaker a clear, consistent
+uppercase character cue immediately before their dialogue. Use parentheticals
+sparingly and only when needed.
 
 [HARD RULES]
-- Same setting throughout
-- Dialogue must be short and reactive
-- Show consequences happening live
-- No speeches or monologues
-- No astrology or cosmic language
-- The conflict must escalate naturally
-- The user must make a visible mistake, avoidance, or reaction
-
-Only output this format.
+- Keep the same setting throughout; choose INT. or EXT. and DAY or NIGHT.
+- Dialogue is short, reactive, and formatted beneath uppercase character cues.
+- Show consequences happening live through visible action.
+- No speeches, monologues, beat labels, or production notes.
+- No astrology or cosmic language.
+- Escalate the conflict naturally across three turns.
+- The protagonist makes a visible mistake, avoidance, or reaction.
+- Output only the title and screenplay scene; no markdown fences or commentary.
 `;
 
   const useLocalLlm = process.env.USE_LOCAL_LLM === "true";
