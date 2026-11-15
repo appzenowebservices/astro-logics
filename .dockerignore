@@ -3,7 +3,10 @@ node_modules
 .git
 .gitignore
 prisma-client/binaries/*.tmp*
-trading
+trading/forecast
+trading/bridge
+trading/node_modules
+trading/.env
 3d-agent
 mcp-server
 test-suite
