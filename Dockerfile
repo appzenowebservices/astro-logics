@@ -4,8 +4,14 @@ WORKDIR /app
 
 RUN apk add --no-cache libc6-compat openssl
 
+# Install dependencies first so app-code changes do not re-run npm ci.
+COPY package*.json ./
+COPY prisma ./prisma
+RUN npm ci
+
 COPY . .
 
+# Public values must be present at build time because Next inlines NEXT_PUBLIC_*.
 ARG NEXT_PUBLIC_GOOGLE_CLIENT_ID
 ARG NEXT_PUBLIC_GOOGLE_AUTH_ENABLED
 ARG NEXT_PUBLIC_OPENROUTER_API_KEY
@@ -16,7 +22,7 @@ ENV NEXT_PUBLIC_GOOGLE_CLIENT_ID=$NEXT_PUBLIC_GOOGLE_CLIENT_ID \
     SKIP_ENV_VALIDATION=1 \
     NEXT_TELEMETRY_DISABLED=1
 
-RUN npm ci
+# Regenerate after COPY so the Linux Prisma engine replaces any committed one.
 RUN npx prisma generate
 RUN npm run build
 
