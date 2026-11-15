@@ -1,6 +1,11 @@
 services:
   kaalvanta_web:
-    build: .
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${NEXT_PUBLIC_GOOGLE_CLIENT_ID:-}
+        NEXT_PUBLIC_GOOGLE_AUTH_ENABLED: ${NEXT_PUBLIC_GOOGLE_AUTH_ENABLED:-}
+        NEXT_PUBLIC_OPENROUTER_API_KEY: ${NEXT_PUBLIC_OPENROUTER_API_KEY:-}
     container_name: kaalvanta-web
     restart: unless-stopped
     env_file:
