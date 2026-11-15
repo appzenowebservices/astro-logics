@@ -24,9 +24,13 @@ export default function PlanetScene({
   const rendererRef = useRef<any>(null);
   const meshRef = useRef<any>(null);
   const animationIdRef = useRef<number | null>(null);
+  const cleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     if (!containerRef.current || typeof window === "undefined") return;
+
+    cleanupRef.current?.();
+    cleanupRef.current = null;
 
     let mounted = true;
 
@@ -55,7 +59,7 @@ export default function PlanetScene({
 
       // Camera setup
       const cameraPos = ENTITY_CONFIG.CAMERA.defaultPosition;
-      camera.position.set(...cameraPos);
+      camera.position.set(cameraPos[0]!, cameraPos[1]!, cameraPos[2]!);
 
       // Lighting
       const ambientLight = new THREE.AmbientLight(
@@ -219,13 +223,13 @@ export default function PlanetScene({
 
       window.addEventListener("resize", handleResize);
 
-      return () => {
-        mounted = false;
+      cleanupRef.current = () => {
         window.removeEventListener("resize", handleResize);
         renderer.domElement.removeEventListener("mouseenter", onMouseEnter);
         renderer.domElement.removeEventListener("mouseleave", onMouseLeave);
         if (animationIdRef.current !== null) {
           cancelAnimationFrame(animationIdRef.current);
+          animationIdRef.current = null;
         }
         renderer.dispose();
         sphereGeometry.dispose();
@@ -234,12 +238,16 @@ export default function PlanetScene({
         ringMaterial.dispose();
         secondaryRingGeometry.dispose();
         secondaryRingMaterial.dispose();
-        containerRef.current?.removeChild(renderer.domElement);
+        if (renderer.domElement.parentNode === containerRef.current) {
+          containerRef.current?.removeChild(renderer.domElement);
+        }
       };
     });
 
     return () => {
       mounted = false;
+      cleanupRef.current?.();
+      cleanupRef.current = null;
     };
   }, [personality, isActive]);
 

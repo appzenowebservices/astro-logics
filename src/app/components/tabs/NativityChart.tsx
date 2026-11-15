@@ -67,7 +67,7 @@ export default function NativityChart() {
   return (
     <div className="flex h-full w-full flex-col overflow-hidden bg-[var(--color-primary-dark)]">
       {/* Cinematic Header: Saturnine Theme */}
-      <div className="relative z-20 flex items-center justify-between border-b border-[var(--color-ring-bronze)]/20 bg-black/40 p-6">
+      <div className="relative z-20 flex items-center justify-between border-b border-[var(--color-ring-bronze)]/25 bg-[var(--color-primary-dark)] p-6">
         <div className="flex items-center gap-4">
           <div className="rounded-lg border border-[var(--color-accent-orange)]/20 bg-[var(--color-accent-orange)]/10 p-2">
             <Star size={16} className="text-[var(--color-accent-orange)]" />
@@ -89,7 +89,7 @@ export default function NativityChart() {
           {viewMode === "list" ? (
             <button
               onClick={() => setViewMode("create")}
-              className="flex items-center gap-2 rounded-full bg-[var(--color-accent-glow)] px-5 py-2 text-[12px] font-black tracking-widest text-[var(--color-primary-dark)] uppercase shadow-[0_0_20px_rgba(164,196,217,0.2)] transition-all hover:bg-[var(--color-primary-light)] active:scale-95"
+              className="flex items-center gap-2 rounded-full bg-[var(--color-accent-orange)] px-5 py-2 text-[12px] font-black tracking-widest text-white uppercase transition-all hover:bg-[var(--color-primary-light)] hover:text-[var(--color-primary-dark)] active:scale-95"
             >
               <Plus size={14} strokeWidth={3} />
               Add Chart
@@ -110,12 +110,8 @@ export default function NativityChart() {
       <div className="relative flex-1 overflow-hidden bg-[var(--color-primary-dark)] p-2 md:p-4">
         <motion.div
           layout
-          className="relative h-full w-full overflow-hidden rounded-[32px] bg-[var(--color-primary-light)] shadow-2xl"
+          className="relative h-full w-full overflow-hidden rounded-[28px] border border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-light)] shadow-sm"
         >
-          {/* Subtle noise and light glow for texture */}
-          <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-multiply" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/20 to-transparent" />
-
           <div className="custom-scrollbar relative z-10 h-full w-full overflow-y-auto">
             <AnimatePresence mode="wait">
               <motion.div
@@ -140,7 +136,7 @@ export default function NativityChart() {
 
                 {viewMode === "create" && (
                   <div className="flex justify-center p-8">
-                    <div className="w-full max-w-2xl rounded-[40px] bg-[var(--color-primary-dark)] p-10 text-[var(--color-primary-light)] shadow-2xl">
+                    <div className="w-full max-w-2xl rounded-[32px] border border-[var(--color-ring-bronze)]/30 bg-[var(--color-primary-dark)] p-10 text-[var(--color-primary-light)] shadow-sm">
                       <NativityChartForm
                         isLoading={createMutation.isPending}
                         isError={createMutation.isError}

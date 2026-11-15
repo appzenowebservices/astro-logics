@@ -19,6 +19,7 @@ interface PlanetCharacterProps {
     energy: number;
   };
   isActive: boolean;
+  height?: string;
 }
 
 const LoadingFallback = () => (
@@ -31,11 +32,12 @@ export default function PlanetCharacter3D({
   planet,
   personality,
   isActive,
+  height,
 }: PlanetCharacterProps) {
   return (
     <div
-      className="relative w-full overflow-hidden rounded border border-[#333] bg-gradient-to-b from-[#0f0f0f] to-[#1a1a1a]"
-      style={{ height: ENTITY_CONFIG.CANVAS.height }}
+      className="relative w-full overflow-hidden rounded-xl border border-[var(--color-ring-bronze)]/30 bg-[#0b1424]"
+      style={{ height: height ?? ENTITY_CONFIG.CANVAS.height }}
     >
       <Suspense fallback={<LoadingFallback />}>
         <PlanetScene
@@ -46,19 +48,29 @@ export default function PlanetCharacter3D({
       </Suspense>
 
       {/* Overlay info */}
-      <div className="pointer-events-none absolute top-2 right-2 left-2 z-10">
-        <div className="text-xs font-semibold text-white">{planet}</div>
-        <div className="mt-1 text-xs text-[#E29626]">
-          Mood: <span className="capitalize">{personality.mood}</span>
+      <div className="pointer-events-none absolute top-3 right-3 left-3 z-10 flex items-start justify-between gap-3">
+        <div>
+          <div className="text-[10px] font-extrabold tracking-[0.18em] text-[var(--color-primary-light)]/55 uppercase">
+            Active agent
+          </div>
+          <div className="mt-0.5 text-sm font-black tracking-[0.08em] text-white uppercase">
+            {planet}
+          </div>
+        </div>
+        <div className="rounded-full border border-[var(--color-ring-bronze)]/30 bg-[#0b1424]/80 px-2.5 py-1 text-[10px] font-bold text-[var(--color-accent-glow)] capitalize">
+          {personality.mood}
         </div>
       </div>
 
       {/* Energy indicator */}
-      <div className="pointer-events-none absolute right-2 bottom-2 z-10">
-        <div className="text-xs text-gray-400">Energy</div>
-        <div className="mt-1 h-2 w-24 overflow-hidden rounded bg-[#333]">
+      <div className="pointer-events-none absolute right-3 bottom-3 left-3 z-10">
+        <div className="flex items-center justify-between text-[9px] font-extrabold tracking-[0.16em] text-[var(--color-primary-light)]/55 uppercase">
+          <span>Energy</span>
+          <span>{Math.round(personality.energy * 100)}%</span>
+        </div>
+        <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-[var(--color-primary-light)]/10">
           <div
-            className="h-full bg-[#E29626] transition-all duration-500"
+            className="h-full rounded-full bg-[var(--color-accent-orange)] transition-all duration-500"
             style={{ width: `${personality.energy * 100}%` }}
           />
         </div>

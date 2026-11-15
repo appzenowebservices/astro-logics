@@ -5,18 +5,13 @@ import {
   Globe2,
   Zap,
   Compass,
-  User,
-  MessageSquare,
   Theater,
   Gamepad2,
   Users,
   CalendarDays,
-  Bot,
-  LayoutGrid,
   Sparkles,
   ScrollText,
   Menu,
-  X,
   Orbit,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -32,8 +27,7 @@ import NativityStoryTab from "./NativityStoryTab";
 import NativityCurrentStoryTab from "./NativityCurrentStoryTab";
 import NativityMeetPlanetsTab from "./NativityMeetPlanetsTab";
 // import NativityGameOfLifeTab from './NativityGameOfLifeTab';
-import NativityCharacterTab from "./NativityCharacterTab";
-import NativityAgentTab from "./NativityAgentTab"; // ... other imports
+import Nativity3DAgentTab from "./Nativity3DAgentTab";
 
 const TAB_GROUPS = [
   {
@@ -60,7 +54,10 @@ const TAB_GROUPS = [
   },
   {
     group: "Play",
-    items: [{ id: "meet", label: "Meet Cast", icon: <Users size={14} /> }],
+    items: [
+      { id: "meet", label: "Meet Cast", icon: <Users size={14} /> },
+      { id: "character", label: "3D Agent", icon: <Gamepad2 size={14} /> },
+    ],
   },
 ];
 
@@ -83,7 +80,7 @@ export default function NativityChartDisplay({
     <div className="flex h-full w-full flex-col overflow-hidden bg-[var(--color-primary-dark)] md:flex-row">
       {/* Sidebar: The Saturnine Command Deck */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-64 transform flex-col border-r border-[var(--color-ring-bronze)]/10 bg-black/40 backdrop-blur-xl transition-transform duration-500 ease-in-out md:relative md:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} `}
+        className={`fixed inset-y-0 left-0 z-40 flex w-64 transform flex-col border-r border-[var(--color-ring-bronze)]/25 bg-[var(--color-primary-dark)] transition-transform duration-500 ease-in-out md:relative md:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} `}
       >
         <div className="p-8">
           <div className="flex items-center gap-3">
@@ -114,8 +111,8 @@ export default function NativityChartDisplay({
                       }}
                       className={`group flex w-full items-center gap-3 rounded-xl px-4 py-2.5 transition-all duration-300 ${
                         isActive
-                          ? "border border-[var(--color-accent-glow)]/20 bg-[var(--color-accent-glow)]/10 text-[var(--color-accent-glow)]"
-                          : "text-[var(--color-ring-bronze)]/60 hover:bg-white/5 hover:text-[var(--color-primary-light)]"
+                          ? "border border-[var(--color-accent-orange)] bg-[#22365d] text-[var(--color-primary-light)]"
+                          : "text-[var(--color-ring-bronze)]/60 hover:bg-[#22365d] hover:text-[var(--color-primary-light)]"
                       }`}
                     >
                       <span
@@ -129,7 +126,7 @@ export default function NativityChartDisplay({
                       {isActive && (
                         <motion.div
                           layoutId="navDot"
-                          className="ml-auto h-1 w-1 rounded-full bg-[var(--color-accent-orange)] shadow-[0_0_8px_var(--color-accent-orange)]"
+                          className="ml-auto h-1 w-1 rounded-full bg-[var(--color-accent-orange)]"
                         />
                       )}
                     </button>
@@ -142,7 +139,7 @@ export default function NativityChartDisplay({
 
         {/* Vessel ID Footer */}
         <div className="border-t border-[var(--color-ring-bronze)]/10 p-6">
-          <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-3">
+          <div className="flex items-center gap-3 rounded-2xl border border-[var(--color-ring-bronze)]/20 bg-[#22365d] p-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--color-ring-bronze)]/20 bg-[var(--color-primary-dark)] text-[12px] font-black text-[var(--color-accent-orange)]">
               {chartId.substring(0, 2).toUpperCase()}
             </div>
@@ -160,16 +157,10 @@ export default function NativityChartDisplay({
 
       {/* Main Viewport: The Lunar Surface */}
       <main className="relative flex-1 bg-[var(--color-primary-dark)] p-2 md:p-4">
-        {/* Backdrop Glow */}
-        <div className="pointer-events-none absolute top-0 right-0 h-1/2 w-1/2 rounded-full bg-[var(--color-accent-glow)]/5 blur-[120px]" />
-
         <motion.div
           layout
-          className="relative h-full w-full overflow-hidden rounded-[32px] border border-white/20 bg-[var(--color-primary-light)] shadow-2xl"
+          className="relative h-full w-full overflow-hidden rounded-[28px] border border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-light)] shadow-sm"
         >
-          {/* Subtle noise and light texture */}
-          <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-multiply" />
-
           <div className="custom-scrollbar relative z-10 h-full w-full overflow-y-auto p-6">
             <AnimatePresence mode="wait">
               <motion.div
@@ -204,6 +195,9 @@ export default function NativityChartDisplay({
                 )}
                 {activeTab === "meet" && (
                   <NativityMeetPlanetsTab nativityChartId={chartId} />
+                )}
+                {activeTab === "character" && (
+                  <Nativity3DAgentTab nativityChartId={chartId} />
                 )}
                 {activeTab === "current" && (
                   <NativityCurrentStoryTab nativityChartId={chartId} />
