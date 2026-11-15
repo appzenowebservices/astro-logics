@@ -1,0 +1,17 @@
+services:
+  kaalvanta_web:
+    build: .
+    container_name: kaalvanta-web
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      HOSTNAME: "0.0.0.0"
+      PORT: 3000
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

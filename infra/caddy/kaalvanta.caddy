@@ -1,0 +1,6 @@
+# Kaalvanta — applied to ~/infra/caddy/Caddyfile on the production VPS.
+# Upstream container: kaalvanta-web (docker compose service kaalvanta_web) on the external `web` network.
+
+www.kaalvanta.com, kaalvanta.com {
+    reverse_proxy kaalvanta-web:3000
+}
