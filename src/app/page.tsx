@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Navbar from "./components/Navbar";
 import HeroSkyScene from "./components/landing/HeroSkyScene";
+import LandingSoundtrack from "./components/landing/LandingSoundtrack";
 
 /**
  * Landing shell.
@@ -16,6 +17,7 @@ export default function HomePage() {
   return (
     <div className="relative isolate min-h-screen overflow-x-clip bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] antialiased">
       <HeroSkyScene />
+      <LandingSoundtrack />
       <Navbar />
 
       <main className="relative z-10">
