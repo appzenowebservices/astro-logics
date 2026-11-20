@@ -18,6 +18,13 @@
 
 const nextConfig = {
   reactStrictMode: true,
+
+  // The VPS has 2 vCPUs / 4 GB. Serialising build workers keeps Next's peak
+  // memory inside the box's headroom (parallel builds have rebooted it before).
+  experimental: {
+    cpus: 1,
+  },
+
   // outputFileTracing: false ,
   //  outputFileTracingRoot: process.cwd(),
   images: {
