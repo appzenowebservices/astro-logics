@@ -60,7 +60,9 @@ function PanelField({
         required={required}
         className="w-full rounded-none border-[3px] border-[var(--color-primary-dark)] bg-white px-3.5 py-3.5 text-xl font-black tracking-tight outline-none placeholder:font-medium placeholder:text-[var(--color-primary-dark)]/25 focus:bg-[var(--color-accent-glow)]/15"
       />
-      {hint && <div className="mt-2 min-h-[16px] text-xs font-bold">{hint}</div>}
+      {hint && (
+        <div className="mt-2 min-h-[16px] text-xs font-bold">{hint}</div>
+      )}
     </div>
   );
 }
@@ -132,7 +134,7 @@ export default function RegisterPage() {
     <div className="relative min-h-screen overflow-x-hidden bg-[var(--color-primary-light)] text-[var(--color-primary-dark)]">
       {/* Ben-Day dots */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.10] [background-image:radial-gradient(var(--color-primary-dark)_2px,transparent_2px)] [background-size:18px_18px]"
+        className="pointer-events-none absolute inset-0 [background-image:radial-gradient(var(--color-primary-dark)_2px,transparent_2px)] [background-size:18px_18px] opacity-[0.10]"
         aria-hidden
       />
 
@@ -305,7 +307,11 @@ export default function RegisterPage() {
                   </Link>
                 </motion.div>
               ) : (
-                <motion.div key="form" initial={false} exit={{ opacity: 0, y: -8 }}>
+                <motion.div
+                  key="form"
+                  initial={false}
+                  exit={{ opacity: 0, y: -8 }}
+                >
                   <AnimatePresence>
                     {error && (
                       <motion.div
@@ -404,7 +410,7 @@ export default function RegisterPage() {
                           />
 
                           <div className="flex items-center justify-between gap-4 px-4 pb-3">
-                            <div className="h-6 flex-1 opacity-[0.16] [background-image:repeating-linear-gradient(90deg,var(--color-primary-dark)_0,var(--color-primary-dark)_2px,transparent_2px,transparent_5px)]" />
+                            <div className="h-6 flex-1 [background-image:repeating-linear-gradient(90deg,var(--color-primary-dark)_0,var(--color-primary-dark)_2px,transparent_2px,transparent_5px)] opacity-[0.16]" />
 
                             {inviteCheck.data ? (
                               <span className="-rotate-6 border-[3px] border-emerald-700 px-2 py-0.5 font-mono text-[11px] font-black tracking-[0.18em] text-emerald-700 uppercase">
@@ -484,7 +490,7 @@ export default function RegisterPage() {
 
           <Link
             href="/"
-            className="mt-5 inline-block font-mono text-[12px] font-black tracking-[0.2em] uppercase opacity-40 underline underline-offset-4 hover:opacity-100"
+            className="mt-5 inline-block font-mono text-[12px] font-black tracking-[0.2em] uppercase underline underline-offset-4 opacity-40 hover:opacity-100"
           >
             ← Back to the cover
           </Link>

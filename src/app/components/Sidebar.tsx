@@ -25,7 +25,10 @@ export default function Sidebar({
 }: SidebarProps) {
   const { data: session, status } = useSession();
   const pathname = usePathname();
-  const me = api.user.me.useQuery();
+  const me = api.user.me.useQuery(undefined, {
+    enabled: status === "authenticated",
+    retry: false,
+  });
   const isAdmin = me.data?.role === "ADMIN";
 
   // Desktop persistent collapse state toggle
@@ -107,7 +110,7 @@ export default function Sidebar({
         )}
 
         {isCollapsed && (
-          <div className="pointer-events-none invisible absolute left-[64px] z-50 rounded-md border border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-dark)] px-3 py-1.5 font-sans text-[11px] font-bold tracking-widest whitespace-nowrap text-[var(--color-primary-light)] uppercase opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
+          <div className="font-ui pointer-events-none invisible absolute left-[64px] z-50 rounded-md border border-[var(--color-ring-bronze)]/40 bg-[var(--color-primary-dark)] px-3 py-1.5 text-[11px] font-bold tracking-widest whitespace-nowrap text-[var(--color-primary-light)] uppercase opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
             {item.label}
           </div>
         )}
@@ -117,7 +120,7 @@ export default function Sidebar({
 
   return (
     <aside
-      className={`font-sans fixed inset-y-0 left-0 z-50 flex h-screen shrink-0 transform flex-col justify-between border-r border-[var(--color-ring-bronze)]/20 bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] transition-all duration-500 ease-in-out md:relative md:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} ${isCollapsed ? "md:w-[68px]" : "md:w-[264px]"} w-[264px]`}
+      className={`font-ui fixed inset-y-0 left-0 z-50 flex h-screen shrink-0 transform flex-col justify-between border-r border-[var(--color-ring-bronze)]/20 bg-[var(--color-primary-dark)] text-[var(--color-primary-light)] transition-all duration-500 ease-in-out md:relative md:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} ${isCollapsed ? "md:w-[68px]" : "md:w-[264px]"} w-[264px]`}
     >
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
@@ -144,10 +147,10 @@ export default function Sidebar({
         <div
           className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isCollapsed ? "h-0 opacity-0" : "h-auto opacity-100"}`}
         >
-          <h1 className="mt-3 font-sans text-base font-black tracking-[0.2em] text-white uppercase">
+          <h1 className="font-ui mt-3 text-base font-black tracking-[0.2em] text-white uppercase">
             Kaalvanta
           </h1>
-          <p className="mt-1 font-sans text-[10px] font-extrabold tracking-[0.18em] text-[var(--color-ring-bronze)] uppercase">
+          <p className="font-ui mt-1 text-[10px] font-extrabold tracking-[0.18em] text-[var(--color-ring-bronze)] uppercase">
             Collective State Engine
           </p>
         </div>
@@ -181,7 +184,7 @@ export default function Sidebar({
                   }`}
                 >
                   {isSuperAdmin && <ShieldCheck size={11} />}
-                  <span className="font-sans text-[10px] font-extrabold tracking-[0.22em] uppercase">
+                  <span className="font-ui text-[10px] font-extrabold tracking-[0.22em] uppercase">
                     {group.label}
                   </span>
                   <ChevronDown
@@ -213,7 +216,10 @@ export default function Sidebar({
           <div className="flex min-w-0 items-center gap-3">
             <div className="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[var(--color-ring-bronze)]/30 bg-[var(--color-primary-dark)] text-[12px] font-black text-[var(--color-accent-orange)]">
               {status === "loading" ? (
-                <RefreshCw size={12} className="animate-spin text-[var(--color-primary-light)]/50" />
+                <RefreshCw
+                  size={12}
+                  className="animate-spin text-[var(--color-primary-light)]/50"
+                />
               ) : session?.user?.image ? (
                 <img
                   src={session.user.image}

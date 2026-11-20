@@ -1,20 +1,13 @@
 "use client";
-import React, { useState } from "react";
-import {
-  Plus,
-  Loader,
-  AlertCircle,
-  ChevronLeft,
-  Star,
-  Trash2,
-} from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { Plus, ChevronLeft, Star } from "lucide-react";
 import { api } from "~/trpc/react";
 import { motion, AnimatePresence } from "framer-motion";
 import NativityChartList from "../nativity/NativityChartList";
-import NativityChartForm from "../nativity/NativityChartForm";
 import NativityChartViewer from "../nativity/NativityChartViewer";
 
-type ViewMode = "list" | "create" | "view";
+type ViewMode = "list" | "view";
 
 interface SelectedChart {
   id: string;
@@ -26,15 +19,9 @@ export default function NativityChart() {
   const [selectedChart, setSelectedChart] = useState<SelectedChart | null>(
     null,
   );
+  const handledDeepLink = useRef(false);
 
   const chartsQuery = api.nativity.getCharts.useQuery();
-  const createMutation = api.nativity.createChart.useMutation({
-    onSuccess: (newChart) => {
-      chartsQuery.refetch();
-      setSelectedChart({ id: newChart.id, name: newChart.name });
-      setViewMode("view");
-    },
-  });
 
   const deleteChart = api.nativity.deleteChart.useMutation({
     onSuccess: () => {
@@ -49,9 +36,24 @@ export default function NativityChart() {
     setViewMode("view");
   };
 
-  const handleCreateChart = async (data: any) => {
-    await createMutation.mutateAsync(data);
-  };
+  // `/nativity?chart=<id>` (returned by the unified create intake) opens the
+  // matching chart once the archive has loaded.
+  useEffect(() => {
+    if (handledDeepLink.current) return;
+
+    const chartId = new URLSearchParams(window.location.search).get("chart");
+    if (!chartId) {
+      handledDeepLink.current = true;
+      return;
+    }
+
+    const chart = chartsQuery.data?.find((entry) => entry.id === chartId);
+    if (!chart) return;
+
+    handledDeepLink.current = true;
+    setSelectedChart({ id: chart.id, name: chart.name });
+    setViewMode("view");
+  }, [chartsQuery.data]);
 
   const handleDeleteChart = async (chartId: string) => {
     if (confirm("Are you sure you want to delete this chart?")) {
@@ -78,7 +80,6 @@ export default function NativityChart() {
             </span>
             <h2 className="text-sm font-black tracking-tighter text-[var(--color-primary-light)] uppercase">
               {viewMode === "list" && "Nativity Charts"}
-              {viewMode === "create" && "New Origin Point"}
               {viewMode === "view" &&
                 `${selectedChart?.name || "Chart Explorer"}`}
             </h2>
@@ -87,13 +88,13 @@ export default function NativityChart() {
 
         <div className="flex items-center gap-4">
           {viewMode === "list" ? (
-            <button
-              onClick={() => setViewMode("create")}
+            <Link
+              href="/nativity/create?return=/nativity"
               className="flex items-center gap-2 rounded-full bg-[var(--color-accent-orange)] px-5 py-2 text-[12px] font-black tracking-widest text-white uppercase transition-all hover:bg-[var(--color-primary-light)] hover:text-[var(--color-primary-dark)] active:scale-95"
             >
               <Plus size={14} strokeWidth={3} />
               Add Chart
-            </button>
+            </Link>
           ) : (
             <button
               onClick={handleBack}
@@ -131,19 +132,6 @@ export default function NativityChart() {
                       onSelectChart={handleSelectChart}
                       onDeleteChart={handleDeleteChart}
                     />
-                  </div>
-                )}
-
-                {viewMode === "create" && (
-                  <div className="flex justify-center p-8">
-                    <div className="w-full max-w-2xl rounded-[32px] border border-[var(--color-ring-bronze)]/30 bg-[var(--color-primary-dark)] p-10 text-[var(--color-primary-light)] shadow-sm">
-                      <NativityChartForm
-                        isLoading={createMutation.isPending}
-                        isError={createMutation.isError}
-                        error={createMutation.error}
-                        onSubmit={handleCreateChart}
-                      />
-                    </div>
                   </div>
                 )}
 

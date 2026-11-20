@@ -1,11 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { LogOut } from "lucide-react";
 import Sidebar from "./Sidebar";
 import ProfileSwitcher from "./profile/ProfileSwitcher";
+import { SignOutOverlay, useSignOut } from "./SignOutOverlay";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { signingOut, handleSignOut } = useSignOut();
 
   const [time, setTime] = useState("");
 
@@ -42,7 +45,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {/* 2. Main Terminal Content Area Wrapper */}
         <div className="relative flex h-full min-w-0 flex-1 flex-col">
           {/* 3. System Command Header Control Bar */}
-          <header className="relative z-30 flex h-16 shrink-0 items-center justify-between gap-3 border-b border-[var(--color-ring-bronze)]/25 bg-[var(--color-primary-dark)] px-3 sm:px-6">
+          <header className="font-ui relative z-30 flex h-16 shrink-0 items-center justify-between gap-3 border-b border-[var(--color-ring-bronze)]/25 bg-[var(--color-primary-dark)] px-3 sm:px-6">
             {/* Left Side: Current State Intelligence Session Info */}
             <div className="flex min-w-0 items-center gap-2 sm:gap-3">
               <div className="flex shrink-0 items-center gap-2 rounded-md border border-[var(--color-accent-orange)] bg-[var(--color-accent-orange)] px-2.5 py-1">
@@ -64,6 +67,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* Right Side: Active Profile Switcher + Telemetry Master Clock */}
             <div className="flex shrink-0 items-center gap-2 sm:gap-4">
               <ProfileSwitcher />
+
+              <button
+                type="button"
+                onClick={handleSignOut}
+                disabled={signingOut}
+                title="Sign out"
+                className="group flex h-10 items-center gap-2 rounded-full border border-[var(--color-ring-bronze)]/60 bg-[var(--color-primary-dark)] px-3 text-[11px] font-extrabold tracking-[0.16em] text-[var(--color-primary-light)]/65 uppercase transition-colors duration-200 hover:border-[var(--color-accent-orange)] hover:text-[var(--color-accent-orange)] disabled:opacity-60"
+              >
+                <LogOut
+                  size={15}
+                  className="transition-transform group-hover:translate-x-0.5"
+                />
+                <span className="hidden sm:inline">Exit</span>
+              </button>
 
               <div className="hidden h-8 items-center gap-4 border-l border-[var(--color-ring-bronze)]/25 pl-4 md:flex">
                 <div className="flex flex-col text-right">
@@ -104,6 +121,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <span className="font-mono text-xs font-bold">MENU</span>
         </button>
       </div>
+
+      <SignOutOverlay open={signingOut} />
     </>
   );
 }

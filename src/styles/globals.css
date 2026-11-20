@@ -31,10 +31,14 @@
      utility in the app, so a swap is a one-line change over there.
      ─────────────────────────────────────────────────────────────────────── */
   --font-sans:
+    var(--font-hand), "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+  --font-serif:
     var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     sans-serif;
-  --font-serif:
-    var(--font-display), ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  /* UI chrome (nav, sidebar, controls) stays bold + clean. */
+  --font-ui:
+    var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
   /* UI labels now use the same Poppins voice as the rest of the product.
      The dedicated code face stays available as --font-code if a true
      monospace block is ever needed. */
@@ -42,10 +46,20 @@
     var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     sans-serif;
 
-  /* Poster face maps to Poppins so every heading shares one type system. */
+  /* Poster slot = bold informational headings. Attention moments opt into
+     --font-script instead, so handwritten type means "look here". */
   --font-poster:
     var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     sans-serif;
+
+  /* Explicit script utility for attention moments: page titles, taglines,
+     empty-state invitations. */
+  --font-script:
+    var(--font-hand), "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+
+  /* Devanagari voice for Hindi accents and short content lines. */
+  --font-hindi:
+    var(--font-devanagari), "Noto Sans Devanagari", "Mangal", sans-serif;
 
   /* Legacy class names scattered around the app (`font-roboto`,
      `font-roboto-mono`) previously resolved to nothing — they now map
@@ -73,14 +87,15 @@
   --animate-glow: glow 6s ease-in-out infinite;
 
   /* ── Functional Mappings ─────────────────────────────────────────────── */
-  --brand-gradient: linear-gradient(135deg,
-      var(--color-primary-light) 0%,
-      var(--color-primary-dark) 100%);
+  --brand-gradient: linear-gradient(
+    135deg,
+    var(--color-primary-light) 0%,
+    var(--color-primary-dark) 100%
+  );
 }
 
 /* ── Keyframes (top level, so they are always emitted) ─────────────────── */
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
@@ -92,7 +107,6 @@
 }
 
 @keyframes float-saturn {
-
   0%,
   100% {
     transform: translateY(0) rotate(-1.5deg);
@@ -104,7 +118,6 @@
 }
 
 @keyframes twinkle {
-
   0%,
   100% {
     opacity: 0.3;
@@ -134,7 +147,6 @@
 }
 
 @keyframes glow {
-
   0%,
   100% {
     opacity: 0.35;
@@ -166,6 +178,8 @@ h3,
 h4,
 h5,
 h6 {
+  /* Headings carry the informational voice: bold, upright, Poppins. */
+  font-family: var(--font-poster);
   text-wrap: balance;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -179,12 +193,12 @@ b {
 input,
 textarea,
 select {
-  font-family: inherit;
+  font-family: var(--font-ui);
   font-weight: 600;
 }
 
 button {
-  font-family: inherit;
+  font-family: var(--font-ui);
 }
 
 ::selection {

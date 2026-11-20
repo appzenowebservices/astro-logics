@@ -106,7 +106,7 @@ export default function LoginPage() {
     <div className="relative min-h-screen overflow-x-hidden bg-[var(--color-primary-light)] text-[var(--color-primary-dark)]">
       {/* Ben-Day dots */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.10] [background-image:radial-gradient(var(--color-primary-dark)_2px,transparent_2px)] [background-size:18px_18px]"
+        className="pointer-events-none absolute inset-0 [background-image:radial-gradient(var(--color-primary-dark)_2px,transparent_2px)] [background-size:18px_18px] opacity-[0.10]"
         aria-hidden
       />
 
@@ -187,7 +187,9 @@ export default function LoginPage() {
                 key={label}
                 className={`border-[3px] border-[var(--color-primary-dark)] bg-white/60 px-2.5 py-2 text-center ${shadow}`}
               >
-                <p className="text-lg leading-none font-black uppercase">{value}</p>
+                <p className="text-lg leading-none font-black uppercase">
+                  {value}
+                </p>
                 <p className="mt-1 font-mono text-[12px] font-black tracking-[0.16em] uppercase opacity-45">
                   {label}
                 </p>
@@ -248,7 +250,11 @@ export default function LoginPage() {
                   <Loader2 className="mx-auto mt-5 h-5 w-5 animate-spin" />
                 </motion.div>
               ) : (
-                <motion.div key="form" initial={false} exit={{ opacity: 0, y: -8 }}>
+                <motion.div
+                  key="form"
+                  initial={false}
+                  exit={{ opacity: 0, y: -8 }}
+                >
                   <AnimatePresence>
                     {error && (
                       <motion.div
@@ -296,7 +302,9 @@ export default function LoginPage() {
                         <button
                           type="button"
                           onClick={() => setShowPassword((v) => !v)}
-                          aria-label={showPassword ? "Hide password" : "Show password"}
+                          aria-label={
+                            showPassword ? "Hide password" : "Show password"
+                          }
                           className="opacity-40 transition-opacity hover:opacity-100"
                         >
                           {showPassword ? (
@@ -351,7 +359,7 @@ export default function LoginPage() {
 
           <Link
             href="/"
-            className="mt-5 inline-block font-mono text-[12px] font-black tracking-[0.2em] uppercase opacity-40 underline underline-offset-4 hover:opacity-100"
+            className="mt-5 inline-block font-mono text-[12px] font-black tracking-[0.2em] uppercase underline underline-offset-4 opacity-40 hover:opacity-100"
           >
             ← Back to the cover
           </Link>

@@ -3,9 +3,9 @@ import "../styles/globals.css";
 import { type Metadata } from "next";
 import {
   Poppins,
-  Cormorant_Garamond,
+  Kalam,
+  Tiro_Devanagari_Hindi,
   Geist_Mono,
-  Anton,
 } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
@@ -39,7 +39,8 @@ export const metadata: Metadata = {
    so swapping a typeface = changing one family here and nothing else.
 
      --font-body     → body copy + UI      (globals.css --font-sans)
-     --font-display  → serif italic accents (globals.css --font-serif)
+     --font-hand     → handwritten display (globals.css --font-serif / --font-poster / --font-script)
+     --font-devanagari → Hindi accents     (globals.css --font-hindi)
      --font-code     → mono labels + code   (globals.css --font-mono)
 
    To experiment: swap the family below, e.g.
@@ -51,11 +52,18 @@ const bodyFont = Poppins({
   variable: "--font-body",
 });
 
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
+/** Handwritten display face — supports Latin + Devanagari in one family. */
+const handFont = Kalam({
+  subsets: ["latin", "devanagari"],
+  weight: ["300", "400", "700"],
+  variable: "--font-hand",
+});
+
+/** Devanagari text face for Hindi accents and short content lines. */
+const hindiFont = Tiro_Devanagari_Hindi({
+  subsets: ["devanagari", "latin"],
+  weight: "400",
+  variable: "--font-devanagari",
 });
 
 const codeFont = Geist_Mono({
@@ -64,20 +72,13 @@ const codeFont = Geist_Mono({
   variable: "--font-code",
 });
 
-/** Poster face — condensed, very heavy. Campaign/comic headlines only. */
-const posterFont = Anton({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-poster-face",
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      className={`${bodyFont.variable} ${displayFont.variable} ${codeFont.variable} ${posterFont.variable}`}
+      className={`${bodyFont.variable} ${handFont.variable} ${hindiFont.variable} ${codeFont.variable}`}
     >
       <body>
         <SessionProvider>

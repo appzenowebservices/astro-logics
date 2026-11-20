@@ -46,7 +46,7 @@ function EmptyState() {
   return (
     <div className="flex min-h-[420px] flex-col items-center justify-center rounded-2xl border border-dashed border-black/15 bg-white/50 text-center">
       <LineChart className="h-9 w-9 text-[var(--color-accent-orange)]" />
-      <h2 className="font-poster mt-3 text-2xl uppercase">No chart to index</h2>
+      <h2 className="font-poster mt-3 text-2xl">No chart to index</h2>
       <p className="mt-1 max-w-sm text-sm opacity-55">
         Create a nativity chart first, then the timeline engine can compile
         transit windows against it.

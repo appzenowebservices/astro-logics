@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import {
   Activity,
   AlertCircle,
@@ -14,11 +13,9 @@ import {
   Plus,
   RefreshCw,
   Sparkles,
-  X,
 } from "lucide-react";
 import Link from "next/link";
 import Layout from "../components/Layout";
-import NativityChartForm from "../components/nativity/NativityChartForm";
 import ScreenplayDocument from "../components/currentStory/ScreenplayDocument";
 import { api } from "~/trpc/react";
 
@@ -36,18 +33,19 @@ const CLIMATE_VIEWS: {
 
 export default function CosmicClimatePage() {
   const [selectedChartId, setSelectedChartId] = useState("");
-  const [isFormOpen, setIsFormOpen] = useState(false);
   const [activeView, setActiveView] = useState<ClimateView>("overview");
 
   const chartsQuery = api.nativity.getCharts.useQuery();
-  const createMutation = api.nativity.createChart.useMutation({
-    onSuccess: async (chart) => {
-      await chartsQuery.refetch();
-      setSelectedChartId(chart.id);
-      setActiveView("overview");
-      setIsFormOpen(false);
-    },
-  });
+
+  // `/climate?chart=<id>` (returned by the unified create intake) selects the
+  // freshly cast chart.
+  useEffect(() => {
+    const chartId = new URLSearchParams(window.location.search).get("chart");
+    if (!chartId) return;
+    if (!chartsQuery.data?.some((chart) => chart.id === chartId)) return;
+    setSelectedChartId(chartId);
+    setActiveView("overview");
+  }, [chartsQuery.data]);
 
   useEffect(() => {
     if (!selectedChartId && chartsQuery.data?.[0]) {
@@ -66,12 +64,6 @@ export default function CosmicClimatePage() {
   const scenes = [...(currentStory?.scenes ?? [])].sort(
     (a, b) => b.intensity - a.intensity,
   );
-
-  const handleCreateChart = async (
-    data: Parameters<typeof createMutation.mutateAsync>[0],
-  ) => {
-    await createMutation.mutateAsync(data);
-  };
 
   return (
     <Layout>
@@ -93,6 +85,7 @@ export default function CosmicClimatePage() {
                   </span>
                 )}
               </h1>
+              <p className="font-hindi text-sm text-slate-500">आज का आकाश</p>
             </div>
           </div>
 
@@ -122,15 +115,14 @@ export default function CosmicClimatePage() {
                 ))}
               </select>
             </label>
-            <button
-              type="button"
-              onClick={() => setIsFormOpen(true)}
+            <Link
+              href="/nativity/create?return=/climate"
               className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[var(--color-primary-dark)] px-3 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-orange)] sm:px-4"
             >
               <Plus size={16} />
               <span className="hidden sm:inline">New chart</span>
               <span className="sm:hidden">New</span>
-            </button>
+            </Link>
           </div>
         </header>
 
@@ -192,21 +184,20 @@ export default function CosmicClimatePage() {
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-[var(--color-accent-orange)]">
                 <Orbit size={24} />
               </div>
-              <h2 className="mt-4 text-xl font-bold text-slate-900">
+              <h2 className="font-poster mt-4 text-2xl text-slate-900">
                 Start with a nativity chart
               </h2>
               <p className="mt-2 max-w-sm text-sm text-slate-600">
                 Create a chart to see its latest transit story and planetary
                 influences here.
               </p>
-              <button
-                type="button"
-                onClick={() => setIsFormOpen(true)}
+              <Link
+                href="/nativity/create?return=/climate"
                 className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary-dark)] px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800"
               >
                 <Plus size={16} />
                 Create your first chart
-              </button>
+              </Link>
             </div>
           ) : !selectedChart ? (
             <div className="flex h-full items-center justify-center text-sm text-slate-500">
@@ -509,75 +500,6 @@ export default function CosmicClimatePage() {
           )}
         </main>
       </div>
-
-      <AnimatePresence>
-        {isFormOpen && (
-          <motion.div
-            className="fixed inset-0 z-[70] flex justify-end"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <button
-              type="button"
-              aria-label="Close new chart form"
-              onClick={() => setIsFormOpen(false)}
-              className="absolute inset-0 cursor-default bg-slate-950/50 backdrop-blur-sm"
-            />
-            <motion.section
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="new-chart-title"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 28, stiffness: 240 }}
-              className="relative flex h-full w-full max-w-xl flex-col overflow-y-auto bg-white shadow-2xl"
-            >
-              <div className="flex items-start justify-between border-b border-slate-200 px-5 py-5 sm:px-8">
-                <div>
-                  <p className="font-mono text-xs font-bold tracking-[0.14em] text-[var(--color-accent-orange)] uppercase">
-                    Nativity archive
-                  </p>
-                  <h2
-                    id="new-chart-title"
-                    className="mt-1 text-xl font-bold text-slate-900"
-                  >
-                    Create a chart
-                  </h2>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setIsFormOpen(false)}
-                  aria-label="Close"
-                  className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
-                >
-                  <X size={20} />
-                </button>
-              </div>
-
-              {createMutation.isError && (
-                <div
-                  role="alert"
-                  className="mx-5 mt-5 flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800 sm:mx-8"
-                >
-                  <AlertCircle size={17} className="mt-0.5 shrink-0" />
-                  <span>{createMutation.error.message}</span>
-                </div>
-              )}
-
-              <div className="min-h-0 flex-1 overflow-y-auto">
-                <NativityChartForm
-                  isLoading={createMutation.isPending}
-                  isError={false}
-                  error={null}
-                  onSubmit={handleCreateChart}
-                />
-              </div>
-            </motion.section>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </Layout>
   );
 }

@@ -55,7 +55,7 @@ export default function KaalvantaHomeScreen() {
       <Layout>
         <div className="mx-auto flex min-h-[60vh] max-w-lg flex-col items-center justify-center px-6 text-center">
           <Compass className="h-10 w-10 text-[var(--color-accent-orange)]" />
-          <h1 className="mt-5 text-4xl font-black tracking-tighter uppercase">
+          <h1 className="font-poster mt-5 text-4xl leading-tight">
             No active story
           </h1>
           <p className="mt-3 max-w-sm text-sm leading-relaxed font-medium opacity-60">

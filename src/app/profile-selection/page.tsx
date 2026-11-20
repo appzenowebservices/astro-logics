@@ -114,7 +114,7 @@ export default function ProfileSelectionPage() {
               Refresh
             </button>
             <Link
-              href="/nativity"
+              href="/nativity/create?return=/profile-selection"
               className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary-dark)] px-4 py-2.5 font-sans text-[10px] font-extrabold tracking-[0.14em] text-[var(--color-primary-light)] uppercase transition-colors hover:bg-[var(--color-accent-orange)] hover:text-white"
             >
               <Plus size={12} />
@@ -138,7 +138,10 @@ export default function ProfileSelectionPage() {
           <StatePanel
             title="No nativities yet"
             body="Create a birth chart first, then it will appear here as a selectable profile."
-            action={{ href: "/nativity", label: "Create a chart" }}
+            action={{
+              href: "/nativity/create?return=/profile-selection",
+              label: "Create a chart",
+            }}
           />
         ) : (
           <div className="mt-6 grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
@@ -382,7 +385,7 @@ function StatePanel({
       <span className="grid h-14 w-14 place-items-center rounded-full border border-[var(--color-ring-bronze)]/50 bg-[var(--color-primary-light)]">
         <Orbit size={24} className="text-[var(--color-accent-orange)]" />
       </span>
-      <h2 className="font-poster mt-4 text-3xl uppercase">{title}</h2>
+      <h2 className="font-poster mt-4 text-3xl">{title}</h2>
       <p className="mt-2 max-w-sm text-sm font-semibold opacity-65">{body}</p>
       <Link
         href={action.href}

@@ -22,16 +22,53 @@ type PlanetMeta = {
 
 const PLANETS: Record<string, PlanetMeta> = {
   MOON: { glyph: "☽", label: "Moon", color: "#e8dcc0", size: 24, jitter: -10 },
-  MERCURY: { glyph: "☿", label: "Mercury", color: "#c59b7d", size: 19, jitter: 6 },
+  MERCURY: {
+    glyph: "☿",
+    label: "Mercury",
+    color: "#c59b7d",
+    size: 19,
+    jitter: 6,
+  },
   VENUS: { glyph: "♀", label: "Venus", color: "#dd8a68", size: 21, jitter: -4 },
   SUN: { glyph: "☉", label: "Sun", color: "#f0b13c", size: 32, jitter: 10 },
   MARS: { glyph: "♂", label: "Mars", color: "#cf4f37", size: 22, jitter: 2 },
-  JUPITER: { glyph: "♃", label: "Jupiter", color: "#e0a33c", size: 28, jitter: 14 },
-  SATURN: { glyph: "♄", label: "Saturn", color: "#e6d8b8", size: 26, jitter: -6 },
-  MEAN_NODE: { glyph: "☊", label: "Rahu", color: "#7fa8d0", size: 18, jitter: 8 },
+  JUPITER: {
+    glyph: "♃",
+    label: "Jupiter",
+    color: "#e0a33c",
+    size: 28,
+    jitter: 14,
+  },
+  SATURN: {
+    glyph: "♄",
+    label: "Saturn",
+    color: "#e6d8b8",
+    size: 26,
+    jitter: -6,
+  },
+  MEAN_NODE: {
+    glyph: "☊",
+    label: "Rahu",
+    color: "#7fa8d0",
+    size: 18,
+    jitter: 8,
+  },
 };
 
-const SIGN_GLYPHS = ["♈", "♉", "♊", "♋", "♌", "♍", "♎", "♏", "♐", "♑", "♒", "♓"];
+const SIGN_GLYPHS = [
+  "♈",
+  "♉",
+  "♊",
+  "♋",
+  "♌",
+  "♍",
+  "♎",
+  "♏",
+  "♐",
+  "♑",
+  "♒",
+  "♓",
+];
 
 const SIGN_ABBR: Record<string, string> = {
   ARIES: "ARI",
@@ -75,7 +112,7 @@ export default function PlanetaryOrrery() {
     <div className="relative mx-auto w-full max-w-[620px]">
       {/* Halo */}
       <div className="pointer-events-none absolute -inset-8 z-0">
-        <div className="h-full w-full animate-glow rounded-[3rem] bg-[radial-gradient(circle,var(--color-accent-glow)/20_0%,transparent_70%)] blur-2xl" />
+        <div className="animate-glow h-full w-full rounded-[3rem] bg-[radial-gradient(circle,var(--color-accent-glow)/20_0%,transparent_70%)] blur-2xl" />
       </div>
 
       <div className="relative z-10 -rotate-1 border-[3px] border-[var(--color-primary-light)]/80 bg-[#0d1a30] text-[var(--color-primary-light)] shadow-[10px_10px_0_0_#081020]">
@@ -209,7 +246,7 @@ export default function PlanetaryOrrery() {
                 fontSize="10"
                 fontWeight="900"
                 letterSpacing="3"
-                style={{ fontFamily: "var(--font-poster-face), Impact, sans-serif" }}
+                style={{ fontFamily: "var(--font-hand), Impact, sans-serif" }}
                 fill={CREAM}
                 opacity={0.85}
               >
@@ -261,24 +298,25 @@ export default function PlanetaryOrrery() {
             })}
 
             {/* Ascendant flag */}
-            {data?.ascendant && (() => {
-              const p = orbitPoint(data.ascendant.longitude, 8);
-              return (
-                <text
-                  x={p.x}
-                  y={p.y - 9}
-                  textAnchor="middle"
-                  fontSize="8"
-                  fontWeight="900"
-                  letterSpacing="1"
-                  style={{ fontFamily: "var(--font-mono), monospace" }}
-                  fill="var(--color-accent-orange)"
-                  opacity={0.9}
-                >
-                  ASC
-                </text>
-              );
-            })()}
+            {data?.ascendant &&
+              (() => {
+                const p = orbitPoint(data.ascendant.longitude, 8);
+                return (
+                  <text
+                    x={p.x}
+                    y={p.y - 9}
+                    textAnchor="middle"
+                    fontSize="8"
+                    fontWeight="900"
+                    letterSpacing="1"
+                    style={{ fontFamily: "var(--font-mono), monospace" }}
+                    fill="var(--color-accent-orange)"
+                    opacity={0.9}
+                  >
+                    ASC
+                  </text>
+                );
+              })()}
 
             {/* Planets */}
             {planets.map((planet) => {
@@ -330,7 +368,13 @@ export default function PlanetaryOrrery() {
 
                   {/* Sun glow */}
                   {planet.planet === "SUN" && (
-                    <circle cx={x} cy={y} r={meta.size * 0.9} fill={meta.color} opacity={0.16} />
+                    <circle
+                      cx={x}
+                      cy={y}
+                      r={meta.size * 0.9}
+                      fill={meta.color}
+                      opacity={0.16}
+                    />
                   )}
 
                   <text
@@ -360,7 +404,8 @@ export default function PlanetaryOrrery() {
                     fill={CREAM}
                     opacity={isHovered ? 0.95 : 0.6}
                   >
-                    {planet.degree.toFixed(1)}° {SIGN_ABBR[planet.sign] ?? planet.sign}
+                    {planet.degree.toFixed(1)}°{" "}
+                    {SIGN_ABBR[planet.sign] ?? planet.sign}
                     {planet.isRetrograde ? " ℞" : ""}
                   </text>
                 </g>
@@ -368,61 +413,69 @@ export default function PlanetaryOrrery() {
             })}
 
             {/* Tooltip */}
-            {active && (() => {
-              const meta = PLANETS[active.planet];
-              if (!meta) return null;
-              const { x, y } = orbitPoint(active.longitude, meta.jitter);
-              const width = 150;
-              const tx = Math.min(Math.max(x - width / 2, 4), W - width - 4);
-              const ty = y > 150 ? y - 84 : y + 34;
+            {active &&
+              (() => {
+                const meta = PLANETS[active.planet];
+                if (!meta) return null;
+                const { x, y } = orbitPoint(active.longitude, meta.jitter);
+                const width = 150;
+                const tx = Math.min(Math.max(x - width / 2, 4), W - width - 4);
+                const ty = y > 150 ? y - 84 : y + 34;
 
-              return (
-                <g pointerEvents="none">
-                  <rect x={tx + 3} y={ty + 3} width={width} height={58} fill="#081020" />
-                  <rect
-                    x={tx}
-                    y={ty}
-                    width={width}
-                    height={58}
-                    fill="#f4ead2"
-                    stroke="#0d1a30"
-                    strokeWidth="2.5"
-                  />
-                  <text
-                    x={tx + 10}
-                    y={ty + 18}
-                    fontSize="11"
-                    fontWeight="900"
-                    letterSpacing="1"
-                    fill="#0d1a30"
-                  >
-                    {meta.label.toUpperCase()}
-                  </text>
-                  <text
-                    x={tx + 10}
-                    y={ty + 33}
-                    fontSize="11"
-                    fontWeight="900"
-                    style={{ fontFamily: "var(--font-mono), monospace" }}
-                    fill="#0d1a30"
-                  >
-                    {active.degree.toFixed(2)}° {SIGN_ABBR[active.sign] ?? active.sign}
-                  </text>
-                  <text
-                    x={tx + 10}
-                    y={ty + 46}
-                    fontSize="9"
-                    fontWeight="700"
-                    style={{ fontFamily: "var(--font-mono), monospace" }}
-                    fill="#0d1a30"
-                    opacity={0.6}
-                  >
-                    house {active.house}
-                    {active.isRetrograde ? " · retrograde" : ""}
-                  </text>
-                </g>
-              );
-            })()}
+                return (
+                  <g pointerEvents="none">
+                    <rect
+                      x={tx + 3}
+                      y={ty + 3}
+                      width={width}
+                      height={58}
+                      fill="#081020"
+                    />
+                    <rect
+                      x={tx}
+                      y={ty}
+                      width={width}
+                      height={58}
+                      fill="#f4ead2"
+                      stroke="#0d1a30"
+                      strokeWidth="2.5"
+                    />
+                    <text
+                      x={tx + 10}
+                      y={ty + 18}
+                      fontSize="11"
+                      fontWeight="900"
+                      letterSpacing="1"
+                      fill="#0d1a30"
+                    >
+                      {meta.label.toUpperCase()}
+                    </text>
+                    <text
+                      x={tx + 10}
+                      y={ty + 33}
+                      fontSize="11"
+                      fontWeight="900"
+                      style={{ fontFamily: "var(--font-mono), monospace" }}
+                      fill="#0d1a30"
+                    >
+                      {active.degree.toFixed(2)}°{" "}
+                      {SIGN_ABBR[active.sign] ?? active.sign}
+                    </text>
+                    <text
+                      x={tx + 10}
+                      y={ty + 46}
+                      fontSize="9"
+                      fontWeight="700"
+                      style={{ fontFamily: "var(--font-mono), monospace" }}
+                      fill="#0d1a30"
+                      opacity={0.6}
+                    >
+                      house {active.house}
+                      {active.isRetrograde ? " · retrograde" : ""}
+                    </text>
+                  </g>
+                );
+              })()}
           </svg>
         </div>
       </div>

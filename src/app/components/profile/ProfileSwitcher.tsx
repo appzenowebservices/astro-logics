@@ -65,7 +65,7 @@ function ProfileAvatar({
           : "border-[var(--color-ring-bronze)]/70 bg-[var(--color-primary-light)] text-[var(--color-primary-dark)]"
       }`}
     >
-      <span className="relative font-sans text-[12px] font-black">
+      <span className="font-ui relative text-[12px] font-black">
         {profileInitial(chart)}
       </span>
     </span>
@@ -145,10 +145,10 @@ export default function ProfileSwitcher() {
         <ProfileAvatar chart={activeChart} />
 
         <span className="hidden min-w-0 flex-col items-start leading-none sm:flex">
-          <span className="font-sans text-[9px] font-bold tracking-[0.24em] text-[var(--color-primary-light)]/65 uppercase">
+          <span className="font-ui text-[9px] font-bold tracking-[0.24em] text-[var(--color-primary-light)]/65 uppercase">
             Active nativity
           </span>
-          <span className="mt-1 max-w-[150px] truncate font-sans text-[13px] font-black tracking-[0.04em] text-[var(--color-primary-light)] uppercase">
+          <span className="font-ui mt-1 max-w-[150px] truncate text-[13px] font-black tracking-[0.04em] text-[var(--color-primary-light)] uppercase">
             {isLoading && !activeChart
               ? "Syncing profiles"
               : (activeChart?.name ?? "Select profile")}
@@ -187,10 +187,10 @@ export default function ProfileSwitcher() {
 
             <div className="relative flex items-start justify-between gap-3 px-4 pt-4 pb-3">
               <div>
-                <p className="font-sans text-[10px] font-bold tracking-[0.28em] text-[var(--color-primary-light)]/65 uppercase">
+                <p className="font-ui text-[10px] font-bold tracking-[0.28em] text-[var(--color-primary-light)]/65 uppercase">
                   Profile selection
                 </p>
-                <p className="mt-1 font-sans text-base font-black tracking-tight text-[var(--color-primary-light)] uppercase">
+                <p className="font-ui mt-1 text-base font-black tracking-tight text-[var(--color-primary-light)] uppercase">
                   {charts.length}{" "}
                   {charts.length === 1 ? "nativity" : "nativities"}
                 </p>
@@ -211,7 +211,7 @@ export default function ProfileSwitcher() {
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
                     placeholder="Find a nativity…"
-                    className="min-w-0 flex-1 bg-transparent font-sans text-[12px] font-bold text-[var(--color-primary-light)] placeholder:text-[var(--color-primary-light)]/50 focus:outline-none"
+                    className="font-ui min-w-0 flex-1 bg-transparent text-[12px] font-bold text-[var(--color-primary-light)] placeholder:text-[var(--color-primary-light)]/50 focus:outline-none"
                   />
                 </div>
               </div>
@@ -219,7 +219,7 @@ export default function ProfileSwitcher() {
 
             <div className="custom-scrollbar relative max-h-[min(52vh,340px)] overflow-y-auto p-2">
               {isLoading ? (
-                <div className="flex items-center justify-center gap-2 px-4 py-10 font-sans text-[11px] font-bold tracking-[0.18em] text-[var(--color-primary-light)]/65 uppercase">
+                <div className="font-ui flex items-center justify-center gap-2 px-4 py-10 text-[11px] font-bold tracking-[0.18em] text-[var(--color-primary-light)]/65 uppercase">
                   <Loader2 size={13} className="animate-spin" />
                   Loading profiles
                 </div>
@@ -231,12 +231,12 @@ export default function ProfileSwitcher() {
                       className="text-[var(--color-ring-bronze)]"
                     />
                   </span>
-                  <p className="mt-3 font-sans text-[13px] font-black tracking-wide text-[var(--color-primary-light)] uppercase">
+                  <p className="font-ui mt-3 text-[13px] font-black tracking-wide text-[var(--color-primary-light)] uppercase">
                     {charts.length === 0
                       ? "No nativities yet"
                       : "No profile matches"}
                   </p>
-                  <p className="mt-1 max-w-[16rem] font-sans text-[12px] font-semibold leading-relaxed text-[var(--color-primary-light)]/60">
+                  <p className="font-ui mt-1 max-w-[16rem] text-[12px] leading-relaxed font-semibold text-[var(--color-primary-light)]/60">
                     {charts.length === 0
                       ? "Create your first chart to activate the engine."
                       : "Try another name or location."}
@@ -245,7 +245,7 @@ export default function ProfileSwitcher() {
                     <Link
                       href="/nativity"
                       onClick={() => setOpen(false)}
-                      className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent-orange)] px-4 py-2.5 font-sans text-[10px] font-bold tracking-[0.16em] text-white uppercase"
+                      className="font-ui mt-4 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent-orange)] px-4 py-2.5 text-[10px] font-bold tracking-[0.16em] text-white uppercase"
                     >
                       <Plus size={11} />
                       New chart
@@ -280,17 +280,17 @@ export default function ProfileSwitcher() {
 
                       <span className="min-w-0 flex-1">
                         <span className="flex items-center gap-2">
-                          <span className="truncate font-sans text-[14px] font-black tracking-[0.04em] uppercase">
+                          <span className="font-ui truncate text-[14px] font-black tracking-[0.04em] uppercase">
                             {chart.name}
                           </span>
                           {isActive && (
-                            <span className="shrink-0 rounded-full bg-[var(--color-accent-orange)] px-2 py-0.5 font-sans text-[9px] font-bold tracking-[0.14em] text-white uppercase">
+                            <span className="font-ui shrink-0 rounded-full bg-[var(--color-accent-orange)] px-2 py-0.5 text-[9px] font-bold tracking-[0.14em] text-white uppercase">
                               Active
                             </span>
                           )}
                         </span>
                         <span
-                          className={`mt-1.5 flex items-center gap-1.5 truncate font-sans text-[10px] font-bold tracking-[0.1em] uppercase ${
+                          className={`font-ui mt-1.5 flex items-center gap-1.5 truncate text-[10px] font-bold tracking-[0.1em] uppercase ${
                             isActive
                               ? "text-[var(--color-primary-dark)]/65"
                               : "text-[var(--color-primary-light)]/60"
@@ -337,15 +337,15 @@ export default function ProfileSwitcher() {
               <Link
                 href="/profile-selection"
                 onClick={() => setOpen(false)}
-                className="group/footer flex items-center justify-center gap-1.5 rounded-lg px-2 py-2.5 font-sans text-[10px] font-bold tracking-[0.16em] text-[var(--color-primary-light)]/80 uppercase transition-colors hover:bg-[#2e466f] hover:text-[var(--color-primary-light)]"
+                className="group/footer font-ui flex items-center justify-center gap-1.5 rounded-lg px-2 py-2.5 text-[10px] font-bold tracking-[0.16em] text-[var(--color-primary-light)]/80 uppercase transition-colors hover:bg-[#2e466f] hover:text-[var(--color-primary-light)]"
               >
                 <Settings2 size={12} />
                 Manage
               </Link>
               <Link
-                href="/nativity"
+                href="/nativity/create"
                 onClick={() => setOpen(false)}
-                className="group/footer flex items-center justify-center gap-1.5 rounded-lg px-2 py-2.5 font-sans text-[10px] font-bold tracking-[0.16em] text-[var(--color-accent-glow)] uppercase transition-colors hover:bg-[#2e466f] hover:text-[var(--color-primary-light)]"
+                className="group/footer font-ui flex items-center justify-center gap-1.5 rounded-lg px-2 py-2.5 text-[10px] font-bold tracking-[0.16em] text-[var(--color-accent-glow)] uppercase transition-colors hover:bg-[#2e466f] hover:text-[var(--color-primary-light)]"
               >
                 <Plus size={12} />
                 New chart

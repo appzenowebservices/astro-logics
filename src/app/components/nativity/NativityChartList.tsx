@@ -56,8 +56,23 @@ export default function NativityChartList({
     );
   if (charts.length === 0)
     return (
-      <div className="w-full p-12 text-center text-slate-400 italic">
-        No records found.
+      <div className="flex w-full flex-col items-center justify-center p-12 text-center">
+        <p className="font-poster text-3xl leading-tight text-[var(--color-primary-dark)]">
+          No charts yet
+        </p>
+        <p className="font-hindi mt-1 text-lg text-[var(--color-primary-dark)]/60">
+          पहली कुंडली बनाइए।
+        </p>
+        <p className="mt-3 max-w-sm text-sm font-semibold text-[var(--color-primary-dark)]/55">
+          Cast a birth moment once — the archive, climate, dashboard and 3D
+          agent all follow it.
+        </p>
+        <a
+          href="/nativity/create?return=/nativity"
+          className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--color-accent-orange)] px-5 py-2.5 text-[11px] font-black tracking-[0.16em] text-white uppercase transition-colors hover:bg-[var(--color-primary-dark)]"
+        >
+          Cast first chart
+        </a>
       </div>
     );
 
